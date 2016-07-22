@@ -1,0 +1,21 @@
+{
+	"name": "Shutdown Notification",
+	"notification":
+	{
+		"header": 
+		{
+			"type": 3,
+			"version": 1,
+			"result": 0
+		},
+		"group": {
+			"name": "alert" {
+				"value": {
+					"name": "type",
+					"type": "Int",
+					"variable": "${alertCode}"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "GetVersion",
+	"request":
+	{
+		"header": 
+		{
+			"type": 1,
+			"version": 1
+		}
+	},
+	"response":
+	{
+		"header": 
+		{
+			"type": 2,
+			"version": 1,
+			"result": 0
+		},
+		"firmware":
+		{
+			"majorVersion": 1,
+			"minorVersion": 1,
+			"patchVersion": 1
+		}
+	}
+}
