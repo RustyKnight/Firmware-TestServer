@@ -8,9 +8,10 @@
 
 import Foundation
 import SwiftyJSON
+import CioffiAPI
 
 class GetVersionHandler: RequestHandler {
-    func handle(request: JSON, `for` client: Client) {
+    func handle(request: JSON, `for` responder: Responder) {
         var version: [String: AnyObject] = [:]
         version["majorVersion"] = 1
         version["minorVersion"] = 1
@@ -20,6 +21,6 @@ class GetVersionHandler: RequestHandler {
             "firmware": version
         ]
         
-        client.send(response: .success, for: .getVersion, contents: contents)
+        responder.send(response: .success, for: .getVersion, contents: contents)
     }
 }

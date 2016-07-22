@@ -23,7 +23,7 @@ import Foundation
  - returns: A new dictionary which is a merge of the left and right values,
  where the right will override any duplicate keys from the left
  */
-func + <K, V> (left: [K:V], right: [K:V]) -> [K:V] {
+public func + <K, V> (left: [K:V], right: [K:V]) -> [K:V] {
     var new = [K:V]()
     for (k, v) in left {
         new[k] = v
@@ -48,14 +48,14 @@ func + <K, V> (left: [K:V], right: [K:V]) -> [K:V] {
  - parameter left:  Source dictionary
  - parameter right: Dictionary to be merged
  */
-func += <K, V> ( left: inout [K:V], right: [K:V]?) {
+public func += <K, V> ( left: inout [K:V], right: [K:V]?) {
     guard let right = right else { return }
     right.forEach { key, value in
         left.updateValue(value, forKey: key)
     }
 }
 
-func + <K, V, P> (left: [K:[V:P]], right: [K:[V:P]]) -> [K:[V:P]] {
+public func + <K, V, P> (left: [K:[V:P]], right: [K:[V:P]]) -> [K:[V:P]] {
     var new = [K:[V:P]]()
     for (k, v) in left {
         new[k] = v
@@ -67,7 +67,7 @@ func + <K, V, P> (left: [K:[V:P]], right: [K:[V:P]]) -> [K:[V:P]] {
 }
 
 
-func += <K, V, P> ( left: inout [K:[V:P]], right: [K:[V:P]]?) {
+public func += <K, V, P> ( left: inout [K:[V:P]], right: [K:[V:P]]?) {
     guard let right = right else { return }
     right.forEach { key, value in
         left.updateValue(value, forKey: key)

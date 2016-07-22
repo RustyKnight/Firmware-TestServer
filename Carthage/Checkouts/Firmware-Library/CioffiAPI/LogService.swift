@@ -8,16 +8,16 @@
 
 import Foundation
 
-class LogService {
-    static var `default`: LogService = LogService()
+public class LogService {
+    public static var `default`: LogService = LogService()
     
-    enum Level {
+    public enum Level {
         case info
         case warn
         case error
     }
     
-    func log(level: Level, message: String, file: String = #file, function: String = #function, line: Int = #line) {
+    public func log(level: Level, message: String, file: String = #file, function: String = #function, line: Int = #line) {
         var fileName = file
         if let url = URL(string: file),
             let name = url.lastPathComponent,
@@ -42,27 +42,27 @@ class LogService {
         print(value)
     }
     
-    func log(info message: String, file: String = #file, function: String = #function, line: Int = #line) {
+    public func log(info message: String, file: String = #file, function: String = #function, line: Int = #line) {
         log(level: .info, message: message, file: file, function: function, line: line)
     }
     
-    func log(warning message: String, file: String = #file, function: String = #function, line: Int = #line) {
+    public func log(warning message: String, file: String = #file, function: String = #function, line: Int = #line) {
         log(level: .warn, message: message, file: file, function: function, line: line)
     }
     
-    func log(error message: String, file: String = #file, function: String = #function, line: Int = #line) {
+    public func log(error message: String, file: String = #file, function: String = #function, line: Int = #line) {
         log(level: .error, message: message, file: file, function: function, line: line)
     }
 }
 
-func log(info: String, file: String = #file, function: String = #function, line: Int = #line) {
+public func log(info: String, file: String = #file, function: String = #function, line: Int = #line) {
     LogService.default.log(info: info, file: file, function: function, line: line)
 }
 
-func log(warning: String, file: String = #file, function: String = #function, line: Int = #line) {
+public func log(warning: String, file: String = #file, function: String = #function, line: Int = #line) {
     LogService.default.log(warning: warning, file: file, function: function, line: line)
 }
 
-func log(error: String, file: String = #file, function: String = #function, line: Int = #line) {
+public func log(error: String, file: String = #file, function: String = #function, line: Int = #line) {
     LogService.default.log(error: error, file: file, function: function, line: line)
 }

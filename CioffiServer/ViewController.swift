@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CioffiAPI
 
 class ViewController: NSViewController {
 

@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Client {
+public protocol Responder {
     func send(response: ResponseCode, `for`: ResponseType, contents: [String: [String: AnyObject]]?)
 }

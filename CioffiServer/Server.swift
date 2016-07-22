@@ -9,6 +9,7 @@
 import Foundation
 import CocoaAsyncSocket
 import SwiftyJSON
+import CioffiAPI
 
 class Server: NSObject {
     
@@ -198,7 +199,7 @@ class ClientSocketDelegate: NSObject, GCDAsyncSocketDelegate {
     
 }
 
-class SocketClient: Client {
+class SocketClient: Responder {
     let socket: GCDAsyncSocket
     
     init(socket: GCDAsyncSocket) {

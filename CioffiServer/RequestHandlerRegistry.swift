@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CioffiAPI
 
 protocol RequestHandlerRegistry {
     func handler(`for`: RequestType) -> RequestHandler?

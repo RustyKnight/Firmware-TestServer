@@ -8,7 +8,8 @@
 
 import Foundation
 import SwiftyJSON
+import CioffiAPI
 
 protocol RequestHandler {
-    func handle(request: JSON, `for`: Client)
+    func handle(request: JSON, `for`: Responder)
 }

@@ -1,4 +1,3 @@
 github "RustyKnight/CocoaAsyncSocket" "7.5.5"
 github "RustyKnight/SwiftEventBus" "v2.1.2"
 github "RustyKnight/SwiftyJSON" "v3.0.2"
-github "RustyKnight/Firmware-Library" "v0.0.6"

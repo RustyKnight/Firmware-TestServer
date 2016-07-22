@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RequestType: Int {
+public enum RequestType: Int {
     case unknown = -1
     case getVersion = 1
     case setNetworkMode = 4
@@ -20,7 +20,7 @@ enum RequestType: Int {
     case getSignalStrength = 17
     case getServiceProviderName = 18
     
-    static func `for`(_ value: Int) -> RequestType {
+    public static func `for`(_ value: Int) -> RequestType {
         guard let type = RequestType(rawValue: value) else {
             return RequestType.unknown
         }
