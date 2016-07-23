@@ -83,10 +83,12 @@ class DefaultRequestHandler: RequestHandler {
 		
 		let requestType = RequestType.for(typeCode)
 		log(info: "requestType: \(requestType)")
-		guard let handler = registry[requestType] else {
+		guard let json = registry[requestType] else {
 			log(info: "No handler for request \(requestType)")
-			responder.sendUn
+			responder.sendUnsupportedAPIResponse(for: requestType)
 			return
 		}
+		
+		
 	}
 }

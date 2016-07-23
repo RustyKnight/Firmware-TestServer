@@ -11,16 +11,16 @@ import SwiftyJSON
 import CioffiAPI
 
 class GetVersionHandler: RequestHandler {
-    func handle(request: JSON, `for` responder: Responder) {
-        var version: [String: AnyObject] = [:]
-        version["majorVersion"] = 1
-        version["minorVersion"] = 1
-        version["patchVersion"] = 1
-        
-        let contents: [String: [String: AnyObject]] = [
-            "firmware": version
-        ]
-        
-        responder.send(response: .success, for: .getVersion, contents: contents)
-    }
+	func handle(request: JSON, forResponder responder: Responder) {
+		var version: [String: AnyObject] = [:]
+		version["majorVersion"] = 1
+		version["minorVersion"] = 1
+		version["patchVersion"] = 1
+		
+		let contents: [String: [String: AnyObject]] = [
+			"firmware": version
+		]
+		
+		responder.send(response: .success, for: .getVersion, contents: contents)
+	}
 }

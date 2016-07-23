@@ -9,5 +9,7 @@
 import Foundation
 
 public protocol Responder {
-    func send(response: ResponseCode, `for`: ResponseType, contents: [String: [String: AnyObject]]?)
+	func sendUnsupportedAPIResponse(`for`: RequestType)
+	func sendUnsupportedAPIResponse(`for`: Int)
+	func send(response: ResponseCode, `for`: ResponseType, contents: [String: [String: AnyObject]]?)
 }
