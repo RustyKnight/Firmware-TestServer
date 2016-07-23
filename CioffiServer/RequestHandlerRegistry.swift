@@ -8,35 +8,85 @@
 
 import Foundation
 import CioffiAPI
+import SwiftyJSON
 
-protocol RequestHandlerRegistry {
-    func handler(`for`: RequestType) -> RequestHandler?
-    func add(_ handler: RequestHandler, `for`: RequestType)
+enum RequestRegistryError: ErrorProtocol {
+	case missingReuqestType
 }
 
-class RequestHandlerRegistryManager {
-    static var `default`: RequestHandlerRegistry {
-        return RequestHandlerRegistryFactory.registery
-    }
+protocol RequestHandler {
+	func handle(request: JSON, forResponder: Responder)
 }
 
-class RequestHandlerRegistryFactory {
-    static var registery: RequestHandlerRegistry = DefaultRequestHandlerRegistry()
+class RequestHandlerManager {
+	static var `default`: RequestHandler {
+		return RequestHandlerFactory.registery
+	}
 }
 
-class DefaultRequestHandlerRegistry: RequestHandlerRegistry {
-    
-    var registry: [RequestType: RequestHandler] = [:]
-    
-    init() {
-        add(GetVersionHandler(), for: .getVersion)
-    }
-    
-    func handler(for type: RequestType) -> RequestHandler? {
-        return registry[type]
-    }
-    
-    func add(_ handler: RequestHandler, `for` type: RequestType) {
-        registry[type] = handler
-    }
+class RequestHandlerFactory {
+	static var registery: RequestHandler = DefaultRequestHandler()
+}
+
+class DefaultRequestHandler: RequestHandler {
+	
+	static let applicationDirectoryName = "CioffiFirmwareServer"
+	static let functionsDirectoryName = "functions"
+	
+	var registry: [RequestType: JSON] = [:]
+	
+	func supportDirectory() throws -> URL {
+		let paths = FileManager.default.urlsForDirectory(.applicationSupportDirectory, inDomains: .userDomainMask)
+		var path = paths.first!
+		try path.appendPathComponent(DefaultRequestHandler.applicationDirectoryName)
+		return path
+	}
+	
+	func functionsDirectory() throws -> URL {
+		var path = try supportDirectory()
+		try path.appendPathComponent(DefaultRequestHandler.functionsDirectoryName)
+		return path
+	}
+	
+	init() {
+		loadFunctions()
+	}
+	
+	func loadFunctions() {
+		do {
+			let path = try functionsDirectory()
+			var contents = try FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: [], options: [])
+			contents = contents.filter{$0.pathExtension == "json"}
+			for file in contents {
+				try loadFunction(from: file)
+			}
+		} catch let error {
+			log(error: "\(error)")
+		}
+	}
+	
+	func loadFunction(from: URL) throws {
+		let data = try Data(contentsOf: from)
+		let json = JSON(data: data)
+		guard let type = json["request"]["header"]["type"].int else {
+			throw RequestRegistryError.missingReuqestType
+		}
+		let requestType = RequestType.for(type)
+		registry[requestType] = json
+	}
+	
+	func handle(request: JSON, forResponder responder: Responder) {
+		
+		guard let typeCode = request["header"]["type"].int else {
+			return
+		}
+		
+		let requestType = RequestType.for(typeCode)
+		log(info: "requestType: \(requestType)")
+		guard let handler = registry[requestType] else {
+			log(info: "No handler for request \(requestType)")
+			responder.sendUn
+			return
+		}
+	}
 }

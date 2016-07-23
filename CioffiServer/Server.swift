@@ -209,6 +209,20 @@ class SocketClient: Responder {
 		self.socket = socket
 	}
 	
+	func sendUnsupportedAPIResponse(`for` type: RequestType) {
+		sendUnsupportedAPIResponse(for: type.rawValue)
+	}
+	
+	func sendUnsupportedAPIResponse(`for` code: Int) {
+		let message = ProtocolUtils.getHeader(type: code, result: ResponseCode.unsupportedAPIType.rawValue)
+		do {
+			let data = try ProtocolUtils.dataFor(payload: message)
+			socket.write(data, withTimeout: Server.readTimeout, tag: ClientSocketDelegate.responseTag)
+		} catch let error {
+			log(error: "\(error)")
+		}
+	}
+	
 	func send(response code: ResponseCode, `for` response: ResponseType, contents: [String: [String: AnyObject]]? = nil) {
 		var message = ProtocolUtils.getHeader(responseType: response, code: code)
 		if let contents = contents {

@@ -20,22 +20,9 @@ extension ProtocolUtils {
 			throw ProtocolError.requestDecodingError
 		}
 		
-		log(info: "Request: \(body)")
-		
 		let json = JSON(data: body)
 		log(info: "json: \(json)")
-		guard let typeCode = json["header"]["type"].int else {
-			throw ProtocolError.missingRequestType
-		}
-		
-		let requestType = RequestType.for(typeCode)
-		log(info: "requestType: \(requestType)")
-		guard let handler = RequestHandlerRegistryManager.default.handler(for: requestType) else {
-			log(info: "No handler for request :(")
-			responder.send(response: .unsupportedAPIType, for: .unknown, contents: nil)
-			return
-		}
-		handler.handle(request: json, for: responder)
+		RequestHandlerManager.default.handle(request: json, forResponder: responder)
 	}
 	
 }
