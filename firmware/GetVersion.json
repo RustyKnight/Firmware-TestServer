@@ -16,11 +16,25 @@
 			"version": 1,
 			"result": 0
 		},
-		"firmware":
-		{
-			"majorVersion": 1,
-			"minorVersion": 1,
-			"patchVersion": 1
+		"group": {
+			"name": "firmware",
+			"firmware": {
+				"value": {
+					"name": "majorVersion",
+					"type": "Int",
+					"value": 1
+				},
+				"value": {
+					"name": "minorVersion",
+					"type": "Int",
+					"value": 1
+				},
+				"value": {
+					"name": "pathVersion",
+					"type": "Int",
+					"value": 1
+				}
+			}
 		}
 	}
 }

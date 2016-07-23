@@ -9,7 +9,8 @@
 			"result": 0
 		},
 		"group": {
-			"name": "alert" {
+			"name": "alert",
+			"alert": {
 				"value": {
 					"name": "type",
 					"type": "Int",
