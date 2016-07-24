@@ -9,6 +9,7 @@
 import Foundation
 import CioffiAPI
 import SwiftyJSON
+import Fuzi
 
 enum RequestRegistryError: ErrorProtocol {
 	case missingReuqestType
@@ -66,7 +67,31 @@ class DefaultRequestHandler: RequestHandler {
 	}
 	
 	func loadFunction(from: URL) throws {
+		
 		let data = try Data(contentsOf: from)
+		let doc = try Fuzi.XMLDocument(data: data)
+		
+//		<cioffi type="function" name="GetVersion">
+//		<request>
+//		<header>
+//		<type>1</type>
+//		<version>1</version>
+//		</header>
+//		</request>
+//		<response>
+//		<header>
+//		<type>2</type>
+//		<version>1</version>
+//		<version>0</version>
+//		</header>
+//		<group name="firmware">
+//		<variable name="majorVersion" property="majorVersion" type="Int"/>
+//		<variable name="minorVersion" property="minorVersion" type="Int"/>
+//		<variable name="patchVersion" property="patchVersion" type="Int"/>
+//		</group>
+//		</response>
+//		</cioffi>
+		
 		let json = JSON(data: data)
 		log(info: "Load from \(from)")
 		guard let type = json["request"]["header"]["type"].int else {
@@ -97,8 +122,6 @@ class DefaultRequestHandler: RequestHandler {
 		response["header"]?["type"] = responseScript["header"]["type"].intValue
 		response["header"]?["version"] = responseScript["header"]["version"].intValue
 		response["header"]?["result"] = responseScript["header"]["result"].intValue
-		
-		responseScript.
 		
 		log(info: "group = \(responseScript["group"].count)")
 		log(info: "group = \(responseScript["group"].array)")
