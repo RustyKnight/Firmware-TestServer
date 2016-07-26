@@ -1,0 +1,18 @@
+<cioffi type="function" name="GetServiceProviderName">
+	<request>
+		<header>
+			<type>20</type>
+			<version>1</version>
+		</header>
+	</request>
+	<response>
+		<header>
+			<type>21</type>
+			<version>1</version>
+		</header>
+		<!-- This relies on some mode -->
+		<group name="cellular">
+			<property name="provider" variable="cellularProvider" type="String" default=""/>
+		</group>
+	</response>	
+</cioffi>

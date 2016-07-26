@@ -29,6 +29,7 @@ enum RequestRegistryError: ErrorProtocol {
 }
 
 protocol RequestHandler {
+    var functions: [APIFunction] {get}
 	func handle(request: JSON, forResponder: Responder)
 }
 
@@ -48,7 +49,7 @@ class DefaultRequestHandler: RequestHandler {
 	static let functionsDirectoryName = "functions"
     
     var functions: [APIFunction] = []
-    var variables: [String: String] = [:]
+    var variables: [String: Property] = [:]
 	
 	func supportDirectory() throws -> URL {
 		let paths = FileManager.default.urlsForDirectory(.applicationSupportDirectory, inDomains: .userDomainMask)
@@ -73,7 +74,12 @@ class DefaultRequestHandler: RequestHandler {
 			var contents = try FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: [], options: [])
 			contents = contents.filter{$0.pathExtension == "xml"}
 			for file in contents {
-				try loadFunction(from: file)
+                do {
+                    try loadFunction(from: file)
+                } catch let error {
+                    log(error: "\(file)")
+                    log(error: "\(error)")
+                }
 			}
 		} catch let error {
 			log(error: "\(error)")
@@ -94,14 +100,14 @@ class DefaultRequestHandler: RequestHandler {
             throw RequestRegistryError.missingName
         }
         
-        log(info: "name = \(name); type = \(type)")
-        
         guard let requestNode = doc.first(xpath: "/cioffi/request") else {
             throw RequestRegistryError.missingRequest
         }
         guard let responseNode = doc.first(xpath: "/cioffi/response") else {
             throw RequestRegistryError.missingResponse
         }
+        
+        log(info: "Parse function \(name)")
         
         let requestHeader = try parseHeader(from: requestNode)
         let responseHeader = try parseHeader(from: responseNode)
@@ -111,7 +117,8 @@ class DefaultRequestHandler: RequestHandler {
         let response = DefaultResponse(header: responseHeader, groups: groups)
         
         let apiFunction = DefaultAPIFunction(name: name, request: request, response: response)
-        
+
+        log(info: "\(apiFunction)")
         functions.append(apiFunction)
 
 	}
@@ -149,12 +156,12 @@ class DefaultRequestHandler: RequestHandler {
         guard let type = propertyNode.attr("type") else {
             throw RequestRegistryError.missingVariableType
         }
-        guard let defaultValue = propertyNode.attr("default") else {
+        guard let value = propertyNode.attr("value") else {
             throw RequestRegistryError.missingVariableValue
         }
         
-        variables[variable] = defaultValue
-        var property = DefaultProperty(name: name, variable: variable, type: type, defaultValue: defaultValue)
+        var property = DefaultProperty(name: name, variable: variable, type: type, value: value)
+        variables[variable] = property
         let allowedNodes = propertyNode.xpath("allowed")
         for allowedNode in allowedNodes {
             property.append(allowedValue: try parseAllowedValue(from: allowedNode))
@@ -191,10 +198,14 @@ class DefaultRequestHandler: RequestHandler {
     }
 	
     func value(forProperty property: Property) -> AnyObject {
-        let value = variables[property.variable]
+        guard let variable = variables[property.variable] else {
+            return "unknown"
+        }
+        let value = variable.value
         switch property.type {
-        case "String": return value ?? ""
-        case "Int": return Int(value ?? "0") ?? 0
+        case "String": return value
+        case "Int": return Int(value) ?? 0
+        case "Bool": return value.toBool ?? false
         default:
             break
         }
@@ -348,7 +359,7 @@ protocol Property {
     var variable: String {get}
     var type: String {get}
 
-    var defaultValue: String {get}
+    var value: String {get set}
     var allowedValues: [AllowedValue] {get}
 }
 
@@ -356,7 +367,7 @@ func ==(lhs: Property, rhs: Property) -> Bool {
     return lhs.name == rhs.name &&
         lhs.variable == rhs.variable &&
         lhs.type == rhs.type &&
-        lhs.defaultValue == rhs.defaultValue &&
+        lhs.value == rhs.value &&
         lhs.allowedValues == rhs.allowedValues
 }
 
@@ -413,14 +424,14 @@ struct DefaultProperty: Property {
     var variable: String
     var type: String
     
-    var defaultValue: String
+    var value: String
     var allowedValues: [AllowedValue]
     
-    init(name: String, variable: String, type: String, defaultValue: String) {
+    init(name: String, variable: String, type: String, value: String) {
         self.name = name
         self.variable = variable
         self.type = type
-        self.defaultValue = defaultValue
+        self.value = value
         allowedValues = []
     }
     
@@ -435,10 +446,14 @@ protocol APIFunction {
     var response: Response {get}
 }
 
-struct DefaultAPIFunction: APIFunction {
+struct DefaultAPIFunction: APIFunction, CustomStringConvertible {
     let name: String
     let request: Request
     let response: Response
+    
+    var description: String {
+        return "APIFunction \(name); \(request); \(response)"
+    }
 }
 
 extension Fuzi.XMLDocument {
@@ -474,4 +489,17 @@ extension Fuzi.XMLElement {
         return Int(node.stringValue)
     }
     
+}
+
+extension String {
+    var toBool: Bool? {
+        switch self {
+        case "True", "true", "yes", "1":
+            return true
+        case "False", "false", "no", "0":
+            return false
+        default:
+            return nil
+        }
+    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2321D473EF30090A5BD /* SliderCell.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
 		12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40C11D419DC400C0F512 /* ViewController.swift */; };
 		12BA40C41D419DC400C0F512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA40C31D419DC400C0F512 /* Assets.xcassets */; };
@@ -18,7 +19,6 @@
 		12BA40D71D41A11A00C0F512 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12BA40D31D41A11A00C0F512 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */; };
 		12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */; };
-		12BA40E91D41C8EE00C0F512 /* GetVersionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40E81D41C8EE00C0F512 /* GetVersionHandler.swift */; };
 		707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; };
 		707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		70DB0D291D441C4400EF53E1 /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DB0D281D441C4400EF53E1 /* Fuzi.framework */; };
@@ -43,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1214A2321D473EF30090A5BD /* SliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BA40BF1D419DC400C0F512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12BA40C11D419DC400C0F512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		12BA40D31D41A11A00C0F512 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolUtilitiesExtension.swift; sourceTree = "<group>"; };
 		12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandlerRegistry.swift; sourceTree = "<group>"; };
-		12BA40E81D41C8EE00C0F512 /* GetVersionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetVersionHandler.swift; path = Handler/GetVersionHandler.swift; sourceTree = "<group>"; };
 		707CCA001D422AA6003D8292 /* CioffiAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CioffiAPI.framework; path = Carthage/Build/Mac/CioffiAPI.framework; sourceTree = "<group>"; };
 		70DB0D281D441C4400EF53E1 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/Mac/Fuzi.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,22 +100,14 @@
 				12BA41271D41D72D00C0F512 /* API */,
 				12BA40BF1D419DC400C0F512 /* AppDelegate.swift */,
 				12BA40C31D419DC400C0F512 /* Assets.xcassets */,
-				12BA40E71D41C8C900C0F512 /* Handlers */,
 				12BA40C81D419DC400C0F512 /* Info.plist */,
 				12BA40C51D419DC400C0F512 /* Main.storyboard */,
 				12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */,
 				12BA40D01D41A09B00C0F512 /* Server.swift */,
 				12BA40C11D419DC400C0F512 /* ViewController.swift */,
+				1214A2321D473EF30090A5BD /* SliderCell.swift */,
 			);
 			path = CioffiServer;
-			sourceTree = "<group>";
-		};
-		12BA40E71D41C8C900C0F512 /* Handlers */ = {
-			isa = PBXGroup;
-			children = (
-				12BA40E81D41C8EE00C0F512 /* GetVersionHandler.swift */,
-			);
-			name = Handlers;
 			sourceTree = "<group>";
 		};
 		12BA41271D41D72D00C0F512 /* API */ = {
@@ -204,7 +196,7 @@
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
 				12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */,
 				12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */,
-				12BA40E91D41C8EE00C0F512 /* GetVersionHandler.swift in Sources */,
+				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
 				12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

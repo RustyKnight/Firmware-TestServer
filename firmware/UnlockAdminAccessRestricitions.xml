@@ -1,0 +1,28 @@
+<cioffi type="function" name="SetNetworkMode">
+	<request>
+		<header>
+			<type>10</type>
+			<version>1</version>
+		</header>
+		<group name="login">
+			<!-- 
+				This needs to "compare" the value from the client with the variable we have
+				This would then change the state of some other variable
+
+				Some functions need to change the state of some variable
+			-->
+			<property name="password" variable="adminPassword" type="String" default="">
+				<action type="compare" variable="adminPassword">
+					<sucess action="set" variable="adminRestricted" to="true"/>
+					<failure result="4"/>
+				</action>
+			</property>
+		</group>
+	</request>
+	<response>
+		<header>
+			<type>11</type>
+			<version>1</version>
+		</header>
+	</response>	
+</cioffi>

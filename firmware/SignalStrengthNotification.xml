@@ -1,0 +1,11 @@
+<cioffi type="notification" name="SignalStrengthNotification">
+	<response>
+		<header>
+			<type>19</type>
+			<version>1</version>
+		</header>
+		<group name="cellular">
+			<property name="signal" variable="signalStrength" type="Int" default="0"/>
+		</group>
+	</response>	
+</cioffi>

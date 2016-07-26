@@ -1,0 +1,26 @@
+<cioffi type="function" name="GetAccessRestricitions">
+	<request>
+		<header>
+			<type>8</type>
+			<version>1</version>
+		</header>
+	</request>
+	<response>
+		<header>
+			<type>9</type>
+			<version>1</version>
+		</header>
+		<group name="admin">
+			<property name="restricted" variable="adminRestricted" type="Bool" default="true"/>
+		</group>
+		<group name="sms">
+			<property name="restricted" variable="smsRestricted" type="Bool" default="false"/>
+		</group>
+		<group name="data">
+			<property name="restricted" variable="dataRestricted" type="Bool" default="false"/>
+		</group>
+		<group name="call">
+			<property name="restricted" variable="callRestricted" type="Bool" default="false"/>
+		</group>
+	</response>	
+</cioffi>

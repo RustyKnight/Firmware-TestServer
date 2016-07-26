@@ -1,0 +1,16 @@
+<cioffi type="function" name="ShutdownNotification">
+	<response>
+		<header>
+			<type>23</type>
+			<version>1</version>
+		</header>
+		<group name="alert">
+			<property name="type" variable="shutdownAlertType" type="Int" default="0">
+				<allowed type="value" name="Power button was pressed for 3 seconds" value="0"/>
+				<allowed type="value" name="Criticial High Temperature" value="1"/>
+				<allowed type="value" name="Criticial Low Temperature" value="2"/>
+				<allowed type="value" name="Battery Flat" value="3"/>
+			</property>
+		</group>
+	</response>	
+</cioffi>

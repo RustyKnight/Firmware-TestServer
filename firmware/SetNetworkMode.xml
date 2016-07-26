@@ -1,0 +1,31 @@
+<cioffi type="function" name="SetNetworkMode">
+	<request>
+		<header>
+			<type>4</type>
+			<version>1</version>
+		</header>
+		<group name="network">
+			<property name="mode" variable="networkMode" type="Int" default="0">
+				<allowed name="Satellite" value="0"/>
+				<allowed name="Cellular" value="1"/>
+				<allowed name="Smart Switch" value="2"/>
+				<action type="set" variable="networkMode">
+					<failure result="3"/>
+				</action>
+			</property>
+		</group>
+	</request>
+	<response>
+		<header>
+			<type>6</type>
+			<version>1</version>
+		</header>
+		<group name="network">
+			<property name="mode" variable="networkMode" type="Int" default="0">
+				<allowed type="value" name="Satellite" value="0"/>
+				<allowed type="value" name="Cellular" value="1"/>
+				<allowed type="value" name="Smart Switch" value="2"/>
+			</property>
+		</group>
+	</response>	
+</cioffi>
