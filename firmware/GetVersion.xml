@@ -9,12 +9,11 @@
 		<header>
 			<type>2</type>
 			<version>1</version>
-			<version>0</version>
 		</header>
 		<group name="firmware">
-			<variable name="majorVersion" property="majorVersion" type="Int"/>
-			<variable name="minorVersion" property="minorVersion" type="Int"/>
-			<variable name="patchVersion" property="patchVersion" type="Int"/>
+			<property name="majorVersion" variable="majorVersion" type="Int" default="1"/>
+			<property name="minorVersion" variable="minorVersion" type="Int" default="1"/>
+			<property name="patchVersion" variable="patchVersion" type="Int" default="1"/>
 		</group>
 	</response>	
 </cioffi>
