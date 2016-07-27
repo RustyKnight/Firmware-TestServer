@@ -19,7 +19,8 @@ public enum RequestType: Int {
     case stopAdminAccess = 12
     case getNetworkRegistrationStatus = 14
     case getSignalStrength = 17
-    case getServiceProviderName = 18
+    case getServiceProviderName = 20
+    case getBatteryStatus = 23
     
     public static func `for`(_ value: Int) -> RequestType {
         guard let type = RequestType(rawValue: value) else {

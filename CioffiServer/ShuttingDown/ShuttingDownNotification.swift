@@ -21,7 +21,7 @@ struct ShuttingDownNotification: APINotification {
         return .shuttingDown
     }
     
-    var payload: [String : [String : AnyObject]] {
+    var body: [String : [String : AnyObject]] {
         var data: [String : [String : AnyObject]] = [:]
         data["alert"] = [
             "type": alertType.rawValue

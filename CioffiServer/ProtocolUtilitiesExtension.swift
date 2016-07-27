@@ -26,7 +26,7 @@ extension ProtocolUtils {
 	}
     
     class func dataFor(notification: APINotification) throws -> Data {
-        return try dataFor(notification: notification.type, payload: notification.payload)
+        return try dataFor(notification: notification.type, payload: notification.body)
     }
 	
 }

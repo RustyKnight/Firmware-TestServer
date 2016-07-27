@@ -14,6 +14,7 @@ public enum NotificationType: Int {
 	case networkRegistrationStatusChanged = 16
 	case signalStrengthChanged = 19
 	case serviceProviderChanged = 22
+    case batteryStatusChanged = 25
 }
 
 
@@ -28,6 +29,7 @@ public enum ResponseType: Int {
 	case getNetworkRegistrationStatus = 15
 	case getSignalStrength = 18
 	case getServiceProviderName = 21
+    case getBatteryStatus = 24
 	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {
@@ -50,6 +52,7 @@ public enum ResponseCode: Int {
 	case unsupportedAPIVersion = 1
 	case unsupportedAPIType = 2
 	case failure = 3
+    case accessDenied = 4
 }
 
 public class JSONResponseWrapper {

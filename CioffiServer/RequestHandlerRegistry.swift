@@ -50,6 +50,15 @@ class DefaultRequestHandler: RequestHandler {
         functions[.getVersion] = GetVersionFunction()
         functions[.getNetworkMode] = GetNetworkModeFunction()
         functions[.setNetworkMode] = SetNetworkModeFunction()
+        
+        functions[.getAccessRestricitions] = GetAccessRestricitionsFunction()
+        functions[.unlockAdminAccessRestriction] = UnlockAdminAccessRestricitionFunction()
+        functions[.stopAdminAccess] = StopAdminAccessFunction()
+        
+        functions[.getNetworkRegistrationStatus] = GetNetworkRegistrationStatusFunction()
+        functions[.getSignalStrength] = GetSignalStrengthFunction()
+        
+        functions[.getBatteryStatus] = GetBatteryStatusFunction()
 	}
 
     func handle(request: JSON, forResponder responder: Responder) {

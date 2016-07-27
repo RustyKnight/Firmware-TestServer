@@ -249,4 +249,12 @@ class SocketClient: Responder {
             log(error: "\(error)")
         }
     }
+    
+    func failed(response: ResponseType) {
+        send(response: .failure, for: response)
+    }
+    
+    func accessDenied(response: ResponseType) {
+        send(response: .accessDenied, for: response)
+    }
 }
