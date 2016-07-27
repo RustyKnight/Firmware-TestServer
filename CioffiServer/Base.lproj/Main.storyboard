@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -136,45 +137,404 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="350" height="118"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
-                        <segue destination="Ufn-ux-sFc" kind="relationship" relationship="window.shadowedContentViewController" id="oLo-v0-6Jl"/>
+                        <segue destination="gwj-Fs-yQB" kind="relationship" relationship="window.shadowedContentViewController" id="J42-oI-cF0"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="75" y="169"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="egB-nL-Ejz">
+        <!--MainTabbedView-->
+        <scene sceneID="UnO-k1-Plj">
             <objects>
-                <viewController storyboardIdentifier="MultiplePropertiesController" id="Ufn-ux-sFc" customClass="ViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="8dW-49-FmR">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                <tabViewController title="MainTabbedView" selectedTabViewItemIndex="0" id="gwj-Fs-yQB" customClass="ViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="6sK-mq-cZq"/>
+                        <tabViewItem identifier="" id="BR6-sp-WNP"/>
+                        <tabViewItem id="6rf-HZ-LUb"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="LZL-Rj-t5k">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="tEl-gR-RL1" kind="relationship" relationship="tabItems" id="QIi-kX-DQ5"/>
+                        <segue destination="iSJ-tu-o7N" kind="relationship" relationship="tabItems" id="hdT-NV-BhB"/>
+                        <segue destination="UzU-tT-nA2" kind="relationship" relationship="tabItems" id="BzS-9K-VK2"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="dUp-z8-ogz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="77" y="711"/>
+        </scene>
+        <!--Version-->
+        <scene sceneID="fJ4-2d-q7I">
+            <objects>
+                <viewController title="Version" id="tEl-gR-RL1" customClass="VersionViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="6Nk-b4-ch4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="110"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rp4-MZ-jt5">
-                                <rect key="frame" x="190" y="132" width="101" height="32"/>
-                                <buttonCell key="cell" type="push" title="Shutdown" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qbg-ij-g8Y">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5tQ-yU-X0R">
+                                <rect key="frame" x="177" y="44" width="96" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="1Ao-Gb-T4i"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="W8B-ns-0td">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
                                 <connections>
-                                    <action selector="shutdownNotification:" target="Ufn-ux-sFc" id="j68-At-4ar"/>
+                                    <action selector="minorFieldChanged:" target="tEl-gR-RL1" id="RL4-MB-ZbF"/>
                                 </connections>
-                            </button>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qxl-8z-RdX">
+                                <rect key="frame" x="177" y="76" width="96" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Rgz-g2-MLy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="majorFieldChanged:" target="tEl-gR-RL1" id="aLG-2k-acO"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d7o-sE-66M">
+                                <rect key="frame" x="177" y="12" width="96" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="XKN-Lw-NiN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="patchFieldChanged:" target="tEl-gR-RL1" id="MVA-je-OJi"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bQh-hb-AHI">
+                                <rect key="frame" x="129" y="78" width="42" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Major:" id="VGo-Lf-qaY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ntZ-AR-BY0">
+                                <rect key="frame" x="128" y="47" width="43" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Minor:" id="nWP-T5-Mel">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rq7-TG-oc2">
+                                <rect key="frame" x="128" y="14" width="43" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Patch:" id="qdx-jn-TCi">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="rp4-MZ-jt5" firstAttribute="centerX" secondItem="8dW-49-FmR" secondAttribute="centerX" id="O2S-Vq-FaV"/>
-                            <constraint firstItem="rp4-MZ-jt5" firstAttribute="centerY" secondItem="8dW-49-FmR" secondAttribute="centerY" id="Za2-CK-ZPq"/>
+                            <constraint firstItem="5tQ-yU-X0R" firstAttribute="top" secondItem="qxl-8z-RdX" secondAttribute="bottom" constant="10" id="3gV-PQ-9gU"/>
+                            <constraint firstItem="5tQ-yU-X0R" firstAttribute="centerX" secondItem="6Nk-b4-ch4" secondAttribute="centerX" id="6VO-oL-lbg"/>
+                            <constraint firstItem="qxl-8z-RdX" firstAttribute="leading" secondItem="bQh-hb-AHI" secondAttribute="trailing" constant="8" id="6e8-oO-sMA"/>
+                            <constraint firstItem="d7o-sE-66M" firstAttribute="centerY" secondItem="Rq7-TG-oc2" secondAttribute="centerY" id="Bkj-dp-ggt"/>
+                            <constraint firstItem="5tQ-yU-X0R" firstAttribute="centerY" secondItem="6Nk-b4-ch4" secondAttribute="centerY" id="Fjg-qc-NjI"/>
+                            <constraint firstItem="d7o-sE-66M" firstAttribute="leading" secondItem="Rq7-TG-oc2" secondAttribute="trailing" constant="8" id="Ojf-Wq-vtn"/>
+                            <constraint firstItem="5tQ-yU-X0R" firstAttribute="centerY" secondItem="ntZ-AR-BY0" secondAttribute="centerY" id="U6K-t4-GbR"/>
+                            <constraint firstItem="d7o-sE-66M" firstAttribute="top" secondItem="5tQ-yU-X0R" secondAttribute="bottom" constant="10" id="bAf-FS-kDC"/>
+                            <constraint firstItem="qxl-8z-RdX" firstAttribute="centerX" secondItem="5tQ-yU-X0R" secondAttribute="centerX" id="bXW-dM-5ae"/>
+                            <constraint firstItem="5tQ-yU-X0R" firstAttribute="leading" secondItem="ntZ-AR-BY0" secondAttribute="trailing" constant="8" id="c5p-bR-FBN"/>
+                            <constraint firstItem="qxl-8z-RdX" firstAttribute="width" secondItem="5tQ-yU-X0R" secondAttribute="width" id="jfM-kw-CgM"/>
+                            <constraint firstItem="d7o-sE-66M" firstAttribute="width" secondItem="5tQ-yU-X0R" secondAttribute="width" id="lOe-H8-NDf"/>
+                            <constraint firstItem="bQh-hb-AHI" firstAttribute="centerY" secondItem="qxl-8z-RdX" secondAttribute="centerY" id="xY9-bf-5O8"/>
+                            <constraint firstItem="d7o-sE-66M" firstAttribute="centerX" secondItem="5tQ-yU-X0R" secondAttribute="centerX" id="yLw-KL-SBO"/>
                         </constraints>
                     </view>
                 </viewController>
-                <customObject id="bPI-1i-sZW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="ZFl-QX-fCq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="683"/>
+            <point key="canvasLocation" x="747" y="443"/>
+        </scene>
+        <!--Network Status-->
+        <scene sceneID="t4X-VC-3rZ">
+            <objects>
+                <viewController title="Network Status" id="iSJ-tu-o7N" customClass="NetworkModeViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="z8h-LG-lTm">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="109"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-Xt-Qxk">
+                                <rect key="frame" x="175" y="23" width="100" height="64"/>
+                                <subviews>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="71v-dI-tR3">
+                                        <rect key="frame" x="-1" y="47" width="71" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Satellite" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="RPe-oY-iye">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="networkModeChanged:" target="iSJ-tu-o7N" id="NFk-Sb-YQQ"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="dCZ-1C-PNi">
+                                        <rect key="frame" x="-1" y="23" width="68" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Cellular" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="s0F-QB-tsr">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="networkModeChanged:" target="iSJ-tu-o7N" id="b1O-RM-sxy"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="dXO-Us-1Av">
+                                        <rect key="frame" x="-1" y="-1" width="103" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Smart Switch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="FXg-3u-Rg7">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="networkModeChanged:" target="iSJ-tu-o7N" id="zcu-f0-XTc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="RvX-Xt-Qxk" firstAttribute="centerY" secondItem="z8h-LG-lTm" secondAttribute="centerY" id="7dM-Hy-D87"/>
+                            <constraint firstItem="RvX-Xt-Qxk" firstAttribute="centerX" secondItem="z8h-LG-lTm" secondAttribute="centerX" id="tIu-zo-Hcf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cellularNetworkMode" destination="dCZ-1C-PNi" id="DW8-bP-sJ1"/>
+                        <outlet property="satelliteNetworkMode" destination="71v-dI-tR3" id="Szv-Pj-dNR"/>
+                        <outlet property="smartSwitchingNetworkMode" destination="dXO-Us-1Av" id="tbq-B9-4Ia"/>
+                    </connections>
+                </viewController>
+                <customObject id="3PD-qg-F9u" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747" y="627"/>
+        </scene>
+        <!--Restricitions-->
+        <scene sceneID="e4V-e6-1dQ">
+            <objects>
+                <viewController title="Restricitions" id="UzU-tT-nA2" customClass="RestrictedAccessViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="iW0-fj-J5Z">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-bT-YYm">
+                                <rect key="frame" x="158" y="187" width="128" height="105"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aow-sH-wng">
+                                        <rect key="frame" x="0.0" y="0.0" width="63" height="105"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Ic-YA-bgG">
+                                                <rect key="frame" x="-2" y="88" width="67" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Restricted" id="fFA-D4-STW">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="XIZ-Z6-Gcf">
+                                                <rect key="frame" x="-2" y="64" width="61" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Admin" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TSu-4w-v2F">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="restrcitedStateChanged:" target="UzU-tT-nA2" id="PrO-9M-ql3"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="oeX-co-qVR">
+                                                <rect key="frame" x="-2" y="42" width="50" height="18"/>
+                                                <buttonCell key="cell" type="check" title="SMS" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gdy-4L-p7y">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="restrcitedStateChanged:" target="UzU-tT-nA2" id="RlR-bH-ciF"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="OaB-hc-CyI">
+                                                <rect key="frame" x="-2" y="20" width="52" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Calls" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="92Q-BO-BXO">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="restrcitedStateChanged:" target="UzU-tT-nA2" id="sPw-E7-9ri"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ao2-K5-3li">
+                                                <rect key="frame" x="-2" y="-2" width="51" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Data" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NqK-ip-qTx">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="restrcitedStateChanged:" target="UzU-tT-nA2" id="BtH-Xb-CpN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Mn-Qn-euw">
+                                        <rect key="frame" x="71" y="0.0" width="57" height="105"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8pF-aE-437">
+                                                <rect key="frame" x="-2" y="88" width="48" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Locked" id="vnC-Z6-mFc">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="jzd-cm-qkR">
+                                                <rect key="frame" x="-2" y="64" width="61" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Admin" bezelStyle="regularSquare" imagePosition="left" inset="2" id="r5b-bX-lz8">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="lockedStateChanged:" target="UzU-tT-nA2" id="qsF-3m-0hb"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="0d7-NP-0IL">
+                                                <rect key="frame" x="-2" y="42" width="50" height="18"/>
+                                                <buttonCell key="cell" type="check" title="SMS" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2vW-o2-br5">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="lockedStateChanged:" target="UzU-tT-nA2" id="xwN-9Q-J0x"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6jl-8z-e1b">
+                                                <rect key="frame" x="-2" y="20" width="52" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Calls" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Dtc-FU-7YT">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="lockedStateChanged:" target="UzU-tT-nA2" id="eIK-hU-qJH"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MWd-e3-NZy">
+                                                <rect key="frame" x="-2" y="-2" width="51" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Data" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ZB-Xc-wff">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="lockedStateChanged:" target="UzU-tT-nA2" id="kEC-J6-auT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oHU-eT-p5E">
+                                <rect key="frame" x="67" y="160" width="104" height="17"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Admin Password" id="sp8-IL-4Rw">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ay-Pn-k9C">
+                                <rect key="frame" x="177" y="157" width="96" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="TE7-xy-x2T"/>
+                                </constraints>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Admin password" drawsBackground="YES" usesSingleLineMode="YES" id="Tsp-Ue-qg7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="0ay-Pn-k9C" firstAttribute="top" secondItem="ao2-K5-3li" secondAttribute="bottom" constant="8" id="3lj-9C-3AA"/>
+                            <constraint firstItem="YNC-bT-YYm" firstAttribute="top" secondItem="iW0-fj-J5Z" secondAttribute="top" constant="8" id="IBw-ua-rEC"/>
+                            <constraint firstItem="0ay-Pn-k9C" firstAttribute="leading" secondItem="oHU-eT-p5E" secondAttribute="trailing" constant="8" id="Sj7-Ns-VPL"/>
+                            <constraint firstItem="0ay-Pn-k9C" firstAttribute="centerX" secondItem="iW0-fj-J5Z" secondAttribute="centerX" id="sW9-YL-On6"/>
+                            <constraint firstItem="YNC-bT-YYm" firstAttribute="centerX" secondItem="iW0-fj-J5Z" secondAttribute="centerX" id="tdz-T7-fIE"/>
+                            <constraint firstItem="oHU-eT-p5E" firstAttribute="centerY" secondItem="0ay-Pn-k9C" secondAttribute="centerY" id="w0n-7H-XzO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="adminLocked" destination="jzd-cm-qkR" id="mAl-sb-qTC"/>
+                        <outlet property="adminPassword" destination="0ay-Pn-k9C" id="yEB-PU-AHk"/>
+                        <outlet property="adminRestrcited" destination="XIZ-Z6-Gcf" id="TnG-Qp-Mm1"/>
+                        <outlet property="callRestrcited" destination="OaB-hc-CyI" id="jeX-1o-eaW"/>
+                        <outlet property="callsLocked" destination="6jl-8z-e1b" id="6Gi-Xc-VDc"/>
+                        <outlet property="dataLocked" destination="MWd-e3-NZy" id="L36-ce-YKS"/>
+                        <outlet property="dataRestrcited" destination="ao2-K5-3li" id="Cwm-si-w1h"/>
+                        <outlet property="smsLocked" destination="0d7-NP-0IL" id="YcP-fB-QRV"/>
+                        <outlet property="smsRestrcited" destination="oeX-co-qVR" id="fxS-2N-iG3"/>
+                    </connections>
+                </viewController>
+                <customObject id="QBi-Y1-u3w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747" y="894"/>
         </scene>
     </scenes>
 </document>

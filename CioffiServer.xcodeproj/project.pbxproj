@@ -19,6 +19,9 @@
 		1214A24E1D4851A80090A5BD /* SignalStrength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A24D1D4851A80090A5BD /* SignalStrength.swift */; };
 		1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A24F1D4853740090A5BD /* ServiceProvider.swift */; };
 		1214A2541D4855AA0090A5BD /* BatteryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2531D4855AA0090A5BD /* BatteryStatus.swift */; };
+		1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2561D4871430090A5BD /* VersionViewController.swift */; };
+		1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2581D4871600090A5BD /* NetworkModeViewController.swift */; };
+		1214A25F1D488F970090A5BD /* RestrictedAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
 		12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40C11D419DC400C0F512 /* ViewController.swift */; };
 		12BA40C41D419DC400C0F512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA40C31D419DC400C0F512 /* Assets.xcassets */; };
@@ -66,6 +69,9 @@
 		1214A24D1D4851A80090A5BD /* SignalStrength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignalStrength.swift; path = SignalStrength/SignalStrength.swift; sourceTree = "<group>"; };
 		1214A24F1D4853740090A5BD /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceProvider.swift; path = ServiceProvider/ServiceProvider.swift; sourceTree = "<group>"; };
 		1214A2531D4855AA0090A5BD /* BatteryStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BatteryStatus.swift; path = BatteryStatus/BatteryStatus.swift; sourceTree = "<group>"; };
+		1214A2561D4871430090A5BD /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
+		1214A2581D4871600090A5BD /* NetworkModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModeViewController.swift; sourceTree = "<group>"; };
+		1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictedAccessViewController.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BA40BF1D419DC400C0F512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12BA40C11D419DC400C0F512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +166,16 @@
 			name = BatteryStatus;
 			sourceTree = "<group>";
 		};
+		1214A2551D48712A0090A5BD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1214A2561D4871430090A5BD /* VersionViewController.swift */,
+				1214A2581D4871600090A5BD /* NetworkModeViewController.swift */,
+				1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		12BA40B31D419DC400C0F512 = {
 			isa = PBXGroup;
 			children = (
@@ -183,24 +199,17 @@
 		12BA40BE1D419DC400C0F512 /* CioffiServer */ = {
 			isa = PBXGroup;
 			children = (
-				1214A2521D4855960090A5BD /* BatteryStatus */,
-				1214A2511D4853780090A5BD /* ServiceProvider */,
-				1214A24C1D48518A0090A5BD /* SignalStength */,
-				1214A2491D484E790090A5BD /* NetworkRegistrationStatus */,
-				1214A2461D4849690090A5BD /* AccessRestricitions */,
-				1214A2401D4844CE0090A5BD /* NetworkMode */,
-				1214A23B1D483EE80090A5BD /* ShuttingDown */,
-				1214A2341D4828BA0090A5BD /* GetVersion */,
+				1214A2551D48712A0090A5BD /* ViewControllers */,
 				12BA41271D41D72D00C0F512 /* API */,
 				12BA40BF1D419DC400C0F512 /* AppDelegate.swift */,
 				12BA40C31D419DC400C0F512 /* Assets.xcassets */,
+				1214A2391D483D600090A5BD /* DataModel.swift */,
 				12BA40C81D419DC400C0F512 /* Info.plist */,
 				12BA40C51D419DC400C0F512 /* Main.storyboard */,
 				12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */,
 				12BA40D01D41A09B00C0F512 /* Server.swift */,
-				12BA40C11D419DC400C0F512 /* ViewController.swift */,
 				1214A2321D473EF30090A5BD /* SliderCell.swift */,
-				1214A2391D483D600090A5BD /* DataModel.swift */,
+				12BA40C11D419DC400C0F512 /* ViewController.swift */,
 			);
 			path = CioffiServer;
 			sourceTree = "<group>";
@@ -208,9 +217,17 @@
 		12BA41271D41D72D00C0F512 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */,
+				1214A2461D4849690090A5BD /* AccessRestricitions */,
 				1214A2351D482B340090A5BD /* APIFunction.swift */,
 				1214A23C1D483F010090A5BD /* APINotification.swift */,
+				1214A2521D4855960090A5BD /* BatteryStatus */,
+				1214A2341D4828BA0090A5BD /* GetVersion */,
+				1214A2401D4844CE0090A5BD /* NetworkMode */,
+				1214A2491D484E790090A5BD /* NetworkRegistrationStatus */,
+				12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */,
+				1214A2511D4853780090A5BD /* ServiceProvider */,
+				1214A23B1D483EE80090A5BD /* ShuttingDown */,
+				1214A24C1D48518A0090A5BD /* SignalStength */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -290,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */,
+				1214A25F1D488F970090A5BD /* RestrictedAccessViewController.swift in Sources */,
 				1214A2421D4844EE0090A5BD /* NetworkmodeFunction.swift in Sources */,
 				1214A23D1D483F010090A5BD /* APINotification.swift in Sources */,
 				1214A23F1D4840910090A5BD /* ShuttingDownNotification.swift in Sources */,
@@ -302,8 +320,10 @@
 				1214A24E1D4851A80090A5BD /* SignalStrength.swift in Sources */,
 				1214A24B1D484E990090A5BD /* NetworkRegistrationStatus.swift in Sources */,
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
+				1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */,
 				1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */,
 				12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */,
+				1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */,
 				1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */,
 				1214A23A1D483D600090A5BD /* DataModel.swift in Sources */,
 			);

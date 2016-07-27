@@ -11,18 +11,22 @@ import SwiftyJSON
 import CioffiAPI
 
 class GetNetworkModeFunction: DefaultAPIFunction {
+    
+    static let networkModeKey = "networkModeKey"
  
     override init() {
         super.init()
         requestType = .getNetworkMode
         responseType = .getNetworkMode
-        DataModelManager.shared.set(value: NetworkMode.cellular.rawValue, forKey: "networkMode")
+        DataModelManager.shared.set(value: NetworkMode.cellular.rawValue,
+                                    forKey: GetNetworkModeFunction.networkModeKey)
     }
 
     override func body() -> [String : [String : AnyObject]] {
         var body: [String: [String: AnyObject]] = [:]
         body["network"] = [
-            "mode": DataModelManager.shared.get(forKey: "networkMode", withDefault: NetworkMode.cellular.rawValue)
+            "mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+                                                withDefault: NetworkMode.cellular.rawValue)
         ]
         return body
     }
@@ -34,7 +38,8 @@ class SetNetworkModeFunction: DefaultAPIFunction {
         super.init()
         requestType = .setNetworkMode
         responseType = .setNetworkMode
-        DataModelManager.shared.set(value: NetworkMode.cellular.rawValue, forKey: "networkMode")
+        DataModelManager.shared.set(value: NetworkMode.cellular.rawValue,
+                                    forKey: GetNetworkModeFunction.networkModeKey)
     }
     
     override func preProcess(request: JSON) {
@@ -42,13 +47,15 @@ class SetNetworkModeFunction: DefaultAPIFunction {
             log(warning: "Was expecting a network/mode, but didn't find one")
             return
         }
-        DataModelManager.shared.set(value: mode, forKey: "networkMode")
+        DataModelManager.shared.set(value: mode,
+                                    forKey: GetNetworkModeFunction.networkModeKey)
     }
     
     override func body() -> [String : [String : AnyObject]] {
         var body: [String: [String: AnyObject]] = [:]
         body["network"] = [
-            "mode": DataModelManager.shared.get(forKey: "networkMode", withDefault: NetworkMode.cellular.rawValue)
+            "mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+                                                withDefault: NetworkMode.cellular.rawValue)
         ]
         return body
     }

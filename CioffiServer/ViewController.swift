@@ -9,7 +9,7 @@
 import Cocoa
 import CioffiAPI
 
-class ViewController: NSViewController {
+class ViewController: NSTabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,30 +12,46 @@ import CioffiAPI
 
 class GetAccessRestricitionsFunction: DefaultAPIFunction {
     
+    static let adminRestricitionKey = "adminRestricition"
+    static let smsRestricitionKey = "smsRestricition"
+    static let dataRestricitionKey = "dataRestricition"
+    static let callRestricitionKey = "callRestricition"
+    static let adminPasswordKey = "adminPassword"
+
+    static let adminLockedKey = "adminLocked"
+    static let smsLockedKey = "smsLocked"
+    static let dataLockedKey = "dataLocked"
+    static let callLockedKey = "callLocked"
+    
     override init() {
         super.init()
         requestType = .getAccessRestricitions
         responseType = .getAccessRestricitions
         
-        DataModelManager.shared.set(value: true, forKey: "adminRestricition")
-        DataModelManager.shared.set(value: true, forKey: "smsRestricition")
-        DataModelManager.shared.set(value: true, forKey: "dataRestricition")
-        DataModelManager.shared.set(value: true, forKey: "callRestricition")
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminRestricitionKey)
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.smsRestricitionKey)
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.dataRestricitionKey)
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.callRestricitionKey)
+        
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminLockedKey)
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.smsLockedKey)
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.dataLockedKey)
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.callLockedKey)
     }
     
     override func body() -> [String : [String : AnyObject]] {
         var body: [String : [String : AnyObject]] = [:]
         body["admin"] = [
-            "restrcited": DataModelManager.shared.get(forKey: "adminRestricition", withDefault: true)
+            "restricted": DataModelManager.shared.get(forKey: GetAccessRestricitionsFunction.adminRestricitionKey, withDefault: true)
         ]
         body["sms"] = [
-            "restrcited": DataModelManager.shared.get(forKey: "smsRestricition", withDefault: true)
+            "restricted": DataModelManager.shared.get(forKey: GetAccessRestricitionsFunction.smsRestricitionKey, withDefault: true)
         ]
         body["data"] = [
-            "restrcited": DataModelManager.shared.get(forKey: "dataRestricition", withDefault: true)
+            "restricted": DataModelManager.shared.get(forKey: GetAccessRestricitionsFunction.dataRestricitionKey, withDefault: true)
         ]
         body["call"] = [
-            "restrcited": DataModelManager.shared.get(forKey: "callRestricition", withDefault: true)
+            "restricted": DataModelManager.shared.get(forKey: GetAccessRestricitionsFunction.callRestricitionKey, withDefault: true)
         ]
         return body
     }
@@ -48,8 +64,8 @@ class UnlockAdminAccessRestricitionFunction: DefaultAPIFunction {
         requestType = .unlockAdminAccessRestriction
         responseType = .unlockAdminAccessRestriction
         
-        DataModelManager.shared.set(value: true, forKey: "adminRestricition")
-        DataModelManager.shared.set(value: "cioffi", forKey: "adminPassword")
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminLockedKey)
+        DataModelManager.shared.set(value: "cioffi", forKey: GetAccessRestricitionsFunction.adminPasswordKey)
     }
     
     var validated = false
@@ -59,7 +75,8 @@ class UnlockAdminAccessRestricitionFunction: DefaultAPIFunction {
             validated = false
             return
         }
-        guard let currentPassword = DataModelManager.shared.get(forKey: "adminPassword", withDefault: "cioffi") as? String else {
+        guard let currentPassword = DataModelManager.shared.get(forKey: GetAccessRestricitionsFunction.adminPasswordKey,
+                                                                withDefault: "cioffi") as? String else {
             validated = false
             return
         }
@@ -73,10 +90,10 @@ class UnlockAdminAccessRestricitionFunction: DefaultAPIFunction {
         
         preProcess(request: request)
         if validated {
-            DataModelManager.shared.set(value: true, forKey: "adminRestricition")
+            DataModelManager.shared.set(value: false, forKey: GetAccessRestricitionsFunction.adminLockedKey)
             responder.succeeded(response: responseType, contents: body())
         } else {
-            DataModelManager.shared.set(value: false, forKey: "adminRestricition")
+            DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminLockedKey)
             responder.accessDenied(response: responseType)
         }
     }
@@ -92,6 +109,6 @@ class StopAdminAccessFunction: DefaultAPIFunction {
     }
     
     override func preProcess(request: JSON) {
-        DataModelManager.shared.set(value: false, forKey: "adminRestricition")
+        DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminLockedKey)
     }
 }

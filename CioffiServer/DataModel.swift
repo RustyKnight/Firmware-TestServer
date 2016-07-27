@@ -34,5 +34,7 @@ class DefaultDataModel: DataModel {
     
     func set(value: AnyObject, forKey: String) {
         data[forKey] = value
+        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: forKey),
+                                        object: value)
     }
 }
