@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1214A2451D4846900090A5BD /* APIModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2441D4846900090A5BD /* APIModes.swift */; };
 		7024ECB31D420CEC000BB8D7 /* CioffiAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7024ECA91D420CEC000BB8D7 /* CioffiAPI.framework */; };
 		7024ECB81D420CEC000BB8D7 /* CioffiAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7024ECB71D420CEC000BB8D7 /* CioffiAPITests.swift */; };
 		7024ECBA1D420CEC000BB8D7 /* CioffiAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 7024ECAC1D420CEC000BB8D7 /* CioffiAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1214A2441D4846900090A5BD /* APIModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModes.swift; sourceTree = "<group>"; };
 		7024ECA91D420CEC000BB8D7 /* CioffiAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CioffiAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7024ECAC1D420CEC000BB8D7 /* CioffiAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CioffiAPI.h; sourceTree = "<group>"; };
 		7024ECAD1D420CEC000BB8D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				7024ECC41D420D10000BB8D7 /* RequestUtilities.swift */,
 				707CC9FE1D422991003D8292 /* Responder.swift */,
 				7024ECC51D420D10000BB8D7 /* ResponseUtilities.swift */,
+				1214A2441D4846900090A5BD /* APIModes.swift */,
 			);
 			path = CioffiAPI;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1214A2451D4846900090A5BD /* APIModes.swift in Sources */,
 				7024ECCC1D420D22000BB8D7 /* LogService.swift in Sources */,
 				7024ECC71D420D10000BB8D7 /* RequestUtilities.swift in Sources */,
 				707CC9FF1D422991003D8292 /* Responder.swift in Sources */,

@@ -10,10 +10,10 @@ import Foundation
 import SwiftyJSON
 
 public enum NotificationType: Int {
-	case shutdownNotification = 3
-	case networkRegistrationStatusNotification = 16
-	case signalStrengthChangeNotification = 19
-	case serviceProviderChangeNotification = 22
+	case shuttingDown = 3
+	case networkRegistrationStatusChanged = 16
+	case signalStrengthChanged = 19
+	case serviceProviderChanged = 22
 }
 
 
@@ -35,6 +35,13 @@ public enum ResponseType: Int {
 		}
 		return response
 	}
+    
+    public static func from(_ json: JSON) -> ResponseType {
+        guard let value = json["header"]["type"].int else {
+            return ResponseType.unknown
+        }
+        return ResponseType.for(value)
+    }
 }
 
 public enum ResponseCode: Int {

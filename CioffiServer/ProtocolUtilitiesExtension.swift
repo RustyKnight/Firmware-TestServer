@@ -24,5 +24,9 @@ extension ProtocolUtils {
 		log(info: "json: \(json)")
 		RequestHandlerManager.default.handle(request: json, forResponder: responder)
 	}
+    
+    class func dataFor(notification: APINotification) throws -> Data {
+        return try dataFor(notification: notification.type, payload: notification.payload)
+    }
 	
 }

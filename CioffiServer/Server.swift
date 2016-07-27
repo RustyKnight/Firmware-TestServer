@@ -52,15 +52,15 @@ class Server: NSObject {
 		socket.disconnect()
 		log(info: "Server stopped")
 	}
-	
-	func send(notification: NotificationType, payload: [String: [String: AnyObject]]) throws {
-		
-		let data = try ProtocolUtils.dataFor(notification: notification, payload: payload)
-		
-		for socket in clientSockets {
-			socket.write(data, withTimeout: 30.0, tag: 0)
-		}
-	}
+    
+    func send(notification: APINotification) throws {
+        
+        let data = try ProtocolUtils.dataFor(notification: notification)
+        
+        for socket in clientSockets {
+            socket.write(data, withTimeout: 30.0, tag: 0)
+        }
+    }
 	
 	func wasDiconnected(client: GCDAsyncSocket) {
 		guard let index = clientSockets.index(of: client) else {
@@ -233,7 +233,20 @@ class SocketClient: Responder {
 			socket.write(data, withTimeout: Server.readTimeout, tag: ClientSocketDelegate.responseTag)
 		} catch let error {
 			log(error: "\(error)")
-			send(response: .failure, for: response)
 		}
 	}
+    
+    func succeeded(response: ResponseType, contents: [String: [String: AnyObject]]? = nil) {
+        send(response: .success, for: response, contents: contents)
+    }
+    
+    func failed(request: RequestType) {
+        let message = ProtocolUtils.header(forRequest: request, code: .failure)
+        do {
+            let data = try ProtocolUtils.dataFor(payload: message)
+            socket.write(data, withTimeout: Server.readTimeout, tag: ClientSocketDelegate.responseTag)
+        } catch let error {
+            log(error: "\(error)")
+        }
+    }
 }

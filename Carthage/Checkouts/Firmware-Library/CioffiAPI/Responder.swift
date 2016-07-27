@@ -12,4 +12,6 @@ public protocol Responder {
 	func sendUnsupportedAPIResponse(`for`: RequestType)
 	func sendUnsupportedAPIResponse(`for`: Int)
 	func send(response: ResponseCode, `for`: ResponseType, contents: [String: [String: AnyObject]]?)
+    func failed(request: RequestType)
+    func succeeded(response: ResponseType, contents: [String: [String: AnyObject]]?)
 }

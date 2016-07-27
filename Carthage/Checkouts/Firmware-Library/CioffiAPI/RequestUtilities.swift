@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public enum RequestType: Int {
     case unknown = -1
@@ -25,5 +26,12 @@ public enum RequestType: Int {
             return RequestType.unknown
         }
         return type
+    }
+    
+    public static func from(_ json: JSON) -> RequestType {
+        guard let value = json["header"]["type"].int else {
+            return RequestType.unknown
+        }
+        return RequestType.for(value)
     }
 }

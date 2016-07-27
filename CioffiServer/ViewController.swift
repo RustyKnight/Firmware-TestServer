@@ -10,8 +10,6 @@ import Cocoa
 import CioffiAPI
 
 class ViewController: NSViewController {
-
-    @IBOutlet weak var tableView: NSTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +21,6 @@ class ViewController: NSViewController {
         } catch let error {
             log(error: "\(error)")
         }
-        
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     override var representedObject: AnyObject? {
@@ -35,35 +30,15 @@ class ViewController: NSViewController {
     }
 
     @IBAction func shutdownNotification(_ sender: AnyObject) {
-        var payload: [String: [String: AnyObject]] = [:]
-        payload["alert"] = [
-            "type": 0
-        ]
+        let notification = ShuttingDownNotification(type: .powerButtonPressed)
         do {
-            try Server.default.send(notification: .shutdownNotification, payload: payload)
+            try Server.default.send(notification: notification)
         } catch let error {
             log(error: "\(error)")
         }
+//        var payload: [String: [String: AnyObject]] = [:]
+//        payload["alert"] = [
+//            "type": 0
+//        ]
     }
 }
-
-extension ViewController: NSTableViewDataSource {
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return 1
-    }
-    
-}
-
-extension ViewController: NSTableViewDelegate {
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cell = tableView.make(withIdentifier: "SliderCell", owner: nil) as? SliderCell else {
-            return nil
-        }
-        
-        cell.configure(min: 0, max: 5, current: 0)
-        
-        return cell
-    }
-}
-

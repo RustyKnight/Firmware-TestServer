@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2321D473EF30090A5BD /* SliderCell.swift */; };
+		1214A2361D482B340090A5BD /* APIFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2351D482B340090A5BD /* APIFunction.swift */; };
+		1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2371D482CE40090A5BD /* GetVersionFunction.swift */; };
+		1214A23A1D483D600090A5BD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2391D483D600090A5BD /* DataModel.swift */; };
+		1214A23D1D483F010090A5BD /* APINotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A23C1D483F010090A5BD /* APINotification.swift */; };
+		1214A23F1D4840910090A5BD /* ShuttingDownNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A23E1D4840910090A5BD /* ShuttingDownNotification.swift */; };
+		1214A2421D4844EE0090A5BD /* NetworkmodeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2411D4844EE0090A5BD /* NetworkmodeFunction.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
 		12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40C11D419DC400C0F512 /* ViewController.swift */; };
 		12BA40C41D419DC400C0F512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA40C31D419DC400C0F512 /* Assets.xcassets */; };
@@ -44,6 +50,12 @@
 
 /* Begin PBXFileReference section */
 		1214A2321D473EF30090A5BD /* SliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		1214A2351D482B340090A5BD /* APIFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFunction.swift; sourceTree = "<group>"; };
+		1214A2371D482CE40090A5BD /* GetVersionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetVersionFunction.swift; path = GetVersion/GetVersionFunction.swift; sourceTree = "<group>"; };
+		1214A2391D483D600090A5BD /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		1214A23C1D483F010090A5BD /* APINotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APINotification.swift; sourceTree = "<group>"; };
+		1214A23E1D4840910090A5BD /* ShuttingDownNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShuttingDownNotification.swift; path = ShuttingDown/ShuttingDownNotification.swift; sourceTree = "<group>"; };
+		1214A2411D4844EE0090A5BD /* NetworkmodeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkmodeFunction.swift; path = NetworkMode/NetworkmodeFunction.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BA40BF1D419DC400C0F512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12BA40C11D419DC400C0F512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +86,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1214A2341D4828BA0090A5BD /* GetVersion */ = {
+			isa = PBXGroup;
+			children = (
+				1214A2371D482CE40090A5BD /* GetVersionFunction.swift */,
+			);
+			name = GetVersion;
+			sourceTree = "<group>";
+		};
+		1214A23B1D483EE80090A5BD /* ShuttingDown */ = {
+			isa = PBXGroup;
+			children = (
+				1214A23E1D4840910090A5BD /* ShuttingDownNotification.swift */,
+			);
+			name = ShuttingDown;
+			sourceTree = "<group>";
+		};
+		1214A2401D4844CE0090A5BD /* NetworkMode */ = {
+			isa = PBXGroup;
+			children = (
+				1214A2411D4844EE0090A5BD /* NetworkmodeFunction.swift */,
+			);
+			name = NetworkMode;
+			sourceTree = "<group>";
+		};
 		12BA40B31D419DC400C0F512 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +133,9 @@
 		12BA40BE1D419DC400C0F512 /* CioffiServer */ = {
 			isa = PBXGroup;
 			children = (
+				1214A2401D4844CE0090A5BD /* NetworkMode */,
+				1214A23B1D483EE80090A5BD /* ShuttingDown */,
+				1214A2341D4828BA0090A5BD /* GetVersion */,
 				12BA41271D41D72D00C0F512 /* API */,
 				12BA40BF1D419DC400C0F512 /* AppDelegate.swift */,
 				12BA40C31D419DC400C0F512 /* Assets.xcassets */,
@@ -106,6 +145,7 @@
 				12BA40D01D41A09B00C0F512 /* Server.swift */,
 				12BA40C11D419DC400C0F512 /* ViewController.swift */,
 				1214A2321D473EF30090A5BD /* SliderCell.swift */,
+				1214A2391D483D600090A5BD /* DataModel.swift */,
 			);
 			path = CioffiServer;
 			sourceTree = "<group>";
@@ -114,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */,
+				1214A2351D482B340090A5BD /* APIFunction.swift */,
+				1214A23C1D483F010090A5BD /* APINotification.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -193,11 +235,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */,
+				1214A2421D4844EE0090A5BD /* NetworkmodeFunction.swift in Sources */,
+				1214A23D1D483F010090A5BD /* APINotification.swift in Sources */,
+				1214A23F1D4840910090A5BD /* ShuttingDownNotification.swift in Sources */,
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
+				1214A2361D482B340090A5BD /* APIFunction.swift in Sources */,
 				12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */,
 				12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */,
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
 				12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */,
+				1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */,
+				1214A23A1D483D600090A5BD /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
