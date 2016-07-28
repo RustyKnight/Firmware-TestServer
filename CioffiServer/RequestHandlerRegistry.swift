@@ -59,6 +59,7 @@ class DefaultRequestHandler: RequestHandler {
         functions[.getSignalStrength] = GetSignalStrengthFunction()
         
         functions[.getBatteryStatus] = GetBatteryStatusFunction()
+        functions[.getServiceProviderName] = GetServiceProvideFunction()
 	}
 
     func handle(request: JSON, forResponder responder: Responder) {
@@ -70,7 +71,7 @@ class DefaultRequestHandler: RequestHandler {
 		let requestType = RequestType.for(typeCode)
 		log(info: "requestType: \(requestType)")
         guard let function = functions[requestType] else {
-            log(info: "No handler for request \(requestType)")
+            log(info: "No handler for request \(requestType) (\(typeCode))")
             responder.sendUnsupportedAPIResponse(for: requestType)
             return
         }

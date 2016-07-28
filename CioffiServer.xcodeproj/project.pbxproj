@@ -22,6 +22,11 @@
 		1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2561D4871430090A5BD /* VersionViewController.swift */; };
 		1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2581D4871600090A5BD /* NetworkModeViewController.swift */; };
 		1214A25F1D488F970090A5BD /* RestrictedAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */; };
+		1214A2631D49721B0090A5BD /* SignalStrengthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */; };
+		1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */; };
+		1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */; };
+		1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */; };
+		12B064681D49E9E500637053 /* SatelliteServiceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064671D49E9E500637053 /* SatelliteServiceMode.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
 		12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40C11D419DC400C0F512 /* ViewController.swift */; };
 		12BA40C41D419DC400C0F512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA40C31D419DC400C0F512 /* Assets.xcassets */; };
@@ -72,6 +77,11 @@
 		1214A2561D4871430090A5BD /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
 		1214A2581D4871600090A5BD /* NetworkModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModeViewController.swift; sourceTree = "<group>"; };
 		1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictedAccessViewController.swift; sourceTree = "<group>"; };
+		1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalStrengthViewController.swift; sourceTree = "<group>"; };
+		1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRegistrationViewController.swift; sourceTree = "<group>"; };
+		1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryStatusViewController.swift; sourceTree = "<group>"; };
+		1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderViewController.swift; sourceTree = "<group>"; };
+		12B064671D49E9E500637053 /* SatelliteServiceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteServiceMode.swift; path = SatelliteServiceMode/SatelliteServiceMode.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BA40BF1D419DC400C0F512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12BA40C11D419DC400C0F512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,8 +182,20 @@
 				1214A2561D4871430090A5BD /* VersionViewController.swift */,
 				1214A2581D4871600090A5BD /* NetworkModeViewController.swift */,
 				1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */,
+				1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */,
+				1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */,
+				1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */,
+				1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		12B064661D49E9BD00637053 /* SatelliteServiceMode */ = {
+			isa = PBXGroup;
+			children = (
+				12B064671D49E9E500637053 /* SatelliteServiceMode.swift */,
+			);
+			name = SatelliteServiceMode;
 			sourceTree = "<group>";
 		};
 		12BA40B31D419DC400C0F512 = {
@@ -217,6 +239,7 @@
 		12BA41271D41D72D00C0F512 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				12B064661D49E9BD00637053 /* SatelliteServiceMode */,
 				1214A2461D4849690090A5BD /* AccessRestricitions */,
 				1214A2351D482B340090A5BD /* APIFunction.swift */,
 				1214A23C1D483F010090A5BD /* APINotification.swift */,
@@ -307,14 +330,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */,
+				1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */,
 				1214A25F1D488F970090A5BD /* RestrictedAccessViewController.swift in Sources */,
+				1214A2631D49721B0090A5BD /* SignalStrengthViewController.swift in Sources */,
 				1214A2421D4844EE0090A5BD /* NetworkmodeFunction.swift in Sources */,
 				1214A23D1D483F010090A5BD /* APINotification.swift in Sources */,
 				1214A23F1D4840910090A5BD /* ShuttingDownNotification.swift in Sources */,
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
 				1214A2361D482B340090A5BD /* APIFunction.swift in Sources */,
+				1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */,
 				1214A2481D48499E0090A5BD /* AccessRestricitions.swift in Sources */,
 				12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */,
+				1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */,
 				1214A2541D4855AA0090A5BD /* BatteryStatus.swift in Sources */,
 				12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */,
 				1214A24E1D4851A80090A5BD /* SignalStrength.swift in Sources */,
@@ -322,6 +349,7 @@
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
 				1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */,
 				1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */,
+				12B064681D49E9E500637053 /* SatelliteServiceMode.swift in Sources */,
 				12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */,
 				1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */,
 				1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */,

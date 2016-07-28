@@ -10,19 +10,23 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
+let activeServiceProviderKey = "activeServiceProvider"
+let serviceProviderKey = "serviceProvider"
+
 struct ServiceProviderUtility {
     static func body() -> [String : [String : AnyObject]] {
         var body: [String : [String : AnyObject]] = [:]
-        guard let mode = DataModelManager.shared.get(forKey: "activeServiceProvider", withDefault: 0) as? Int else {
-            return body
-        }
-        if mode == 0 {
+        let mode = DataModelManager.shared.networkModule(forKey: activeServiceProviderKey,
+                                                         withDefault: NetworkModule.cellular)
+        if mode == .cellular {
             body["cellular"] = [
-                "signal": DataModelManager.shared.get(forKey: "serviceProvider", withDefault: 0)
+                "provider": DataModelManager.shared.get(forKey: serviceProviderKey,
+                                                      withDefault: 0)
             ]
-        } else if mode == 1 {
+        } else if mode == .satellite {
             body["satellite"] = [
-                "signal": DataModelManager.shared.get(forKey: "serviceProvider", withDefault: 0)
+                "provider": DataModelManager.shared.get(forKey: serviceProviderKey,
+                                                      withDefault: 0)
             ]
         }
         return body
@@ -36,9 +40,11 @@ class GetServiceProvideFunction: DefaultAPIFunction {
         requestType = .getServiceProviderName
         responseType = .getServiceProviderName
         
-        DataModelManager.shared.set(value: "McDonalds", forKey: "serviceProvider")
+        DataModelManager.shared.set(value: "McDonalds",
+                                    forKey: serviceProviderKey)
         // Would be nice to get this from somewhere else
-        DataModelManager.shared.set(value: 0, forKey: "activeServiceProvider")
+        DataModelManager.shared.set(value: NetworkModule.cellular.rawValue,
+                                    forKey: activeServiceProviderKey)
     }
     
     override func body() -> [String : [String : AnyObject]] {

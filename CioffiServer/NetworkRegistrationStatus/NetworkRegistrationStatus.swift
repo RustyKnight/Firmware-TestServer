@@ -10,6 +10,24 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
+let networkRegistrationModuleKey = "networkRegistrationModule"
+let networkRegistrationStatusKey = "networkRegistrationStatus"
+
+struct GetNetworkRegistrationStatusFunctionUtilities {
+    static func body() -> [String : [String : AnyObject]] {
+        var body: [String : [String : AnyObject]] = [:]
+        body["connection"] = [
+            "module": DataModelManager.shared.get(forKey: networkRegistrationModuleKey,
+                                                  withDefault: NetworkModule.satellite.rawValue)
+        ]
+        body["registration"] = [
+            "status": DataModelManager.shared.get(forKey: networkRegistrationStatusKey,
+                                                  withDefault: NetworkRegistrationStatus.registering.rawValue)
+        ]
+        return body
+    }
+}
+
 class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
     
     override init() {
@@ -17,19 +35,14 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
         requestType = .getNetworkRegistrationStatus
         responseType = .getNetworkRegistrationStatus
         
-        DataModelManager.shared.set(value: NetworkModule.satellite.rawValue, forKey: "networkRegistrationModule")
-        DataModelManager.shared.set(value: NetworkRegistrationStatus.registering.rawValue, forKey: "networkRegistrationStatus")
+        DataModelManager.shared.set(value: NetworkModule.satellite.rawValue,
+                                    forKey: networkRegistrationModuleKey)
+        DataModelManager.shared.set(value: NetworkRegistrationStatus.registering.rawValue,
+                                    forKey: networkRegistrationStatusKey)
     }
     
     override func body() -> [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
-        body["connection"] = [
-            "module": DataModelManager.shared.get(forKey: "networkRegistrationModule", withDefault: NetworkModule.satellite.rawValue)
-        ]
-        body["registration"] = [
-            "status": DataModelManager.shared.get(forKey: "networkRegistrationStatus", withDefault: NetworkRegistrationStatus.registering.rawValue)
-        ]
-        return body
+        return GetNetworkRegistrationStatusFunctionUtilities.body()
     }
     
 }
@@ -40,13 +53,6 @@ struct NetworkRegistrationStatusNotification: APINotification {
     }
     
     var body: [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
-        body["connection"] = [
-            "module": DataModelManager.shared.get(forKey: "networkRegistrationModule", withDefault: NetworkModule.satellite.rawValue)
-        ]
-        body["registration"] = [
-            "status": DataModelManager.shared.get(forKey: "networkRegistrationStatus", withDefault: NetworkRegistrationStatus.registering.rawValue)
-        ]
-        return body
+        return GetNetworkRegistrationStatusFunctionUtilities.body()
     }
 }

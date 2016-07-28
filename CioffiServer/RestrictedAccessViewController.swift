@@ -32,8 +32,6 @@ class RestrictedAccessViewController: NSViewController {
 		false: NSOnState
 	]
 	
-	var ignoreUpdate = false
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		restrictedStates[dataRestrcited] = GetAccessRestricitionsFunction.dataRestricitionKey
@@ -47,10 +45,6 @@ class RestrictedAccessViewController: NSViewController {
 		lockedStates[adminLocked] = GetAccessRestricitionsFunction.adminLockedKey
 		
 		fieldStates[adminPassword] = GetAccessRestricitionsFunction.adminPasswordKey
-		
-		updateRestrictedStates()
-		updateLockedStates()
-		updatePasswords();
 	}
 	
 	override func viewWillAppear() {
@@ -91,6 +85,9 @@ class RestrictedAccessViewController: NSViewController {
 		                                       selector: #selector(RestrictedAccessViewController.passwordDataChanged),
 		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.adminPasswordKey),
 		                                       object: nil)
+        updateRestrictedStates()
+        updateLockedStates()
+        updatePasswords()
 	}
 	
 	override func viewWillDisappear() {
@@ -103,9 +100,9 @@ class RestrictedAccessViewController: NSViewController {
 			return
 		}
 		let state = sender.state == NSOnState
-		ignoreUpdate = true
 		DataModelManager.shared.set(value: state,
-		                            forKey: key)
+		                            forKey: key,
+		                            withNotification: false)
 	}
 	
 	@IBAction func restrcitedStateChanged(_ sender: NSButton) {
@@ -113,18 +110,18 @@ class RestrictedAccessViewController: NSViewController {
 			return
 		}
 		let state = sender.state == NSOnState
-		ignoreUpdate = true
 		DataModelManager.shared.set(value: state,
-		                            forKey: key)
+		                            forKey: key,
+		                            withNotification: false)
 	}
 	
 	@IBAction func passwordStateChanged(_ sender: NSSecureTextField) {
 		guard let key = fieldStates[sender] else {
 			return
 		}
-		ignoreUpdate = true
 		DataModelManager.shared.set(value: sender.stringValue,
-		                            forKey: key)
+		                            forKey: key,
+		                            withNotification: false)
 	}
 	
 	func restrictedDataChanged(_ notification: NSNotification) {
@@ -158,10 +155,7 @@ class RestrictedAccessViewController: NSViewController {
 	}
 	
 	func updateRestrictedStates() {
-		guard !ignoreUpdate else {
-			return
-		}
-		guard !Thread.isMainThread else {
+		guard Thread.isMainThread else {
 			DispatchQueue.main.async(execute: {
 				self.updateRestrictedStates()
 			})
@@ -171,14 +165,11 @@ class RestrictedAccessViewController: NSViewController {
 		update(button: smsRestrcited, with: GetAccessRestricitionsFunction.smsRestricitionKey)
 		update(button: callRestrcited, with: GetAccessRestricitionsFunction.callRestricitionKey)
 		update(button: dataRestrcited, with: GetAccessRestricitionsFunction.dataRestricitionKey)
-		ignoreUpdate = false
 	}
 	
 	func updateLockedStates() {
-		guard !ignoreUpdate else {
-			return
-		}
-		guard !Thread.isMainThread else {
+        log(info: "Thread.isMainThread")
+		guard Thread.isMainThread else {
 			DispatchQueue.main.async(execute: {
 				self.updateLockedStates()
 			})
@@ -188,20 +179,15 @@ class RestrictedAccessViewController: NSViewController {
 		update(button: smsLocked, with: GetAccessRestricitionsFunction.smsRestricitionKey)
 		update(button: callsLocked, with: GetAccessRestricitionsFunction.callRestricitionKey)
 		update(button: dataLocked, with: GetAccessRestricitionsFunction.dataRestricitionKey)
-		ignoreUpdate = false
 	}
 	
 	func updatePasswords() {
-		guard !ignoreUpdate else {
-			return
-		}
-		guard !Thread.isMainThread else {
+		guard Thread.isMainThread else {
 			DispatchQueue.main.async(execute: {
 				self.updateLockedStates()
 			})
 			return
 		}
 		update(field: adminPassword, with: GetAccessRestricitionsFunction.adminPasswordKey)
-		ignoreUpdate = false
 	}
 }

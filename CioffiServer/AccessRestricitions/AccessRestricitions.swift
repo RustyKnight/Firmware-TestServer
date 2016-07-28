@@ -37,6 +37,8 @@ class GetAccessRestricitionsFunction: DefaultAPIFunction {
         DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.smsLockedKey)
         DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.dataLockedKey)
         DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.callLockedKey)
+
+        DataModelManager.shared.set(value: "cioffi", forKey: GetAccessRestricitionsFunction.adminPasswordKey)
     }
     
     override func body() -> [String : [String : AnyObject]] {
