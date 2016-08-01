@@ -134,7 +134,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Not Quite Cioffi" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="350" height="118"/>
@@ -830,73 +830,73 @@
         <!--Satellite Service Mode-->
         <scene sceneID="ziO-DT-ytR">
             <objects>
-                <viewController title="Satellite Service Mode" id="9wG-jb-4X3" sceneMemberID="viewController">
+                <viewController title="Satellite Service Mode" id="9wG-jb-4X3" customClass="SatelliteServiceModeViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="GOs-QI-T5H">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrv-Ne-224">
-                                <rect key="frame" x="136" y="138" width="178" height="24"/>
-                                <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jgb-IY-fsJ">
-                                        <rect key="frame" x="-2" y="4" width="42" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mode:" id="xEz-Ak-4GR">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7d7-IQ-YqZ">
-                                        <rect key="frame" x="44" y="-1" width="94" height="27"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="QAX-kx-pkK"/>
-                                        </constraints>
-                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="below" numberOfTickMarks="4" sliderType="linear" id="o6w-X2-4Dj"/>
-                                    </slider>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqz-7m-6u9">
-                                        <rect key="frame" x="142" y="4" width="38" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Voice" id="FGo-9B-PIk">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLp-2I-nnY">
                                 <rect key="frame" x="150" y="93" width="148" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notificiation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KV6-y9-3UL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="sendNotificationAction:" target="9wG-jb-4X3" id="N1K-xS-VQg"/>
+                                    </connections>
                                 </buttonCell>
                             </button>
                             <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHq-4z-dts">
-                                <rect key="frame" x="298" y="102" width="95" height="18"/>
-                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="h2k-eI-V5k">
+                                <rect key="frame" x="298" y="101" width="95" height="18"/>
+                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" inset="2" id="h2k-eI-V5k">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jgb-IY-fsJ">
+                                <rect key="frame" x="132" y="141" width="42" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mode:" id="xEz-Ak-4GR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7d7-IQ-YqZ">
+                                <rect key="frame" x="178" y="137" width="94" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="QAX-kx-pkK"/>
+                                </constraints>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="3" tickMarkPosition="below" numberOfTickMarks="4" allowsTickMarkValuesOnly="YES" sliderType="linear" id="o6w-X2-4Dj"/>
+                                <connections>
+                                    <action selector="slideValueChanged:" target="9wG-jb-4X3" id="SC0-XV-rFk"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqz-7m-6u9">
+                                <rect key="frame" x="276" y="141" width="38" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Voice" id="FGo-9B-PIk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gLp-2I-nnY" firstAttribute="centerX" secondItem="zrv-Ne-224" secondAttribute="centerX" id="2ed-0l-h8c"/>
+                            <constraint firstItem="nqz-7m-6u9" firstAttribute="centerY" secondItem="7d7-IQ-YqZ" secondAttribute="centerY" id="3ka-Ne-lyl"/>
+                            <constraint firstItem="7d7-IQ-YqZ" firstAttribute="centerX" secondItem="GOs-QI-T5H" secondAttribute="centerX" id="KuA-bE-wwb"/>
+                            <constraint firstItem="gLp-2I-nnY" firstAttribute="top" secondItem="7d7-IQ-YqZ" secondAttribute="bottom" constant="17" id="SvX-2N-V8c"/>
+                            <constraint firstItem="jgb-IY-fsJ" firstAttribute="centerY" secondItem="7d7-IQ-YqZ" secondAttribute="centerY" id="Svt-IR-ReL"/>
+                            <constraint firstItem="nqz-7m-6u9" firstAttribute="leading" secondItem="7d7-IQ-YqZ" secondAttribute="trailing" constant="8" id="VGP-Pl-D0C"/>
                             <constraint firstItem="mHq-4z-dts" firstAttribute="leading" secondItem="gLp-2I-nnY" secondAttribute="trailing" constant="8" id="Wwr-W4-bfX"/>
-                            <constraint firstItem="gLp-2I-nnY" firstAttribute="top" secondItem="zrv-Ne-224" secondAttribute="bottom" constant="17" id="eXF-gV-GPq"/>
+                            <constraint firstItem="7d7-IQ-YqZ" firstAttribute="centerY" secondItem="GOs-QI-T5H" secondAttribute="centerY" id="ZTD-Kj-VkK"/>
+                            <constraint firstItem="gLp-2I-nnY" firstAttribute="centerX" secondItem="GOs-QI-T5H" secondAttribute="centerX" id="f7Z-qO-x38"/>
                             <constraint firstItem="mHq-4z-dts" firstAttribute="centerY" secondItem="gLp-2I-nnY" secondAttribute="centerY" id="odf-CH-tuC"/>
-                            <constraint firstItem="zrv-Ne-224" firstAttribute="centerY" secondItem="GOs-QI-T5H" secondAttribute="centerY" id="rGD-iN-eu5"/>
-                            <constraint firstItem="zrv-Ne-224" firstAttribute="centerX" secondItem="GOs-QI-T5H" secondAttribute="centerX" id="tlh-Nm-T7M"/>
+                            <constraint firstItem="7d7-IQ-YqZ" firstAttribute="leading" secondItem="jgb-IY-fsJ" secondAttribute="trailing" constant="8" id="peC-a8-RCv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="liveUpdate" destination="mHq-4z-dts" id="ZtW-nk-bw6"/>
+                        <outlet property="modeLabel" destination="nqz-7m-6u9" id="JuN-Mq-BQ3"/>
+                        <outlet property="modeSlider" destination="7d7-IQ-YqZ" id="b6Y-iI-T7G"/>
+                    </connections>
                 </viewController>
                 <customObject id="HNY-FL-edh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

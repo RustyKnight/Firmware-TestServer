@@ -26,7 +26,8 @@
 		1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */; };
 		1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */; };
 		1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */; };
-		12B064681D49E9E500637053 /* SatelliteServiceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064671D49E9E500637053 /* SatelliteServiceMode.swift */; };
+		12B064681D49E9E500637053 /* SatelliteServiceModeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */; };
+		12B0646A1D4AC96A00637053 /* SatelliteServiceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
 		12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40C11D419DC400C0F512 /* ViewController.swift */; };
 		12BA40C41D419DC400C0F512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA40C31D419DC400C0F512 /* Assets.xcassets */; };
@@ -81,7 +82,8 @@
 		1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRegistrationViewController.swift; sourceTree = "<group>"; };
 		1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryStatusViewController.swift; sourceTree = "<group>"; };
 		1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderViewController.swift; sourceTree = "<group>"; };
-		12B064671D49E9E500637053 /* SatelliteServiceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteServiceMode.swift; path = SatelliteServiceMode/SatelliteServiceMode.swift; sourceTree = "<group>"; };
+		12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteServiceModeFunction.swift; path = SatelliteServiceMode/SatelliteServiceModeFunction.swift; sourceTree = "<group>"; };
+		12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatelliteServiceModeViewController.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12BA40BF1D419DC400C0F512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12BA40C11D419DC400C0F512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */,
 				1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */,
 				1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */,
+				12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -193,7 +196,7 @@
 		12B064661D49E9BD00637053 /* SatelliteServiceMode */ = {
 			isa = PBXGroup;
 			children = (
-				12B064671D49E9E500637053 /* SatelliteServiceMode.swift */,
+				12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */,
 			);
 			name = SatelliteServiceMode;
 			sourceTree = "<group>";
@@ -239,7 +242,6 @@
 		12BA41271D41D72D00C0F512 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				12B064661D49E9BD00637053 /* SatelliteServiceMode */,
 				1214A2461D4849690090A5BD /* AccessRestricitions */,
 				1214A2351D482B340090A5BD /* APIFunction.swift */,
 				1214A23C1D483F010090A5BD /* APINotification.swift */,
@@ -248,6 +250,7 @@
 				1214A2401D4844CE0090A5BD /* NetworkMode */,
 				1214A2491D484E790090A5BD /* NetworkRegistrationStatus */,
 				12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */,
+				12B064661D49E9BD00637053 /* SatelliteServiceMode */,
 				1214A2511D4853780090A5BD /* ServiceProvider */,
 				1214A23B1D483EE80090A5BD /* ShuttingDown */,
 				1214A24C1D48518A0090A5BD /* SignalStength */,
@@ -344,12 +347,13 @@
 				1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */,
 				1214A2541D4855AA0090A5BD /* BatteryStatus.swift in Sources */,
 				12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */,
+				12B0646A1D4AC96A00637053 /* SatelliteServiceModeViewController.swift in Sources */,
 				1214A24E1D4851A80090A5BD /* SignalStrength.swift in Sources */,
 				1214A24B1D484E990090A5BD /* NetworkRegistrationStatus.swift in Sources */,
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
 				1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */,
 				1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */,
-				12B064681D49E9E500637053 /* SatelliteServiceMode.swift in Sources */,
+				12B064681D49E9E500637053 /* SatelliteServiceModeFunction.swift in Sources */,
 				12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */,
 				1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */,
 				1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */,

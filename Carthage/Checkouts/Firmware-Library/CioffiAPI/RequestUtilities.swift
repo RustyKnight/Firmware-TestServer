@@ -21,6 +21,8 @@ public enum RequestType: Int {
     case getSignalStrength = 17
     case getServiceProviderName = 20
     case getBatteryStatus = 23
+    case getSatelliteServiceMode = 26
+    case setSatelliteServiceMode = 28
     
     public static func `for`(_ value: Int) -> RequestType {
         guard let type = RequestType(rawValue: value) else {

@@ -60,6 +60,9 @@ class DefaultRequestHandler: RequestHandler {
         
         functions[.getBatteryStatus] = GetBatteryStatusFunction()
         functions[.getServiceProviderName] = GetServiceProvideFunction()
+        
+        functions[.getSatelliteServiceMode] = GetSatelliteServiceModeFunction()
+        functions[.setSatelliteServiceMode] = SetSatelliteServiceModeFunction()
 	}
 
     func handle(request: JSON, forResponder responder: Responder) {
