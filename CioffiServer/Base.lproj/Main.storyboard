@@ -153,6 +153,7 @@
             <objects>
                 <tabViewController title="MainTabbedView" selectedTabViewItemIndex="0" id="gwj-Fs-yQB" customClass="ViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
+                        <tabViewItem id="ESP-ia-dzO"/>
                         <tabViewItem identifier="" id="6sK-mq-cZq"/>
                         <tabViewItem identifier="" id="BR6-sp-WNP"/>
                         <tabViewItem id="6rf-HZ-LUb"/>
@@ -163,12 +164,13 @@
                         <tabViewItem id="L8i-6W-ZHC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="LZL-Rj-t5k">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
+                        <rect key="frame" x="-155" y="0.0" width="605" height="284"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                     </tabView>
                     <connections>
+                        <segue destination="sAy-2y-hoP" kind="relationship" relationship="tabItems" id="Uhq-Gc-SOl"/>
                         <segue destination="tEl-gR-RL1" kind="relationship" relationship="tabItems" id="QIi-kX-DQ5"/>
                         <segue destination="iSJ-tu-o7N" kind="relationship" relationship="tabItems" id="hdT-NV-BhB"/>
                         <segue destination="UzU-tT-nA2" kind="relationship" relationship="tabItems" id="BzS-9K-VK2"/>
@@ -181,7 +183,36 @@
                 </tabViewController>
                 <customObject id="dUp-z8-ogz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="77" y="711"/>
+            <point key="canvasLocation" x="76" y="714"/>
+        </scene>
+        <!--Server-->
+        <scene sceneID="xhN-UL-AkA">
+            <objects>
+                <viewController title="Server" id="sAy-2y-hoP" customClass="ServerViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="UBY-9b-zJQ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4U2-cE-OVk">
+                                <rect key="frame" x="195" y="141" width="60" height="18"/>
+                                <buttonCell key="cell" type="check" title="Active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BIh-wH-aH9">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="stateDidChange:" target="sAy-2y-hoP" id="08g-9n-pWS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="4U2-cE-OVk" firstAttribute="centerX" secondItem="UBY-9b-zJQ" secondAttribute="centerX" id="i3g-Xk-GcW"/>
+                            <constraint firstItem="4U2-cE-OVk" firstAttribute="centerY" secondItem="UBY-9b-zJQ" secondAttribute="centerY" id="xhL-pN-ezU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="pbc-gm-qgI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751" y="161"/>
         </scene>
         <!--Version-->
         <scene sceneID="fJ4-2d-q7I">
