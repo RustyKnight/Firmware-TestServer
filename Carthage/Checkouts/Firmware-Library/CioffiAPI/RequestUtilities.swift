@@ -15,8 +15,8 @@ public enum RequestType: Int {
     case setNetworkMode = 4
     case getNetworkMode = 5
     case getAccessRestricitions = 8
-    case unlockAdminAccessRestriction = 10
-    case stopAdminAccess = 12
+    case unlockAccessRestriction = 10
+    case stopAccess = 12
     case getNetworkRegistrationStatus = 14
     case getSignalStrength = 17
     case getServiceProviderName = 20

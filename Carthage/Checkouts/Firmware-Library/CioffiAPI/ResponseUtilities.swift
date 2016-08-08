@@ -25,8 +25,8 @@ public enum ResponseType: Int {
 	case setNetworkMode = 6
 	case getNetworkMode = 7
 	case getAccessRestricitions = 9
-	case unlockAdminAccessRestriction = 11
-	case stopAdminAccess = 13
+	case unlockAccessRestriction = 11
+	case stopAccess = 13
 	case getNetworkRegistrationStatus = 15
 	case getSignalStrength = 18
 	case getServiceProviderName = 21

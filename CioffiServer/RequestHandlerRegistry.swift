@@ -52,8 +52,8 @@ class DefaultRequestHandler: RequestHandler {
         functions[.setNetworkMode] = SetNetworkModeFunction()
         
         functions[.getAccessRestricitions] = GetAccessRestricitionsFunction()
-        functions[.unlockAdminAccessRestriction] = UnlockAdminAccessRestricitionFunction()
-        functions[.stopAdminAccess] = StopAdminAccessFunction()
+        functions[.unlockAccessRestriction] = UnlockAccessRestricitionFunction()
+        functions[.stopAccess] = StopAccessFunction()
         
         functions[.getNetworkRegistrationStatus] = GetNetworkRegistrationStatusFunction()
         functions[.getSignalStrength] = GetSignalStrengthFunction()
