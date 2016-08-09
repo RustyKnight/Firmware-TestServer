@@ -63,6 +63,15 @@ class DefaultRequestHandler: RequestHandler {
         
         functions[.getSatelliteServiceMode] = GetSatelliteServiceModeFunction()
         functions[.setSatelliteServiceMode] = SetSatelliteServiceModeFunction()
+        
+        functions[.getBroadbandDataIPMode] = GetBroadbandDataIPMode()
+        functions[.setBroadbandDataIPMode] = SetBroadbandDataIPMode()
+        
+        functions[.getBroadbandStreamingSpeed] = GetBroadbandDataSpeed()
+        functions[.setBroadbandStreamingSpeed] = SetBroadbandDataSpeed()
+        
+        functions[.getBroadbandDataStatus] = GetBroadbandConnectionStatus()
+        functions[.startStopBroadbandData] = StartStopBroadbandDataMode()
 	}
 
     func handle(request: JSON, forResponder responder: Responder) {

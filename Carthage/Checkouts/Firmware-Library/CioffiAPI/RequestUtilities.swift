@@ -24,6 +24,13 @@ public enum RequestType: Int {
     case getSatelliteServiceMode = 26
     case setSatelliteServiceMode = 28
     
+    case startStopBroadbandData = 37
+    case getBroadbandDataStatus = 39
+    case setBroadbandDataIPMode = 31
+    case getBroadbandDataIPMode = 33
+    case setBroadbandStreamingSpeed = 35
+    case getBroadbandStreamingSpeed = 42
+    
     public static func `for`(_ value: Int) -> RequestType {
         guard let type = RequestType(rawValue: value) else {
             return RequestType.unknown

@@ -16,6 +16,7 @@ public enum NotificationType: Int {
 	case serviceProviderChanged = 22
     case batteryStatusChanged = 25
     case satelliteServiceModeChanged = 30
+    case broadbandDataStatus = 41
 }
 
 
@@ -33,6 +34,13 @@ public enum ResponseType: Int {
     case getBatteryStatus = 24
     case getSatelliteServiceMode = 27
     case setSatelliteServiceMode = 29
+    
+    case startStopBroadbandData = 38
+    case getBroadbandDataStatus = 40
+    case setBroadbandDataIPMode = 32
+    case getBroadbandDataIPMode = 34
+    case setBroadbandStreamingSpeed = 36
+    case getBroadbandStreamingSpeed = 43
 	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

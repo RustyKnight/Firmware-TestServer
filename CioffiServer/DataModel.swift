@@ -20,6 +20,14 @@ protocol DataModel {
     func string(forKey key: String, withDefault defaultValue: String) -> String
     
     func networkModule(forKey key: String, withDefault defaultValue: NetworkModule) -> NetworkModule
+    
+    func get<T: RawRepresentable where T.RawValue == Int>(forKey key: String, withDefault defaultValue: T) -> T
+    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String)
+    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String, withNotification: Bool)
+
+    func get<R: AnyObject, T: RawRepresentable where T.RawValue == R>(forKey key: String, withDefault defaultValue: T) -> T
+    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String)
+    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String, withNotification: Bool)
 }
 
 struct DataModelManager {
@@ -36,6 +44,42 @@ class DefaultDataModel: DataModel {
     func get(forKey: String, withDefault: AnyObject) -> AnyObject {
         guard let value = get(forKey: forKey) else {
             return withDefault
+        }
+        return value
+    }
+    
+    func get<T: RawRepresentable where T.RawValue == Int>(forKey key: String, withDefault defaultValue: T) -> T {
+        guard let rawValue = get(forKey: key) as? Int else {
+            return defaultValue
+        }
+        guard let value = T(rawValue: rawValue) else {
+            return defaultValue
+        }
+        return value
+    }
+
+    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String) {
+        set(value: value, forKey: key, withNotification: true)
+    }
+
+    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String, withNotification: Bool = true) {
+        set(value: value.rawValue, forKey: key, withNotification: withNotification)
+    }
+
+    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String) {
+        set(value: value, forKey: key, withNotification: true)
+    }
+    
+    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String, withNotification: Bool = true) {
+        set(value: value.rawValue, forKey: key, withNotification: withNotification)
+    }
+    
+    func get<R: AnyObject, T: RawRepresentable where T.RawValue == R>(forKey key: String, withDefault defaultValue: T) -> T {
+        guard let rawValue = get(forKey: key) as? R else {
+            return defaultValue
+        }
+        guard let value = T(rawValue: rawValue) else {
+            return defaultValue
         }
         return value
     }

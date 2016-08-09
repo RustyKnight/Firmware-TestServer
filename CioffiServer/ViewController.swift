@@ -9,10 +9,36 @@
 import Cocoa
 import CioffiAPI
 
+class FunctionView {
+    let name: String
+    let viewName: String
+    
+    init(name: String, viewName: String) {
+        self.name = name
+        self.viewName = viewName
+    }
+}
+
 class ViewController: NSTabViewController {
+    
+    @IBOutlet weak var outlineView: NSOutlineView!
+    
+    var functions: [FunctionView] = []
+    
+    @IBAction func actionWasPerformed(_ sender: NSOutlineView) {
+        guard let item = outlineView.item(atRow: sender.clickedRow) as? FunctionView else {
+            return
+        }
+        log(info: "\(item.name)")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        functions.append(FunctionView(name: "Server", viewName: "ServerViewController"))
+        
+//        outlineView.dataSource = self
+//        outlineView.delegate = self
         
         _ = RequestHandlerManager.default
         
@@ -31,19 +57,6 @@ class ViewController: NSTabViewController {
         didSet {
         // Update the view, if already loaded.
         }
-    }
-
-    @IBAction func shutdownNotification(_ sender: AnyObject) {
-        let notification = ShuttingDownNotification(type: .powerButtonPressed)
-        do {
-            try Server.default.send(notification: notification)
-        } catch let error {
-            log(error: "\(error)")
-        }
-//        var payload: [String: [String: AnyObject]] = [:]
-//        payload["alert"] = [
-//            "type": 0
-//        ]
     }
     
     func getIFAddresses() -> [String] {
@@ -78,3 +91,35 @@ class ViewController: NSTabViewController {
         return addresses
     }
 }
+
+//extension ViewController {
+//    
+//}
+//
+//extension ViewController: NSOutlineViewDataSource {
+//    
+//    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+//        return functions.count
+//    }
+//    
+//    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+//        return functions[index]
+//    }
+//    
+//    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+//        return false
+//    }
+//}
+//
+//extension ViewController: NSOutlineViewDelegate {
+//    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+//        var view: NSTableCellView?
+//        if let function = item as? FunctionView {
+//            view = outlineView.make(withIdentifier: "HeaderCell", owner: self) as? NSTableCellView
+//            log(info: "\(function.name)")
+//            view?.textField?.stringValue = function.name
+////            view?.textField?.sizeToFit()
+//        }
+//        return view
+//    }
+//}

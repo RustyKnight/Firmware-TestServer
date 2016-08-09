@@ -46,3 +46,57 @@ class DefaultAPIFunction: APIFunction {
         postProcess(request: request)
     }
 }
+
+class ModeSwitcher<T: protocol<RawRepresentable, Hashable> where T.RawValue == Int> {
+    let key: String
+    let to: T
+    let through: T
+    let defaultMode: T
+    let notification: APINotification
+    
+    var initialDelay = 1.0
+    var switchDelay = 5.0
+    
+    init(key: String,
+         to: T,
+         through: T,
+         defaultMode: T,
+         notification: APINotification) {
+        self.key = key
+        self.to = to
+        self.through = through
+        self.defaultMode = defaultMode
+        self.notification = notification
+    }
+    
+    func makeSwitch() {
+        DataModelManager.shared.set(value: through,
+                                    forKey: key)
+        log(info: "Switch in \(initialDelay) seconds")
+        DispatchQueue.global().after(when: .now() + initialDelay) {
+            log(info: "Switching to \(self.current)")
+            self.sendNotification()
+            log(info: "Switch in \(self.switchDelay) second")
+            DispatchQueue.global().after(when: .now() + self.switchDelay) {
+                DataModelManager.shared.set(value: self.to.rawValue,
+                                            forKey: satelliteServiceModeKey)
+                log(info: "Switch to \(self.current)")
+                self.sendNotification()
+            }
+        }
+    }
+    
+    var current: T {
+        return DataModelManager.shared.get(forKey: key,
+                                           withDefault: defaultMode)
+    }
+    
+    func sendNotification() {
+        do {
+            try Server.default.send(notification: notification)
+        } catch let error {
+            log(error: "\(error)")
+        }
+    }
+
+}

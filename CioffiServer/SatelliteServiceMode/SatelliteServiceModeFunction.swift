@@ -69,7 +69,14 @@ class SetSatelliteServiceModeFunction: GetSatelliteServiceModeFunction {
             return
         }
         
-        let switcher = ModeSwitcher(to: mode)
+        var switchMode = SatelliteServiceMode.unknown
+        switch mode {
+        case .data: switchMode = .switchingToData
+        case .voice: switchMode = .switchingToVoice
+        default: break
+        }
+        
+        let switcher = SatelliteServiceModeSwitcher(to: mode, through: switchMode)
         switcher.makeSwitch()
     }
     
@@ -86,56 +93,66 @@ struct SatelliteServiceModeNotification: APINotification {
     }
 }
 
-class ModeSwitcher {
-    let to: SatelliteServiceMode
-    let switchingMode: [SatelliteServiceMode: SatelliteServiceMode] = [
-        .voice: .switchingToVoice,
-        .data: .switchingToData,
-    ]
-    
-    
-    
-    init(to: SatelliteServiceMode) {
-        self.to = to
-    }
-    
-    func makeSwitch() {
-        guard let switchMode = switchingMode[to] else {
-            log(error: "Bad to mode: \(to)")
-            return
-        }
-        
-        DataModelManager.shared.set(value: switchMode.rawValue,
-                                    forKey: satelliteServiceModeKey)
-        log(info: "Switch in one second")
-        DispatchQueue.global().after(when: .now() + 1.0) {
-            log(info: "Switching to \(self.current)")
-            self.sendNotification()
-            log(info: "Switch in ten second")
-            DispatchQueue.global().after(when: .now() + 10.0) {
-                DataModelManager.shared.set(value: self.to.rawValue,
-                                            forKey: satelliteServiceModeKey)
-                log(info: "Switch to \(self.current)")
-                self.sendNotification()
-            }
-        }
-    }
-    
-    var current: SatelliteServiceMode {
-        guard let value = DataModelManager.shared.get(forKey: satelliteServiceModeKey, withDefault: SatelliteServiceMode.unknown.rawValue) as? Int else {
-            return .unknown
-        }
-        guard let mode = SatelliteServiceMode(rawValue: value) else {
-            return .unknown
-        }
-        return mode
-    }
-    
-    func sendNotification() {
-        do {
-            try Server.default.send(notification: SatelliteServiceModeNotification())
-        } catch let error {
-            log(error: "\(error)")
-        }
+class SatelliteServiceModeSwitcher: ModeSwitcher<SatelliteServiceMode> {
+    init(to: SatelliteServiceMode, through: SatelliteServiceMode) {
+        super.init(key: satelliteServiceModeKey,
+                   to: to,
+                   through: through,
+                   defaultMode: SatelliteServiceMode.unknown,
+                   notification: SatelliteServiceModeNotification())
     }
 }
+
+//class SatelliteServiceModeSwitcher {
+//    let to: SatelliteServiceMode
+//    let switchingMode: [SatelliteServiceMode: SatelliteServiceMode] = [
+//        .voice: .switchingToVoice,
+//        .data: .switchingToData,
+//    ]
+//    
+//    
+//    
+//    init(to: SatelliteServiceMode) {
+//        self.to = to
+//    }
+//    
+//    func makeSwitch() {
+//        guard let switchMode = switchingMode[to] else {
+//            log(error: "Bad to mode: \(to)")
+//            return
+//        }
+//        
+//        DataModelManager.shared.set(value: switchMode.rawValue,
+//                                    forKey: satelliteServiceModeKey)
+//        log(info: "Switch in one second")
+//        DispatchQueue.global().after(when: .now() + 1.0) {
+//            log(info: "Switching to \(self.current)")
+//            self.sendNotification()
+//            log(info: "Switch in ten second")
+//            DispatchQueue.global().after(when: .now() + 10.0) {
+//                DataModelManager.shared.set(value: self.to.rawValue,
+//                                            forKey: satelliteServiceModeKey)
+//                log(info: "Switch to \(self.current)")
+//                self.sendNotification()
+//            }
+//        }
+//    }
+//    
+//    var current: SatelliteServiceMode {
+//        guard let value = DataModelManager.shared.get(forKey: satelliteServiceModeKey, withDefault: SatelliteServiceMode.unknown.rawValue) as? Int else {
+//            return .unknown
+//        }
+//        guard let mode = SatelliteServiceMode(rawValue: value) else {
+//            return .unknown
+//        }
+//        return mode
+//    }
+//    
+//    func sendNotification() {
+//        do {
+//            try Server.default.send(notification: SatelliteServiceModeNotification())
+//        } catch let error {
+//            log(error: "\(error)")
+//        }
+//    }
+//}
