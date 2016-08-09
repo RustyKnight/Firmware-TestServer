@@ -57,19 +57,27 @@ class BroadbandDataViewController: NSViewController {
     }
     
     func ipModeDidChange() {
-        updateIPMode()
+        DispatchQueue.main.async { 
+            self.updateIPMode()
+        }
     }
     
     func uplinkSpeedDidChange() {
-        updateUplinkSpeed()
+        DispatchQueue.main.async {
+            self.updateUplinkSpeed()
+        }
     }
     
     func downlinkSpeedDidChange() {
-        updateDownlinkSpeed()
+        DispatchQueue.main.async {
+            self.updateDownlinkSpeed()
+        }
     }
     
     func broadbandStatusDidChange() {
-        updateStatus()
+        DispatchQueue.main.async {
+            self.updateStatus()
+        }
     }
     
     func updateControl<T: RawRepresentable where T.RawValue == Int>(`for` key : String, defaultValue: T, offset: Int) {
