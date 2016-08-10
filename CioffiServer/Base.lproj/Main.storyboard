@@ -1335,7 +1335,7 @@
                                                             <real value="3.4028234663852886e+38"/>
                                                         </customSpacing>
                                                     </stackView>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Sx-kB-g0T">
+                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Sx-kB-g0T">
                                                         <rect key="frame" x="211" y="214" width="86" height="42"/>
                                                         <subviews>
                                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-vM-OxH">
@@ -1436,13 +1436,35 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAA-KW-BFo">
+                                <rect key="frame" x="388" y="22" width="148" height="32"/>
+                                <buttonCell key="cell" type="push" title="Send Notificiation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tZ9-BF-aV4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sendNotificationAction:" target="uiZ-9d-wsv" id="oU4-iQ-lpQ"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="12Z-66-MWU">
+                                <rect key="frame" x="536" y="31" width="95" height="18"/>
+                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rpZ-LK-VJH">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LSX-FP-Pf6" firstAttribute="centerY" secondItem="A9f-Uo-gda" secondAttribute="centerY" id="36G-MF-zqj"/>
+                            <constraint firstItem="eAA-KW-BFo" firstAttribute="top" secondItem="LSX-FP-Pf6" secondAttribute="bottom" constant="8" id="IF1-Rl-uxe"/>
                             <constraint firstItem="LSX-FP-Pf6" firstAttribute="centerX" secondItem="A9f-Uo-gda" secondAttribute="centerX" id="Jsv-Py-PPR"/>
+                            <constraint firstItem="eAA-KW-BFo" firstAttribute="centerX" secondItem="A9f-Uo-gda" secondAttribute="centerX" id="Rn1-gk-ZW9"/>
+                            <constraint firstItem="12Z-66-MWU" firstAttribute="leading" secondItem="eAA-KW-BFo" secondAttribute="trailing" constant="8" id="inV-Jf-LnT"/>
+                            <constraint firstItem="12Z-66-MWU" firstAttribute="centerY" secondItem="eAA-KW-BFo" secondAttribute="centerY" id="toI-E3-qVq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoNotification" destination="12Z-66-MWU" id="WgH-5n-keo"/>
                         <outlet property="downlinkSpeedLabel" destination="zun-Pa-8hl" id="y19-i7-wub"/>
                         <outlet property="uplinkSpeedLabel" destination="V20-vv-cZg" id="4K6-Kw-HcS"/>
                     </connections>

@@ -23,6 +23,7 @@ extension BroadbandStreamingIPSpeed: CustomStringConvertible {
 
 class BroadbandDataViewController: NSViewController {
     
+    @IBOutlet weak var autoNotification: NSButton!
     @IBOutlet weak var downlinkSpeedLabel: NSTextField!
     @IBOutlet weak var uplinkSpeedLabel: NSTextField!
     override func viewWillAppear() {
@@ -126,6 +127,8 @@ class BroadbandDataViewController: NSViewController {
         }
         
         DataModelManager.shared.set(value: mode, forKey: broadbandDataModeKey, withNotification: false)
+        updateStatus()
+        sendNotification()
     }
     
     @IBAction func uplinkSpeedChanged(_ sender: NSButton) {
@@ -136,6 +139,8 @@ class BroadbandDataViewController: NSViewController {
         }
         
         DataModelManager.shared.set(value: speed, forKey: broadbandDataUplinkSpeedKey, withNotification: false)
+        updateStatus()
+        sendNotification()
     }
 
     @IBAction func downlinkSpeedChanged(_ sender: NSButton) {
@@ -146,6 +151,8 @@ class BroadbandDataViewController: NSViewController {
         }
         
         DataModelManager.shared.set(value: speed, forKey: broadbandDataDownlinkSpeedKey, withNotification: false)
+        updateStatus()
+        sendNotification()
     }
     
     @IBAction func statusModeChanged(_ sender: NSButton) {
@@ -156,6 +163,25 @@ class BroadbandDataViewController: NSViewController {
         }
         
         DataModelManager.shared.set(value: status, forKey: broadbandDataActiveModeKey, withNotification: false)
+        let uplink = DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey, withDefault: BroadbandStreamingIPSpeed.kbps16)
+        let downlink = DataModelManager.shared.get(forKey: broadbandDataDownlinkSpeedKey, withDefault: BroadbandStreamingIPSpeed.kbps16)
+        DataModelManager.shared.set(value: uplink, forKey: broadbandDataActiveUplinkSpeedKey, withNotification: false)
+        DataModelManager.shared.set(value: downlink, forKey: broadbandDataActiveDownlinkSpeedKey, withNotification: false)
+        updateStatus()
+        sendNotification()
     }
     
+    @IBAction func sendNotificationAction(_ sender: AnyObject) {
+        sendNotification(ignoreAuto: true)
+    }
+    
+    func sendNotification(ignoreAuto: Bool = false) {
+        if autoNotification.state == NSOnState || ignoreAuto {
+            do {
+                try Server.default.send(notification: BroadbandDataStatusNotification())
+            } catch let error {
+                log(info: "\(error)")
+            }
+        }
+    }
 }

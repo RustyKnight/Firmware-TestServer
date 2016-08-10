@@ -117,8 +117,9 @@ private class BroadbandStatusModeSwitcher: ModeSwitcher<BroadbandDataStatus> {
                    to: to,
                    through: through,
                    defaultMode: BroadbandDataStatus.dataInactive,
-                   notification: BroadbandDataStatusNotification())
-
+                   notification: BroadbandDataStatusNotification(),
+                   initialDelay: 0.0,
+                   switchDelay:  5.0)
     }
 
 }

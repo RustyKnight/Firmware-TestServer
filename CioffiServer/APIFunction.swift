@@ -61,12 +61,16 @@ class ModeSwitcher<T: protocol<RawRepresentable, Hashable> where T.RawValue == I
          to: T,
          through: T,
          defaultMode: T,
-         notification: APINotification) {
+         notification: APINotification,
+         initialDelay: TimeInterval = 1.0,
+         switchDelay: TimeInterval = 5.0) {
         self.key = key
         self.to = to
         self.through = through
         self.defaultMode = defaultMode
         self.notification = notification
+        self.initialDelay = initialDelay
+        self.switchDelay = switchDelay
     }
     
     func makeSwitch() {
@@ -79,8 +83,8 @@ class ModeSwitcher<T: protocol<RawRepresentable, Hashable> where T.RawValue == I
             log(info: "Switch in \(self.switchDelay) second")
             DispatchQueue.global().after(when: .now() + self.switchDelay) {
                 DataModelManager.shared.set(value: self.to.rawValue,
-                                            forKey: satelliteServiceModeKey)
-                log(info: "Switch to \(self.current)")
+                                            forKey: self.key)
+                log(info: "Switched to \(self.current)")
                 self.sendNotification()
             }
         }

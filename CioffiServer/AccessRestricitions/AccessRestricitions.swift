@@ -137,7 +137,7 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
     override func body() -> [String : [String : AnyObject]] {
         var contents: [String : [String : AnyObject]] = [:]
         for (key, value) in validated {
-            contents[key.description] = ["password": value ? 0 : 4]
+            contents[key.description] = ["result": value ? 0 : 4]
         }
         return contents
     }
