@@ -191,12 +191,35 @@
         <scene sceneID="xhN-UL-AkA">
             <objects>
                 <viewController title="Server" storyboardIdentifier="ServerViewController" id="sAy-2y-hoP" customClass="ServerViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="UBY-9b-zJQ">
+                    <view key="view" misplaced="YES" id="UBY-9b-zJQ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4U2-cE-OVk">
-                                <rect key="frame" x="195" y="141" width="60" height="18"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDN-cX-CM3">
+                                <rect key="frame" x="161" y="86" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="MaD-OD-P1n"/>
+                                    <constraint firstAttribute="height" constant="128" id="cb4-7X-4Mw"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cioffi" id="okg-1p-Lk9"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-z5-s0V">
+                                <rect key="frame" x="177" y="222" width="96" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not quite Cioffi" id="y8Y-7x-rDV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPN-l5-5cn">
+                                <rect key="frame" x="0.0" y="300" width="197" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="JKM-5K-rMK"/>
+                                    <constraint firstAttribute="height" id="ZSh-cQ-HfN"/>
+                                </constraints>
+                            </customView>
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4U2-cE-OVk">
+                                <rect key="frame" x="195" y="62" width="60" height="18"/>
                                 <buttonCell key="cell" type="check" title="Active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BIh-wH-aH9">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -207,14 +230,21 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="4U2-cE-OVk" firstAttribute="centerX" secondItem="UBY-9b-zJQ" secondAttribute="centerX" id="i3g-Xk-GcW"/>
-                            <constraint firstItem="4U2-cE-OVk" firstAttribute="centerY" secondItem="UBY-9b-zJQ" secondAttribute="centerY" id="xhL-pN-ezU"/>
+                            <constraint firstItem="A5M-z5-s0V" firstAttribute="centerX" secondItem="HDN-cX-CM3" secondAttribute="centerX" id="3md-Le-4tZ"/>
+                            <constraint firstItem="WPN-l5-5cn" firstAttribute="top" secondItem="UBY-9b-zJQ" secondAttribute="top" id="5J1-Ai-V2o"/>
+                            <constraint firstItem="4U2-cE-OVk" firstAttribute="top" secondItem="HDN-cX-CM3" secondAttribute="bottom" constant="8" id="CEU-oG-XmG"/>
+                            <constraint firstItem="WPN-l5-5cn" firstAttribute="leading" secondItem="UBY-9b-zJQ" secondAttribute="leading" id="H3v-hS-Bu8"/>
+                            <constraint firstItem="HDN-cX-CM3" firstAttribute="centerX" secondItem="UBY-9b-zJQ" secondAttribute="centerX" id="IMe-MC-Fjk"/>
+                            <constraint firstItem="4U2-cE-OVk" firstAttribute="centerX" secondItem="HDN-cX-CM3" secondAttribute="centerX" id="MnB-36-5il"/>
+                            <constraint firstAttribute="trailing" secondItem="WPN-l5-5cn" secondAttribute="trailing" id="cPf-h1-Uid"/>
+                            <constraint firstItem="HDN-cX-CM3" firstAttribute="top" secondItem="A5M-z5-s0V" secondAttribute="bottom" constant="8" id="h0a-Q9-uA7"/>
+                            <constraint firstItem="HDN-cX-CM3" firstAttribute="centerY" secondItem="UBY-9b-zJQ" secondAttribute="centerY" id="wS7-7Y-VSY"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="pbc-gm-qgI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="161"/>
+            <point key="canvasLocation" x="751" y="169"/>
         </scene>
         <!--Version-->
         <scene sceneID="fJ4-2d-q7I">
@@ -312,13 +342,13 @@
             </objects>
             <point key="canvasLocation" x="747" y="443"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Split Group View Controller-->
         <scene sceneID="bXX-3Y-In3">
             <objects>
-                <splitViewController id="vFN-1U-GVM" sceneMemberID="viewController">
+                <splitViewController id="vFN-1U-GVM" customClass="SplitGroupViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="wu5-0L-m2e"/>
-                        <splitViewItem id="ccA-LU-cI7"/>
+                        <splitViewItem id="aUp-Wa-c9Q"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="0CV-ks-UzP">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -326,59 +356,35 @@
                     </splitView>
                     <connections>
                         <segue destination="8iC-OR-W4n" kind="relationship" relationship="splitItems" id="D2m-V6-Gg3"/>
-                        <segue destination="pEp-v6-dJ5" kind="relationship" relationship="splitItems" id="5Br-np-2Rw"/>
+                        <segue destination="8Mx-xv-LsK" kind="relationship" relationship="splitItems" id="Gh4-CW-EAy"/>
                     </connections>
                 </splitViewController>
                 <customObject id="ndV-lU-5kz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1360" y="-296"/>
+            <point key="canvasLocation" x="751" y="-305"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="jei-Kn-fKR">
+        <!--Tab View Controller-->
+        <scene sceneID="beE-7P-wjh">
             <objects>
-                <viewController id="pEp-v6-dJ5" sceneMemberID="viewController">
-                    <view key="view" id="gjh-Or-g3t">
+                <tabViewController tabStyle="unspecified" id="8Mx-xv-LsK" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Server" identifier="Server" id="ii8-nz-RJP"/>
+                        <tabViewItem label="Version" identifier="Version" id="DNg-Gv-EDU"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="3df-CD-Wgw">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ood-7K-stM">
-                                <rect key="frame" x="161" y="86" width="128" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="bYy-un-Yg3"/>
-                                    <constraint firstAttribute="width" constant="128" id="sxp-Ab-aPu"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cioffi" id="Xap-Hk-ZJV"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOH-0u-a27">
-                                <rect key="frame" x="178" y="61" width="96" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not quite Cioffi" id="Qta-sh-Did">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="QFu-ch-WOb">
-                                <rect key="frame" x="0.0" y="300" width="450" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="0Mb-G3-Eq8"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="500" constant="256" id="26P-IT-hxj"/>
-                                </constraints>
-                            </customView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="hOH-0u-a27" firstAttribute="top" secondItem="Ood-7K-stM" secondAttribute="bottom" constant="8" id="9RF-lY-Aqu"/>
-                            <constraint firstAttribute="trailing" secondItem="QFu-ch-WOb" secondAttribute="trailing" id="Fqs-4I-xU0"/>
-                            <constraint firstItem="QFu-ch-WOb" firstAttribute="leading" secondItem="gjh-Or-g3t" secondAttribute="leading" id="cig-9F-9SU"/>
-                            <constraint firstItem="QFu-ch-WOb" firstAttribute="top" secondItem="gjh-Or-g3t" secondAttribute="top" id="ftd-XA-NLY"/>
-                            <constraint firstItem="Ood-7K-stM" firstAttribute="centerX" secondItem="gjh-Or-g3t" secondAttribute="centerX" id="p8g-bR-MvQ"/>
-                            <constraint firstItem="hOH-0u-a27" firstAttribute="centerX" secondItem="Ood-7K-stM" secondAttribute="centerX" id="q7G-fX-vE9"/>
-                            <constraint firstItem="Ood-7K-stM" firstAttribute="centerY" secondItem="gjh-Or-g3t" secondAttribute="centerY" id="qpF-tq-HAd"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="xWR-1A-wy5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="sAy-2y-hoP" kind="relationship" relationship="tabItems" id="HBf-AB-oZA"/>
+                        <segue destination="tEl-gR-RL1" kind="relationship" relationship="tabItems" id="FXg-P9-2gL"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="fAU-Xj-1eG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1984" y="-296"/>
+            <point key="canvasLocation" x="1315" y="-305"/>
         </scene>
         <!--Group View Controller-->
         <scene sceneID="B2a-aq-UWC">
@@ -395,17 +401,17 @@
                                     <constraint firstAttribute="height" id="wBS-wn-9iy"/>
                                 </constraints>
                             </customView>
-                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqJ-S4-jgz">
-                                <rect key="frame" x="0.0" y="-182" width="163" height="438"/>
+                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqJ-S4-jgz">
+                                <rect key="frame" x="0.0" y="0.0" width="163" height="256"/>
                                 <subviews>
-                                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5M-xO-idI">
-                                        <rect key="frame" x="0.0" y="0.0" width="163" height="438"/>
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5M-xO-idI">
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="256"/>
                                         <clipView key="contentView" drawsBackground="NO" id="vED-r9-9Nb">
-                                            <rect key="frame" x="1" y="1" width="161" height="436"/>
+                                            <rect key="frame" x="1" y="1" width="161" height="254"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="8" outlineTableColumn="ZXD-Fi-ahZ" id="8lK-gf-yxe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="161" height="436"/>
+                                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="4" indentationMarkerFollowsCell="NO" outlineTableColumn="ZXD-Fi-ahZ" id="8lK-gf-yxe">
+                                                    <rect key="frame" x="0.0" y="0.0" width="161" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -446,14 +452,8 @@
                                                                     <rect key="frame" x="1" y="20" width="158" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0n-Fo-dXn">
-                                                                            <rect key="frame" x="3" y="0.0" width="17" height="17"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="3qJ-fl-aDa"/>
-                                                                        </imageView>
-                                                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjt-QX-q7x">
-                                                                            <rect key="frame" x="25" y="0.0" width="133" height="17"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mjt-QX-q7x">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="158" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="vnx-OS-P79">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -461,8 +461,13 @@
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="mjt-QX-q7x" secondAttribute="bottom" id="HPo-Ot-Xtp"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="mjt-QX-q7x" secondAttribute="trailing" constant="2" id="LGT-Wr-ikn"/>
+                                                                        <constraint firstItem="mjt-QX-q7x" firstAttribute="leading" secondItem="98T-JD-SbN" secondAttribute="leading" constant="2" id="h5g-pa-ssp"/>
+                                                                        <constraint firstItem="mjt-QX-q7x" firstAttribute="top" secondItem="98T-JD-SbN" secondAttribute="top" id="s3L-e4-Efu"/>
+                                                                    </constraints>
                                                                     <connections>
-                                                                        <outlet property="imageView" destination="D0n-Fo-dXn" id="g0f-ax-UAZ"/>
                                                                         <outlet property="textField" destination="mjt-QX-q7x" id="pQr-n7-wOb"/>
                                                                     </connections>
                                                                 </tableCellView>
@@ -507,7 +512,7 @@
                 </viewController>
                 <customObject id="Tb5-Ci-Wv7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1359.5" y="144"/>
+            <point key="canvasLocation" x="1172" y="-636"/>
         </scene>
         <!--Network Status-->
         <scene sceneID="t4X-VC-3rZ">
@@ -586,8 +591,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-bT-YYm">
-                                <rect key="frame" x="158" y="187" width="128" height="105"/>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-bT-YYm">
+                                <rect key="frame" x="161" y="98" width="128" height="105"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aow-sH-wng">
                                         <rect key="frame" x="0.0" y="0.0" width="63" height="105"/>
@@ -733,16 +738,16 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oHU-eT-p5E">
-                                <rect key="frame" x="67" y="160" width="104" height="17"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oHU-eT-p5E">
+                                <rect key="frame" x="67" y="70" width="104" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Admin Password" id="sp8-IL-4Rw">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <secureTextField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ay-Pn-k9C">
-                                <rect key="frame" x="177" y="157" width="96" height="22"/>
+                            <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ay-Pn-k9C">
+                                <rect key="frame" x="177" y="68" width="96" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="fqT-GI-pmv"/>
                                 </constraints>
@@ -2030,6 +2035,9 @@
     </scenes>
     <resources>
         <image name="Cioffi" width="128" height="128"/>
-        <image name="NSActionTemplate" width="14" height="14"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="FXg-P9-2gL"/>
+        <segue reference="HBf-AB-oZA"/>
+    </inferredMetricsTieBreakers>
 </document>

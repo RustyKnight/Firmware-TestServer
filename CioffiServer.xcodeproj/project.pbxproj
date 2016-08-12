@@ -30,6 +30,7 @@
 		1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */; };
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
 		128008331D51C24B00D10017 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128008321D51C24B00D10017 /* ServerViewController.swift */; };
+		12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */; };
 		12B064681D49E9E500637053 /* SatelliteServiceModeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */; };
 		12B0646A1D4AC96A00637053 /* SatelliteServiceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
@@ -91,6 +92,7 @@
 		124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		128008321D51C24B00D10017 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CioffiServer-Bridging-Header.h"; sourceTree = "<group>"; };
+		12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitGroupViewController.swift; sourceTree = "<group>"; };
 		12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteServiceModeFunction.swift; path = SatelliteServiceMode/SatelliteServiceModeFunction.swift; sourceTree = "<group>"; };
 		12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatelliteServiceModeViewController.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,7 @@
 			children = (
 				1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */,
 				1205ADCD1D59929A00E19449 /* BroadbandDataViewController.swift */,
+				124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */,
 				1214A2581D4871600090A5BD /* NetworkModeViewController.swift */,
 				1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */,
 				1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */,
@@ -207,6 +210,7 @@
 				128008321D51C24B00D10017 /* ServerViewController.swift */,
 				1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */,
 				1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */,
+				12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */,
 				1214A2561D4871430090A5BD /* VersionViewController.swift */,
 			);
 			name = ViewControllers;
@@ -255,7 +259,6 @@
 				1214A2321D473EF30090A5BD /* SliderCell.swift */,
 				12BA40C11D419DC400C0F512 /* ViewController.swift */,
 				1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */,
-				124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */,
 			);
 			path = CioffiServer;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				1214A24E1D4851A80090A5BD /* SignalStrength.swift in Sources */,
 				1214A24B1D484E990090A5BD /* NetworkRegistrationStatus.swift in Sources */,
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
+				12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */,
 				1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */,
 				1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */,
 				124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */,
