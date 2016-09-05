@@ -53,7 +53,7 @@ class GroupViewController: NSViewController {
 }
 
 extension GroupViewController: NSOutlineViewDelegate {
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         guard let view = outlineView.make(withIdentifier: "DataCell", owner: self) as? NSTableCellView else {
             log(info: "Bad cell")
             return nil
@@ -67,10 +67,11 @@ extension GroupViewController: NSOutlineViewDelegate {
     }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        guard let selectedIndex = notification.object?.selectedRow else {
+        guard let source = notification.object as? NSOutlineView else {
             return
         }
-        guard let group = notification.object?.item(atRow: selectedIndex) as? GroupView else {
+        let selectedIndex = source.selectedRow
+        guard let group = source.item(atRow: selectedIndex) as? GroupView else {
             return
         }
         
@@ -80,17 +81,17 @@ extension GroupViewController: NSOutlineViewDelegate {
 
 extension GroupViewController: NSOutlineViewDataSource {
     
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         log(info: "count = \(groups.count)")
         return groups.count
     }
     
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         log(info: "value @ \(index) = \(groups[index])")
         return groups[index]
     }
     
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         return false
     }
 }

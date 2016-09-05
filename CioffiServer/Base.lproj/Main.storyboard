@@ -141,7 +141,7 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
-                        <segue destination="vFN-1U-GVM" kind="relationship" relationship="window.shadowedContentViewController" id="5Q1-3x-jwm"/>
+                        <segue destination="gwj-Fs-yQB" kind="relationship" relationship="window.shadowedContentViewController" id="L4L-mg-XUs"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -191,12 +191,12 @@
         <scene sceneID="xhN-UL-AkA">
             <objects>
                 <viewController title="Server" storyboardIdentifier="ServerViewController" id="sAy-2y-hoP" customClass="ServerViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="UBY-9b-zJQ">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                    <view key="view" id="UBY-9b-zJQ">
+                        <rect key="frame" x="0.0" y="0.0" width="426" height="364"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDN-cX-CM3">
-                                <rect key="frame" x="161" y="86" width="128" height="128"/>
+                                <rect key="frame" x="161" y="150" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="MaD-OD-P1n"/>
                                     <constraint firstAttribute="height" constant="128" id="cb4-7X-4Mw"/>
@@ -204,22 +204,15 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cioffi" id="okg-1p-Lk9"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-z5-s0V">
-                                <rect key="frame" x="177" y="222" width="96" height="17"/>
+                                <rect key="frame" x="177" y="286" width="96" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not quite Cioffi" id="y8Y-7x-rDV">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPN-l5-5cn">
-                                <rect key="frame" x="0.0" y="300" width="197" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="256" id="JKM-5K-rMK"/>
-                                    <constraint firstAttribute="height" id="ZSh-cQ-HfN"/>
-                                </constraints>
-                            </customView>
                             <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4U2-cE-OVk">
-                                <rect key="frame" x="195" y="62" width="60" height="18"/>
+                                <rect key="frame" x="195" y="126" width="60" height="18"/>
                                 <buttonCell key="cell" type="check" title="Active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BIh-wH-aH9">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -228,23 +221,111 @@
                                     <action selector="stateDidChange:" target="sAy-2y-hoP" id="08g-9n-pWS"/>
                                 </connections>
                             </button>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVT-9t-QH7">
+                                <rect key="frame" x="59" y="45" width="332" height="75"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fpF-CN-bYs">
+                                        <rect key="frame" x="86" y="58" width="160" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Power Down Notifications" id="fD7-9J-MSa">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FnQ-Pe-e5U">
+                                        <rect key="frame" x="0.0" y="29" width="332" height="21"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tlz-0v-43k">
+                                                <rect key="frame" x="-6" y="-7" width="174" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Power Button Pressed" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fyW-be-kA8">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="powerButtonPressed:" target="sAy-2y-hoP" id="8ZQ-fE-UjL"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pWh-F2-Di2">
+                                                <rect key="frame" x="164" y="-7" width="174" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Criticial High Temp" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h99-yd-RCJ">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="powerCriticalHighTemp:" target="sAy-2y-hoP" id="hd9-tj-2Uj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JbR-Pv-qOL">
+                                        <rect key="frame" x="23" y="0.0" width="286" height="21"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7OD-xN-vos">
+                                                <rect key="frame" x="-6" y="-7" width="151" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Criticial Low Temp" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DeK-cL-p00">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="powerCriticalLowTemp:" target="sAy-2y-hoP" id="zxQ-J5-ywT"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WQg-A7-idS">
+                                                <rect key="frame" x="141" y="-7" width="151" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Flat Battery" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rvr-bn-E6E">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="powerFlatBattery:" target="sAy-2y-hoP" id="ffK-Wm-z3C"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="A5M-z5-s0V" firstAttribute="centerX" secondItem="HDN-cX-CM3" secondAttribute="centerX" id="3md-Le-4tZ"/>
-                            <constraint firstItem="WPN-l5-5cn" firstAttribute="top" secondItem="UBY-9b-zJQ" secondAttribute="top" id="5J1-Ai-V2o"/>
                             <constraint firstItem="4U2-cE-OVk" firstAttribute="top" secondItem="HDN-cX-CM3" secondAttribute="bottom" constant="8" id="CEU-oG-XmG"/>
-                            <constraint firstItem="WPN-l5-5cn" firstAttribute="leading" secondItem="UBY-9b-zJQ" secondAttribute="leading" id="H3v-hS-Bu8"/>
                             <constraint firstItem="HDN-cX-CM3" firstAttribute="centerX" secondItem="UBY-9b-zJQ" secondAttribute="centerX" id="IMe-MC-Fjk"/>
                             <constraint firstItem="4U2-cE-OVk" firstAttribute="centerX" secondItem="HDN-cX-CM3" secondAttribute="centerX" id="MnB-36-5il"/>
-                            <constraint firstAttribute="trailing" secondItem="WPN-l5-5cn" secondAttribute="trailing" id="cPf-h1-Uid"/>
+                            <constraint firstItem="kVT-9t-QH7" firstAttribute="top" secondItem="4U2-cE-OVk" secondAttribute="bottom" constant="8" id="T2j-GB-1jO"/>
                             <constraint firstItem="HDN-cX-CM3" firstAttribute="top" secondItem="A5M-z5-s0V" secondAttribute="bottom" constant="8" id="h0a-Q9-uA7"/>
+                            <constraint firstItem="kVT-9t-QH7" firstAttribute="centerX" secondItem="4U2-cE-OVk" secondAttribute="centerX" id="qsc-2i-jsD"/>
                             <constraint firstItem="HDN-cX-CM3" firstAttribute="centerY" secondItem="UBY-9b-zJQ" secondAttribute="centerY" id="wS7-7Y-VSY"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="pbc-gm-qgI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="169"/>
+            <point key="canvasLocation" x="739" y="137"/>
         </scene>
         <!--Version-->
         <scene sceneID="fJ4-2d-q7I">

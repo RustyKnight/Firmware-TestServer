@@ -9,7 +9,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C1C00DC7-D385-486A-8659-D667057E53FC",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "A16035B0B6159242B3080E65C1262F3C49EB3D7A" : "FirmwareLibrary\/",
+    "A16035B0B6159242B3080E65C1262F3C49EB3D7A" : "library\/",
     "AFA0CCB4737C2912980AFB31D938DC0629C4E30E" : "FirmwareServer\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CioffiAPI",

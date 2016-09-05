@@ -9,9 +9,8 @@
 import Foundation
 import CioffiAPI
 import SwiftyJSON
-import Fuzi
 
-enum RequestRegistryError: ErrorProtocol {
+enum RequestRegistryError: Error {
 	case missingType
     case invalidType
     case missingName
@@ -72,6 +71,9 @@ class DefaultRequestHandler: RequestHandler {
         
         functions[.getBroadbandDataStatus] = GetBroadbandConnectionStatus()
         functions[.startStopBroadbandData] = StartStopBroadbandDataMode()
+        
+        functions[.getAutomaticSAPAStatus] = GetAutomaticSAPAStatusFunction()
+        functions[.setAutomaticSAPAStatus] = SetAutomaticSAPAStatusFunction()
 	}
 
     func handle(request: JSON, forResponder responder: Responder) {

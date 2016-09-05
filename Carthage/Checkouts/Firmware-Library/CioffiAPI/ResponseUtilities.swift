@@ -41,6 +41,9 @@ public enum ResponseType: Int {
     case getBroadbandDataIPMode = 34
     case setBroadbandStreamingSpeed = 36
     case getBroadbandStreamingSpeed = 43
+    
+    case setAutomaticSAPAStatus = 48
+    case getAutomaticSAPAStatus = 50
 	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

@@ -11,6 +11,6 @@ import CioffiAPI
 
 protocol APINotification {
     var type: NotificationType {get}
-    var body: [String: [String: AnyObject]] {get}
+    var body: [String: [String: Any]] {get}
 }
 

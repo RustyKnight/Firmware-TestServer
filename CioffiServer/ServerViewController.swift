@@ -28,4 +28,27 @@ class ServerViewController: NSViewController {
         }
     }
     
+    @IBAction func powerButtonPressed(_ sender: NSButton) {
+        send(notification: .powerButtonPressed)
+    }
+    
+    @IBAction func powerCriticalHighTemp(_ sender: NSButton) {
+        send(notification: .criticalHighTemperature)
+    }
+    
+    @IBAction func powerCriticalLowTemp(_ sender: NSButton) {
+        send(notification: .criticalLowTemperature)
+    }
+    
+    @IBAction func powerFlatBattery(_ sender: NSButton) {
+        send(notification: .batteryFlat)
+    }
+    
+    func send(notification: ShuttingDownReason) {
+        do {
+            try Server.default.send(notification: ShuttingDownNotification(type: notification))
+        } catch let error {
+            log(error: "\(error)")
+        }
+    }
 }

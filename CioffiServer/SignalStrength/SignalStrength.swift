@@ -14,8 +14,8 @@ let activeSignalStrengthKey = "activeSignalStrength"
 let signalStrengthKey = "signalStrength"
 
 struct SignalStrengthUtility {
-    static func body() -> [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
+    static func body() -> [String : [String : Any]] {
+        var body: [String : [String : Any]] = [:]
         guard let modeValue = DataModelManager.shared.get(forKey: activeSignalStrengthKey, withDefault: 0) as? Int else {
             return body
         }
@@ -47,7 +47,7 @@ class GetSignalStrengthFunction: DefaultAPIFunction {
         DataModelManager.shared.set(value: 0, forKey: activeSignalStrengthKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return SignalStrengthUtility.body()
     }
     
@@ -58,7 +58,7 @@ struct SignalStrengthNotification: APINotification {
         return .signalStrengthChanged
     }
     
-    var body: [String : [String : AnyObject]] {
+    var body: [String : [String : Any]] {
         return SignalStrengthUtility.body()
     }
 }

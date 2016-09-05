@@ -53,7 +53,7 @@ class BatteryStatusViewController: NSViewController {
     
     @IBAction func chargingValueChanged(_ sender: NSSlider) {
         let value = sender.integerValue
-        chargeLabel.stringValue = percentageFormatter.string(from: Double(value) / 100.0)!
+        chargeLabel.stringValue = percentageFormatter.string(from: NSNumber(value: Double(value) / Double(100.0)))!
         DataModelManager.shared.set(value: value, forKey: batteryChargeKey, withNotification: false)
         liveNotification()
     }
@@ -101,7 +101,7 @@ class BatteryStatusViewController: NSViewController {
     func updateCharge() {
         let value = DataModelManager.shared.integer(forKey: batteryChargeKey, withDefault: 0)
         chargeSlider.integerValue = value
-        chargeLabel.stringValue = percentageFormatter.string(from: Double(value) / 100.0)!
+        chargeLabel.stringValue = percentageFormatter.string(from: NSNumber(value: Double(value) / 100.0))!
     }
     
     func status(withDefault defaultValue: BatteryStatus = .unknown) -> BatteryStatus {

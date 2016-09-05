@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public enum ProtocolError: ErrorProtocol {
+public enum ProtocolError: Error {
 	case jsonEncodingError
 	case dataEncodingError
 	case requestDecodingError
@@ -32,27 +32,27 @@ public enum ProtocolError: ErrorProtocol {
 	- requestType: Request Type
 	- Returns: Request header
 	*/
-	public static func header(forRequest request: RequestType) -> [String: [String: AnyObject]] {
+	public static func header(forRequest request: RequestType) -> [String: [String: Any]] {
 		return header(forType: request.rawValue)
 	}
 	
-	public static func header(forNotification notification: NotificationType) -> [String: [String: AnyObject]] {
+	public static func header(forNotification notification: NotificationType) -> [String: [String: Any]] {
         return header(forType: notification.rawValue, result: ResponseCode.success.rawValue)
 	}
     
-    public static func header(forRequest request: RequestType, code: ResponseCode) -> [String: [String: AnyObject]] {
+    public static func header(forRequest request: RequestType, code: ResponseCode) -> [String: [String: Any]] {
         return header(forType: request.rawValue, result: code.rawValue)
     }
 	
-	public static func header(forResponse response: ResponseType, code: ResponseCode) -> [String: [String: AnyObject]] {
+	public static func header(forResponse response: ResponseType, code: ResponseCode) -> [String: [String: Any]] {
 		return header(forType: response.rawValue, result: code.rawValue)
 	}
 	
-	public static func header(forResponse response: ResponseType, result: Int) -> [String: [String: AnyObject]] {
+	public static func header(forResponse response: ResponseType, result: Int) -> [String: [String: Any]] {
 		return header(forType: response.rawValue, result: result)
 	}
 	
-	public static func header(forResponse response: Int, code: ResponseCode) -> [String: [String: AnyObject]] {
+	public static func header(forResponse response: Int, code: ResponseCode) -> [String: [String: Any]] {
 		return header(forType: response, result: code.rawValue)
 	}
 	
@@ -62,8 +62,8 @@ public enum ProtocolError: ErrorProtocol {
 	- requestType: Request Type
 	- Returns: Request header
 	*/
-	public static func header(forType type: Int, result: Int? = nil) -> [String: [String: AnyObject]] {
-		var header: [String: [String: AnyObject]] = ["header": ["version": apiVersion, "type" : type]]
+	public static func header(forType type: Int, result: Int? = nil) -> [String: [String: Any]] {
+		var header: [String: [String: Any]] = ["header": ["version": apiVersion, "type" : type]]
         if let result = result {
             header["header"]?["result"] = result
         }
@@ -111,13 +111,13 @@ public enum ProtocolError: ErrorProtocol {
 		return "\(headValue)\(size)\(flagValue)\(crc)\(messageBody)"
 	}
 	
-	public class func dataFor(notification: NotificationType, payload: [String: [String: AnyObject]]) throws -> Data {
+	public class func dataFor(notification: NotificationType, payload: [String: [String: Any]]) throws -> Data {
 		var header = ProtocolUtils.header(forNotification: notification)
 		header += payload
 		return try dataFor(payload: header)
 	}
 	
-	public class func dataFor(payload: [String: [String: AnyObject]]) throws -> Data {
+	public class func dataFor(payload: [String: [String: Any]]) throws -> Data {
 		return try dataFor(json: JSON(payload))
 	}
 	
@@ -138,32 +138,39 @@ public enum ProtocolError: ErrorProtocol {
 	}
 	
 	public class func getBodyLength(from data: Data) -> UInt {
-		let buffer = UnsafeMutableBufferPointer<UInt8>(
-			start: UnsafeMutablePointer<UInt8>(allocatingCapacity: data.count),
-			count: data.count)
-		let _ = data.copyBytes(to: buffer)
-		let headerBytes = Array(buffer)
-		return getBodyLength(from: headerBytes)
+//		let buffer = UnsafeMutableBufferPointer<UInt8>(
+//			start: UnsafeMutablePointer<UInt8>(allocatingCapacity: data.count),
+//			count: data.count)
+//		let _ = data.copyBytes(to: buffer)
+//		let headerBytes = Array(buffer)
+//		return getBodyLength(from: headerBytes)
+        return (UInt(data[2]) * 256) + UInt(data[3])
 	}
 	
-	public class func getBodyLength(from headerBytes: [UInt8]) -> UInt {
-		return (UInt(headerBytes[2]) * 256) + UInt(headerBytes[3])
-	}
+//	public class func getBodyLength(from headerBytes: [UInt8]) -> UInt {
+//		return (UInt(headerBytes[2]) * 256) + UInt(headerBytes[3])
+//	}
 	
 	public class func validCRC(fromHeader headerData: Data, body bodyData: Data) -> Bool {
 		
 		// Compute CRC
-		var bytes = Array(UnsafeBufferPointer(
-			start: UnsafePointer<UInt8>((headerData as NSData).bytes),
-			count: (headerData as NSData).length))
+//		var bytes = Array(UnsafeBufferPointer(
+//			start: UnsafePointer<UInt8>((headerData as NSData).bytes),
+//			count: (headerData as NSData).length))
 		
-		let expectedCrc = getExpectedCRC(from: bytes)
+        var mutableHeaderData = Data()
+        mutableHeaderData.append(headerData)
+        
+		let expectedCrc = getExpectedCRC(from: headerData)
 		
 		// Reset the crc bytes to compute the new crc value
-		bytes[6] = 0
-		bytes[7] = 0
+        // I'm not sure this is required any more, as we should
+        // now have a copy of the data...
+		mutableHeaderData[6] = 0
+		mutableHeaderData[7] = 0
 		
-		var crcData = Data(bytes: bytes)
+		var crcData = Data()
+        crcData.append(mutableHeaderData)
 		crcData.append(bodyData)
 		
 		let currentCrc = UInt(crcData.crcCCITT)
@@ -171,7 +178,8 @@ public enum ProtocolError: ErrorProtocol {
 		return currentCrc == expectedCrc
 	}
 	
-	public class func getExpectedCRC(from bytes: [UInt8]) -> UInt {
+//    public class func getExpectedCRC(from bytes: [UInt8]) -> UInt {
+	public class func getExpectedCRC(from bytes: Data) -> UInt {
 		return (UInt(bytes[6]) * 256) + UInt(bytes[7])
 	}
 }
@@ -197,14 +205,14 @@ public struct Utils {
 	*/
 	public static func hexStringtoAscii(hexString: String,
 	                                    pattern: String = "(0x)?([0-9a-f]{2})") -> String {
-		guard let regex = try? RegularExpression(pattern: pattern, options: .caseInsensitive) else {
+		guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
 			return ""
 		}
 		
 		let nsString = hexString as NSString
 		let matches = regex.matches(in: hexString, options: [], range: NSRange(location: 0, length: nsString.length))
 		let characters = matches.map {
-			Character(UnicodeScalar(UInt32(nsString.substring(with: $0.range(at: 2)), radix: 16)!))
+            Character(UnicodeScalar(UInt32(nsString.substring(with: $0.rangeAt(2)), radix: 16)!)!)
 		}
 		
 		return String(characters)
@@ -245,12 +253,12 @@ public let crcCCITTLookupTable: [UInt16] = [
 	0x2E93, 0x3EB2, 0x0ED1, 0x1EF0,
 ]
 
-public func calculateCRCCCITT(seed: UInt16, data: NSData) -> UInt16 {
-	let bytePointer = UnsafePointer<UInt8>(data.bytes)
-	let bytes = UnsafeBufferPointer<UInt8>(start: bytePointer, count: data.length)
+public func calculateCRCCCITT(seed: UInt16, data: Data) -> UInt16 {
+//	let bytePointer = UnsafePointer<UInt8>(data.bytes)
+//	let bytes = UnsafeBufferPointer<UInt8>(start: bytePointer, count: data.length)
 	var sum = seed
 	
-	for byte in bytes {
+	for byte in data {
 		let index = Int((sum >> 8) ^ UInt16(byte))
 		sum = crcCCITTLookupTable[index] ^ (sum << 8)
 	}

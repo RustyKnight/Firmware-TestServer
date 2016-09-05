@@ -81,7 +81,7 @@ class BroadbandDataViewController: NSViewController {
         }
     }
     
-    func updateControl<T: RawRepresentable where T.RawValue == Int>(`for` key : String, defaultValue: T, offset: Int) {
+    func updateControl<T: RawRepresentable>(`for` key : String, defaultValue: T, offset: Int) where T.RawValue == Int {
         let mode = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
         guard let control = view.viewWithTag(mode.rawValue + offset) as? NSButton else {
             log(warning: "Could not find view for \(mode) (\(mode.rawValue) + \(offset))")

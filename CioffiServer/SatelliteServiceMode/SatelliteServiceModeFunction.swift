@@ -13,8 +13,8 @@ import SwiftyJSON
 let satelliteServiceModeKey = "satelliteServiceMode.mode"
 
 struct SatelliteServiceModeUtilities {
-    static func body() -> [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
+    static func body() -> [String : [String : Any]] {
+        var body: [String : [String : Any]] = [:]
         guard let value = DataModelManager.shared.get(forKey: satelliteServiceModeKey,
                                                       withDefault: SatelliteServiceMode.voice.rawValue) as? Int else {
             return body
@@ -41,7 +41,7 @@ class GetSatelliteServiceModeFunction: DefaultAPIFunction {
                                     forKey: satelliteServiceModeKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return SatelliteServiceModeUtilities.body()
     }
     
@@ -88,7 +88,7 @@ struct SatelliteServiceModeNotification: APINotification {
     }
     
     
-    var body: [String : [String : AnyObject]] {
+    var body: [String : [String : Any]] {
         return SatelliteServiceModeUtilities.body()
     }
 }

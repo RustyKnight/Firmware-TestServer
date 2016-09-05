@@ -14,8 +14,8 @@ let networkRegistrationModuleKey = "networkRegistrationModule"
 let networkRegistrationStatusKey = "networkRegistrationStatus"
 
 struct GetNetworkRegistrationStatusFunctionUtilities {
-    static func body() -> [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
+    static func body() -> [String : [String : Any]] {
+        var body: [String : [String : Any]] = [:]
         body["connection"] = [
             "module": DataModelManager.shared.get(forKey: networkRegistrationModuleKey,
                                                   withDefault: NetworkModule.satellite.rawValue)
@@ -41,7 +41,7 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
                                     forKey: networkRegistrationStatusKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return GetNetworkRegistrationStatusFunctionUtilities.body()
     }
     
@@ -52,7 +52,7 @@ struct NetworkRegistrationStatusNotification: APINotification {
         return .networkRegistrationStatusChanged
     }
     
-    var body: [String : [String : AnyObject]] {
+    var body: [String : [String : Any]] {
         return GetNetworkRegistrationStatusFunctionUtilities.body()
     }
 }

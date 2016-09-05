@@ -10,10 +10,10 @@ import Foundation
 import CioffiAPI
 
 protocol DataModel {
-    func get(forKey: String) -> AnyObject?
-    func get(forKey: String, withDefault: AnyObject) -> AnyObject
-    func set(value: AnyObject, forKey: String)
-    func set(value: AnyObject, forKey: String, withNotification: Bool)
+    func get(forKey: String) -> Any?
+    func get(forKey: String, withDefault: Any) -> Any
+    func set(value: Any, forKey: String)
+    func set(value: Any, forKey: String, withNotification: Bool)
     func integer(forKey key: String, withDefault defaultValue: Int) -> Int
     func double(forKey key: String, withDefault defaultValue: Double) -> Double
     func bool(forKey key: String, withDefault defaultValue: Bool) -> Bool
@@ -21,13 +21,13 @@ protocol DataModel {
     
     func networkModule(forKey key: String, withDefault defaultValue: NetworkModule) -> NetworkModule
     
-    func get<T: RawRepresentable where T.RawValue == Int>(forKey key: String, withDefault defaultValue: T) -> T
-    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String)
-    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String, withNotification: Bool)
+    func get<T: RawRepresentable>(forKey key: String, withDefault defaultValue: T) -> T where T.RawValue == Int
+    func set<T: RawRepresentable>(value: T, forKey key: String) where T.RawValue == Int
+    func set<T: RawRepresentable>(value: T, forKey key: String, withNotification: Bool) where T.RawValue == Int
 
-    func get<R: AnyObject, T: RawRepresentable where T.RawValue == R>(forKey key: String, withDefault defaultValue: T) -> T
-    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String)
-    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String, withNotification: Bool)
+    func get<R: Any, T: RawRepresentable>(forKey key: String, withDefault defaultValue: T) -> T where T.RawValue == R
+    func set<R: Any, T: RawRepresentable>(value: T, forKey key: String) where T.RawValue == R
+    func set<R: Any, T: RawRepresentable>(value: T, forKey key: String, withNotification: Bool) where T.RawValue == R
 }
 
 struct DataModelManager {
@@ -35,20 +35,20 @@ struct DataModelManager {
 }
 
 class DefaultDataModel: DataModel {
-    var data: [String: AnyObject] = [:]
+    var data: [String: Any] = [:]
     
-    func get(forKey: String) -> AnyObject? {
+    func get(forKey: String) -> Any? {
         return data[forKey]
     }
     
-    func get(forKey: String, withDefault: AnyObject) -> AnyObject {
+    func get(forKey: String, withDefault: Any) -> Any {
         guard let value = get(forKey: forKey) else {
             return withDefault
         }
         return value
     }
     
-    func get<T: RawRepresentable where T.RawValue == Int>(forKey key: String, withDefault defaultValue: T) -> T {
+    func get<T: RawRepresentable>(forKey key: String, withDefault defaultValue: T) -> T where T.RawValue == Int {
         guard let rawValue = get(forKey: key) as? Int else {
             return defaultValue
         }
@@ -58,23 +58,23 @@ class DefaultDataModel: DataModel {
         return value
     }
 
-    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String) {
+    func set<T: RawRepresentable>(value: T, forKey key: String) where T.RawValue == Int {
         set(value: value, forKey: key, withNotification: true)
     }
 
-    func set<T: RawRepresentable where T.RawValue == Int>(value: T, forKey key: String, withNotification: Bool = true) {
+    func set<T: RawRepresentable>(value: T, forKey key: String, withNotification: Bool = true) where T.RawValue == Int {
         set(value: value.rawValue, forKey: key, withNotification: withNotification)
     }
 
-    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String) {
+    func set<R: Any, T: RawRepresentable>(value: T, forKey key: String) where T.RawValue == R {
         set(value: value, forKey: key, withNotification: true)
     }
     
-    func set<R: AnyObject, T: RawRepresentable where T.RawValue == R>(value: T, forKey key: String, withNotification: Bool = true) {
+    func set<R: Any, T: RawRepresentable>(value: T, forKey key: String, withNotification: Bool = true) where T.RawValue == R {
         set(value: value.rawValue, forKey: key, withNotification: withNotification)
     }
     
-    func get<R: AnyObject, T: RawRepresentable where T.RawValue == R>(forKey key: String, withDefault defaultValue: T) -> T {
+    func get<R: Any, T: RawRepresentable>(forKey key: String, withDefault defaultValue: T) -> T where T.RawValue == R {
         guard let rawValue = get(forKey: key) as? R else {
             return defaultValue
         }
@@ -84,11 +84,11 @@ class DefaultDataModel: DataModel {
         return value
     }
 
-    func set(value: AnyObject, forKey: String) {
+    func set(value: Any, forKey: String) {
         set(value: value, forKey: forKey, withNotification: true)
     }
     
-    func set(value: AnyObject, forKey: String, withNotification: Bool = true) {
+    func set(value: Any, forKey: String, withNotification: Bool = true) {
         data[forKey] = value
         if withNotification {
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: forKey),

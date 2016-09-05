@@ -97,8 +97,8 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
         }
     }
     
-    override func body() -> [String : [String : AnyObject]] {
-        var body: [String: [String: AnyObject]] = [:]
+    override func body() -> [String : [String : Any]] {
+        var body: [String: [String: Any]] = [:]
         let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
                                                withDefault: BroadbandDataStatus.dataInactive)
         let active = mode != BroadbandDataStatus.dataInactive
@@ -127,13 +127,13 @@ private class BroadbandStatusModeSwitcher: ModeSwitcher<BroadbandDataStatus> {
 
 struct BroadbandDataStatusUtilities {
     
-    static func bodyForCurrentStatus() -> [String : [String : AnyObject]] {
+    static func bodyForCurrentStatus() -> [String : [String : Any]] {
         let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
                                                withDefault: BroadbandDataStatus.dataInactive)
         return body(for: mode)
     }
     
-    static func body(`for` mode: BroadbandDataStatus) -> [String : [String : AnyObject]]{
+    static func body(`for` mode: BroadbandDataStatus) -> [String : [String : Any]]{
         var uplinkSpeed: BroadbandStreamingIPSpeed? = nil
         var downlinkSpeed: BroadbandStreamingIPSpeed? = nil
         
@@ -151,8 +151,8 @@ struct BroadbandDataStatusUtilities {
     
     static func body(`for` mode: BroadbandDataStatus,
                      uplinkSpeed: BroadbandStreamingIPSpeed? = nil,
-                     downlinkSpeed: BroadbandStreamingIPSpeed? = nil) -> [String : [String : AnyObject]]{
-        var data: [String : [String : AnyObject]] = [:]
+                     downlinkSpeed: BroadbandStreamingIPSpeed? = nil) -> [String : [String : Any]]{
+        var data: [String : [String : Any]] = [:]
         data["broadband"] = [
             "mode": mode.rawValue
         ]
@@ -169,7 +169,7 @@ struct BroadbandDataStatusUtilities {
 struct BroadbandDataStatusNotification: APINotification {
     let type: NotificationType = NotificationType.broadbandDataStatus
     
-    var body: [String : [String : AnyObject]] {
+    var body: [String : [String : Any]] {
         return BroadbandDataStatusUtilities.bodyForCurrentStatus()
     }
 }
@@ -185,14 +185,14 @@ class GetBroadbandConnectionStatus: DefaultAPIFunction {
         DataModelManager.shared.set(value: BroadbandDataStatus.dataInactive, forKey: broadbandDataActiveModeKey)
    }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return BroadbandDataStatusUtilities.bodyForCurrentStatus()
     }
 }
 
 struct BroadbandDataIPModeUtilities {
-    static func body() -> [String : [String : AnyObject]] {
-        var body: [String: [String: AnyObject]] = [:]
+    static func body() -> [String : [String : Any]] {
+        var body: [String: [String: Any]] = [:]
         body["broadband"] = [
             "mode": DataModelManager.shared.get(forKey: broadbandDataModeKey,
                                                 withDefault: BroadbandDataMode.standardIP).rawValue
@@ -217,7 +217,7 @@ class SetBroadbandDataIPMode: DefaultAPIFunction {
                                     forKey: broadbandDataModeKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return BroadbandDataIPModeUtilities.body()
     }
 }
@@ -232,14 +232,14 @@ class GetBroadbandDataIPMode: DefaultAPIFunction {
                                     forKey: broadbandDataModeKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return BroadbandDataIPModeUtilities.body()
     }
 }
 
 struct BroadbandDataSpeedUtilities {
-    static func body() -> [String : [String : AnyObject]] {
-        var body: [String: [String: AnyObject]] = [:]
+    static func body() -> [String : [String : Any]] {
+        var body: [String: [String: Any]] = [:]
         body["broadband"] = [
             "uplinkspeed": DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey,
                                                        withDefault: BroadbandStreamingIPSpeed.kbps16).rawValue,
@@ -272,7 +272,7 @@ class SetBroadbandDataSpeed: DefaultAPIFunction {
                                     forKey: broadbandDataDownlinkSpeedKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return BroadbandDataSpeedUtilities.body()
     }
 }
@@ -289,7 +289,7 @@ class GetBroadbandDataSpeed: DefaultAPIFunction {
                                     forKey: broadbandDataDownlinkSpeedKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return BroadbandDataSpeedUtilities.body()
     }
 }

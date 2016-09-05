@@ -31,6 +31,9 @@ public enum RequestType: Int {
     case setBroadbandStreamingSpeed = 35
     case getBroadbandStreamingSpeed = 42
     
+    case getAutomaticSAPAStatus = 49
+    case setAutomaticSAPAStatus = 47
+    
     public static func `for`(_ value: Int) -> RequestType {
         guard let type = RequestType(rawValue: value) else {
             return RequestType.unknown

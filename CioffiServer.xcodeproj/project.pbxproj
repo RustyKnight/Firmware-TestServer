@@ -28,6 +28,7 @@
 		1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */; };
 		1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */; };
 		1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */; };
+		124405151D78FE41001826EC /* AutomaticSAPAState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124405141D78FE41001826EC /* AutomaticSAPAState.swift */; };
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
 		128008331D51C24B00D10017 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128008321D51C24B00D10017 /* ServerViewController.swift */; };
 		12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */; };
@@ -46,8 +47,6 @@
 		12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */; };
 		707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; };
 		707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		70DB0D291D441C4400EF53E1 /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DB0D281D441C4400EF53E1 /* Fuzi.framework */; };
-		70DB0D2A1D441C4400EF53E1 /* Fuzi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 70DB0D281D441C4400EF53E1 /* Fuzi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,7 +56,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				70DB0D2A1D441C4400EF53E1 /* Fuzi.framework in Embed Frameworks */,
 				707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */,
 				12BA40D71D41A11A00C0F512 /* SwiftyJSON.framework in Embed Frameworks */,
 				12BA40D51D41A11A00C0F512 /* CocoaAsyncSocket.framework in Embed Frameworks */,
@@ -89,6 +87,7 @@
 		1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRegistrationViewController.swift; sourceTree = "<group>"; };
 		1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryStatusViewController.swift; sourceTree = "<group>"; };
 		1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderViewController.swift; sourceTree = "<group>"; };
+		124405141D78FE41001826EC /* AutomaticSAPAState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomaticSAPAState.swift; sourceTree = "<group>"; };
 		124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		128008321D51C24B00D10017 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CioffiServer-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -115,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DB0D291D441C4400EF53E1 /* Fuzi.framework in Frameworks */,
 				707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */,
 				12BA40D61D41A11A00C0F512 /* SwiftyJSON.framework in Frameworks */,
 				12BA40D41D41A11A00C0F512 /* CocoaAsyncSocket.framework in Frameworks */,
@@ -216,6 +214,14 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		124405131D78FE13001826EC /* SAPA */ = {
+			isa = PBXGroup;
+			children = (
+				124405141D78FE41001826EC /* AutomaticSAPAState.swift */,
+			);
+			name = SAPA;
+			sourceTree = "<group>";
+		};
 		12B064661D49E9BD00637053 /* SatelliteServiceMode */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +281,7 @@
 				1214A2401D4844CE0090A5BD /* NetworkMode */,
 				1214A2491D484E790090A5BD /* NetworkRegistrationStatus */,
 				12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */,
+				124405131D78FE13001826EC /* SAPA */,
 				12B064661D49E9BD00637053 /* SatelliteServiceMode */,
 				1214A2511D4853780090A5BD /* ServiceProvider */,
 				1214A23B1D483EE80090A5BD /* ShuttingDown */,
@@ -358,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124405151D78FE41001826EC /* AutomaticSAPAState.swift in Sources */,
 				12BA40C21D419DC400C0F512 /* ViewController.swift in Sources */,
 				1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */,
 				1214A25F1D488F970090A5BD /* RestrictedAccessViewController.swift in Sources */,

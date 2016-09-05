@@ -19,9 +19,10 @@ public class LogService {
     
     public func log(level: Level, message: String, file: String = #file, function: String = #function, line: Int = #line) {
         var fileName = file
-        if let url = URL(string: file),
-            let name = url.lastPathComponent,
-            let ext = url.pathExtension {
+        if let url = URL(string: file) {
+            
+            let name = url.lastPathComponent
+            let ext = url.pathExtension
             
             fileName = name.replacingOccurrences(of: ext, with: "")
             fileName = fileName.characters.split(separator: ".").flatMap(String.init).first!

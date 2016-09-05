@@ -25,8 +25,8 @@ class GetVersionFunction: DefaultAPIFunction {
         DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.patchVersionKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
-        var body: [String: [String: AnyObject]] = [:]
+    override func body() -> [String : [String : Any]] {
+        var body: [String: [String: Any]] = [:]
         body["firmware"] = [
             "majorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1),
             "minorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 1),

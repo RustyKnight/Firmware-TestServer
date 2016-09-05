@@ -8,6 +8,7 @@
 
 import Cocoa
 import CioffiAPI
+import SwiftyJSON
 
 class FunctionView {
     let name: String
@@ -53,7 +54,7 @@ class ViewController: NSTabViewController {
         }
     }
 
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
@@ -98,21 +99,21 @@ class ViewController: NSTabViewController {
 //
 //extension ViewController: NSOutlineViewDataSource {
 //    
-//    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+//    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 //        return functions.count
 //    }
 //    
-//    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+//    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 //        return functions[index]
 //    }
 //    
-//    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+//    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 //        return false
 //    }
 //}
 //
 //extension ViewController: NSOutlineViewDelegate {
-//    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+//    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 //        var view: NSTableCellView?
 //        if let function = item as? FunctionView {
 //            view = outlineView.make(withIdentifier: "HeaderCell", owner: self) as? NSTableCellView

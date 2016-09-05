@@ -102,8 +102,8 @@ extension Server: GCDAsyncSocketDelegate {
 	func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
 		log(warning: "Server didRead data?")
 	}
-	
-	func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: NSError?) {
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
 		log(warning: "Server didDisconnect with \(err)")
 	}
 	
@@ -128,7 +128,7 @@ class ClientSocketDelegate: NSObject, GCDAsyncSocketDelegate {
 		readHeader(from: socket)
 		//
 		//        var message = ProtocolUtils.getHeader(responseType: .getVersion, code: .success)
-		//        var firmware: [String: [String: AnyObject]] = [:]
+		//        var firmware: [String: [String: Any]] = [:]
 		//        firmware["firmware"] = [
 		//            "majorVersion": 1,
 		//            "minorVersion": 1,
@@ -188,9 +188,9 @@ class ClientSocketDelegate: NSObject, GCDAsyncSocketDelegate {
 	func socket(_ sock: GCDAsyncSocket, didWriteDataWithTag tag: Int) {
 	}
 	
-	func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: NSError?) {
+	func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
 		log(info: "Client didDisconnect with \(err)")
-		var userInfo: [NSObject:AnyObject] = [:]
+		var userInfo: [AnyHashable:Any] = [:]
 		if let error = err {
 			userInfo = [Server.dataKey:error]
 		}
@@ -223,7 +223,7 @@ class SocketClient: Responder {
 		}
 	}
 	
-	func send(response code: ResponseCode, `for` response: ResponseType, contents: [String: [String: AnyObject]]? = nil) {		
+	func send(response code: ResponseCode, `for` response: ResponseType, contents: [String: [String: Any]]? = nil) {		
 		var message = ProtocolUtils.header(forResponse: response, code: code)
 		if let contents = contents {
 			message += contents
@@ -236,7 +236,7 @@ class SocketClient: Responder {
 		}
 	}
     
-    func succeeded(response: ResponseType, contents: [String: [String: AnyObject]]? = nil) {
+    func succeeded(response: ResponseType, contents: [String: [String: Any]]? = nil) {
         send(response: .success, for: response, contents: contents)
     }
     

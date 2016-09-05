@@ -14,8 +14,8 @@ let activeServiceProviderKey = "activeServiceProvider"
 let serviceProviderKey = "serviceProvider"
 
 struct ServiceProviderUtility {
-    static func body() -> [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
+    static func body() -> [String : [String : Any]] {
+        var body: [String : [String : Any]] = [:]
         let mode = DataModelManager.shared.networkModule(forKey: activeServiceProviderKey,
                                                          withDefault: NetworkModule.cellular)
         if mode == .cellular {
@@ -47,7 +47,7 @@ class GetServiceProvideFunction: DefaultAPIFunction {
                                     forKey: activeServiceProviderKey)
     }
     
-    override func body() -> [String : [String : AnyObject]] {
+    override func body() -> [String : [String : Any]] {
         return ServiceProviderUtility.body()
     }
     
@@ -58,7 +58,7 @@ struct ServiceProviderNotification: APINotification {
         return .serviceProviderChanged
     }
     
-    var body: [String : [String : AnyObject]] {
+    var body: [String : [String : Any]] {
         return ServiceProviderUtility.body()
     }
 }

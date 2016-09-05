@@ -80,8 +80,8 @@ class GetAccessRestricitionsFunction: DefaultAPIFunction {
 
     }
     
-    override func body() -> [String : [String : AnyObject]] {
-        var body: [String : [String : AnyObject]] = [:]
+    override func body() -> [String : [String : Any]] {
+        var body: [String : [String : Any]] = [:]
         
         for (key, value) in accessRestricitionKeys {
             body[key.description] = [
@@ -134,8 +134,8 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
         }
     }
     
-    override func body() -> [String : [String : AnyObject]] {
-        var contents: [String : [String : AnyObject]] = [:]
+    override func body() -> [String : [String : Any]] {
+        var contents: [String : [String : Any]] = [:]
         for (key, value) in validated {
             contents[key.description] = ["result": value ? 0 : 4]
         }

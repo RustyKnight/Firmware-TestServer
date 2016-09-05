@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-enum APIFunctionError: ErrorProtocol {
+enum APIFunctionError: Error {
     case invalidRequestType
 }
 
@@ -23,8 +23,8 @@ class DefaultAPIFunction: APIFunction {
     var responseType: ResponseType = .unknown
     var requestType: RequestType = .unknown
     
-    func body() -> [String: [String: AnyObject]] {
-        let body: [String: [String: AnyObject]] = [:]
+    func body() -> [String: [String: Any]] {
+        let body: [String: [String: Any]] = [:]
         return body
     }
     
@@ -47,7 +47,7 @@ class DefaultAPIFunction: APIFunction {
     }
 }
 
-class ModeSwitcher<T: protocol<RawRepresentable, Hashable> where T.RawValue == Int> {
+class ModeSwitcher<T: RawRepresentable & Hashable> where T.RawValue == Int {
     let key: String
     let to: T
     let through: T
@@ -77,16 +77,19 @@ class ModeSwitcher<T: protocol<RawRepresentable, Hashable> where T.RawValue == I
         DataModelManager.shared.set(value: through,
                                     forKey: key)
         log(info: "Switch in \(initialDelay) seconds")
-        DispatchQueue.global().after(when: .now() + initialDelay) {
+        let time = DispatchTime.now() + initialDelay
+        DispatchQueue.global().asyncAfter(deadline: time) { 
+//        DispatchQueue.global().after(when: .now() + initialDelay) {
             log(info: "Switching to \(self.current)")
             self.sendNotification()
             log(info: "Switch in \(self.switchDelay) second")
-            DispatchQueue.global().after(when: .now() + self.switchDelay) {
+            let time = DispatchTime.now() + self.switchDelay
+            DispatchQueue.global().asyncAfter(deadline: time, execute: { 
                 DataModelManager.shared.set(value: self.to.rawValue,
                                             forKey: self.key)
                 log(info: "Switched to \(self.current)")
                 self.sendNotification()
-            }
+            })
         }
     }
     
