@@ -18,7 +18,7 @@ class GetNetworkModeFunction: DefaultAPIFunction {
         super.init()
         requestType = .getNetworkMode
         responseType = .getNetworkMode
-        DataModelManager.shared.set(value: NetworkMode.cellular.rawValue,
+        DataModelManager.shared.set(value: NetworkMode.cellular,
                                     forKey: GetNetworkModeFunction.networkModeKey)
     }
 
@@ -26,7 +26,7 @@ class GetNetworkModeFunction: DefaultAPIFunction {
         var body: [String: [String: Any]] = [:]
         body["network"] = [
             "mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
-                                                withDefault: NetworkMode.cellular.rawValue)
+                                                withDefault: NetworkMode.cellular).rawValue
         ]
         return body
     }
@@ -38,13 +38,17 @@ class SetNetworkModeFunction: DefaultAPIFunction {
         super.init()
         requestType = .setNetworkMode
         responseType = .setNetworkMode
-        DataModelManager.shared.set(value: NetworkMode.cellular.rawValue,
+        DataModelManager.shared.set(value: NetworkMode.cellular,
                                     forKey: GetNetworkModeFunction.networkModeKey)
     }
     
     override func preProcess(request: JSON) {
-        guard let mode = request["network"]["mode"].int else {
+        guard let modeValue = request["network"]["mode"].int else {
             log(warning: "Was expecting a network/mode, but didn't find one")
+            return
+        }
+        guard let mode = NetworkMode(rawValue: modeValue) else {
+            log(warning: "\(modeValue) is not a valid NetworkMode")
             return
         }
         DataModelManager.shared.set(value: mode,
@@ -55,7 +59,7 @@ class SetNetworkModeFunction: DefaultAPIFunction {
         var body: [String: [String: Any]] = [:]
         body["network"] = [
             "mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
-                                                withDefault: NetworkMode.cellular.rawValue)
+                                                withDefault: NetworkMode.cellular).rawValue
         ]
         return body
     }

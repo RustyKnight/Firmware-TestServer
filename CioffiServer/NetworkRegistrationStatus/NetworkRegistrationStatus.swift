@@ -18,11 +18,11 @@ struct GetNetworkRegistrationStatusFunctionUtilities {
         var body: [String : [String : Any]] = [:]
         body["connection"] = [
             "module": DataModelManager.shared.get(forKey: networkRegistrationModuleKey,
-                                                  withDefault: NetworkModule.satellite.rawValue)
+                                                  withDefault: NetworkModule.satellite).rawValue
         ]
         body["registration"] = [
             "status": DataModelManager.shared.get(forKey: networkRegistrationStatusKey,
-                                                  withDefault: NetworkRegistrationStatus.registering.rawValue)
+                                                  withDefault: NetworkRegistrationStatus.registering).rawValue
         ]
         return body
     }
@@ -35,9 +35,9 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
         requestType = .getNetworkRegistrationStatus
         responseType = .getNetworkRegistrationStatus
         
-        DataModelManager.shared.set(value: NetworkModule.satellite.rawValue,
+        DataModelManager.shared.set(value: NetworkModule.satellite,
                                     forKey: networkRegistrationModuleKey)
-        DataModelManager.shared.set(value: NetworkRegistrationStatus.registering.rawValue,
+        DataModelManager.shared.set(value: NetworkRegistrationStatus.registering,
                                     forKey: networkRegistrationStatusKey)
     }
     

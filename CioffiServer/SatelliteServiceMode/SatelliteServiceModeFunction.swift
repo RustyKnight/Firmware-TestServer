@@ -15,13 +15,8 @@ let satelliteServiceModeKey = "satelliteServiceMode.mode"
 struct SatelliteServiceModeUtilities {
     static func body() -> [String : [String : Any]] {
         var body: [String : [String : Any]] = [:]
-        guard let value = DataModelManager.shared.get(forKey: satelliteServiceModeKey,
-                                                      withDefault: SatelliteServiceMode.voice.rawValue) as? Int else {
-            return body
-        }
-        guard let mode = SatelliteServiceMode(rawValue: value) else {
-            return body
-        }
+        let mode = DataModelManager.shared.get(forKey: satelliteServiceModeKey,
+                                               withDefault: SatelliteServiceMode.voice)
         
         body["service"] = [
             "mode": mode.rawValue
@@ -37,7 +32,7 @@ class GetSatelliteServiceModeFunction: DefaultAPIFunction {
         super.init()
         requestType = .getSatelliteServiceMode
         responseType = .getSatelliteServiceMode
-        DataModelManager.shared.set(value: SatelliteServiceMode.voice.rawValue,
+        DataModelManager.shared.set(value: SatelliteServiceMode.voice,
                                     forKey: satelliteServiceModeKey)
     }
     
@@ -96,10 +91,9 @@ struct SatelliteServiceModeNotification: APINotification {
 class SatelliteServiceModeSwitcher: ModeSwitcher<SatelliteServiceMode> {
     init(to: SatelliteServiceMode, through: SatelliteServiceMode) {
         super.init(key: satelliteServiceModeKey,
-                   to: to,
-                   through: through,
-                   defaultMode: SatelliteServiceMode.unknown,
-                   notification: SatelliteServiceModeNotification())
+                   to: AnySwitcherState<SatelliteServiceMode>(state: to, notification: SatelliteServiceModeNotification()),
+                   through: AnySwitcherState<SatelliteServiceMode>(state: through, notification: SatelliteServiceModeNotification()),
+                   defaultMode: SatelliteServiceMode.unknown)
     }
 }
 

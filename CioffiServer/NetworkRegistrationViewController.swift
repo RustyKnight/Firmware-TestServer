@@ -66,7 +66,7 @@ class NetworkRegistrationViewController: NSViewController {
         guard let module = buttonModules[sender] else {
             return
         }
-        DataModelManager.shared.set(value: module.rawValue,
+        DataModelManager.shared.set(value: module,
                                     forKey: networkRegistrationModuleKey,
                                     withNotification: false)
         liveNotification()
@@ -76,19 +76,14 @@ class NetworkRegistrationViewController: NSViewController {
         guard let status = buttonStatus[sender] else {
             return
         }
-        DataModelManager.shared.set(value: status.rawValue,
+        DataModelManager.shared.set(value: status,
                                     forKey: networkRegistrationStatusKey,
                                     withNotification: false)
         liveNotification()
     }
     
     func module(withDefault defaultValue: NetworkModule = NetworkModule.cellular) -> NetworkModule {
-        guard let value = DataModelManager.shared.get(forKey: networkRegistrationModuleKey, withDefault: defaultValue.rawValue) as? Int else {
-            return defaultValue
-        }
-        guard let module = NetworkModule(rawValue: value) else {
-            return defaultValue
-        }
+        let module = DataModelManager.shared.get(forKey: networkRegistrationModuleKey, withDefault: defaultValue)
         return module
     }
     
@@ -100,12 +95,7 @@ class NetworkRegistrationViewController: NSViewController {
     }
     
     func status(withDefault defaultValue: NetworkRegistrationStatus = .unknown) -> NetworkRegistrationStatus {
-        guard let value = DataModelManager.shared.get(forKey: networkRegistrationStatusKey, withDefault: defaultValue.rawValue) as? Int else {
-            return defaultValue
-        }
-        guard let module = NetworkRegistrationStatus(rawValue: value) else {
-            return defaultValue
-        }
+        let module = DataModelManager.shared.get(forKey: networkRegistrationStatusKey, withDefault: defaultValue)
         return module
     }
     

@@ -86,7 +86,7 @@ class DefaultRequestHandler: RequestHandler {
 		log(info: "requestType: \(requestType)")
         guard let function = functions[requestType] else {
             log(info: "No handler for request \(requestType) (\(typeCode))")
-            responder.sendUnsupportedAPIResponse(for: requestType)
+            responder.sendUnsupportedAPIResponse(for: typeCode)
             return
         }
         do {

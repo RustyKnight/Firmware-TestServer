@@ -18,9 +18,7 @@ class VersionViewController: NSViewController {
     }
     
     func stringValue(forKey key: String, withDefault defaultValue: String) -> String {
-        guard let value = DataModelManager.shared.get(forKey: key, withDefault: defaultValue) as? String else {
-            return defaultValue
-        }
+        let value = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
         return value
     }
     

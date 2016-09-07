@@ -36,7 +36,7 @@ class SignalStrengthViewController: NSViewController {
         guard let mode = buttonMode[cellularMode] else {
             return
         }
-        DataModelManager.shared.set(value: mode.rawValue,
+        DataModelManager.shared.set(value: mode,
                                     forKey: activeSignalStrengthKey,
                                     withNotification: false)
         liveNotification()
@@ -69,12 +69,7 @@ class SignalStrengthViewController: NSViewController {
     }
     
     func mode(withDefault defaultValue: SignalStrengthMode = SignalStrengthMode.cellular) -> SignalStrengthMode {
-        guard let value = DataModelManager.shared.get(forKey: activeSignalStrengthKey, withDefault: defaultValue.rawValue) as? Int else {
-            return defaultValue
-        }
-        guard let module = SignalStrengthMode(rawValue: value) else {
-            return defaultValue
-        }
+        let module = DataModelManager.shared.get(forKey: activeSignalStrengthKey, withDefault: defaultValue)
         return module
     }
     
@@ -86,9 +81,7 @@ class SignalStrengthViewController: NSViewController {
     }
     
     func updateStrength() {
-        guard let value = DataModelManager.shared.get(forKey: signalStrengthKey, withDefault: 0) as? Int else {
-            return
-        }
+        let value = DataModelManager.shared.get(forKey: signalStrengthKey, withDefault: 0)
         signalStrength.integerValue = value
     }
 }

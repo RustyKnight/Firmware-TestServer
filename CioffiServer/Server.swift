@@ -214,7 +214,8 @@ class SocketClient: Responder {
 	}
 	
 	func sendUnsupportedAPIResponse(`for` code: Int) {
-		let message = ProtocolUtils.header(forType: code, result: ResponseCode.unsupportedAPIType.rawValue)
+		var message = ProtocolUtils.header(forType: -1, result: ResponseCode.unsupportedAPIType.rawValue)
+        message["requestType"] = ["code": code]
 		do {
 			let data = try ProtocolUtils.dataFor(payload: message)
 			socket.write(data, withTimeout: Server.readTimeout, tag: ClientSocketDelegate.responseTag)

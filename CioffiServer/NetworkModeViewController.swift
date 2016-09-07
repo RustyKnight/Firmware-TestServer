@@ -49,7 +49,7 @@ class NetworkModeViewController: NSViewController {
             log(warning: "Unknown mode for button \(sender.stringValue)")
             return
         }
-        DataModelManager.shared.set(value: mode.rawValue, forKey: GetNetworkModeFunction.networkModeKey)
+        DataModelManager.shared.set(value: mode, forKey: GetNetworkModeFunction.networkModeKey)
     }
     
     func networkModeDataChanged(_ notification: NSNotification) {
@@ -57,14 +57,8 @@ class NetworkModeViewController: NSViewController {
     }
     
     func updateNetworkMode() {
-        guard let modeValue = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey, withDefault: NetworkMode.satellite.rawValue) as? Int else {
-            return
-        }
-        guard let mode = NetworkMode.init(rawValue: modeValue) else {
-            log(warning: "Unknown NetworkMode for value \(modeValue)")
-            return
-        }
-        DispatchQueue.main.async { 
+        let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey, withDefault: NetworkMode.satellite)
+        DispatchQueue.main.async {
             if let button = self.networkMode[mode] {
                 button.state = NSOnState
             }

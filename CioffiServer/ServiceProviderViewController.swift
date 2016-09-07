@@ -29,8 +29,8 @@ class ServiceProviderViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        providerName.stringValue = DataModelManager.shared.string(forKey: serviceProviderKey, withDefault: "")
-        let module = DataModelManager.shared.networkModule(forKey: activeServiceProviderKey, withDefault: NetworkModule.cellular)
+        providerName.stringValue = DataModelManager.shared.get(forKey: serviceProviderKey, withDefault: "")
+        let module = DataModelManager.shared.get(forKey: activeServiceProviderKey, withDefault: NetworkModule.cellular)
         switch module {
         case .cellular: cellularProvider.state = NSOnState
         case .satellite: satelliteProvider.state = NSOnState
@@ -42,7 +42,7 @@ class ServiceProviderViewController: NSViewController {
             return
         }
         log(info: "value = \(value)")
-        DataModelManager.shared.set(value: value.rawValue,
+        DataModelManager.shared.set(value: value,
                                     forKey: activeServiceProviderKey,
                                     withNotification: false)
         liveNotification()

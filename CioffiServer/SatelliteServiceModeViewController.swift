@@ -64,7 +64,7 @@ class SatelliteServiceModeViewController: NSViewController {
         }
         log(info: "mode = \(mode)")
         modeLabel.stringValue = mode.description
-        DataModelManager.shared.set(value: value, forKey: satelliteServiceModeKey)
+        DataModelManager.shared.set(value: mode, forKey: satelliteServiceModeKey)
         liveNotification()
     }
     
@@ -89,10 +89,7 @@ class SatelliteServiceModeViewController: NSViewController {
             })
             return
         }
-        let value = DataModelManager.shared.integer(forKey: satelliteServiceModeKey, withDefault: SatelliteServiceMode.voice.rawValue)
-        guard let mode = SatelliteServiceMode(rawValue: value) else {
-            return
-        }
+        let mode = DataModelManager.shared.get(forKey: satelliteServiceModeKey, withDefault: SatelliteServiceMode.voice)
         modeSlider.integerValue = mode.rawValue
         modeLabel.stringValue = mode.description
     }

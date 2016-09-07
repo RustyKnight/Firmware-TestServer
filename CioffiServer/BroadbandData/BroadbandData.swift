@@ -62,6 +62,8 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
             DataModelManager.shared.set(value: downlinkSpeed,
                                         forKey: broadbandDataActiveDownlinkSpeedKey)
             
+            log(info: "\(broadbandDataActiveModeKey) = \(DataModelManager.shared.get(forKey: broadbandDataActiveModeKey))")
+            
             let switcher = BroadbandStatusModeSwitcher(to: statusMode,
                                                        through: switchMode)
             switcher.makeSwitch()
@@ -114,10 +116,9 @@ private class BroadbandStatusModeSwitcher: ModeSwitcher<BroadbandDataStatus> {
 
     init(to: BroadbandDataStatus, through: BroadbandDataStatus) {
         super.init(key: broadbandDataActiveModeKey,
-                   to: to,
-                   through: through,
+                   to: AnySwitcherState<BroadbandDataStatus>(state: to, notification: BroadbandDataStatusNotification()),
+                   through: AnySwitcherState<BroadbandDataStatus>(state: through, notification: BroadbandDataStatusNotification()),
                    defaultMode: BroadbandDataStatus.dataInactive,
-                   notification: BroadbandDataStatusNotification(),
                    initialDelay: 0.0,
                    switchDelay:  5.0)
     }
@@ -130,6 +131,7 @@ struct BroadbandDataStatusUtilities {
     static func bodyForCurrentStatus() -> [String : [String : Any]] {
         let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
                                                withDefault: BroadbandDataStatus.dataInactive)
+        log(info: "\(broadbandDataActiveModeKey) = \(mode)")
         return body(for: mode)
     }
     

@@ -18,7 +18,7 @@ struct BatteryStatusUtility {
         var body: [String : [String : Any]] = [:]
         body["battery"] = [
             "charge": DataModelManager.shared.get(forKey: batteryChargeKey, withDefault: 0),
-            "status": DataModelManager.shared.get(forKey: batteryStatusKey, withDefault: BatteryStatus.unknown.rawValue),
+            "status": DataModelManager.shared.get(forKey: batteryStatusKey, withDefault: BatteryStatus.unknown).rawValue,
             "voltage": DataModelManager.shared.get(forKey: batteryVoltageKey, withDefault: 0),
             "present": DataModelManager.shared.get(forKey: batteryPresentKey, withDefault: true)
         ]
@@ -34,7 +34,7 @@ class GetBatteryStatusFunction: DefaultAPIFunction {
         responseType = .getBatteryStatus
         
         DataModelManager.shared.set(value: 0, forKey: batteryChargeKey)
-        DataModelManager.shared.set(value: BatteryStatus.charging.rawValue,
+        DataModelManager.shared.set(value: BatteryStatus.charging,
                                     forKey: batteryStatusKey)
         DataModelManager.shared.set(value: 0, forKey: batteryVoltageKey)
         DataModelManager.shared.set(value: true, forKey: batteryPresentKey)

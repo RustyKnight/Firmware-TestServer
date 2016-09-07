@@ -16,12 +16,7 @@ let signalStrengthKey = "signalStrength"
 struct SignalStrengthUtility {
     static func body() -> [String : [String : Any]] {
         var body: [String : [String : Any]] = [:]
-        guard let modeValue = DataModelManager.shared.get(forKey: activeSignalStrengthKey, withDefault: 0) as? Int else {
-            return body
-        }
-        guard let mode = SignalStrengthMode(rawValue: modeValue) else {
-            return body
-        }
+        let mode = DataModelManager.shared.get(forKey: activeSignalStrengthKey, withDefault: SignalStrengthMode.satellite)
         if mode == SignalStrengthMode.cellular {
             body["cellular"] = [
                 "signal": DataModelManager.shared.get(forKey: signalStrengthKey, withDefault: 0)
@@ -44,7 +39,7 @@ class GetSignalStrengthFunction: DefaultAPIFunction {
         
         DataModelManager.shared.set(value: 0, forKey: signalStrengthKey)
         // Would be nice to get this from somewhere else
-        DataModelManager.shared.set(value: 0, forKey: activeSignalStrengthKey)
+        DataModelManager.shared.set(value: SignalStrengthMode.satellite, forKey: activeSignalStrengthKey)
     }
     
     override func body() -> [String : [String : Any]] {

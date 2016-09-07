@@ -120,10 +120,8 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
                 log(warning: "Entry for, but no password for \(key)")
                 continue
             }
-            guard let currentPassword = DataModelManager.shared.get(forKey: value.passwordKey,
-                                                                    withDefault: "cioffi") as? String else {
-                                                                        continue
-            }
+            let currentPassword = DataModelManager.shared.get(forKey: value.passwordKey,
+                                                              withDefault: "cioffi")
             if currentPassword == password {
                 validated[key] = true
                 log(info: "\(key) was authenticated")

@@ -15,7 +15,7 @@ let automaticSAPAState = "sapa.automaticState"
 struct SapaStatusUtility {
     static func body() -> [String: [String: Any]] {
         var body: [String: [String: Any]] = [:]
-        let value: Bool = DataModelManager.shared.bool(forKey: automaticSAPAState, withDefault: true)
+        let value: Bool = DataModelManager.shared.get(forKey: automaticSAPAState, withDefault: true)
         log(info: "\(automaticSAPAState) = \(value)")
         body["autosapa"] = [
             "active": value

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1205ADCE1D59929A00E19449 /* BroadbandDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205ADCD1D59929A00E19449 /* BroadbandDataViewController.swift */; };
+		120795ED1D7F916B000DD9A5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120795EC1D7F916B000DD9A5 /* Utilities.swift */; };
 		120D05431D594985003E9D12 /* BroadbandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120D05421D594985003E9D12 /* BroadbandData.swift */; };
 		1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2321D473EF30090A5BD /* SliderCell.swift */; };
 		1214A2361D482B340090A5BD /* APIFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2351D482B340090A5BD /* APIFunction.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		1205ADCD1D59929A00E19449 /* BroadbandDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadbandDataViewController.swift; sourceTree = "<group>"; };
+		120795EC1D7F916B000DD9A5 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		120D05421D594985003E9D12 /* BroadbandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BroadbandData.swift; path = BroadbandData/BroadbandData.swift; sourceTree = "<group>"; };
 		1214A2321D473EF30090A5BD /* SliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
 		1214A2351D482B340090A5BD /* APIFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFunction.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				1214A2321D473EF30090A5BD /* SliderCell.swift */,
 				12BA40C11D419DC400C0F512 /* ViewController.swift */,
 				1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */,
+				120795EC1D7F916B000DD9A5 /* Utilities.swift */,
 			);
 			path = CioffiServer;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				1214A24B1D484E990090A5BD /* NetworkRegistrationStatus.swift in Sources */,
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
 				12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */,
+				120795ED1D7F916B000DD9A5 /* Utilities.swift in Sources */,
 				1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */,
 				1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */,
 				124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */,

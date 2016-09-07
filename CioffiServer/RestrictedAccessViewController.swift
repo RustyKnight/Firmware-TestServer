@@ -138,9 +138,7 @@ class RestrictedAccessViewController: NSViewController {
 	}
 	
 	func update(button: NSButton, with key: String) {
-		guard let value = DataModelManager.shared.get(forKey: key, withDefault: false) as? Bool else {
-			return
-		}
+		let value = DataModelManager.shared.get(forKey: key, withDefault: false)
 		guard let state = selectedState[value] else {
 			return
 		}
@@ -148,9 +146,7 @@ class RestrictedAccessViewController: NSViewController {
 	}
 	
 	func update(field: NSTextField, with key: String) {
-		guard let value = DataModelManager.shared.get(forKey: key, withDefault: false) as? String else {
-			return
-		}
+		let value = DataModelManager.shared.get(forKey: key, withDefault: "cioffi")
 		field.stringValue = value
 	}
 	

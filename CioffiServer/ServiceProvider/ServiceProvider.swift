@@ -16,17 +16,17 @@ let serviceProviderKey = "serviceProvider"
 struct ServiceProviderUtility {
     static func body() -> [String : [String : Any]] {
         var body: [String : [String : Any]] = [:]
-        let mode = DataModelManager.shared.networkModule(forKey: activeServiceProviderKey,
-                                                         withDefault: NetworkModule.cellular)
+        let mode = DataModelManager.shared.get(forKey: activeServiceProviderKey,
+                                               withDefault: NetworkModule.cellular)
         if mode == .cellular {
             body["cellular"] = [
                 "provider": DataModelManager.shared.get(forKey: serviceProviderKey,
-                                                      withDefault: 0)
+                                                      withDefault: "")
             ]
         } else if mode == .satellite {
             body["satellite"] = [
                 "provider": DataModelManager.shared.get(forKey: serviceProviderKey,
-                                                      withDefault: 0)
+                                                      withDefault: "")
             ]
         }
         return body
@@ -43,7 +43,7 @@ class GetServiceProvideFunction: DefaultAPIFunction {
         DataModelManager.shared.set(value: "McDonalds",
                                     forKey: serviceProviderKey)
         // Would be nice to get this from somewhere else
-        DataModelManager.shared.set(value: NetworkModule.cellular.rawValue,
+        DataModelManager.shared.set(value: NetworkModule.cellular,
                                     forKey: activeServiceProviderKey)
     }
     

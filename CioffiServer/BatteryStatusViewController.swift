@@ -64,7 +64,7 @@ class BatteryStatusViewController: NSViewController {
             return
         }
         statusLabel.stringValue = status.description
-        DataModelManager.shared.set(value: value, forKey: batteryStatusKey, withNotification: false)
+        DataModelManager.shared.set(value: status, forKey: batteryStatusKey, withNotification: false)
         liveNotification()
     }
     
@@ -99,14 +99,14 @@ class BatteryStatusViewController: NSViewController {
     }
     
     func updateCharge() {
-        let value = DataModelManager.shared.integer(forKey: batteryChargeKey, withDefault: 0)
+        let value = DataModelManager.shared.get(forKey: batteryChargeKey, withDefault: 0)
         chargeSlider.integerValue = value
         chargeLabel.stringValue = percentageFormatter.string(from: NSNumber(value: Double(value) / 100.0))!
     }
     
     func status(withDefault defaultValue: BatteryStatus = .unknown) -> BatteryStatus {
-        let value = DataModelManager.shared.integer(forKey: batteryStatusKey, withDefault: defaultValue.rawValue)
-        return BatteryStatus(rawValue: value) ?? defaultValue
+        let value = DataModelManager.shared.get(forKey: batteryStatusKey, withDefault: defaultValue)
+        return value
     }
     
     func updateStatus() {
@@ -116,12 +116,12 @@ class BatteryStatusViewController: NSViewController {
     }
     
     func updateVoltage() {
-        let value = DataModelManager.shared.double(forKey: batteryVoltageKey, withDefault: 0.0)
+        let value = DataModelManager.shared.get(forKey: batteryVoltageKey, withDefault: 0.0)
         voltageField.stringValue = String(value)
     }
     
     func updatePresent() {
-        let value = DataModelManager.shared.bool(forKey: batteryPresentKey, withDefault: false)
+        let value = DataModelManager.shared.get(forKey: batteryPresentKey, withDefault: false)
         presentCheck.state = value ? NSOnState : NSOffState
     }
 }
