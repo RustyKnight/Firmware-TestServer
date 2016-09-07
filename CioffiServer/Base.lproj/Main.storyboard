@@ -141,7 +141,7 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
-                        <segue destination="NzN-jE-zEY" kind="relationship" relationship="window.shadowedContentViewController" id="YD0-4n-wh0"/>
+                        <segue destination="vFN-1U-GVM" kind="relationship" relationship="window.shadowedContentViewController" id="FzZ-XZ-DIc"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -467,202 +467,6 @@
                 <customObject id="fAU-Xj-1eG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315" y="-305"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="5t3-zv-ldw">
-            <objects>
-                <viewController id="NzN-jE-zEY" sceneMemberID="viewController">
-                    <view key="view" id="zNa-IQ-ZBM">
-                        <rect key="frame" x="0.0" y="0.0" width="615" height="670"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y1c-xF-QgF">
-                                <rect key="frame" x="8" y="196" width="599" height="466"/>
-                                <subviews>
-                                    <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-sj-tjz">
-                                        <rect key="frame" x="0.0" y="316" width="225" height="150"/>
-                                        <connections>
-                                            <segue destination="l4E-DL-6JM" kind="embed" id="Dq3-vk-gsB"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rDA-cG-sq8">
-                                        <rect key="frame" x="0.0" y="158" width="225" height="150"/>
-                                        <connections>
-                                            <segue destination="tEl-gR-RL1" kind="embed" id="Cud-6t-Xer"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-A2-zge">
-                                        <rect key="frame" x="0.0" y="0.0" width="225" height="150"/>
-                                        <connections>
-                                            <segue destination="SLI-DT-koS" kind="embed" id="gzq-ga-s4t"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                            <tabView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fmq-Eu-zRc">
-                                <rect key="frame" x="1" y="-2" width="613" height="662"/>
-                                <font key="font" metaFont="system"/>
-                                <tabViewItems>
-                                    <tabViewItem label="Satellite" identifier="1" id="mSs-4N-kza">
-                                        <view key="view" id="V7h-5O-wxq">
-                                            <rect key="frame" x="10" y="33" width="593" height="616"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                    <tabViewItem label="Cellular" identifier="2" id="481-2M-RBG">
-                                        <view key="view" ambiguous="YES" id="4re-Yu-qNw">
-                                            <rect key="frame" x="10" y="33" width="593" height="616"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                </tabViewItems>
-                            </tabView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="y1c-xF-QgF" firstAttribute="leading" secondItem="zNa-IQ-ZBM" secondAttribute="leading" constant="8" id="IzJ-gI-cfD"/>
-                            <constraint firstAttribute="bottom" secondItem="fmq-Eu-zRc" secondAttribute="bottom" constant="8" id="NIK-BN-nxT"/>
-                            <constraint firstAttribute="trailing" secondItem="fmq-Eu-zRc" secondAttribute="trailing" constant="8" id="Npq-Af-1nv"/>
-                            <constraint firstItem="fmq-Eu-zRc" firstAttribute="leading" secondItem="zNa-IQ-ZBM" secondAttribute="leading" constant="8" id="OIk-u6-Zx7"/>
-                            <constraint firstAttribute="trailing" secondItem="y1c-xF-QgF" secondAttribute="trailing" constant="8" id="R6G-Je-iRK"/>
-                            <constraint firstItem="y1c-xF-QgF" firstAttribute="top" secondItem="zNa-IQ-ZBM" secondAttribute="top" constant="8" id="Swj-zx-Nei"/>
-                            <constraint firstItem="fmq-Eu-zRc" firstAttribute="top" secondItem="y1c-xF-QgF" secondAttribute="bottom" constant="8" id="uzO-d9-76T"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="cIV-qb-1u7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1473.5" y="235"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="2ln-dh-sUG">
-            <objects>
-                <viewController id="l4E-DL-6JM" sceneMemberID="viewController">
-                    <view key="view" id="Mmc-Zp-zaL">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="115"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mHm-tr-fmU">
-                                <rect key="frame" x="195" y="91" width="60" height="18"/>
-                                <buttonCell key="cell" type="check" title="Active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nLe-Gm-Yox">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="stateDidChange:" target="sAy-2y-hoP" id="ayE-nP-B2X"/>
-                                </connections>
-                            </button>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tfF-U5-hsb">
-                                <rect key="frame" x="59" y="10" width="332" height="75"/>
-                                <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZS9-3e-d0J">
-                                        <rect key="frame" x="86" y="58" width="160" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Power Down Notifications" id="v6Q-xZ-lgv">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUX-z3-9Hd">
-                                        <rect key="frame" x="0.0" y="29" width="332" height="21"/>
-                                        <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-1H-aU9">
-                                                <rect key="frame" x="-6" y="-7" width="174" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Power Button Pressed" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nbL-fo-hzv">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="powerButtonPressed:" target="sAy-2y-hoP" id="pWn-Si-3vj"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pqz-9g-xZR">
-                                                <rect key="frame" x="164" y="-7" width="174" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Criticial High Temp" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zeR-rw-dGk">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="powerCriticalHighTemp:" target="sAy-2y-hoP" id="Awj-Fe-uHX"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lND-V1-q98">
-                                        <rect key="frame" x="23" y="0.0" width="286" height="21"/>
-                                        <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8V5-eD-7L9">
-                                                <rect key="frame" x="-6" y="-7" width="151" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Criticial Low Temp" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vhb-zQ-iTo">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="powerCriticalLowTemp:" target="sAy-2y-hoP" id="J26-q1-T4f"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mhM-lc-vgW">
-                                                <rect key="frame" x="141" y="-7" width="151" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Flat Battery" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r0r-Gk-9ui">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="powerFlatBattery:" target="sAy-2y-hoP" id="qXU-Er-HT9"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="mHm-tr-fmU" firstAttribute="centerX" secondItem="Mmc-Zp-zaL" secondAttribute="centerX" id="2FL-EH-cun"/>
-                            <constraint firstItem="mHm-tr-fmU" firstAttribute="top" secondItem="Mmc-Zp-zaL" secondAttribute="top" constant="8" id="Opv-cq-QsG"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tfF-U5-hsb" secondAttribute="bottom" constant="8" id="TdJ-sI-qM3"/>
-                            <constraint firstItem="tfF-U5-hsb" firstAttribute="centerX" secondItem="mHm-tr-fmU" secondAttribute="centerX" id="ZZn-vp-TLP"/>
-                            <constraint firstItem="tfF-U5-hsb" firstAttribute="top" secondItem="mHm-tr-fmU" secondAttribute="bottom" constant="8" id="oKx-Ap-aw2"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="Rmm-YR-mzX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2144" y="88.5"/>
         </scene>
         <!--Group View Controller-->
         <scene sceneID="B2a-aq-UWC">
@@ -2311,34 +2115,16 @@
             <point key="canvasLocation" x="-222" y="1257"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="1fK-Bt-DJR">
+        <scene sceneID="Txh-i6-0MC">
             <objects>
-                <viewController id="SLI-DT-koS" sceneMemberID="viewController">
-                    <view key="view" id="aR4-TH-Ja0">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="37"/>
+                <viewController id="9RD-dG-a1g" sceneMemberID="viewController">
+                    <view key="view" id="gEa-LT-MjT">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4UP-TT-J6q">
-                                <rect key="frame" x="156" y="6" width="138" height="24"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xVE-v1-Aa9">
-                                    <font key="font" metaFont="system"/>
-                                    <segments>
-                                        <segment label="Satellite" width="66"/>
-                                        <segment label="Cellular" width="65" selected="YES" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="4UP-TT-J6q" firstAttribute="centerX" secondItem="aR4-TH-Ja0" secondAttribute="centerX" id="foN-jn-fkG"/>
-                            <constraint firstItem="4UP-TT-J6q" firstAttribute="top" secondItem="aR4-TH-Ja0" secondAttribute="top" constant="8" id="ftF-KZ-ihb"/>
-                            <constraint firstAttribute="bottom" secondItem="4UP-TT-J6q" secondAttribute="bottom" constant="8" id="vTr-UL-hdQ"/>
-                        </constraints>
                     </view>
                 </viewController>
-                <customObject id="cCX-iY-rOE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="3fV-dG-OG6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2144" y="381.5"/>
         </scene>
     </scenes>
     <resources>
@@ -2346,6 +2132,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HBf-AB-oZA"/>
-        <segue reference="Cud-6t-Xer"/>
+        <segue reference="FXg-P9-2gL"/>
     </inferredMetricsTieBreakers>
 </document>
