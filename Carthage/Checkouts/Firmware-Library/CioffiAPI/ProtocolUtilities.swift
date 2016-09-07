@@ -32,27 +32,27 @@ public enum ProtocolError: Error {
 	- requestType: Request Type
 	- Returns: Request header
 	*/
-	public static func header(forRequest request: RequestType) -> [String: [String: Any]] {
+	public static func header(forRequest request: RequestType) -> [String: Any] {
 		return header(forType: request.rawValue)
 	}
 	
-	public static func header(forNotification notification: NotificationType) -> [String: [String: Any]] {
+	public static func header(forNotification notification: NotificationType) -> [String: Any] {
         return header(forType: notification.rawValue, result: ResponseCode.success.rawValue)
 	}
     
-    public static func header(forRequest request: RequestType, code: ResponseCode) -> [String: [String: Any]] {
+    public static func header(forRequest request: RequestType, code: ResponseCode) -> [String: Any] {
         return header(forType: request.rawValue, result: code.rawValue)
     }
 	
-	public static func header(forResponse response: ResponseType, code: ResponseCode) -> [String: [String: Any]] {
+	public static func header(forResponse response: ResponseType, code: ResponseCode) -> [String: Any] {
 		return header(forType: response.rawValue, result: code.rawValue)
 	}
 	
-	public static func header(forResponse response: ResponseType, result: Int) -> [String: [String: Any]] {
+	public static func header(forResponse response: ResponseType, result: Int) -> [String: Any] {
 		return header(forType: response.rawValue, result: result)
 	}
 	
-	public static func header(forResponse response: Int, code: ResponseCode) -> [String: [String: Any]] {
+	public static func header(forResponse response: Int, code: ResponseCode) -> [String: Any] {
 		return header(forType: response, result: code.rawValue)
 	}
 	
@@ -62,10 +62,10 @@ public enum ProtocolError: Error {
 	- requestType: Request Type
 	- Returns: Request header
 	*/
-	public static func header(forType type: Int, result: Int? = nil) -> [String: [String: Any]] {
-		var header: [String: [String: Any]] = ["header": ["version": apiVersion, "type" : type]]
+	public static func header(forType type: Int, result: Int? = nil) -> [String: Any] {
+		var header: [String: Any] = ["header": ["version": apiVersion, "type" : type]]
         if let result = result {
-            header["header"]?["result"] = result
+            header["header"] = ["result": result]
         }
 		return header
 	}
@@ -111,13 +111,13 @@ public enum ProtocolError: Error {
 		return "\(headValue)\(size)\(flagValue)\(crc)\(messageBody)"
 	}
 	
-	public class func dataFor(notification: NotificationType, payload: [String: [String: Any]]) throws -> Data {
+	public class func dataFor(notification: NotificationType, payload: [String: Any]) throws -> Data {
 		var header = ProtocolUtils.header(forNotification: notification)
 		header += payload
 		return try dataFor(payload: header)
 	}
 	
-	public class func dataFor(payload: [String: [String: Any]]) throws -> Data {
+	public class func dataFor(payload: [String: Any]) throws -> Data {
 		return try dataFor(json: JSON(payload))
 	}
 	

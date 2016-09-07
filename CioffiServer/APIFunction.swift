@@ -23,8 +23,8 @@ class DefaultAPIFunction: APIFunction {
     var responseType: ResponseType = .unknown
     var requestType: RequestType = .unknown
     
-    func body() -> [String: [String: Any]] {
-        let body: [String: [String: Any]] = [:]
+    func body() -> [String: Any] {
+        let body: [String: Any] = [:]
         return body
     }
     

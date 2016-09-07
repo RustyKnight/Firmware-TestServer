@@ -22,7 +22,7 @@ class GetNetworkModeFunction: DefaultAPIFunction {
                                     forKey: GetNetworkModeFunction.networkModeKey)
     }
 
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         var body: [String: [String: Any]] = [:]
         body["network"] = [
             "mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
@@ -55,7 +55,7 @@ class SetNetworkModeFunction: DefaultAPIFunction {
                                     forKey: GetNetworkModeFunction.networkModeKey)
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         var body: [String: [String: Any]] = [:]
         body["network"] = [
             "mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,

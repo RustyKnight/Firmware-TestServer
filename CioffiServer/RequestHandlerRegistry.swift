@@ -12,19 +12,19 @@ import SwiftyJSON
 
 enum RequestRegistryError: Error {
 	case missingType
-    case invalidType
-    case missingName
-    case missingRequest
-    case missingResponse
-    case missingHeaderType
-    case missingHeaderVersion
-    case missingGroupName
-    case missingVariableName
-    case missingVariableProperty
-    case missingVariableType
-    case missingVariableValue
-    case missingAllowedValueName
-    case missingAllowedValue
+	case invalidType
+	case missingName
+	case missingRequest
+	case missingResponse
+	case missingHeaderType
+	case missingHeaderVersion
+	case missingGroupName
+	case missingVariableName
+	case missingVariableProperty
+	case missingVariableType
+	case missingVariableValue
+	case missingAllowedValueName
+	case missingAllowedValue
 }
 
 protocol RequestHandler {
@@ -42,41 +42,47 @@ class RequestHandlerFactory {
 }
 
 class DefaultRequestHandler: RequestHandler {
-    
-    var functions: [RequestType: APIFunction] = [:]
-    
+	
+	var functions: [RequestType: APIFunction] = [:]
+	
 	init() {
-        functions[.getVersion] = GetVersionFunction()
-        functions[.getNetworkMode] = GetNetworkModeFunction()
-        functions[.setNetworkMode] = SetNetworkModeFunction()
-        
-        functions[.getAccessRestricitions] = GetAccessRestricitionsFunction()
-        functions[.unlockAccessRestriction] = UnlockAccessRestricitionFunction()
-        functions[.stopAccess] = StopAccessFunction()
-        
-        functions[.getNetworkRegistrationStatus] = GetNetworkRegistrationStatusFunction()
-        functions[.getSignalStrength] = GetSignalStrengthFunction()
-        
-        functions[.getBatteryStatus] = GetBatteryStatusFunction()
-        functions[.getServiceProviderName] = GetServiceProvideFunction()
-        
-        functions[.getSatelliteServiceMode] = GetSatelliteServiceModeFunction()
-        functions[.setSatelliteServiceMode] = SetSatelliteServiceModeFunction()
-        
-        functions[.getSatelliteBroadbandDataIPMode] = GetSatelliteBroadbandDataIPMode()
-        functions[.setSatelliteBroadbandDataIPMode] = SetSatelliteBroadbandDataIPMode()
-        
-        functions[.getSatelliteBroadbandStreamingSpeed] = GetSatelliteBroadbandDataSpeed()
-        functions[.setSatelliteBroadbandStreamingSpeed] = SetSatelliteBroadbandDataSpeed()
-        
-        functions[.getSatelliteBroadbandDataStatus] = GetSatelliteBroadbandConnectionStatus()
-        functions[.startStopBroadbandData] = StartStopBroadbandDataMode()
-        
-        functions[.getAutomaticSAPAStatus] = GetAutomaticSAPAStatusFunction()
-        functions[.setAutomaticSAPAStatus] = SetAutomaticSAPAStatusFunction()
+		functions[.getVersion] = GetVersionFunction()
+		functions[.getNetworkMode] = GetNetworkModeFunction()
+		functions[.setNetworkMode] = SetNetworkModeFunction()
+		
+		functions[.getAccessRestricitions] = GetAccessRestricitionsFunction()
+		functions[.unlockAccessRestriction] = UnlockAccessRestricitionFunction()
+		functions[.stopAccess] = StopAccessFunction()
+		
+		functions[.getNetworkRegistrationStatus] = GetNetworkRegistrationStatusFunction()
+		functions[.getSignalStrength] = GetSignalStrengthFunction()
+		
+		functions[.getBatteryStatus] = GetBatteryStatusFunction()
+		functions[.getServiceProviderName] = GetServiceProvideFunction()
+		
+		functions[.getSatelliteServiceMode] = GetSatelliteServiceModeFunction()
+		functions[.setSatelliteServiceMode] = SetSatelliteServiceModeFunction()
+		
+		functions[.getSatelliteBroadbandDataIPMode] = GetSatelliteBroadbandDataIPMode()
+		functions[.setSatelliteBroadbandDataIPMode] = SetSatelliteBroadbandDataIPMode()
+		
+		functions[.getSatelliteBroadbandStreamingSpeed] = GetSatelliteBroadbandDataSpeed()
+		functions[.setSatelliteBroadbandStreamingSpeed] = SetSatelliteBroadbandDataSpeed()
+		
+		functions[.getSatelliteBroadbandDataStatus] = GetSatelliteBroadbandConnectionStatus()
+		functions[.startStopBroadbandData] = StartStopBroadbandDataMode()
+		
+		functions[.getAutomaticSAPAStatus] = GetAutomaticSAPAStatusFunction()
+		functions[.setAutomaticSAPAStatus] = SetAutomaticSAPAStatusFunction()
+		
+		functions[.getSAPAStatus] = GetSAPAStatusFunction()
+		functions[.startStopSAPA] = StartStopSAPAFunction()
+		
+		functions[.getCellularBroadbandModeStatus] = GetCellularBroadbandDataStatusFunction()
+		
 	}
-
-    func handle(request: JSON, forResponder responder: Responder) {
+	
+	func handle(request: JSON, forResponder responder: Responder) {
 		// Do we have a type
 		guard let typeCode = request["header"]["type"].int else {
 			return
@@ -84,17 +90,17 @@ class DefaultRequestHandler: RequestHandler {
 		// Look up the script
 		let requestType = RequestType.for(typeCode)
 		log(info: "requestType: \(requestType)")
-        guard let function = functions[requestType] else {
-            log(info: "No handler for request \(requestType) (\(typeCode))")
-            responder.sendUnsupportedAPIResponse(for: typeCode)
-            return
-        }
-        do {
-            try function.handle(request: request, forResponder: responder)
-        } catch let error {
-            log(error: "\(error)")
-            responder.failed(request: requestType)
-        }
+		guard let function = functions[requestType] else {
+			log(info: "No handler for request \(requestType) (\(typeCode))")
+			responder.sendUnsupportedAPIResponse(for: typeCode)
+			return
+		}
+		do {
+			try function.handle(request: request, forResponder: responder)
+		} catch let error {
+			log(error: "\(error)")
+			responder.failed(request: requestType)
+		}
 	}
 }
 

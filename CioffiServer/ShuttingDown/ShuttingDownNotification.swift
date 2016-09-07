@@ -21,8 +21,8 @@ struct SystemAlertNotification: APINotification {
         return .systemAlerts
     }
     
-    var body: [String : [String : Any]] {
-        var data: [String : [String : Any]] = [:]
+    var body: [String : Any] {
+        var data: [String : Any] = [:]
         data["alert"] = [
             "type": alertType.rawValue
         ]

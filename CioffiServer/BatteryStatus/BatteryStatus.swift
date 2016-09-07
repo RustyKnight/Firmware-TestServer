@@ -14,8 +14,8 @@ let batteryVoltageKey = "batteryVoltage"
 let batteryPresentKey = "batteryPresent"
 
 struct BatteryStatusUtility {
-    static func body() -> [String : [String : Any]] {
-        var body: [String : [String : Any]] = [:]
+    static func body() -> [String : Any] {
+        var body: [String : Any] = [:]
         body["battery"] = [
             "charge": DataModelManager.shared.get(forKey: batteryChargeKey, withDefault: 0),
             "status": DataModelManager.shared.get(forKey: batteryStatusKey, withDefault: BatteryStatus.unknown).rawValue,
@@ -40,7 +40,7 @@ class GetBatteryStatusFunction: DefaultAPIFunction {
         DataModelManager.shared.set(value: true, forKey: batteryPresentKey)
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         return BatteryStatusUtility.body()
     }
     
@@ -51,7 +51,7 @@ struct BatteryStatusNotification: APINotification {
         return .batteryStatus
     }
     
-    var body: [String : [String : Any]] {
+    var body: [String : Any] {
         return BatteryStatusUtility.body()
     }
 }

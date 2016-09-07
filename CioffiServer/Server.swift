@@ -128,7 +128,7 @@ class ClientSocketDelegate: NSObject, GCDAsyncSocketDelegate {
 		readHeader(from: socket)
 		//
 		//        var message = ProtocolUtils.getHeader(responseType: .getVersion, code: .success)
-		//        var firmware: [String: [String: Any]] = [:]
+		//        var firmware: [String: Any] = [:]
 		//        firmware["firmware"] = [
 		//            "majorVersion": 1,
 		//            "minorVersion": 1,
@@ -224,7 +224,7 @@ class SocketClient: Responder {
 		}
 	}
 	
-	func send(response code: ResponseCode, `for` response: ResponseType, contents: [String: [String: Any]]? = nil) {		
+	func send(response code: ResponseCode, `for` response: ResponseType, contents: [String: Any]? = nil) {		
 		var message = ProtocolUtils.header(forResponse: response, code: code)
 		if let contents = contents {
 			message += contents
@@ -237,7 +237,7 @@ class SocketClient: Responder {
 		}
 	}
     
-    func succeeded(response: ResponseType, contents: [String: [String: Any]]? = nil) {
+    func succeeded(response: ResponseType, contents: [String: Any]? = nil) {
         send(response: .success, for: response, contents: contents)
     }
     

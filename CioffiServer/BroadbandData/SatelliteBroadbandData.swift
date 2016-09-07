@@ -103,7 +103,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
         }
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         var body: [String: [String: Any]] = [:]
         let mode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey,
                                                withDefault: SatelliteBroadbandDataStatus.dataInactive)
@@ -132,14 +132,14 @@ private class SatelliteBroadbandStatusModeSwitcher: ModeSwitcher<SatelliteBroadb
 
 struct SatelliteBroadbandDataStatusUtilities {
     
-    static func bodyForCurrentStatus() -> [String : [String : Any]] {
+    static func bodyForCurrentStatus() -> [String : Any] {
         let mode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey,
                                                withDefault: SatelliteBroadbandDataStatus.dataInactive)
         log(info: "\(satelliteBroadbandDataActiveModeKey) = \(mode)")
         return body(for: mode)
     }
     
-    static func body(`for` mode: SatelliteBroadbandDataStatus) -> [String : [String : Any]]{
+    static func body(`for` mode: SatelliteBroadbandDataStatus) -> [String : Any]{
         var uplinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil
         var downlinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil
         
@@ -157,16 +157,16 @@ struct SatelliteBroadbandDataStatusUtilities {
     
     static func body(`for` mode: SatelliteBroadbandDataStatus,
                      uplinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil,
-                     downlinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil) -> [String : [String : Any]]{
-        var data: [String : [String : Any]] = [:]
+                     downlinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil) -> [String : Any]{
+        var data: [String : Any] = [:]
         data["broadband"] = [
             "mode": mode.rawValue
         ]
         guard let uplinkSpeed = uplinkSpeed, let downlinkSpeed = downlinkSpeed else {
             return data
         }
-        data["broadband"]?["uplinkspeed"] = uplinkSpeed.rawValue
-        data["broadband"]?["downlinkspeed"] = downlinkSpeed.rawValue
+        data["broadband"] = ["uplinkspeed": uplinkSpeed.rawValue]
+        data["broadband"] = ["downlinkspeed": downlinkSpeed.rawValue]
         
         return data
     }
@@ -175,7 +175,7 @@ struct SatelliteBroadbandDataStatusUtilities {
 struct SatelliteBroadbandDataStatusNotification: APINotification {
     let type: NotificationType = NotificationType.satelliteBroadbandData
     
-    var body: [String : [String : Any]] {
+    var body: [String : Any] {
         return SatelliteBroadbandDataStatusUtilities.bodyForCurrentStatus()
     }
 }
@@ -191,13 +191,13 @@ class GetSatelliteBroadbandConnectionStatus: DefaultAPIFunction {
         DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive, forKey: satelliteBroadbandDataActiveModeKey)
    }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         return SatelliteBroadbandDataStatusUtilities.bodyForCurrentStatus()
     }
 }
 
 struct SatelliteBroadbandDataIPModeUtilities {
-    static func body() -> [String : [String : Any]] {
+    static func body() -> [String : Any] {
         var body: [String: [String: Any]] = [:]
         body["broadband"] = [
             "mode": DataModelManager.shared.get(forKey: satelliteBroadbandDataModeKey,
@@ -223,7 +223,7 @@ class SetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
                                     forKey: satelliteBroadbandDataModeKey)
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         return SatelliteBroadbandDataIPModeUtilities.body()
     }
 }
@@ -238,13 +238,13 @@ class GetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
                                     forKey: satelliteBroadbandDataModeKey)
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         return SatelliteBroadbandDataIPModeUtilities.body()
     }
 }
 
 struct SatelliteBroadbandDataSpeedUtilities {
-    static func body() -> [String : [String : Any]] {
+    static func body() -> [String : Any] {
         var body: [String: [String: Any]] = [:]
         body["broadband"] = [
             "uplinkspeed": DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey,
@@ -278,7 +278,7 @@ class SetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
                                     forKey: satelliteBroadbandDataDownlinkSpeedKey)
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         return SatelliteBroadbandDataSpeedUtilities.body()
     }
 }
@@ -295,7 +295,7 @@ class GetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
                                     forKey: satelliteBroadbandDataDownlinkSpeedKey)
     }
     
-    override func body() -> [String : [String : Any]] {
+    override func body() -> [String : Any] {
         return SatelliteBroadbandDataSpeedUtilities.body()
     }
 }
