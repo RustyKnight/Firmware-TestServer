@@ -10,13 +10,15 @@ import Foundation
 import SwiftyJSON
 
 public enum NotificationType: Int {
-	case shuttingDown = 3
-	case networkRegistrationStatusChanged = 16
-	case signalStrengthChanged = 19
-	case serviceProviderChanged = 22
-    case batteryStatusChanged = 25
-    case satelliteServiceModeChanged = 30
-    case broadbandDataStatus = 41
+	case systemAlerts = 3
+	case networkRegistrationStatus = 16
+	case signalStrength = 19
+	case serviceProvider = 22
+    case batteryStatus = 25
+    case satelliteServiceMode = 30
+    case satelliteBroadbandData = 41
+    case cellularBroadbandData = 46
+    case sapaStatus = 55
 }
 
 
@@ -36,14 +38,19 @@ public enum ResponseType: Int {
     case setSatelliteServiceMode = 29
     
     case startStopBroadbandData = 38
-    case getBroadbandDataStatus = 40
-    case setBroadbandDataIPMode = 32
-    case getBroadbandDataIPMode = 34
-    case setBroadbandStreamingSpeed = 36
-    case getBroadbandStreamingSpeed = 43
+    case getSatelliteBroadbandDataStatus = 40
+    case setSatelliteBroadbandDataIPMode = 32
+    case getSatelliteBroadbandDataIPMode = 34
+    case setSatelliteBroadbandStreamingSpeed = 36
+    case getSatelliteBroadbandStreamingSpeed = 43
+    
+    case getCellularBroadbandModeStatus = 45
     
     case setAutomaticSAPAStatus = 48
     case getAutomaticSAPAStatus = 50
+    
+    case startStopSAPA = 52
+    case getSAPAStatus = 54
 	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

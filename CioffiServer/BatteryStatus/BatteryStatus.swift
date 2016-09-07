@@ -48,7 +48,7 @@ class GetBatteryStatusFunction: DefaultAPIFunction {
 
 struct BatteryStatusNotification: APINotification {
     var type: NotificationType {
-        return .batteryStatusChanged
+        return .batteryStatus
     }
     
     var body: [String : [String : Any]] {

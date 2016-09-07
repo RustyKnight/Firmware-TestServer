@@ -55,7 +55,7 @@ class GetServiceProvideFunction: DefaultAPIFunction {
 
 struct ServiceProviderNotification: APINotification {
     var type: NotificationType {
-        return .serviceProviderChanged
+        return .serviceProvider
     }
     
     var body: [String : [String : Any]] {

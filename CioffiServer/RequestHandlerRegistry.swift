@@ -63,13 +63,13 @@ class DefaultRequestHandler: RequestHandler {
         functions[.getSatelliteServiceMode] = GetSatelliteServiceModeFunction()
         functions[.setSatelliteServiceMode] = SetSatelliteServiceModeFunction()
         
-        functions[.getBroadbandDataIPMode] = GetBroadbandDataIPMode()
-        functions[.setBroadbandDataIPMode] = SetBroadbandDataIPMode()
+        functions[.getSatelliteBroadbandDataIPMode] = GetSatelliteBroadbandDataIPMode()
+        functions[.setSatelliteBroadbandDataIPMode] = SetSatelliteBroadbandDataIPMode()
         
-        functions[.getBroadbandStreamingSpeed] = GetBroadbandDataSpeed()
-        functions[.setBroadbandStreamingSpeed] = SetBroadbandDataSpeed()
+        functions[.getSatelliteBroadbandStreamingSpeed] = GetSatelliteBroadbandDataSpeed()
+        functions[.setSatelliteBroadbandStreamingSpeed] = SetSatelliteBroadbandDataSpeed()
         
-        functions[.getBroadbandDataStatus] = GetBroadbandConnectionStatus()
+        functions[.getSatelliteBroadbandDataStatus] = GetSatelliteBroadbandConnectionStatus()
         functions[.startStopBroadbandData] = StartStopBroadbandDataMode()
         
         functions[.getAutomaticSAPAStatus] = GetAutomaticSAPAStatusFunction()

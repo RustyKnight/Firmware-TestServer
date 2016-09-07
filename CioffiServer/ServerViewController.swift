@@ -44,9 +44,9 @@ class ServerViewController: NSViewController {
         send(notification: .batteryFlat)
     }
     
-    func send(notification: ShuttingDownReason) {
+    func send(notification: SystemAlertType) {
         do {
-            try Server.default.send(notification: ShuttingDownNotification(type: notification))
+            try Server.default.send(notification: SystemAlertNotification(type: notification))
         } catch let error {
             log(error: "\(error)")
         }

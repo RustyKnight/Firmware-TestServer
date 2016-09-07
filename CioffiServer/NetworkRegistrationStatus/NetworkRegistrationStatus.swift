@@ -49,7 +49,7 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
 
 struct NetworkRegistrationStatusNotification: APINotification {
     var type: NotificationType {
-        return .networkRegistrationStatusChanged
+        return .networkRegistrationStatus
     }
     
     var body: [String : [String : Any]] {

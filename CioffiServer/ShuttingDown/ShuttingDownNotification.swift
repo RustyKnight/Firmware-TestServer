@@ -9,16 +9,16 @@
 import Foundation
 import CioffiAPI
 
-enum ShuttingDownReason: Int {
+enum SystemAlertType: Int {
     case powerButtonPressed = 0
     case criticalHighTemperature = 1
     case criticalLowTemperature = 2
     case batteryFlat = 3
 }
 
-struct ShuttingDownNotification: APINotification {
+struct SystemAlertNotification: APINotification {
     var type: NotificationType {
-        return .shuttingDown
+        return .systemAlerts
     }
     
     var body: [String : [String : Any]] {
@@ -29,9 +29,9 @@ struct ShuttingDownNotification: APINotification {
         return data
     }
     
-    let alertType: ShuttingDownReason
+    let alertType: SystemAlertType
     
-    init(type: ShuttingDownReason) {
+    init(type: SystemAlertType) {
         alertType = type
     }
 }

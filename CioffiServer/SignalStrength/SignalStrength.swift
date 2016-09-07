@@ -50,7 +50,7 @@ class GetSignalStrengthFunction: DefaultAPIFunction {
 
 struct SignalStrengthNotification: APINotification {
     var type: NotificationType {
-        return .signalStrengthChanged
+        return .signalStrength
     }
     
     var body: [String : [String : Any]] {

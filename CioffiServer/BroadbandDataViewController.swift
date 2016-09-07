@@ -9,7 +9,7 @@
 import Cocoa
 import CioffiAPI
 
-extension BroadbandStreamingIPSpeed: CustomStringConvertible {
+extension SatelliteBroadbandStreamingIPSpeed: CustomStringConvertible {
     public var description: String {
         switch self {
         case .kbps16: return "16 kbps"
@@ -91,29 +91,29 @@ class BroadbandDataViewController: NSViewController {
     }
 
     func updateIPMode() {
-        updateControl(for: broadbandDataModeKey, defaultValue: BroadbandDataMode.standardIP, offset: 100)
+        updateControl(for: broadbandDataModeKey, defaultValue: SatelliteBroadbandDataMode.standardIP, offset: 100)
     }
     
     func updateUplinkSpeed() {
-        updateControl(for: broadbandDataUplinkSpeedKey, defaultValue: BroadbandStreamingIPSpeed.kbps16, offset: 200)
+        updateControl(for: broadbandDataUplinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 200)
     }
     
     func updateDownlinkSpeed() {
-        updateControl(for: broadbandDataDownlinkSpeedKey, defaultValue: BroadbandStreamingIPSpeed.kbps16, offset: 300)
+        updateControl(for: broadbandDataDownlinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 300)
     }
     
     func updateStatus() {
-        updateControl(for: broadbandDataActiveModeKey, defaultValue: BroadbandDataStatus.dataInactive, offset: 400)
+        updateControl(for: broadbandDataActiveModeKey, defaultValue: SatelliteBroadbandDataStatus.dataInactive, offset: 400)
         updateStatusInfo()
     }
     
     func updateStatusInfo() {
-        let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey, withDefault: BroadbandDataStatus.dataInactive)
+        let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey, withDefault: SatelliteBroadbandDataStatus.dataInactive)
         var uplinkText = "---"
         var downlinkText = "---"
         if mode != .dataInactive {
-            uplinkText = DataModelManager.shared.get(forKey: broadbandDataActiveUplinkSpeedKey, withDefault: BroadbandStreamingIPSpeed.kbps16).description
-            downlinkText = DataModelManager.shared.get(forKey: broadbandDataActiveDownlinkSpeedKey, withDefault: BroadbandStreamingIPSpeed.kbps16).description
+            uplinkText = DataModelManager.shared.get(forKey: broadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).description
+            downlinkText = DataModelManager.shared.get(forKey: broadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).description
         }
         uplinkSpeedLabel.stringValue = uplinkText
         downlinkSpeedLabel.stringValue = downlinkText
@@ -121,7 +121,7 @@ class BroadbandDataViewController: NSViewController {
     
     @IBAction func ipModeChanged(_ sender: NSButton) {
         let modeValue = sender.tag - 100
-        guard let mode = BroadbandDataMode.init(rawValue: modeValue) else {
+        guard let mode = SatelliteBroadbandDataMode.init(rawValue: modeValue) else {
             log(warning: "Unknown BroadbandDataMode mode \(modeValue)")
             return
         }
@@ -133,7 +133,7 @@ class BroadbandDataViewController: NSViewController {
     
     @IBAction func uplinkSpeedChanged(_ sender: NSButton) {
         let modeValue = sender.tag - 200
-        guard let speed = BroadbandStreamingIPSpeed.init(rawValue: modeValue) else {
+        guard let speed = SatelliteBroadbandStreamingIPSpeed.init(rawValue: modeValue) else {
             log(warning: "Unknown BroadbandStreamingIPSpeed mode \(modeValue)")
             return
         }
@@ -145,7 +145,7 @@ class BroadbandDataViewController: NSViewController {
 
     @IBAction func downlinkSpeedChanged(_ sender: NSButton) {
         let modeValue = sender.tag - 300
-        guard let speed = BroadbandStreamingIPSpeed.init(rawValue: modeValue) else {
+        guard let speed = SatelliteBroadbandStreamingIPSpeed.init(rawValue: modeValue) else {
             log(warning: "Unknown BroadbandStreamingIPSpeed mode \(modeValue)")
             return
         }
@@ -157,7 +157,7 @@ class BroadbandDataViewController: NSViewController {
     
     @IBAction func statusModeChanged(_ sender: NSButton) {
         let modeValue = sender.tag - 400
-        guard let status = BroadbandDataStatus.init(rawValue: modeValue) else {
+        guard let status = SatelliteBroadbandDataStatus.init(rawValue: modeValue) else {
             log(warning: "Unknown BroadbandDataStatus mode \(modeValue)")
             return
         }
@@ -165,8 +165,8 @@ class BroadbandDataViewController: NSViewController {
         log(info: "Set SatelliteBroadbandDataMode to \(status)")
         DataModelManager.shared.set(value: status, forKey: broadbandDataActiveModeKey, withNotification: false)
         
-        let uplink = DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey, withDefault: BroadbandStreamingIPSpeed.kbps16)
-        let downlink = DataModelManager.shared.get(forKey: broadbandDataDownlinkSpeedKey, withDefault: BroadbandStreamingIPSpeed.kbps16)
+        let uplink = DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+        let downlink = DataModelManager.shared.get(forKey: broadbandDataDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
         DataModelManager.shared.set(value: uplink, forKey: broadbandDataActiveUplinkSpeedKey, withNotification: false)
         DataModelManager.shared.set(value: downlink, forKey: broadbandDataActiveDownlinkSpeedKey, withNotification: false)
         updateStatus()
@@ -180,7 +180,7 @@ class BroadbandDataViewController: NSViewController {
     func sendNotification(ignoreAuto: Bool = false) {
         if autoNotification.state == NSOnState || ignoreAuto {
             do {
-                try Server.default.send(notification: BroadbandDataStatusNotification())
+                try Server.default.send(notification: SatelliteBroadbandDataStatusNotification())
             } catch let error {
                 log(info: "\(error)")
             }

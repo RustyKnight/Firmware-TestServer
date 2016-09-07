@@ -79,7 +79,7 @@ class SetSatelliteServiceModeFunction: GetSatelliteServiceModeFunction {
 
 struct SatelliteServiceModeNotification: APINotification {
     var type: NotificationType {
-        return .satelliteServiceModeChanged
+        return .satelliteServiceMode
     }
     
     
