@@ -31,19 +31,19 @@ class BroadbandDataViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BroadbandDataViewController.ipModeDidChange),
-                                               name: NSNotification.Name.init(rawValue: broadbandDataModeKey),
+                                               name: NSNotification.Name.init(rawValue: satelliteBroadbandDataModeKey),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BroadbandDataViewController.uplinkSpeedDidChange),
-                                               name: NSNotification.Name.init(rawValue: broadbandDataUplinkSpeedKey),
+                                               name: NSNotification.Name.init(rawValue: satelliteBroadbandDataUplinkSpeedKey),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BroadbandDataViewController.downlinkSpeedDidChange),
-                                               name: NSNotification.Name.init(rawValue: broadbandDataDownlinkSpeedKey),
+                                               name: NSNotification.Name.init(rawValue: satelliteBroadbandDataDownlinkSpeedKey),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BroadbandDataViewController.broadbandStatusDidChange),
-                                               name: NSNotification.Name.init(rawValue: broadbandDataActiveModeKey),
+                                               name: NSNotification.Name.init(rawValue: satelliteBroadbandDataActiveModeKey),
                                                object: nil)
         
         updateIPMode()
@@ -91,29 +91,29 @@ class BroadbandDataViewController: NSViewController {
     }
 
     func updateIPMode() {
-        updateControl(for: broadbandDataModeKey, defaultValue: SatelliteBroadbandDataMode.standardIP, offset: 100)
+        updateControl(for: satelliteBroadbandDataModeKey, defaultValue: SatelliteBroadbandDataMode.standardIP, offset: 100)
     }
     
     func updateUplinkSpeed() {
-        updateControl(for: broadbandDataUplinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 200)
+        updateControl(for: satelliteBroadbandDataUplinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 200)
     }
     
     func updateDownlinkSpeed() {
-        updateControl(for: broadbandDataDownlinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 300)
+        updateControl(for: satelliteBroadbandDataDownlinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 300)
     }
     
     func updateStatus() {
-        updateControl(for: broadbandDataActiveModeKey, defaultValue: SatelliteBroadbandDataStatus.dataInactive, offset: 400)
+        updateControl(for: satelliteBroadbandDataActiveModeKey, defaultValue: SatelliteBroadbandDataStatus.dataInactive, offset: 400)
         updateStatusInfo()
     }
     
     func updateStatusInfo() {
-        let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey, withDefault: SatelliteBroadbandDataStatus.dataInactive)
+        let mode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey, withDefault: SatelliteBroadbandDataStatus.dataInactive)
         var uplinkText = "---"
         var downlinkText = "---"
         if mode != .dataInactive {
-            uplinkText = DataModelManager.shared.get(forKey: broadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).description
-            downlinkText = DataModelManager.shared.get(forKey: broadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).description
+            uplinkText = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).description
+            downlinkText = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).description
         }
         uplinkSpeedLabel.stringValue = uplinkText
         downlinkSpeedLabel.stringValue = downlinkText
@@ -126,7 +126,7 @@ class BroadbandDataViewController: NSViewController {
             return
         }
         
-        DataModelManager.shared.set(value: mode, forKey: broadbandDataModeKey, withNotification: false)
+        DataModelManager.shared.set(value: mode, forKey: satelliteBroadbandDataModeKey, withNotification: false)
         updateStatus()
         sendNotification()
     }
@@ -138,7 +138,7 @@ class BroadbandDataViewController: NSViewController {
             return
         }
         
-        DataModelManager.shared.set(value: speed, forKey: broadbandDataUplinkSpeedKey, withNotification: false)
+        DataModelManager.shared.set(value: speed, forKey: satelliteBroadbandDataUplinkSpeedKey, withNotification: false)
         updateStatus()
         sendNotification()
     }
@@ -150,7 +150,7 @@ class BroadbandDataViewController: NSViewController {
             return
         }
         
-        DataModelManager.shared.set(value: speed, forKey: broadbandDataDownlinkSpeedKey, withNotification: false)
+        DataModelManager.shared.set(value: speed, forKey: satelliteBroadbandDataDownlinkSpeedKey, withNotification: false)
         updateStatus()
         sendNotification()
     }
@@ -163,12 +163,12 @@ class BroadbandDataViewController: NSViewController {
         }
         
         log(info: "Set SatelliteBroadbandDataMode to \(status)")
-        DataModelManager.shared.set(value: status, forKey: broadbandDataActiveModeKey, withNotification: false)
+        DataModelManager.shared.set(value: status, forKey: satelliteBroadbandDataActiveModeKey, withNotification: false)
         
-        let uplink = DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-        let downlink = DataModelManager.shared.get(forKey: broadbandDataDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-        DataModelManager.shared.set(value: uplink, forKey: broadbandDataActiveUplinkSpeedKey, withNotification: false)
-        DataModelManager.shared.set(value: downlink, forKey: broadbandDataActiveDownlinkSpeedKey, withNotification: false)
+        let uplink = DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+        let downlink = DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+        DataModelManager.shared.set(value: uplink, forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withNotification: false)
+        DataModelManager.shared.set(value: downlink, forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withNotification: false)
         updateStatus()
         sendNotification()
     }

@@ -11,13 +11,13 @@ import SwiftyJSON
 import CioffiAPI
 
 // Represents the active mode status, which is seperate from the settings
-let broadbandDataActiveModeKey = "broadbandDataActiveMode" // What is the "active" mode
-let broadbandDataActiveUplinkSpeedKey = "broadbandDataActiveUplinkSpeed" // What is the "active" speed
-let broadbandDataActiveDownlinkSpeedKey = "broadbandDataActiveDownlinkSpeed" // What is the "active" speed
+let satelliteBroadbandDataActiveModeKey = "satelliteBroadbandDataActiveMode" // What is the "active" mode
+let satelliteBroadbandDataActiveUplinkSpeedKey = "satelliteBroadbandDataActiveUplinkSpeed" // What is the "active" speed
+let satelliteBroadbandDataActiveDownlinkSpeedKey = "satelliteBroadbandDataActiveDownlinkSpeed" // What is the "active" speed
 
-let broadbandDataModeKey = "broadbandDataMode"
-let broadbandDataUplinkSpeedKey = "broadbandDataUplinkSpeed"
-let broadbandDataDownlinkSpeedKey = "broadbandDataDownlinkSpeed"
+let satelliteBroadbandDataModeKey = "satelliteBroadbandDataMode"
+let satelliteBroadbandDataUplinkSpeedKey = "satelliteBroadbandDataUplinkSpeed"
+let satelliteBroadbandDataDownlinkSpeedKey = "satelliteBroadbandDataDownlinkSpeed"
 
 /*
  This needs to also deal with cellular mode, so we need to be able to determine which "network" is actually
@@ -30,7 +30,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
         responseType = .startStopBroadbandData
         requestType = .startStopBroadbandData
         
-        DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive, forKey: broadbandDataActiveModeKey)
+        DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive, forKey: satelliteBroadbandDataActiveModeKey)
     }
     
     override func preProcess(request: JSON) {
@@ -40,7 +40,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
         }
         
         if state {
-            let settingsMode = DataModelManager.shared.get(forKey: broadbandDataModeKey,
+            let settingsMode = DataModelManager.shared.get(forKey: satelliteBroadbandDataModeKey,
                                                            withDefault: SatelliteBroadbandDataMode.standardIP)
             var statusMode: SatelliteBroadbandDataStatus = .dataInactive
             var switchMode: SatelliteBroadbandDataStatus = .dataInactive
@@ -54,25 +54,25 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
                 switchMode = .activatingStreamingIP
             }
             
-            let uplinkSpeed = DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey,
+            let uplinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey,
                                                           withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-            let downlinkSpeed = DataModelManager.shared.get(forKey: broadbandDataDownlinkSpeedKey,
+            let downlinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey,
                                                             withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
             
             DataModelManager.shared.set(value: switchMode,
-                                        forKey: broadbandDataActiveModeKey)
+                                        forKey: satelliteBroadbandDataActiveModeKey)
             DataModelManager.shared.set(value: uplinkSpeed,
-                                        forKey: broadbandDataActiveUplinkSpeedKey)
+                                        forKey: satelliteBroadbandDataActiveUplinkSpeedKey)
             DataModelManager.shared.set(value: downlinkSpeed,
-                                        forKey: broadbandDataActiveDownlinkSpeedKey)
+                                        forKey: satelliteBroadbandDataActiveDownlinkSpeedKey)
             
-            log(info: "\(broadbandDataActiveModeKey) = \(DataModelManager.shared.get(forKey: broadbandDataActiveModeKey))")
+            log(info: "\(satelliteBroadbandDataActiveModeKey) = \(DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey))")
             
             let switcher = SatelliteBroadbandStatusModeSwitcher(to: statusMode,
                                                        through: switchMode)
             switcher.makeSwitch()
         } else {
-            let statusMode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
+            let statusMode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey,
                                                          withDefault: SatelliteBroadbandDataStatus.dataInactive)
             var switchMode: SatelliteBroadbandDataStatus = .dataInactive
             switch statusMode {
@@ -93,7 +93,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
                 switcher.makeSwitch()
             } else {
                 DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive,
-                                            forKey: broadbandDataActiveModeKey)
+                                            forKey: satelliteBroadbandDataActiveModeKey)
                 do {
                     try Server.default.send(notification: SatelliteBroadbandDataStatusNotification())
                 } catch let error {
@@ -105,7 +105,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
     
     override func body() -> [String : [String : Any]] {
         var body: [String: [String: Any]] = [:]
-        let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
+        let mode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey,
                                                withDefault: SatelliteBroadbandDataStatus.dataInactive)
         let active = mode != SatelliteBroadbandDataStatus.dataInactive
         body["broadband"] = [
@@ -119,7 +119,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 private class SatelliteBroadbandStatusModeSwitcher: ModeSwitcher<SatelliteBroadbandDataStatus> {
 
     init(to: SatelliteBroadbandDataStatus, through: SatelliteBroadbandDataStatus) {
-        super.init(key: broadbandDataActiveModeKey,
+        super.init(key: satelliteBroadbandDataActiveModeKey,
                    to: AnySwitcherState<SatelliteBroadbandDataStatus>(state: to, notification: SatelliteBroadbandDataStatusNotification()),
                    through: AnySwitcherState<SatelliteBroadbandDataStatus>(state: through, notification: SatelliteBroadbandDataStatusNotification()),
                    defaultMode: SatelliteBroadbandDataStatus.dataInactive,
@@ -133,9 +133,9 @@ private class SatelliteBroadbandStatusModeSwitcher: ModeSwitcher<SatelliteBroadb
 struct SatelliteBroadbandDataStatusUtilities {
     
     static func bodyForCurrentStatus() -> [String : [String : Any]] {
-        let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
+        let mode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey,
                                                withDefault: SatelliteBroadbandDataStatus.dataInactive)
-        log(info: "\(broadbandDataActiveModeKey) = \(mode)")
+        log(info: "\(satelliteBroadbandDataActiveModeKey) = \(mode)")
         return body(for: mode)
     }
     
@@ -146,8 +146,8 @@ struct SatelliteBroadbandDataStatusUtilities {
         switch mode {
         case .activatingStreamingIP: fallthrough
         case .streamingIP:
-            uplinkSpeed = DataModelManager.shared.get(forKey: broadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-            downlinkSpeed = DataModelManager.shared.get(forKey: broadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+            uplinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+            downlinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
         default:
             break
         }
@@ -188,7 +188,7 @@ class GetSatelliteBroadbandConnectionStatus: DefaultAPIFunction {
         responseType = .getSatelliteBroadbandDataStatus
         requestType = .getSatelliteBroadbandDataStatus
         
-        DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive, forKey: broadbandDataActiveModeKey)
+        DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive, forKey: satelliteBroadbandDataActiveModeKey)
    }
     
     override func body() -> [String : [String : Any]] {
@@ -200,7 +200,7 @@ struct SatelliteBroadbandDataIPModeUtilities {
     static func body() -> [String : [String : Any]] {
         var body: [String: [String: Any]] = [:]
         body["broadband"] = [
-            "mode": DataModelManager.shared.get(forKey: broadbandDataModeKey,
+            "mode": DataModelManager.shared.get(forKey: satelliteBroadbandDataModeKey,
                                                 withDefault: SatelliteBroadbandDataMode.standardIP).rawValue
         ]
         return body
@@ -220,7 +220,7 @@ class SetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
             return
         }
         DataModelManager.shared.set(value: mode,
-                                    forKey: broadbandDataModeKey)
+                                    forKey: satelliteBroadbandDataModeKey)
     }
     
     override func body() -> [String : [String : Any]] {
@@ -235,7 +235,7 @@ class GetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
         requestType = .getSatelliteBroadbandDataIPMode
         responseType = .getSatelliteBroadbandDataIPMode
         DataModelManager.shared.set(value: SatelliteBroadbandDataMode.standardIP,
-                                    forKey: broadbandDataModeKey)
+                                    forKey: satelliteBroadbandDataModeKey)
     }
     
     override func body() -> [String : [String : Any]] {
@@ -247,9 +247,9 @@ struct SatelliteBroadbandDataSpeedUtilities {
     static func body() -> [String : [String : Any]] {
         var body: [String: [String: Any]] = [:]
         body["broadband"] = [
-            "uplinkspeed": DataModelManager.shared.get(forKey: broadbandDataUplinkSpeedKey,
+            "uplinkspeed": DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey,
                                                        withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).rawValue,
-            "downlinkspeed": DataModelManager.shared.get(forKey: broadbandDataDownlinkSpeedKey,
+            "downlinkspeed": DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey,
                                                          withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).rawValue
         ]
         return body
@@ -273,9 +273,9 @@ class SetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
             return
         }
         DataModelManager.shared.set(value: uplink,
-                                    forKey: broadbandDataUplinkSpeedKey)
+                                    forKey: satelliteBroadbandDataUplinkSpeedKey)
         DataModelManager.shared.set(value: downlink,
-                                    forKey: broadbandDataDownlinkSpeedKey)
+                                    forKey: satelliteBroadbandDataDownlinkSpeedKey)
     }
     
     override func body() -> [String : [String : Any]] {
@@ -290,9 +290,9 @@ class GetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
         requestType = .getSatelliteBroadbandStreamingSpeed
         responseType = .getSatelliteBroadbandStreamingSpeed
         DataModelManager.shared.set(value: SatelliteBroadbandStreamingIPSpeed.kbps16,
-                                    forKey: broadbandDataUplinkSpeedKey)
+                                    forKey: satelliteBroadbandDataUplinkSpeedKey)
         DataModelManager.shared.set(value: SatelliteBroadbandStreamingIPSpeed.kbps16,
-                                    forKey: broadbandDataDownlinkSpeedKey)
+                                    forKey: satelliteBroadbandDataDownlinkSpeedKey)
     }
     
     override func body() -> [String : [String : Any]] {
