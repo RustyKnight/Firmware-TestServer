@@ -21,7 +21,7 @@ let currentModemModuleKey = "currentModemModuleKey"
 
 enum ModemModule: Int {
     case satellite = 0
-    case cellular = 2
+    case cellular = 1
     case unknown = -1
     
     func makeCurrent() {

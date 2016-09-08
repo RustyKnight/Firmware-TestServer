@@ -11,12 +11,16 @@ import SwiftyJSON
 import CioffiAPI
 
 let cellularBroadbandDataActiveModeKey = "cellularBroadbandDataActiveMode"
+let cellularBroadbandDataModeKey = "cellularBroadbandDataMode"
 
 struct CellularBroadbandDataUtilities {
 	
 	static func bodyForCurrentStatus() -> [String: Any] {
-		let mode = DataModelManager.shared.get(forKey: cellularBroadbandDataActiveModeKey,
-		                                       withDefault: CellularBroadbandDataStatus.inactive)
+        var mode: CellularBroadbandDataStatus = CellularBroadbandDataStatus.inactive
+        if DataModelManager.shared.get(forKey: cellularBroadbandDataActiveModeKey, withDefault: false) {
+            mode = DataModelManager.shared.get(forKey: cellularBroadbandDataModeKey,
+                                               withDefault: CellularBroadbandDataStatus.cellular3G)
+        }
 		return body(for: mode)
 	}
 	
@@ -33,8 +37,10 @@ class GetCellularBroadbandDataStatusFunction: DefaultAPIFunction {
 		responseType = .getCellularBroadbandModeStatus
 		requestType = .getCellularBroadbandModeStatus
 		
-		DataModelManager.shared.set(value: CellularBroadbandDataStatus.inactive,
-		                            forKey: cellularBroadbandDataActiveModeKey)
+		DataModelManager.shared.set(value: CellularBroadbandDataStatus.cellular3G,
+		                            forKey: cellularBroadbandDataModeKey)
+        DataModelManager.shared.set(value: false,
+                                    forKey: cellularBroadbandDataActiveModeKey)
 	}
 	
 	override func body() -> [String : Any] {

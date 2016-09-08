@@ -1353,13 +1353,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sec-vP-GDF">
-                                <rect key="frame" x="130" y="137" width="190" height="24"/>
+                                <rect key="frame" x="161" y="137" width="129" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="ah0-tb-qiB">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment label="Inactive" width="61" selected="YES"/>
-                                        <segment label="3G" width="61" tag="1"/>
-                                        <segment label="4G" width="60"/>
+                                        <segment label="3G" width="61" selected="YES"/>
+                                        <segment label="4G" width="61" tag="1"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
@@ -1383,12 +1382,24 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="G17-mC-A97">
+                                <rect key="frame" x="195" y="166" width="60" height="18"/>
+                                <buttonCell key="cell" type="check" title="Active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GAd-fg-R8w">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="activeStateDidChange:" target="lW1-cf-Mwm" id="OAJ-oh-YAS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="akA-X8-VH5" firstAttribute="top" secondItem="Sec-vP-GDF" secondAttribute="bottom" constant="16" id="1Ja-NL-hK8"/>
                             <constraint firstItem="Sec-vP-GDF" firstAttribute="centerX" secondItem="52d-M7-eKr" secondAttribute="centerX" id="4qM-Q0-VCT"/>
                             <constraint firstItem="akA-X8-VH5" firstAttribute="centerY" secondItem="NpX-AH-cLZ" secondAttribute="centerY" id="BOP-tM-2Op"/>
                             <constraint firstItem="NpX-AH-cLZ" firstAttribute="leading" secondItem="akA-X8-VH5" secondAttribute="trailing" constant="8" id="MoS-qC-Z6o"/>
+                            <constraint firstItem="G17-mC-A97" firstAttribute="centerX" secondItem="Sec-vP-GDF" secondAttribute="centerX" id="Nz8-rh-FQv"/>
+                            <constraint firstItem="Sec-vP-GDF" firstAttribute="top" secondItem="G17-mC-A97" secondAttribute="bottom" constant="8" id="dfU-W4-mRx"/>
                             <constraint firstItem="Sec-vP-GDF" firstAttribute="centerY" secondItem="52d-M7-eKr" secondAttribute="centerY" id="faL-iu-2ym"/>
                             <constraint firstItem="akA-X8-VH5" firstAttribute="centerX" secondItem="Sec-vP-GDF" secondAttribute="centerX" id="wfo-iU-T0K"/>
                         </constraints>
@@ -1396,6 +1407,7 @@
                     <connections>
                         <outlet property="broadbandDataSegement" destination="Sec-vP-GDF" id="BcY-O1-K9h"/>
                         <outlet property="liveUpdate" destination="NpX-AH-cLZ" id="NNc-8U-kVi"/>
+                        <outlet property="modeActive" destination="G17-mC-A97" id="66c-qG-6Yt"/>
                         <outlet property="sendNotification" destination="akA-X8-VH5" id="qRN-2D-7MZ"/>
                     </connections>
                 </viewController>

@@ -14,16 +14,15 @@ class CellularBroadbandDataViewController: NSViewController {
     @IBOutlet weak var broadbandDataSegement: NSSegmentedControl!
     @IBOutlet weak var liveUpdate: NSButton!
     @IBOutlet weak var sendNotification: NSButton!
+    @IBOutlet weak var modeActive: NSButton!
     
     let modeToIndex: [CellularBroadbandDataStatus: Int] = [
-        .inactive: 0,
-        .cellular3G: 1,
-        .cellular4G: 2
+        .cellular3G: 0,
+        .cellular4G: 1
     ]
     let indexToMode: [Int: CellularBroadbandDataStatus] = [
-        0: .inactive,
-        1: .cellular3G,
-        2: .cellular4G
+        0: .cellular3G,
+        1: .cellular4G
     ]
     
     override func viewDidLoad() {
@@ -36,6 +35,10 @@ class CellularBroadbandDataViewController: NSViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(CellularBroadbandDataViewController.stateDidChange),
                                                name: NSNotification.Name.init(rawValue: cellularBroadbandDataActiveModeKey),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(CellularBroadbandDataViewController.stateDidChange),
+                                               name: NSNotification.Name.init(rawValue: cellularBroadbandDataModeKey),
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(NetworkRegistrationViewController.modemChanged),
@@ -60,14 +63,23 @@ class CellularBroadbandDataViewController: NSViewController {
     }
 
     func stateDidChange() {
-        let mode = DataModelManager.shared.get(forKey: cellularBroadbandDataActiveModeKey,
-                                               withDefault: CellularBroadbandDataStatus.inactive)
+        let mode = DataModelManager.shared.get(forKey: cellularBroadbandDataModeKey,
+                                               withDefault: CellularBroadbandDataStatus.cellular3G)
+        let active = DataModelManager.shared.get(forKey: cellularBroadbandDataActiveModeKey,
+                                               withDefault: false)
+        modeActive.state = active ? NSOnState : NSOffState
         
         guard let index = modeToIndex[mode] else {
             log(error: "Bad mode \(mode)")
             return
         }
         broadbandDataSegement.selectedSegment = index
+    }
+    
+    @IBAction func activeStateDidChange(_ sender: AnyObject) {
+        let active = modeActive.state == NSOnState
+        DataModelManager.shared.set(value: active, forKey: cellularBroadbandDataActiveModeKey)
+        sendNotification()
     }
     
     @IBAction func sendNotification(_ sender: AnyObject) {
@@ -80,9 +92,8 @@ class CellularBroadbandDataViewController: NSViewController {
             return
         }
         DataModelManager.shared.set(value: mode,
-                                    forKey: cellularBroadbandDataActiveModeKey,
+                                    forKey: cellularBroadbandDataModeKey,
                                     withNotification: false)
-        sendNotification()
     }
     
     var isLiveUpdate: Bool {

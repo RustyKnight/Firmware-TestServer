@@ -23,6 +23,10 @@ class SAPAViewContoller: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SAPAViewContoller.automaticStateDidChange),
                                                name: NSNotification.Name.init(rawValue: automaticSAPAState),
@@ -62,11 +66,15 @@ class SAPAViewContoller: NSViewController {
     }
     
     func automaticStateDidChange() {
-        stateDidChange()
+        DispatchQueue.main.async {
+            self.stateDidChange()
+        }
     }
     
     func currentStateDidChange() {
-        stateDidChange()
+        DispatchQueue.main.async {
+            self.stateDidChange()
+        }
     }
     
     @IBAction func activeStateChanged(_ sender: AnyObject) {
@@ -78,7 +86,7 @@ class SAPAViewContoller: NSViewController {
     func sendNotification(forced: Bool = false) {
         if (forced || isLiveUpdate) && ModemModule.satellite.isCurrent {
             do {
-                try Server.default.send(notification: SAPAStatusStatusNotification())
+                try Server.default.send(notification: SAPAStatusNotification())
             } catch let error {
                 log(info: "\(error)")
             }

@@ -63,10 +63,12 @@ public enum ProtocolError: Error {
 	- Returns: Request header
 	*/
 	public static func header(forType type: Int, result: Int? = nil) -> [String: Any] {
-		var header: [String: Any] = ["header": ["version": apiVersion, "type" : type]]
+        var headerContents: [String: Any] = ["version": apiVersion, "type" : type]
         if let result = result {
-            header["header"] = ["result": result]
+            headerContents += ["result": result]
         }
+        let header: [String: Any] = ["header": headerContents]
+        log(info: "Header for type \(type) with result \(result) = \(header)")
 		return header
 	}
 	

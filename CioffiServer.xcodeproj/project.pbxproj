@@ -11,6 +11,7 @@
 		12061A361D80F35F002C986D /* MainGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A341D80F35F002C986D /* MainGroupViewController.swift */; };
 		12061A391D811978002C986D /* CellularBroadbandDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A381D811978002C986D /* CellularBroadbandDataViewController.swift */; };
 		12061A3B1D81269B002C986D /* SAPAViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A3A1D81269B002C986D /* SAPAViewContoller.swift */; };
+		12061A3E1D81495D002C986D /* StartStopBroadbandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A3D1D81495D002C986D /* StartStopBroadbandData.swift */; };
 		120795ED1D7F916B000DD9A5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120795EC1D7F916B000DD9A5 /* Utilities.swift */; };
 		120D05431D594985003E9D12 /* SatelliteBroadbandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120D05421D594985003E9D12 /* SatelliteBroadbandData.swift */; };
 		1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2321D473EF30090A5BD /* SliderCell.swift */; };
@@ -75,6 +76,7 @@
 		12061A341D80F35F002C986D /* MainGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGroupViewController.swift; sourceTree = "<group>"; };
 		12061A381D811978002C986D /* CellularBroadbandDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularBroadbandDataViewController.swift; sourceTree = "<group>"; };
 		12061A3A1D81269B002C986D /* SAPAViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPAViewContoller.swift; sourceTree = "<group>"; };
+		12061A3D1D81495D002C986D /* StartStopBroadbandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartStopBroadbandData.swift; path = BroadbandData/StartStopBroadbandData.swift; sourceTree = "<group>"; };
 		120795EC1D7F916B000DD9A5 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		120D05421D594985003E9D12 /* SatelliteBroadbandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteBroadbandData.swift; path = BroadbandData/SatelliteBroadbandData.swift; sourceTree = "<group>"; };
 		1214A2321D473EF30090A5BD /* SliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
@@ -133,12 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		120D05411D594965003E9D12 /* SatelliteBroadbandData */ = {
+		120D05411D594965003E9D12 /* BroadbandData */ = {
 			isa = PBXGroup;
 			children = (
+				702F55621D800F9700E4643F /* CellularBroadbandData.swift */,
 				120D05421D594985003E9D12 /* SatelliteBroadbandData.swift */,
+				12061A3D1D81495D002C986D /* StartStopBroadbandData.swift */,
 			);
-			name = SatelliteBroadbandData;
+			name = BroadbandData;
 			sourceTree = "<group>";
 		};
 		1214A2341D4828BA0090A5BD /* GetVersion */ = {
@@ -286,12 +290,11 @@
 		12BA41271D41D72D00C0F512 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				702F55611D800F6700E4643F /* CellularBroadbandData */,
 				1214A2461D4849690090A5BD /* AccessRestricitions */,
 				1214A2351D482B340090A5BD /* APIFunction.swift */,
 				1214A23C1D483F010090A5BD /* APINotification.swift */,
 				1214A2521D4855960090A5BD /* BatteryStatus */,
-				120D05411D594965003E9D12 /* SatelliteBroadbandData */,
+				120D05411D594965003E9D12 /* BroadbandData */,
 				1214A2341D4828BA0090A5BD /* GetVersion */,
 				1214A2401D4844CE0090A5BD /* NetworkMode */,
 				1214A2491D484E790090A5BD /* NetworkRegistrationStatus */,
@@ -303,14 +306,6 @@
 				1214A24C1D48518A0090A5BD /* SignalStength */,
 			);
 			name = API;
-			sourceTree = "<group>";
-		};
-		702F55611D800F6700E4643F /* CellularBroadbandData */ = {
-			isa = PBXGroup;
-			children = (
-				702F55621D800F9700E4643F /* CellularBroadbandData.swift */,
-			);
-			name = CellularBroadbandData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +391,7 @@
 				1214A2421D4844EE0090A5BD /* NetworkmodeFunction.swift in Sources */,
 				1214A23D1D483F010090A5BD /* APINotification.swift in Sources */,
 				1214A23F1D4840910090A5BD /* ShuttingDownNotification.swift in Sources */,
+				12061A3E1D81495D002C986D /* StartStopBroadbandData.swift in Sources */,
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
 				1214A2361D482B340090A5BD /* APIFunction.swift in Sources */,
 				128008331D51C24B00D10017 /* ServerViewController.swift in Sources */,

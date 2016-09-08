@@ -98,7 +98,7 @@ class StartStopSAPAFunction: GetSAPAStatusFunction {
 	}
 	
 	override func preProcess(request: JSON) {
-		guard let state = request["manualsapa"]["active"].bool else {
+		guard let state = request["sapa"]["active"].bool else {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
 			return
 		}
@@ -107,7 +107,7 @@ class StartStopSAPAFunction: GetSAPAStatusFunction {
 	
 }
 
-struct SAPAStatusStatusNotification: APINotification {
+struct SAPAStatusNotification: APINotification {
 	let type: NotificationType = NotificationType.sapaStatus
 	
 	var body: [String : Any] {
