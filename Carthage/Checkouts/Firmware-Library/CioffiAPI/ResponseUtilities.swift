@@ -14,11 +14,11 @@ public enum NotificationType: Int {
 	case networkRegistrationStatus = 16
 	case signalStrength = 19
 	case serviceProvider = 22
-    case batteryStatus = 25
-    case satelliteServiceMode = 30
-    case satelliteBroadbandData = 41
-    case cellularBroadbandData = 46
-    case sapaStatus = 55
+	case batteryStatus = 25
+	case satelliteServiceMode = 30
+	case satelliteBroadbandData = 41
+	case cellularBroadbandData = 46
+	case sapaStatus = 55
 }
 
 
@@ -33,24 +33,24 @@ public enum ResponseType: Int {
 	case getNetworkRegistrationStatus = 15
 	case getSignalStrength = 18
 	case getServiceProviderName = 21
-    case getBatteryStatus = 24
-    case getSatelliteServiceMode = 27
-    case setSatelliteServiceMode = 29
-    
-    case startStopBroadbandData = 38
-    case getSatelliteBroadbandDataStatus = 40
-    case setSatelliteBroadbandDataIPMode = 32
-    case getSatelliteBroadbandDataIPMode = 34
-    case setSatelliteBroadbandStreamingSpeed = 36
-    case getSatelliteBroadbandStreamingSpeed = 43
-    
-    case getCellularBroadbandModeStatus = 45
-    
-    case setAutomaticSAPAStatus = 48
-    case getAutomaticSAPAStatus = 50
-    
-    case startStopSAPA = 52
-    case getSAPAStatus = 54
+	case getBatteryStatus = 24
+	case getSatelliteServiceMode = 27
+	case setSatelliteServiceMode = 29
+	
+	case startStopBroadbandData = 38
+	case getSatelliteBroadbandDataStatus = 40
+	case setSatelliteBroadbandDataIPMode = 32
+	case getSatelliteBroadbandDataIPMode = 34
+	case setSatelliteBroadbandStreamingSpeed = 36
+	case getSatelliteBroadbandStreamingSpeed = 43
+	
+	case getCellularBroadbandModeStatus = 45
+	
+	case setAutomaticSAPAStatus = 48
+	case getAutomaticSAPAStatus = 50
+	
+	case startStopSAPA = 52
+	case getSAPAStatus = 54
 	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {
@@ -58,13 +58,13 @@ public enum ResponseType: Int {
 		}
 		return response
 	}
-    
-    public static func from(_ json: JSON) -> ResponseType {
-        guard let value = json["header"]["type"].int else {
-            return ResponseType.unknown
-        }
-        return ResponseType.for(value)
-    }
+	
+	public static func from(_ json: JSON) -> ResponseType {
+		guard let value = json["header"]["type"].int else {
+			return ResponseType.unknown
+		}
+		return ResponseType.for(value)
+	}
 }
 
 public enum ResponseCode: Int {
@@ -73,7 +73,7 @@ public enum ResponseCode: Int {
 	case unsupportedAPIVersion = 1
 	case unsupportedAPIType = 2
 	case failure = 3
-    case accessDenied = 4
+	case accessDenied = 4
 }
 
 public class JSONResponseWrapper {

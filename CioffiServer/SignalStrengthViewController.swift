@@ -9,37 +9,45 @@
 import Cocoa
 import CioffiAPI
 
-class SignalStrengthViewController: NSViewController {
-
-    @IBOutlet weak var satelliteMode: NSButton!
-    @IBOutlet weak var cellularMode: NSButton!
+class SignalStrengthViewController: NSViewController, ModemModular {
     
     @IBOutlet weak var signalStrength: NSSlider!
     
-    var buttonMode: [NSButton: SignalStrengthMode] = [:]
-    
     @IBOutlet weak var liveUpdate: NSButton!
+    @IBOutlet weak var notificationButton: NSButton!
+    
+    var modemModule: ModemModule? {
+        didSet {
+            modemChanged()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonMode[satelliteMode] = SignalStrengthMode.satellite
-        buttonMode[cellularMode] = SignalStrengthMode.cellular
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        updateModule()
+        modemChanged()
         updateStrength()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(NetworkRegistrationViewController.modemChanged),
+                                               name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+                                               object: nil)
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        NotificationCenter.default.removeObserver(self)
     }
     
-    @IBAction func modeSelectionChanged(_ sender: NSButton) {
-        guard let mode = buttonMode[cellularMode] else {
-            return
+    func modemChanged() {
+        DispatchQueue.main.async {
+            if self.liveUpdate != nil {
+                self.liveUpdate.isEnabled = ModemModule.isCurrent(self.modemModule)
+                self.notificationButton.isEnabled = ModemModule.isCurrent(self.modemModule)
+            }
         }
-        DataModelManager.shared.set(value: mode,
-                                    forKey: activeSignalStrengthKey,
-                                    withNotification: false)
-        liveNotification()
     }
     
     @IBAction func signalStrengthValueChanged(_ sender: NSSlider) {
@@ -51,15 +59,7 @@ class SignalStrengthViewController: NSViewController {
     }
     
     @IBAction func sendNotification(_ sender: NSButton) {
-        do {
-            try Server.default.send(notification: SignalStrengthNotification())
-        } catch let error {
-            log(error: "\(error)")
-        }
-    }
-    
-    func liveNotification() {
-        if liveUpdate.state == NSOnState {
+        if ModemModule.isCurrent(self.modemModule) {
             do {
                 try Server.default.send(notification: SignalStrengthNotification())
             } catch let error {
@@ -68,15 +68,13 @@ class SignalStrengthViewController: NSViewController {
         }
     }
     
-    func mode(withDefault defaultValue: SignalStrengthMode = SignalStrengthMode.cellular) -> SignalStrengthMode {
-        let module = DataModelManager.shared.get(forKey: activeSignalStrengthKey, withDefault: defaultValue)
-        return module
-    }
-    
-    func updateModule() {
-        switch mode() {
-        case .cellular: cellularMode.state = NSOnState
-        case .satellite: satelliteMode.state = NSOnState
+    func liveNotification() {
+        if liveUpdate.state == NSOnState && ModemModule.isCurrent(modemModule) {
+            do {
+                try Server.default.send(notification: SignalStrengthNotification())
+            } catch let error {
+                log(error: "\(error)")
+            }
         }
     }
     

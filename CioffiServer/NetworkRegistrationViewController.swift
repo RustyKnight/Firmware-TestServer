@@ -9,27 +9,27 @@
 import Cocoa
 import CioffiAPI
 
-class NetworkRegistrationViewController: NSViewController {
+class NetworkRegistrationViewController: NSViewController, ModemModular {
 
-    @IBOutlet weak var cellularModule: NSButton!
-    @IBOutlet weak var satelliteModule: NSButton!
-    
     @IBOutlet weak var registrationDeniedStatus: NSButton!
     @IBOutlet weak var registeredRoamingStatus: NSButton!
     @IBOutlet weak var registeredHomeNetworkStatus: NSButton!
     @IBOutlet weak var registeringStatus: NSButton!
     @IBOutlet weak var unknownStatus: NSButton!
+    @IBOutlet weak var notificationButton: NSButton!
     
-    var buttonModules: [NSButton: NetworkModule] = [:]
     var buttonStatus: [NSButton: NetworkRegistrationStatus] = [:]
+    
+    var modemModule: ModemModule? {
+        didSet {
+            modemChanged()
+        }
+    }
     
     @IBOutlet weak var liveUpdate: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        buttonModules[satelliteModule] = NetworkModule.satellite
-        buttonModules[cellularModule] = NetworkModule.cellular
         
         buttonStatus[unknownStatus] = .unknown
         buttonStatus[registeringStatus] = .registering
@@ -40,20 +40,30 @@ class NetworkRegistrationViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        updateModule()
         updateStatus()
+        modemChanged()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(NetworkRegistrationViewController.modemChanged),
+                                               name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+                                               object: nil)
     }
     
-    @IBAction func sendNotification(_ sender: AnyObject) {
-        do {
-            try Server.default.send(notification: NetworkRegistrationStatusNotification())
-        } catch let error {
-            log(error: "\(error)")
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    func modemChanged() {
+        DispatchQueue.main.async {
+            if self.liveUpdate != nil {
+                self.liveUpdate.isEnabled = ModemModule.isCurrent(self.modemModule)
+                self.notificationButton.isEnabled = ModemModule.isCurrent(self.modemModule)
+            }
         }
     }
     
-    func liveNotification() {
-        if liveUpdate.state == NSOnState {
+    @IBAction func sendNotification(_ sender: AnyObject) {
+        if ModemModule.isCurrent(self.modemModule) {
             do {
                 try Server.default.send(notification: NetworkRegistrationStatusNotification())
             } catch let error {
@@ -62,14 +72,14 @@ class NetworkRegistrationViewController: NSViewController {
         }
     }
     
-    @IBAction func moduleValueChanged(_ sender: NSButton) {
-        guard let module = buttonModules[sender] else {
-            return
+    func liveNotification() {
+        if liveUpdate.state == NSOnState && ModemModule.isCurrent(modemModule) {
+            do {
+                try Server.default.send(notification: NetworkRegistrationStatusNotification())
+            } catch let error {
+                log(error: "\(error)")
+            }
         }
-        DataModelManager.shared.set(value: module,
-                                    forKey: networkRegistrationModuleKey,
-                                    withNotification: false)
-        liveNotification()
     }
     
     @IBAction func statusValueChanged(_ sender: NSButton) {
@@ -80,18 +90,6 @@ class NetworkRegistrationViewController: NSViewController {
                                     forKey: networkRegistrationStatusKey,
                                     withNotification: false)
         liveNotification()
-    }
-    
-    func module(withDefault defaultValue: NetworkModule = NetworkModule.cellular) -> NetworkModule {
-        let module = DataModelManager.shared.get(forKey: networkRegistrationModuleKey, withDefault: defaultValue)
-        return module
-    }
-    
-    func updateModule() {
-        switch module() {
-        case .cellular: cellularModule.state = NSOnState
-        case .satellite: satelliteModule.state = NSOnState
-        }
     }
     
     func status(withDefault defaultValue: NetworkRegistrationStatus = .unknown) -> NetworkRegistrationStatus {
@@ -106,6 +104,11 @@ class NetworkRegistrationViewController: NSViewController {
         case .registeredRoaming: registeredRoamingStatus.state = NSOnState
         case .registeredHomeNetwork: registeredHomeNetworkStatus.state = NSOnState
         case .registrationDenied: registrationDeniedStatus.state = NSOnState
+        case .poweredOff: fallthrough
+        case .poweredOn: fallthrough
+        case .poweringOn: fallthrough
+        case .poweringOff: fallthrough
+        case .switching: break
         }
     }
 }

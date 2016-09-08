@@ -9,14 +9,20 @@
 import Cocoa
 import CioffiAPI
 
-class NetworkModeViewController: NSViewController {
+class NetworkSelectionViewController: NSViewController {
 
     @IBOutlet weak var smartSwitchingNetworkMode: NSButton!
     @IBOutlet weak var cellularNetworkMode: NSButton!
     @IBOutlet weak var satelliteNetworkMode: NSButton!
+    @IBOutlet weak var smartSwitchingMock: NSSegmentedControl!
     
     var buttonMode: [NSButton: NetworkMode] = [:]
     var networkMode: [NetworkMode: NSButton] = [:]
+    
+    var modemModule: [NetworkMode: ModemModule] = [
+        .satellite: .satellite,
+        .cellular: .cellular
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +39,7 @@ class NetworkModeViewController: NSViewController {
         super.viewWillAppear()
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(NetworkModeViewController.networkModeDataChanged),
+                                               selector: #selector(NetworkSelectionViewController.networkModeDataChanged),
                                                name: NSNotification.Name.init(rawValue: GetNetworkModeFunction.networkModeKey),
                                                object: nil)
         updateNetworkMode()
@@ -49,6 +55,7 @@ class NetworkModeViewController: NSViewController {
             log(warning: "Unknown mode for button \(sender.stringValue)")
             return
         }
+        updateModemModule(from: mode)
         DataModelManager.shared.set(value: mode, forKey: GetNetworkModeFunction.networkModeKey)
     }
     
@@ -57,11 +64,47 @@ class NetworkModeViewController: NSViewController {
     }
     
     func updateNetworkMode() {
-        let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey, withDefault: NetworkMode.satellite)
+        let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+                                               withDefault: NetworkMode.satellite)
+        updateModemModule(from: mode)
         DispatchQueue.main.async {
             if let button = self.networkMode[mode] {
                 button.state = NSOnState
             }
         }
+    }
+    
+    func updateModemModule(from mode: NetworkMode) {
+        var modem: ModemModule = .unknown
+        if mode == .smartSwitch {
+            if smartSwitchingMock.selectedSegment == 0 {
+                modem = .satellite
+            } else {
+                modem = .cellular
+            }
+        } else {
+            modem = modemModule[mode]!
+        }
+        modem.makeCurrent()
+    }
+    
+    var isSmartSwitching: Bool {
+        let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+                                               withDefault: NetworkMode.satellite)
+        return mode == NetworkMode.smartSwitch
+    }
+    
+    @IBAction func smartSwitchingMockChanged(_ sender: AnyObject) {
+        guard isSmartSwitching else {
+            return
+        }
+        
+        var modem: ModemModule = .unknown
+        if smartSwitchingMock.selectedSegment == 0 {
+            modem = .satellite
+        } else {
+            modem = .cellular
+        }
+        modem.makeCurrent()
     }
 }

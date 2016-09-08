@@ -12,59 +12,49 @@ import CioffiAPI
 class ServiceProviderViewController: NSViewController {
     
     @IBOutlet weak var providerName: NSTextField!
-
-    @IBOutlet weak var satelliteProvider: NSButton!
-    @IBOutlet weak var cellularProvider: NSButton!
-    
-    @IBOutlet weak var liveUpdate: NSButton!
-    
-    var providerButtons: [NSButton: NetworkModule] = [:]
+    @IBOutlet weak var notificationButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        providerButtons[satelliteProvider] = .satellite
-        providerButtons[cellularProvider] = .cellular
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         providerName.stringValue = DataModelManager.shared.get(forKey: serviceProviderKey, withDefault: "")
-        let module = DataModelManager.shared.get(forKey: activeServiceProviderKey, withDefault: NetworkModule.cellular)
-        switch module {
-        case .cellular: cellularProvider.state = NSOnState
-        case .satellite: satelliteProvider.state = NSOnState
-        }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(NetworkRegistrationViewController.modemChanged),
+                                               name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+                                               object: nil)
+        modemChanged()
     }
     
-    @IBAction func providerTypeChanged(_ sender: NSButton) {
-        guard let value = providerButtons[sender] else {
-            return
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        modemChanged()
+    }
+    
+    func modemChanged() {
+        DispatchQueue.main.async {
+            if self.notificationButton != nil {
+                self.notificationButton.isEnabled = ModemModule.isCurrent(.cellular)
+            }
         }
-        log(info: "value = \(value)")
-        DataModelManager.shared.set(value: value,
-                                    forKey: activeServiceProviderKey,
-                                    withNotification: false)
-        liveNotification()
     }
     
     @IBAction func providerNameChanged(_ sender: AnyObject) {
         DataModelManager.shared.set(value: providerName.stringValue,
                                     forKey: serviceProviderKey,
                                     withNotification: false)
-        liveNotification()
+        sendNotification()
     }
     
     @IBAction func sendNotification(_ sender: AnyObject) {
-        do {
-            try Server.default.send(notification: ServiceProviderNotification())
-        } catch let error {
-            log(error: "\(error)")
-        }
+        sendNotification()
     }
     
-    func liveNotification() {
-        if liveUpdate.state == NSOnState {
+    func sendNotification() {
+        if ModemModule.cellular.isCurrent {
             do {
                 try Server.default.send(notification: ServiceProviderNotification())
             } catch let error {

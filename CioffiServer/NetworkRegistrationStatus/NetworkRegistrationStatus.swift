@@ -10,15 +10,13 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let networkRegistrationModuleKey = "networkRegistrationModule"
 let networkRegistrationStatusKey = "networkRegistrationStatus"
 
 struct GetNetworkRegistrationStatusFunctionUtilities {
     static func body() -> [String : Any] {
         var body: [String : Any] = [:]
         body["connection"] = [
-            "module": DataModelManager.shared.get(forKey: networkRegistrationModuleKey,
-                                                  withDefault: NetworkModule.satellite).rawValue
+            "module": ModemModule.current.rawValue
         ]
         body["registration"] = [
             "status": DataModelManager.shared.get(forKey: networkRegistrationStatusKey,
@@ -35,8 +33,6 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
         requestType = .getNetworkRegistrationStatus
         responseType = .getNetworkRegistrationStatus
         
-        DataModelManager.shared.set(value: NetworkModule.satellite,
-                                    forKey: networkRegistrationModuleKey)
         DataModelManager.shared.set(value: NetworkRegistrationStatus.registering,
                                     forKey: networkRegistrationStatusKey)
     }

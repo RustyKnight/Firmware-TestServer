@@ -162,7 +162,6 @@ class BroadbandDataViewController: NSViewController {
             return
         }
         
-        log(info: "Set SatelliteBroadbandDataMode to \(status)")
         DataModelManager.shared.set(value: status, forKey: satelliteBroadbandDataActiveModeKey, withNotification: false)
         
         let uplink = DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)

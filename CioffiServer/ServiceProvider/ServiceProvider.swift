@@ -10,25 +10,25 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let activeServiceProviderKey = "activeServiceProvider"
 let serviceProviderKey = "serviceProvider"
 
 struct ServiceProviderUtility {
     static func body() -> [String : Any] {
         var body: [String : Any] = [:]
-        let mode = DataModelManager.shared.get(forKey: activeServiceProviderKey,
-                                               withDefault: NetworkModule.cellular)
-        if mode == .cellular {
+        switch ModemModule.current {
+        case .cellular:
             body["cellular"] = [
                 "provider": DataModelManager.shared.get(forKey: serviceProviderKey,
-                                                      withDefault: "")
+                                                        withDefault: "")
             ]
-        } else if mode == .satellite {
+        case .satellite:
             body["satellite"] = [
                 "provider": DataModelManager.shared.get(forKey: serviceProviderKey,
-                                                      withDefault: "")
+                                                        withDefault: "")
             ]
+        case .unknown: break
         }
+        
         return body
     }
 }
@@ -42,9 +42,6 @@ class GetServiceProvideFunction: DefaultAPIFunction {
         
         DataModelManager.shared.set(value: "McDonalds",
                                     forKey: serviceProviderKey)
-        // Would be nice to get this from somewhere else
-        DataModelManager.shared.set(value: NetworkModule.cellular,
-                                    forKey: activeServiceProviderKey)
     }
     
     override func body() -> [String : Any] {

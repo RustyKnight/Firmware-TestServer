@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1205ADCE1D59929A00E19449 /* BroadbandDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205ADCD1D59929A00E19449 /* BroadbandDataViewController.swift */; };
+		12061A361D80F35F002C986D /* MainGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A341D80F35F002C986D /* MainGroupViewController.swift */; };
+		12061A391D811978002C986D /* CellularBroadbandDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A381D811978002C986D /* CellularBroadbandDataViewController.swift */; };
+		12061A3B1D81269B002C986D /* SAPAViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12061A3A1D81269B002C986D /* SAPAViewContoller.swift */; };
 		120795ED1D7F916B000DD9A5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120795EC1D7F916B000DD9A5 /* Utilities.swift */; };
 		120D05431D594985003E9D12 /* SatelliteBroadbandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120D05421D594985003E9D12 /* SatelliteBroadbandData.swift */; };
 		1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2321D473EF30090A5BD /* SliderCell.swift */; };
@@ -23,7 +26,7 @@
 		1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A24F1D4853740090A5BD /* ServiceProvider.swift */; };
 		1214A2541D4855AA0090A5BD /* BatteryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2531D4855AA0090A5BD /* BatteryStatus.swift */; };
 		1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2561D4871430090A5BD /* VersionViewController.swift */; };
-		1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2581D4871600090A5BD /* NetworkModeViewController.swift */; };
+		1214A25A1D4871600090A5BD /* NetworkSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2581D4871600090A5BD /* NetworkSelectionViewController.swift */; };
 		1214A25F1D488F970090A5BD /* RestrictedAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */; };
 		1214A2631D49721B0090A5BD /* SignalStrengthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */; };
 		1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */; };
@@ -69,6 +72,9 @@
 
 /* Begin PBXFileReference section */
 		1205ADCD1D59929A00E19449 /* BroadbandDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadbandDataViewController.swift; sourceTree = "<group>"; };
+		12061A341D80F35F002C986D /* MainGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGroupViewController.swift; sourceTree = "<group>"; };
+		12061A381D811978002C986D /* CellularBroadbandDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularBroadbandDataViewController.swift; sourceTree = "<group>"; };
+		12061A3A1D81269B002C986D /* SAPAViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPAViewContoller.swift; sourceTree = "<group>"; };
 		120795EC1D7F916B000DD9A5 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		120D05421D594985003E9D12 /* SatelliteBroadbandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteBroadbandData.swift; path = BroadbandData/SatelliteBroadbandData.swift; sourceTree = "<group>"; };
 		1214A2321D473EF30090A5BD /* SliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
@@ -84,7 +90,7 @@
 		1214A24F1D4853740090A5BD /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceProvider.swift; path = ServiceProvider/ServiceProvider.swift; sourceTree = "<group>"; };
 		1214A2531D4855AA0090A5BD /* BatteryStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BatteryStatus.swift; path = BatteryStatus/BatteryStatus.swift; sourceTree = "<group>"; };
 		1214A2561D4871430090A5BD /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
-		1214A2581D4871600090A5BD /* NetworkModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkModeViewController.swift; sourceTree = "<group>"; };
+		1214A2581D4871600090A5BD /* NetworkSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSelectionViewController.swift; sourceTree = "<group>"; };
 		1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictedAccessViewController.swift; sourceTree = "<group>"; };
 		1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalStrengthViewController.swift; sourceTree = "<group>"; };
 		1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRegistrationViewController.swift; sourceTree = "<group>"; };
@@ -203,9 +209,11 @@
 			isa = PBXGroup;
 			children = (
 				1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */,
+				12061A381D811978002C986D /* CellularBroadbandDataViewController.swift */,
 				1205ADCD1D59929A00E19449 /* BroadbandDataViewController.swift */,
 				124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */,
-				1214A2581D4871600090A5BD /* NetworkModeViewController.swift */,
+				12061A341D80F35F002C986D /* MainGroupViewController.swift */,
+				1214A2581D4871600090A5BD /* NetworkSelectionViewController.swift */,
 				1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */,
 				1214A25D1D488F970090A5BD /* RestrictedAccessViewController.swift */,
 				12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */,
@@ -214,6 +222,7 @@
 				1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */,
 				12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */,
 				1214A2561D4871430090A5BD /* VersionViewController.swift */,
+				12061A3A1D81269B002C986D /* SAPAViewContoller.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -392,10 +401,13 @@
 				128008331D51C24B00D10017 /* ServerViewController.swift in Sources */,
 				1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */,
 				1214A2481D48499E0090A5BD /* AccessRestricitions.swift in Sources */,
+				12061A361D80F35F002C986D /* MainGroupViewController.swift in Sources */,
 				12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */,
 				1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */,
 				702F55631D800F9700E4643F /* CellularBroadbandData.swift in Sources */,
+				12061A3B1D81269B002C986D /* SAPAViewContoller.swift in Sources */,
 				1214A2541D4855AA0090A5BD /* BatteryStatus.swift in Sources */,
+				12061A391D811978002C986D /* CellularBroadbandDataViewController.swift in Sources */,
 				12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */,
 				12B0646A1D4AC96A00637053 /* SatelliteServiceModeViewController.swift in Sources */,
 				1205ADCE1D59929A00E19449 /* BroadbandDataViewController.swift in Sources */,
@@ -405,7 +417,7 @@
 				1214A2331D473EF30090A5BD /* SliderCell.swift in Sources */,
 				12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */,
 				120795ED1D7F916B000DD9A5 /* Utilities.swift in Sources */,
-				1214A25A1D4871600090A5BD /* NetworkModeViewController.swift in Sources */,
+				1214A25A1D4871600090A5BD /* NetworkSelectionViewController.swift in Sources */,
 				1214A2501D4853740090A5BD /* ServiceProvider.swift in Sources */,
 				124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */,
 				12B064681D49E9E500637053 /* SatelliteServiceModeFunction.swift in Sources */,
