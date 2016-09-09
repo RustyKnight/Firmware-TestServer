@@ -23,39 +23,8 @@ extension SatelliteBroadbandStreamingIPSpeed: CustomStringConvertible {
 
 class BroadbandDataViewController: NSViewController {
 	
-	@IBOutlet weak var autoNotification: NSButton!
-	
-	@IBOutlet weak var down256kbps: NSButton!
-	@IBOutlet weak var down128kbps: NSButton!
-	@IBOutlet weak var down64kbps: NSButton!
-	@IBOutlet weak var down32kbps: NSButton!
-	@IBOutlet weak var down16kbps: NSButton!
-
-	@IBOutlet weak var up256kbps: NSButton!
-	@IBOutlet weak var up128kbps: NSButton!
-	@IBOutlet weak var up64kbps: NSButton!
-	@IBOutlet weak var up32kbps: NSButton!
-	@IBOutlet weak var up16kbps: NSButton!
-	
-	var downlinkMap: [SatelliteBroadbandStreamingIPSpeed: NSButton]!
-	var uplinkMap: [SatelliteBroadbandStreamingIPSpeed: NSButton]!
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		downlinkMap = [
-			SatelliteBroadbandStreamingIPSpeed.kbps16: down16kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps32: down32kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps64: down64kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps128: down128kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps256: down256kbps,
-		]
-		uplinkMap = [
-			SatelliteBroadbandStreamingIPSpeed.kbps16: up16kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps32: up32kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps64: up64kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps128: up128kbps,
-			SatelliteBroadbandStreamingIPSpeed.kbps256: up256kbps,
-		]
 	}
 	
 	override func viewWillAppear() {
@@ -73,15 +42,10 @@ class BroadbandDataViewController: NSViewController {
 		                                       selector: #selector(BroadbandDataViewController.downlinkSpeedDidChange),
 		                                       name: NSNotification.Name.init(rawValue: satelliteBroadbandDataDownlinkSpeedKey),
 		                                       object: nil)
-		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(BroadbandDataViewController.broadbandStatusDidChange),
-		                                       name: NSNotification.Name.init(rawValue: broadbandDataActiveModeKey),
-		                                       object: nil)
 		
 		updateIPMode()
 		updateUplinkSpeed()
 		updateDownlinkSpeed()
-		updateStatus()
 	}
 	
 	override func viewDidDisappear() {
@@ -107,12 +71,6 @@ class BroadbandDataViewController: NSViewController {
 		}
 	}
 	
-	func broadbandStatusDidChange() {
-		DispatchQueue.main.async {
-			self.updateStatus()
-		}
-	}
-	
 	func updateControl<T: RawRepresentable>(`for` key : String, defaultValue: T, offset: Int) where T.RawValue == Int {
 		let mode = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
 		guard let control = view.viewWithTag(mode.rawValue + offset) as? NSButton else {
@@ -134,22 +92,6 @@ class BroadbandDataViewController: NSViewController {
 		updateControl(for: satelliteBroadbandDataDownlinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 300)
 	}
 	
-	func updateStatus() {
-		updateControl(for: broadbandDataActiveModeKey, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
-		updateStatusInfo()
-	}
-	
-	func updateStatusInfo() {
-		let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey, withDefault: BroadbandDataModeStatus.dataInactive)
-		if mode != .dataInactive {
-			let uplink = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-			let downlink = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-			
-			downlinkMap[downlink]!.state = NSOnState
-			downlinkMap[uplink]!.state = NSOnState
-		}
-	}
-	
 	@IBAction func ipModeChanged(_ sender: NSButton) {
 		let modeValue = sender.tag - 100
 		guard let mode = SatelliteBroadbandDataMode.init(rawValue: modeValue) else {
@@ -158,8 +100,6 @@ class BroadbandDataViewController: NSViewController {
 		}
 		
 		DataModelManager.shared.set(value: mode, forKey: satelliteBroadbandDataModeKey, withNotification: false)
-		updateStatus()
-		sendNotification()
 	}
 	
 	@IBAction func uplinkSpeedChanged(_ sender: NSButton) {
@@ -170,8 +110,6 @@ class BroadbandDataViewController: NSViewController {
 		}
 		
 		DataModelManager.shared.set(value: speed, forKey: satelliteBroadbandDataUplinkSpeedKey, withNotification: false)
-		updateStatus()
-		sendNotification()
 	}
 	
 	@IBAction func downlinkSpeedChanged(_ sender: NSButton) {
@@ -182,44 +120,5 @@ class BroadbandDataViewController: NSViewController {
 		}
 		
 		DataModelManager.shared.set(value: speed, forKey: satelliteBroadbandDataDownlinkSpeedKey, withNotification: false)
-		updateStatus()
-		sendNotification()
-	}
-	
-	@IBAction func statusModeChanged(_ sender: NSButton) {
-		let modeValue = sender.tag - 400
-		guard let status = BroadbandDataModeStatus.init(rawValue: modeValue) else {
-			log(warning: "Unknown BroadbandDataStatus mode \(modeValue)")
-			return
-		}
-		
-		DataModelManager.shared.set(value: status, forKey: broadbandDataActiveModeKey, withNotification: false)
-		
-		let uplink = DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-		let downlink = DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-		DataModelManager.shared.set(value: uplink, forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withNotification: false)
-		DataModelManager.shared.set(value: downlink, forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withNotification: false)
-		updateStatus()
-		sendNotification()
-	}
-	
-	@IBAction func sendNotificationAction(_ sender: AnyObject) {
-		sendNotification(ignoreAuto: true)
-	}
-	
-	func sendNotification(ignoreAuto: Bool = false) {
-		if autoNotification.state == NSOnState || ignoreAuto {
-			do {
-				try Server.default.send(notification: BroadbandDataModeStatusNotification())
-			} catch let error {
-				log(info: "\(error)")
-			}
-		}
-	}
-	
-	@IBAction func activeDownlink(_ sender: NSButton) {
-	}
-	
-	@IBAction func activeUpdownlink(_ sender: NSButton) {
 	}
 }

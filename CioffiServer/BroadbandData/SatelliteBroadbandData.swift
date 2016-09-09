@@ -10,94 +10,16 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
+// This deals with the settings
+
 // Represents the active mode status, which is seperate from the settings
-let satelliteBroadbandDataActiveModeKey = "satelliteBroadbandDataActiveMode" // What is the "active" mode
 let satelliteBroadbandDataActiveUplinkSpeedKey = "satelliteBroadbandDataActiveUplinkSpeed" // What is the "active" speed
 let satelliteBroadbandDataActiveDownlinkSpeedKey = "satelliteBroadbandDataActiveDownlinkSpeed" // What is the "active" speed
 
-let satelliteBroadbandDataModeKey = "satelliteBroadbandDataMode"
 let satelliteBroadbandDataUplinkSpeedKey = "satelliteBroadbandDataUplinkSpeed"
 let satelliteBroadbandDataDownlinkSpeedKey = "satelliteBroadbandDataDownlinkSpeed"
 
-class SatelliteBroadbandStatusModeSwitcher: ModeSwitcher<SatelliteBroadbandDataStatus> {
-
-    init(to: SatelliteBroadbandDataStatus, through: SatelliteBroadbandDataStatus) {
-        super.init(key: satelliteBroadbandDataActiveModeKey,
-                   to: AnySwitcherState<SatelliteBroadbandDataStatus>(state: to, notification: SatelliteBroadbandDataStatusNotification()),
-                   through: AnySwitcherState<SatelliteBroadbandDataStatus>(state: through, notification: SatelliteBroadbandDataStatusNotification()),
-                   defaultMode: SatelliteBroadbandDataStatus.dataInactive,
-                   initialDelay: 0.0,
-                   switchDelay:  5.0)
-    }
-
-}
-
-
-struct SatelliteBroadbandDataStatusUtilities {
-    
-    static func bodyForCurrentStatus() -> [String : Any] {
-        let mode = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveModeKey,
-                                               withDefault: SatelliteBroadbandDataStatus.dataInactive)
-        log(info: "\(satelliteBroadbandDataActiveModeKey) = \(mode)")
-        return body(for: mode)
-    }
-    
-    static func body(`for` mode: SatelliteBroadbandDataStatus) -> [String : Any]{
-        var uplinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil
-        var downlinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil
-        
-        switch mode {
-        case .activatingStreamingIP: fallthrough
-        case .streamingIP:
-            uplinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-            downlinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-        default:
-            break
-        }
-        
-        return body(for: mode, uplinkSpeed: uplinkSpeed, downlinkSpeed: downlinkSpeed)
-    }
-    
-    static func body(`for` mode: SatelliteBroadbandDataStatus,
-                     uplinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil,
-                     downlinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil) -> [String : Any]{
-        var data: [String : Any] = [:]
-        data["broadband"] = [
-            "mode": mode.rawValue
-        ]
-        guard let uplinkSpeed = uplinkSpeed, let downlinkSpeed = downlinkSpeed else {
-            return data
-        }
-        data["broadband"] = ["uplinkspeed": uplinkSpeed.rawValue]
-        data["broadband"] = ["downlinkspeed": downlinkSpeed.rawValue]
-        
-        return data
-    }
-}
-
-struct SatelliteBroadbandDataStatusNotification: APINotification {
-    let type: NotificationType = NotificationType.satelliteBroadbandData
-    
-    var body: [String : Any] {
-        return SatelliteBroadbandDataStatusUtilities.bodyForCurrentStatus()
-    }
-}
-
-
-class GetSatelliteBroadbandConnectionStatus: DefaultAPIFunction {
-    override init() {
-        super.init()
-        
-        responseType = .getSatelliteBroadbandDataStatus
-        requestType = .getSatelliteBroadbandDataStatus
-        
-        DataModelManager.shared.set(value: SatelliteBroadbandDataStatus.dataInactive, forKey: satelliteBroadbandDataActiveModeKey)
-   }
-    
-    override func body() -> [String : Any] {
-        return SatelliteBroadbandDataStatusUtilities.bodyForCurrentStatus()
-    }
-}
+let satelliteBroadbandDataModeKey = "broadbandDataMode"
 
 struct SatelliteBroadbandDataIPModeUtilities {
     static func body() -> [String : Any] {

@@ -69,7 +69,7 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.getSatelliteBroadbandStreamingSpeed] = GetSatelliteBroadbandDataSpeed()
 		functions[.setSatelliteBroadbandStreamingSpeed] = SetSatelliteBroadbandDataSpeed()
 		
-		functions[.getSatelliteBroadbandDataStatus] = GetSatelliteBroadbandConnectionStatus()
+		functions[.getBroadbandDataModeStatus] = GetBroadbandDataModeStatus()
 		functions[.startStopBroadbandData] = StartStopBroadbandDataMode()
 		
 		functions[.getAutomaticSAPAStatus] = GetAutomaticSAPAStatusFunction()
@@ -78,7 +78,7 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.getSAPAStatus] = GetSAPAStatusFunction()
 		functions[.startStopSAPA] = StartStopSAPAFunction()
 		
-		functions[.getCellularBroadbandModeStatus] = GetCellularBroadbandDataStatusFunction()
+		functions[.getCellularNetworkMode] = GetCellularNetworkModeFunction()
 		
 	}
 	

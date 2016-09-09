@@ -16,8 +16,8 @@ public enum NotificationType: Int {
 	case serviceProvider = 22
 	case batteryStatus = 25
 	case satelliteServiceMode = 30
-	case satelliteBroadbandData = 41
-	case cellularBroadbandData = 46
+	case broadbandDataModeStatus = 41
+	case cellularNetworkMode = 46
 	case sapaStatus = 55
 }
 
@@ -38,13 +38,14 @@ public enum ResponseType: Int {
 	case setSatelliteServiceMode = 29
 	
 	case startStopBroadbandData = 38
-	case getSatelliteBroadbandDataStatus = 40
+	case getBroadbandDataModeStatus = 40
+	
 	case setSatelliteBroadbandDataIPMode = 32
 	case getSatelliteBroadbandDataIPMode = 34
 	case setSatelliteBroadbandStreamingSpeed = 36
 	case getSatelliteBroadbandStreamingSpeed = 43
 	
-	case getCellularBroadbandModeStatus = 45
+	case getCellularNetworkMode = 45
 	
 	case setAutomaticSAPAStatus = 48
 	case getAutomaticSAPAStatus = 50

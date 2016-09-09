@@ -25,13 +25,14 @@ public enum RequestType: Int {
     case setSatelliteServiceMode = 28
     
     case startStopBroadbandData = 37
-    case getSatelliteBroadbandDataStatus = 39
+    case getBroadbandDataModeStatus = 39
+	
     case setSatelliteBroadbandDataIPMode = 31
     case getSatelliteBroadbandDataIPMode = 33
     case setSatelliteBroadbandStreamingSpeed = 35
     case getSatelliteBroadbandStreamingSpeed = 42
     
-    case getCellularBroadbandModeStatus = 44
+    case getCellularNetworkMode = 44
     
     case getAutomaticSAPAStatus = 49
     case setAutomaticSAPAStatus = 47

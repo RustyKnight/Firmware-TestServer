@@ -860,7 +860,7 @@
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="6Fk-CL-uB4">
-                                            <rect key="frame" x="1" y="493" width="0.0" height="16"/>
+                                            <rect key="frame" x="1" y="239" width="161" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="arg-u0-RLz">
@@ -904,7 +904,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-Xt-Qxk">
-                                <rect key="frame" x="175" y="118" width="100" height="64"/>
+                                <rect key="frame" x="175" y="216" width="100" height="64"/>
                                 <subviews>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="71v-dI-tR3">
                                         <rect key="frame" x="-1" y="47" width="71" height="18"/>
@@ -949,7 +949,7 @@
                                 </customSpacing>
                             </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L1C-gs-Y9B">
-                                <rect key="frame" x="146" y="93" width="158" height="17"/>
+                                <rect key="frame" x="146" y="191" width="158" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mock Smart Switching as" id="tym-dH-Ybd">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -957,7 +957,7 @@
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d55-xQ-c06">
-                                <rect key="frame" x="153" y="62" width="145" height="24"/>
+                                <rect key="frame" x="153" y="160" width="145" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="ufl-4L-8cM">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -970,7 +970,7 @@
                                 </connections>
                             </segmentedControl>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-AK-7hk">
-                                <rect key="frame" x="150" y="40" width="151" height="18"/>
+                                <rect key="frame" x="150" y="138" width="151" height="18"/>
                                 <buttonCell key="cell" type="check" title="With life cycle events" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KxF-4n-chx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -978,13 +978,13 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="RvX-Xt-Qxk" firstAttribute="centerY" secondItem="z8h-LG-lTm" secondAttribute="centerY" id="7dM-Hy-D87"/>
                             <constraint firstItem="d55-xQ-c06" firstAttribute="centerX" secondItem="L1C-gs-Y9B" secondAttribute="centerX" id="PvZ-38-G5q"/>
                             <constraint firstItem="L1C-gs-Y9B" firstAttribute="centerX" secondItem="RvX-Xt-Qxk" secondAttribute="centerX" id="Vb8-2T-PHs"/>
                             <constraint firstItem="L1C-gs-Y9B" firstAttribute="top" secondItem="RvX-Xt-Qxk" secondAttribute="bottom" constant="8" id="WAm-iG-Uld"/>
                             <constraint firstItem="Xeg-AK-7hk" firstAttribute="top" secondItem="d55-xQ-c06" secondAttribute="bottom" constant="8" id="ZWi-t2-VHd"/>
                             <constraint firstItem="RvX-Xt-Qxk" firstAttribute="centerX" secondItem="z8h-LG-lTm" secondAttribute="centerX" id="tIu-zo-Hcf"/>
                             <constraint firstItem="Xeg-AK-7hk" firstAttribute="centerX" secondItem="d55-xQ-c06" secondAttribute="centerX" id="tri-tT-We6"/>
+                            <constraint firstItem="RvX-Xt-Qxk" firstAttribute="top" secondItem="z8h-LG-lTm" secondAttribute="top" constant="20" id="wBX-ho-f8Z"/>
                             <constraint firstItem="d55-xQ-c06" firstAttribute="top" secondItem="L1C-gs-Y9B" secondAttribute="bottom" constant="8" id="xVE-el-vYz"/>
                         </constraints>
                     </view>
@@ -1008,7 +1008,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-bT-YYm">
-                                <rect key="frame" x="161" y="98" width="128" height="105"/>
+                                <rect key="frame" x="161" y="175" width="128" height="105"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aow-sH-wng">
                                         <rect key="frame" x="0.0" y="0.0" width="63" height="105"/>
@@ -1155,7 +1155,7 @@
                                 </customSpacing>
                             </stackView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oHU-eT-p5E">
-                                <rect key="frame" x="67" y="70" width="104" height="17"/>
+                                <rect key="frame" x="67" y="147" width="104" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Admin Password" id="sp8-IL-4Rw">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1163,7 +1163,7 @@
                                 </textFieldCell>
                             </textField>
                             <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ay-Pn-k9C">
-                                <rect key="frame" x="177" y="68" width="96" height="22"/>
+                                <rect key="frame" x="177" y="145" width="96" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="fqT-GI-pmv"/>
                                 </constraints>
@@ -1183,10 +1183,10 @@
                         <constraints>
                             <constraint firstItem="0ay-Pn-k9C" firstAttribute="leading" secondItem="oHU-eT-p5E" secondAttribute="trailing" constant="8" id="FlX-YG-eT5"/>
                             <constraint firstItem="YNC-bT-YYm" firstAttribute="centerX" secondItem="iW0-fj-J5Z" secondAttribute="centerX" id="P4P-9e-Nsl"/>
+                            <constraint firstItem="YNC-bT-YYm" firstAttribute="top" secondItem="iW0-fj-J5Z" secondAttribute="top" constant="20" id="byK-oH-dg4"/>
                             <constraint firstItem="oHU-eT-p5E" firstAttribute="centerY" secondItem="0ay-Pn-k9C" secondAttribute="centerY" id="epG-Wt-sv3"/>
                             <constraint firstItem="0ay-Pn-k9C" firstAttribute="centerX" secondItem="YNC-bT-YYm" secondAttribute="centerX" id="ibf-Xy-X9m"/>
                             <constraint firstItem="0ay-Pn-k9C" firstAttribute="top" secondItem="YNC-bT-YYm" secondAttribute="bottom" constant="8" id="rPA-l8-sj6"/>
-                            <constraint firstItem="YNC-bT-YYm" firstAttribute="centerY" secondItem="iW0-fj-J5Z" secondAttribute="centerY" id="xX1-LE-0iT"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1214,7 +1214,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brO-CV-zyD">
-                                <rect key="frame" x="134" y="82" width="182" height="137"/>
+                                <rect key="frame" x="134" y="143" width="182" height="137"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cvj-SA-uLs">
                                         <rect key="frame" x="0.0" y="0.0" width="182" height="137"/>
@@ -1304,7 +1304,7 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lbk-Yw-KAQ">
-                                <rect key="frame" x="153" y="34" width="145" height="32"/>
+                                <rect key="frame" x="153" y="95" width="145" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notification" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qgM-4e-esT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1314,7 +1314,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="wOg-za-FAx">
-                                <rect key="frame" x="298" y="43" width="95" height="18"/>
+                                <rect key="frame" x="298" y="104" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vDm-da-csb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1322,12 +1322,12 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="brO-CV-zyD" firstAttribute="top" secondItem="UD4-tX-Gum" secondAttribute="top" constant="20" id="2zD-Sb-EuX"/>
                             <constraint firstItem="Lbk-Yw-KAQ" firstAttribute="top" secondItem="brO-CV-zyD" secondAttribute="bottom" constant="20" id="Ej4-RL-bqp"/>
                             <constraint firstItem="brO-CV-zyD" firstAttribute="centerX" secondItem="UD4-tX-Gum" secondAttribute="centerX" id="dTq-Ao-8Xo"/>
                             <constraint firstItem="wOg-za-FAx" firstAttribute="leading" secondItem="Lbk-Yw-KAQ" secondAttribute="trailing" constant="8" id="eEt-bI-CLG"/>
                             <constraint firstItem="Lbk-Yw-KAQ" firstAttribute="centerX" secondItem="brO-CV-zyD" secondAttribute="centerX" id="jdc-Z3-jid"/>
                             <constraint firstItem="wOg-za-FAx" firstAttribute="centerY" secondItem="Lbk-Yw-KAQ" secondAttribute="centerY" id="kAS-UJ-yZj"/>
-                            <constraint firstItem="brO-CV-zyD" firstAttribute="centerY" secondItem="UD4-tX-Gum" secondAttribute="centerY" id="u5J-uV-O3U"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1344,29 +1344,30 @@
             </objects>
             <point key="canvasLocation" x="1251" y="894"/>
         </scene>
-        <!--Cellular Broadband Data-->
+        <!--Cellular Network Mode-->
         <scene sceneID="iDH-mg-e86">
             <objects>
-                <viewController title="Cellular Broadband Data" storyboardIdentifier="CellularBroadbandData" id="lW1-cf-Mwm" customClass="CellularBroadbandDataViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Cellular Network Mode" storyboardIdentifier="CellularNetworkMode" id="lW1-cf-Mwm" customClass="CellularNetworkModeViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="52d-M7-eKr">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sec-vP-GDF">
-                                <rect key="frame" x="161" y="137" width="129" height="24"/>
+                                <rect key="frame" x="153" y="257" width="145" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="ah0-tb-qiB">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment label="3G" width="61" selected="YES"/>
-                                        <segment label="4G" width="61" tag="1"/>
+                                        <segment label="Unknown" width="61" selected="YES"/>
+                                        <segment label="3G"/>
+                                        <segment label="4G"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
                                     <action selector="selectedStateDidChange:" target="lW1-cf-Mwm" id="2RX-1p-6XR"/>
                                 </connections>
                             </segmentedControl>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akA-X8-VH5">
-                                <rect key="frame" x="153" y="96" width="145" height="32"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="akA-X8-VH5">
+                                <rect key="frame" x="153" y="215" width="145" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notification" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0ss-ZO-ACK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1376,38 +1377,25 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="NpX-AH-cLZ">
-                                <rect key="frame" x="298" y="104" width="95" height="18"/>
+                                <rect key="frame" x="298" y="224" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rb8-s9-KmN">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="G17-mC-A97">
-                                <rect key="frame" x="195" y="166" width="60" height="18"/>
-                                <buttonCell key="cell" type="check" title="Active" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GAd-fg-R8w">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="activeStateDidChange:" target="lW1-cf-Mwm" id="OAJ-oh-YAS"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="akA-X8-VH5" firstAttribute="top" secondItem="Sec-vP-GDF" secondAttribute="bottom" constant="16" id="1Ja-NL-hK8"/>
+                            <constraint firstItem="Sec-vP-GDF" firstAttribute="top" secondItem="52d-M7-eKr" secondAttribute="top" constant="20" id="2gT-8b-a8z"/>
                             <constraint firstItem="Sec-vP-GDF" firstAttribute="centerX" secondItem="52d-M7-eKr" secondAttribute="centerX" id="4qM-Q0-VCT"/>
                             <constraint firstItem="akA-X8-VH5" firstAttribute="centerY" secondItem="NpX-AH-cLZ" secondAttribute="centerY" id="BOP-tM-2Op"/>
                             <constraint firstItem="NpX-AH-cLZ" firstAttribute="leading" secondItem="akA-X8-VH5" secondAttribute="trailing" constant="8" id="MoS-qC-Z6o"/>
-                            <constraint firstItem="G17-mC-A97" firstAttribute="centerX" secondItem="Sec-vP-GDF" secondAttribute="centerX" id="Nz8-rh-FQv"/>
-                            <constraint firstItem="Sec-vP-GDF" firstAttribute="top" secondItem="G17-mC-A97" secondAttribute="bottom" constant="8" id="dfU-W4-mRx"/>
-                            <constraint firstItem="Sec-vP-GDF" firstAttribute="centerY" secondItem="52d-M7-eKr" secondAttribute="centerY" id="faL-iu-2ym"/>
                             <constraint firstItem="akA-X8-VH5" firstAttribute="centerX" secondItem="Sec-vP-GDF" secondAttribute="centerX" id="wfo-iU-T0K"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="broadbandDataSegement" destination="Sec-vP-GDF" id="BcY-O1-K9h"/>
                         <outlet property="liveUpdate" destination="NpX-AH-cLZ" id="NNc-8U-kVi"/>
-                        <outlet property="modeActive" destination="G17-mC-A97" id="66c-qG-6Yt"/>
                         <outlet property="sendNotification" destination="akA-X8-VH5" id="qRN-2D-7MZ"/>
                     </connections>
                 </viewController>
@@ -1424,7 +1412,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCx-Mp-HvL">
-                                <rect key="frame" x="168" y="132" width="115" height="36"/>
+                                <rect key="frame" x="168" y="244" width="115" height="36"/>
                                 <subviews>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="xDL-va-8f1">
                                         <rect key="frame" x="-2" y="20" width="119" height="18"/>
@@ -1454,7 +1442,7 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Da-hZ-nAB">
-                                <rect key="frame" x="153" y="84" width="145" height="32"/>
+                                <rect key="frame" x="153" y="196" width="145" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notification" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uyd-iU-0zx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1464,7 +1452,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="f2o-bz-yw1">
-                                <rect key="frame" x="298" y="93" width="95" height="18"/>
+                                <rect key="frame" x="298" y="205" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xYA-jP-vTS">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1472,7 +1460,7 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="jCx-Mp-HvL" firstAttribute="centerY" secondItem="ZaQ-7G-nrk" secondAttribute="centerY" id="4WH-8u-vqv"/>
+                            <constraint firstItem="jCx-Mp-HvL" firstAttribute="top" secondItem="ZaQ-7G-nrk" secondAttribute="top" constant="20" id="29E-SE-WKz"/>
                             <constraint firstItem="2Da-hZ-nAB" firstAttribute="centerX" secondItem="jCx-Mp-HvL" secondAttribute="centerX" id="IYr-Lj-c7E"/>
                             <constraint firstItem="2Da-hZ-nAB" firstAttribute="centerY" secondItem="f2o-bz-yw1" secondAttribute="centerY" id="dCR-o7-k2W"/>
                             <constraint firstItem="jCx-Mp-HvL" firstAttribute="centerX" secondItem="ZaQ-7G-nrk" secondAttribute="centerX" id="kQf-LM-jvO"/>
@@ -1491,45 +1479,231 @@
             </objects>
             <point key="canvasLocation" x="1766" y="1257"/>
         </scene>
+        <!--Broadband Data Mode-->
+        <scene sceneID="HDK-wv-8Hx">
+            <objects>
+                <viewController title="Broadband Data Mode" storyboardIdentifier="BroadbandDataMode" id="z09-dq-Lar" customClass="BroadbandDataModeViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="860-B1-ojU">
+                        <rect key="frame" x="0.0" y="0.0" width="661" height="461"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-Dv-ERB">
+                                <rect key="frame" x="229" y="185" width="203" height="256"/>
+                                <subviews>
+                                    <button tag="408" translatesAutoresizingMaskIntoConstraints="NO" id="LzF-MG-pxj">
+                                        <rect key="frame" x="-1" y="239" width="42" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jsw-OK-hrl">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="enL-LG-T7u"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="400" translatesAutoresizingMaskIntoConstraints="NO" id="ii5-G9-ypw">
+                                        <rect key="frame" x="-1" y="215" width="93" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="fzZ-st-Hxd">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="vnE-jH-TEG"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="401" translatesAutoresizingMaskIntoConstraints="NO" id="Wyk-Il-erp">
+                                        <rect key="frame" x="-1" y="191" width="99" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="p4a-Pc-mlh">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="Ggp-PX-WSl"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="402" translatesAutoresizingMaskIntoConstraints="NO" id="tZG-si-nSK">
+                                        <rect key="frame" x="-1" y="167" width="157" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Activating Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hxD-zU-sbt">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="Cm1-pq-HDt"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="403" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WCJ-u1-upi">
+                                        <rect key="frame" x="-1" y="143" width="163" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Activating Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="d7w-hv-oxJ">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="Xt8-iZ-4x6"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="404" translatesAutoresizingMaskIntoConstraints="NO" id="tW3-as-MSU">
+                                        <rect key="frame" x="-1" y="119" width="199" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Failed to activate Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="bwQ-mV-UyU">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="84g-Xc-9op"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="405" translatesAutoresizingMaskIntoConstraints="NO" id="OOk-9E-EgV">
+                                        <rect key="frame" x="-1" y="95" width="206" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Failed to activate Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3d3-Tz-b0v">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="ZHE-Po-qDt"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="406" translatesAutoresizingMaskIntoConstraints="NO" id="nvr-QM-Rdm">
+                                        <rect key="frame" x="-1" y="71" width="203" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Failed to deactive Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="c9i-Dw-hiB">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="qQP-Jm-kKS"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="407" translatesAutoresizingMaskIntoConstraints="NO" id="j5Y-H2-NLD">
+                                        <rect key="frame" x="-1" y="47" width="202" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Failed to deative Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hyf-Tg-MWY">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="q8c-qH-SSq"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="409" translatesAutoresizingMaskIntoConstraints="NO" id="bTj-Ot-ljJ">
+                                        <rect key="frame" x="-1" y="23" width="168" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Deactiveing Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="74t-Zh-Ro9">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="kTY-yD-gds"/>
+                                        </connections>
+                                    </button>
+                                    <button tag="410" translatesAutoresizingMaskIntoConstraints="NO" id="YgC-0U-DLo">
+                                        <rect key="frame" x="-1" y="-1" width="179" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Deactivating Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="FLq-pF-lR6">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="statusModeChanged:" target="z09-dq-Lar" id="8Yb-uC-LXz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4K-cG-Jlt">
+                                <rect key="frame" x="257" y="149" width="148" height="32"/>
+                                <buttonCell key="cell" type="push" title="Send Notificiation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="81v-mm-7ew">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sendNotificationAction:" target="z09-dq-Lar" id="GfO-bB-X0p"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="8ds-HU-fUW">
+                                <rect key="frame" x="405" y="158" width="95" height="18"/>
+                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Sfw-wZ-WGs">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="F4K-cG-Jlt" secondAttribute="bottom" constant="20" id="8fM-Sk-c6q"/>
+                            <constraint firstItem="uD9-Dv-ERB" firstAttribute="top" secondItem="860-B1-ojU" secondAttribute="top" constant="20" id="Ei8-dY-k0S"/>
+                            <constraint firstItem="uD9-Dv-ERB" firstAttribute="centerX" secondItem="860-B1-ojU" secondAttribute="centerX" id="Gif-bE-U8F"/>
+                            <constraint firstItem="8ds-HU-fUW" firstAttribute="leading" secondItem="F4K-cG-Jlt" secondAttribute="trailing" constant="8" id="Rvk-sa-09i"/>
+                            <constraint firstItem="F4K-cG-Jlt" firstAttribute="top" secondItem="uD9-Dv-ERB" secondAttribute="bottom" constant="8" id="SUq-zA-nMk"/>
+                            <constraint firstItem="F4K-cG-Jlt" firstAttribute="centerX" secondItem="uD9-Dv-ERB" secondAttribute="centerX" id="Xlh-Tx-HfQ"/>
+                            <constraint firstItem="8ds-HU-fUW" firstAttribute="centerY" secondItem="F4K-cG-Jlt" secondAttribute="centerY" id="mUg-n0-sz5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="liveUpdateButton" destination="8ds-HU-fUW" id="l3N-lH-A7E"/>
+                        <outlet property="sendNotifcationButton" destination="F4K-cG-Jlt" id="Ify-fu-FiH"/>
+                    </connections>
+                </viewController>
+                <customObject id="jtW-lj-uoW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871.5" y="1710.5"/>
+        </scene>
         <!--Broadband Data-->
         <scene sceneID="Swp-80-zlO">
             <objects>
-                <viewController title="Broadband Data" storyboardIdentifier="SatelliteBroadbandData" id="uiZ-9d-wsv" customClass="BroadbandDataViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Broadband Data" storyboardIdentifier="SatelliteBroadbandDataSettings" id="uiZ-9d-wsv" customClass="BroadbandDataViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="A9f-Uo-gda">
                         <rect key="frame" x="0.0" y="0.0" width="924" height="397"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LSX-FP-Pf6">
-                                <rect key="frame" x="216" y="58" width="492" height="281"/>
+                                <rect key="frame" x="324" y="215" width="276" height="162"/>
                                 <subviews>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVg-oF-L8y">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="281"/>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVg-oF-L8y">
+                                        <rect key="frame" x="0.0" y="0.0" width="276" height="162"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Fr-6o-Ndd">
-                                                <rect key="frame" x="-2" y="264" width="55" height="17"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Fr-6o-Ndd">
+                                                <rect key="frame" x="-2" y="145" width="55" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings" id="ZJZ-zb-TUz">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u01-xB-qn0">
-                                                <rect key="frame" x="0.0" y="0.0" width="187" height="256"/>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u01-xB-qn0">
+                                                <rect key="frame" x="0.0" y="0.0" width="276" height="137"/>
                                                 <subviews>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4G-3o-yh3">
-                                                        <rect key="frame" x="0.0" y="46" width="187" height="210"/>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4G-3o-yh3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="276" height="137"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ETH-7p-PGj">
-                                                                <rect key="frame" x="-2" y="193" width="54" height="17"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="IP Mode" id="rwh-me-Ff8">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
                                                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6FR-E1-U6w">
-                                                                <rect key="frame" x="0.0" y="145" width="81" height="40"/>
+                                                                <rect key="frame" x="0.0" y="72" width="81" height="65"/>
                                                                 <subviews>
+                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ETH-7p-PGj">
+                                                                        <rect key="frame" x="-2" y="48" width="54" height="17"/>
+                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="IP Mode" id="rwh-me-Ff8">
+                                                                            <font key="font" metaFont="system"/>
+                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        </textFieldCell>
+                                                                    </textField>
                                                                     <button tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="nO2-m1-5eC">
                                                                         <rect key="frame" x="-1" y="23" width="78" height="18"/>
                                                                         <buttonCell key="cell" type="radio" title="Standard" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="02m-Aw-tV4">
@@ -1554,14 +1728,16 @@
                                                                 <visibilityPriorities>
                                                                     <integer value="1000"/>
                                                                     <integer value="1000"/>
+                                                                    <integer value="1000"/>
                                                                 </visibilityPriorities>
                                                                 <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
                                                                 </customSpacing>
                                                             </stackView>
                                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mg-0x-s3n">
-                                                                <rect key="frame" x="0.0" y="0.0" width="187" height="137"/>
+                                                                <rect key="frame" x="89" y="0.0" width="187" height="137"/>
                                                                 <subviews>
                                                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XcG-Th-29Y">
                                                                         <rect key="frame" x="0.0" y="0.0" width="81" height="137"/>
@@ -1757,252 +1933,6 @@
                                                         <visibilityPriorities>
                                                             <integer value="1000"/>
                                                             <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
-                                                </subviews>
-                                                <visibilityPriorities>
-                                                    <integer value="1000"/>
-                                                </visibilityPriorities>
-                                                <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                </customSpacing>
-                                            </stackView>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsD-6x-xBH">
-                                        <rect key="frame" x="195" y="0.0" width="297" height="281"/>
-                                        <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jgn-be-sJN">
-                                                <rect key="frame" x="-2" y="264" width="43" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status" id="n7P-6W-43p">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pya-Mj-KIV">
-                                                <rect key="frame" x="0.0" y="0.0" width="297" height="256"/>
-                                                <subviews>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bFd-S3-Ca6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="203" height="256"/>
-                                                        <subviews>
-                                                            <button tag="408" translatesAutoresizingMaskIntoConstraints="NO" id="7jL-Q7-Jwp">
-                                                                <rect key="frame" x="-1" y="239" width="42" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kmS-Ml-3GZ">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="ieV-o2-6cV"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="400" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-C7-Zvu">
-                                                                <rect key="frame" x="-1" y="215" width="93" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="its-Tg-Z0z">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="Vrf-lh-iq8"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="401" translatesAutoresizingMaskIntoConstraints="NO" id="uKo-GZ-fIn">
-                                                                <rect key="frame" x="-1" y="191" width="99" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nHr-56-QXB">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="GmG-tf-KGV"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="402" translatesAutoresizingMaskIntoConstraints="NO" id="DcR-nf-Bmy">
-                                                                <rect key="frame" x="-1" y="167" width="157" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Activating Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="j77-Xk-FBH">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="Fvd-R7-a9h"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="403" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hj6-66-nkm">
-                                                                <rect key="frame" x="-1" y="143" width="163" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Activating Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="64m-6P-BY9">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="sMg-OB-SyS"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="404" translatesAutoresizingMaskIntoConstraints="NO" id="Xo4-dn-eiu">
-                                                                <rect key="frame" x="-1" y="119" width="199" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Failed to activate Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="0uq-V7-Dso">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="fbc-7E-sMy"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="405" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-YH-SDL">
-                                                                <rect key="frame" x="-1" y="95" width="206" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Failed to activate Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Egd-5L-uu0">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="aDs-1Y-mxb"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="406" translatesAutoresizingMaskIntoConstraints="NO" id="Nj4-17-l2T">
-                                                                <rect key="frame" x="-1" y="71" width="203" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Failed to deactive Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="80J-wU-eUs">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="aYP-AF-1MD"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="407" translatesAutoresizingMaskIntoConstraints="NO" id="ifj-Xt-UkH">
-                                                                <rect key="frame" x="-1" y="47" width="202" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Failed to deative Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="CqX-fh-lME">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="MyW-cw-4Qi"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="409" translatesAutoresizingMaskIntoConstraints="NO" id="xsi-ab-HJW">
-                                                                <rect key="frame" x="-1" y="23" width="168" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Deactiveing Standard IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SDA-ZQ-Y1u">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="ocE-0k-enq"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button tag="410" translatesAutoresizingMaskIntoConstraints="NO" id="WbZ-7k-ZYC">
-                                                                <rect key="frame" x="-1" y="-1" width="179" height="18"/>
-                                                                <buttonCell key="cell" type="radio" title="Deactivating Streaming IP" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="p6C-8j-9i9">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="statusModeChanged:" target="uiZ-9d-wsv" id="CYi-UD-SDY"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Sx-kB-g0T">
-                                                        <rect key="frame" x="211" y="214" width="86" height="42"/>
-                                                        <subviews>
-                                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-vM-OxH">
-                                                                <rect key="frame" x="0.0" y="25" width="70" height="17"/>
-                                                                <subviews>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sPI-ID-JkW">
-                                                                        <rect key="frame" x="-2" y="0.0" width="47" height="17"/>
-                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Uplink:" id="FTJ-Yf-RlP">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V20-vv-cZg">
-                                                                        <rect key="frame" x="49" y="0.0" width="23" height="17"/>
-                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="JSy-Vk-iNy">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                </subviews>
-                                                                <visibilityPriorities>
-                                                                    <integer value="1000"/>
-                                                                    <integer value="1000"/>
-                                                                </visibilityPriorities>
-                                                                <customSpacing>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                </customSpacing>
-                                                            </stackView>
-                                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oXC-vI-GtC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="86" height="17"/>
-                                                                <subviews>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qwi-qy-nzp">
-                                                                        <rect key="frame" x="-2" y="0.0" width="63" height="17"/>
-                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Downlink:" id="nQd-yC-Rlp">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zun-Pa-8hl">
-                                                                        <rect key="frame" x="65" y="0.0" width="23" height="17"/>
-                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="5fp-49-8fc">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                </subviews>
-                                                                <visibilityPriorities>
-                                                                    <integer value="1000"/>
-                                                                    <integer value="1000"/>
-                                                                </visibilityPriorities>
-                                                                <customSpacing>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                </customSpacing>
-                                                            </stackView>
-                                                        </subviews>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
                                                         </visibilityPriorities>
                                                         <customSpacing>
                                                             <real value="3.4028234663852886e+38"/>
@@ -2012,10 +1942,8 @@
                                                 </subviews>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
-                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
@@ -2032,45 +1960,17 @@
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
                                     <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAA-KW-BFo">
-                                <rect key="frame" x="388" y="22" width="148" height="32"/>
-                                <buttonCell key="cell" type="push" title="Send Notificiation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tZ9-BF-aV4">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="sendNotificationAction:" target="uiZ-9d-wsv" id="oU4-iQ-lpQ"/>
-                                </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="12Z-66-MWU">
-                                <rect key="frame" x="536" y="31" width="95" height="18"/>
-                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rpZ-LK-VJH">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="LSX-FP-Pf6" firstAttribute="centerY" secondItem="A9f-Uo-gda" secondAttribute="centerY" id="36G-MF-zqj"/>
-                            <constraint firstItem="eAA-KW-BFo" firstAttribute="top" secondItem="LSX-FP-Pf6" secondAttribute="bottom" constant="8" id="IF1-Rl-uxe"/>
+                            <constraint firstItem="LSX-FP-Pf6" firstAttribute="top" secondItem="A9f-Uo-gda" secondAttribute="top" constant="20" id="IRX-cu-m6t"/>
                             <constraint firstItem="LSX-FP-Pf6" firstAttribute="centerX" secondItem="A9f-Uo-gda" secondAttribute="centerX" id="Jsv-Py-PPR"/>
-                            <constraint firstItem="eAA-KW-BFo" firstAttribute="centerX" secondItem="A9f-Uo-gda" secondAttribute="centerX" id="Rn1-gk-ZW9"/>
-                            <constraint firstItem="12Z-66-MWU" firstAttribute="leading" secondItem="eAA-KW-BFo" secondAttribute="trailing" constant="8" id="inV-Jf-LnT"/>
-                            <constraint firstItem="12Z-66-MWU" firstAttribute="centerY" secondItem="eAA-KW-BFo" secondAttribute="centerY" id="toI-E3-qVq"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="autoNotification" destination="12Z-66-MWU" id="WgH-5n-keo"/>
-                        <outlet property="downlinkSpeedLabel" destination="zun-Pa-8hl" id="y19-i7-wub"/>
-                        <outlet property="uplinkSpeedLabel" destination="V20-vv-cZg" id="4K6-Kw-HcS"/>
-                    </connections>
                 </viewController>
                 <customObject id="jhm-jc-Haa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2084,15 +1984,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bVa-Yz-spO">
-                                <rect key="frame" x="157" y="137" width="137" height="27"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="5" tickMarkPosition="below" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="YDx-LI-eLH"/>
-                                <connections>
-                                    <action selector="signalStrengthValueChanged:" target="ux0-KM-PsD" id="Idm-xT-VYc"/>
-                                </connections>
-                            </slider>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LAf-0W-oTt">
-                                <rect key="frame" x="153" y="77" width="145" height="32"/>
+                                <rect key="frame" x="153" y="211" width="145" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notification" bezelStyle="rounded" alignment="center" continuous="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mqu-vx-xSy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -2101,38 +1994,43 @@
                                     <action selector="sendNotification:" target="ux0-KM-PsD" id="R6t-wz-elF"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="knl-j0-WRx">
-                                <rect key="frame" x="281" y="113" width="13" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" id="lm0-xo-xck">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="DhJ-5d-BMp">
-                                <rect key="frame" x="298" y="86" width="95" height="18"/>
+                                <rect key="frame" x="298" y="220" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="j3h-aP-TQx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fdu-Yp-uEV">
+                                <rect key="frame" x="148" y="257" width="154" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="KBV-rh-daO">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="0" selected="YES"/>
+                                        <segment label="1" width="29" tag="1"/>
+                                        <segment label="2"/>
+                                        <segment label="3"/>
+                                        <segment label="4"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="signalStrengthValueChanged:" target="ux0-KM-PsD" id="3bh-y2-e9c"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LAf-0W-oTt" firstAttribute="centerY" secondItem="DhJ-5d-BMp" secondAttribute="centerY" id="8V8-bQ-8iF"/>
-                            <constraint firstItem="knl-j0-WRx" firstAttribute="top" secondItem="bVa-Yz-spO" secondAttribute="bottom" constant="8" id="GKx-d4-MF8"/>
-                            <constraint firstItem="bVa-Yz-spO" firstAttribute="width" secondItem="LAf-0W-oTt" secondAttribute="width" id="GPy-p2-jGh"/>
-                            <constraint firstItem="LAf-0W-oTt" firstAttribute="centerX" secondItem="bVa-Yz-spO" secondAttribute="centerX" id="a1f-Hm-jZg"/>
+                            <constraint firstItem="LAf-0W-oTt" firstAttribute="top" secondItem="fdu-Yp-uEV" secondAttribute="bottom" constant="20" id="KiY-5D-9QN"/>
+                            <constraint firstItem="LAf-0W-oTt" firstAttribute="centerX" secondItem="fdu-Yp-uEV" secondAttribute="centerX" id="crM-rh-CRh"/>
                             <constraint firstItem="DhJ-5d-BMp" firstAttribute="leading" secondItem="LAf-0W-oTt" secondAttribute="trailing" constant="8" id="csb-Jx-ZV8"/>
-                            <constraint firstItem="knl-j0-WRx" firstAttribute="trailing" secondItem="bVa-Yz-spO" secondAttribute="trailing" id="dIh-ee-RoS"/>
-                            <constraint firstItem="bVa-Yz-spO" firstAttribute="centerY" secondItem="pWZ-tf-mPn" secondAttribute="centerY" id="dYT-iz-KeP"/>
-                            <constraint firstItem="bVa-Yz-spO" firstAttribute="centerX" secondItem="pWZ-tf-mPn" secondAttribute="centerX" id="qWW-Ue-8lF"/>
-                            <constraint firstItem="LAf-0W-oTt" firstAttribute="top" secondItem="knl-j0-WRx" secondAttribute="bottom" constant="8" id="r85-gb-0I6"/>
+                            <constraint firstItem="fdu-Yp-uEV" firstAttribute="top" secondItem="pWZ-tf-mPn" secondAttribute="top" constant="20" id="fok-F6-B4C"/>
+                            <constraint firstItem="fdu-Yp-uEV" firstAttribute="centerX" secondItem="pWZ-tf-mPn" secondAttribute="centerX" id="jVU-87-eB3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="liveUpdate" destination="DhJ-5d-BMp" id="sao-oH-0Yb"/>
                         <outlet property="notificationButton" destination="LAf-0W-oTt" id="CmX-7u-nhH"/>
-                        <outlet property="signalStrength" destination="bVa-Yz-spO" id="P5z-7v-5fz"/>
+                        <outlet property="signalStrengthSegment" destination="fdu-Yp-uEV" id="PEn-TG-jJd"/>
                     </connections>
                 </viewController>
                 <customObject id="D09-3E-alu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -2145,11 +2043,11 @@
             <objects>
                 <viewController title="Satellite Service Mode" storyboardIdentifier="SatelliteServiceMode" id="9wG-jb-4X3" customClass="SatelliteServiceModeViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="GOs-QI-T5H">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="697" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLp-2I-nnY">
-                                <rect key="frame" x="150" y="93" width="148" height="32"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gLp-2I-nnY">
+                                <rect key="frame" x="275" y="211" width="148" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notificiation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KV6-y9-3UL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -2158,62 +2056,49 @@
                                     </connections>
                                 </buttonCell>
                             </button>
-                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHq-4z-dts">
-                                <rect key="frame" x="298" y="101" width="95" height="18"/>
-                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" inset="2" id="h2k-eI-V5k">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mHq-4z-dts">
+                                <rect key="frame" x="423" y="219" width="95" height="18"/>
+                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="h2k-eI-V5k">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jgb-IY-fsJ">
-                                <rect key="frame" x="132" y="141" width="42" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mode:" id="xEz-Ak-4GR">
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nuW-yn-6qL">
+                                <rect key="frame" x="105" y="257" width="487" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="DQG-O7-VWu">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7d7-IQ-YqZ">
-                                <rect key="frame" x="178" y="137" width="94" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="QAX-kx-pkK"/>
-                                </constraints>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="3" tickMarkPosition="below" numberOfTickMarks="4" allowsTickMarkValuesOnly="YES" sliderType="linear" id="o6w-X2-4Dj"/>
+                                    <segments>
+                                        <segment label="Unknown" width="72"/>
+                                        <segment label="Voice" width="72" selected="YES" tag="1"/>
+                                        <segment label="Data" width="71"/>
+                                        <segment label="Switching to Data"/>
+                                        <segment label="Switching To Voice"/>
+                                    </segments>
+                                </segmentedCell>
                                 <connections>
-                                    <action selector="slideValueChanged:" target="9wG-jb-4X3" id="SC0-XV-rFk"/>
+                                    <action selector="modeWasChanged:" target="9wG-jb-4X3" id="zvg-ZO-og0"/>
                                 </connections>
-                            </slider>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqz-7m-6u9">
-                                <rect key="frame" x="276" y="141" width="38" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Voice" id="FGo-9B-PIk">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="nqz-7m-6u9" firstAttribute="centerY" secondItem="7d7-IQ-YqZ" secondAttribute="centerY" id="3ka-Ne-lyl"/>
-                            <constraint firstItem="7d7-IQ-YqZ" firstAttribute="centerX" secondItem="GOs-QI-T5H" secondAttribute="centerX" id="KuA-bE-wwb"/>
-                            <constraint firstItem="gLp-2I-nnY" firstAttribute="top" secondItem="7d7-IQ-YqZ" secondAttribute="bottom" constant="17" id="SvX-2N-V8c"/>
-                            <constraint firstItem="jgb-IY-fsJ" firstAttribute="centerY" secondItem="7d7-IQ-YqZ" secondAttribute="centerY" id="Svt-IR-ReL"/>
-                            <constraint firstItem="nqz-7m-6u9" firstAttribute="leading" secondItem="7d7-IQ-YqZ" secondAttribute="trailing" constant="8" id="VGP-Pl-D0C"/>
+                            <constraint firstItem="nuW-yn-6qL" firstAttribute="top" secondItem="GOs-QI-T5H" secondAttribute="top" constant="20" id="6ij-cl-Wl5"/>
+                            <constraint firstItem="nuW-yn-6qL" firstAttribute="centerX" secondItem="GOs-QI-T5H" secondAttribute="centerX" id="Ab4-Uu-BiI"/>
+                            <constraint firstItem="gLp-2I-nnY" firstAttribute="centerX" secondItem="nuW-yn-6qL" secondAttribute="centerX" id="Hy2-lJ-N32"/>
                             <constraint firstItem="mHq-4z-dts" firstAttribute="leading" secondItem="gLp-2I-nnY" secondAttribute="trailing" constant="8" id="Wwr-W4-bfX"/>
-                            <constraint firstItem="7d7-IQ-YqZ" firstAttribute="centerY" secondItem="GOs-QI-T5H" secondAttribute="centerY" id="ZTD-Kj-VkK"/>
+                            <constraint firstItem="gLp-2I-nnY" firstAttribute="top" secondItem="nuW-yn-6qL" secondAttribute="bottom" constant="20" id="cb0-Xb-23x"/>
                             <constraint firstItem="gLp-2I-nnY" firstAttribute="centerX" secondItem="GOs-QI-T5H" secondAttribute="centerX" id="f7Z-qO-x38"/>
                             <constraint firstItem="mHq-4z-dts" firstAttribute="centerY" secondItem="gLp-2I-nnY" secondAttribute="centerY" id="odf-CH-tuC"/>
-                            <constraint firstItem="7d7-IQ-YqZ" firstAttribute="leading" secondItem="jgb-IY-fsJ" secondAttribute="trailing" constant="8" id="peC-a8-RCv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="liveUpdate" destination="mHq-4z-dts" id="ZtW-nk-bw6"/>
-                        <outlet property="modeLabel" destination="nqz-7m-6u9" id="JuN-Mq-BQ3"/>
-                        <outlet property="modeSlider" destination="7d7-IQ-YqZ" id="b6Y-iI-T7G"/>
+                        <outlet property="modeSegment" destination="nuW-yn-6qL" id="Bvv-ND-mNu"/>
+                        <outlet property="notificationButton" destination="gLp-2I-nnY" id="Wn5-oC-sQA"/>
                     </connections>
                 </viewController>
                 <customObject id="HNY-FL-edh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="267" y="1608"/>
+            <point key="canvasLocation" x="-98.5" y="1979"/>
         </scene>
         <!--Battery Status-->
         <scene sceneID="hbN-1h-cNJ">
@@ -2223,11 +2108,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pZm-Bk-w5Z">
-                                <rect key="frame" x="169" y="100" width="204" height="101"/>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pZm-Bk-w5Z">
+                                <rect key="frame" x="26" y="204" width="399" height="76"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfm-H4-I8n">
-                                        <rect key="frame" x="0.0" y="84" width="171" height="17"/>
+                                        <rect key="frame" x="114" y="59" width="171" height="17"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-0q-hUl">
                                                 <rect key="frame" x="-2" y="0.0" width="48" height="17"/>
@@ -2267,49 +2152,24 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mC9-yE-bGu">
-                                        <rect key="frame" x="0.0" y="52" width="204" height="24"/>
-                                        <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KyH-K1-rpa">
-                                                <rect key="frame" x="-2" y="0.0" width="43" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status" id="Fus-TB-d9r">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FBX-dg-anv">
-                                                <rect key="frame" x="45" y="-1" width="96" height="27"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="92" id="gxg-MS-3bE"/>
-                                                </constraints>
-                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="5" tickMarkPosition="below" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="k0I-M9-DTo"/>
-                                                <connections>
-                                                    <action selector="statusValueChanged:" target="gcS-MM-qqb" id="HmC-4m-7Gq"/>
-                                                </connections>
-                                            </slider>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mPH-1B-7cn">
-                                                <rect key="frame" x="145" y="0.0" width="61" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unknown" id="cm9-hK-lSE">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-9v-kxs">
+                                        <rect key="frame" x="-2" y="28" width="403" height="24"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="rs6-xh-7BP">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Unknown" width="84"/>
+                                                <segment label="Charging" width="83" selected="YES" tag="1"/>
+                                                <segment label="Discharging" width="83"/>
+                                                <segment label="Not Charging"/>
+                                                <segment label="Full"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="statusValueChanged:" target="gcS-MM-qqb" id="C0k-i5-Gr1"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aZM-VE-mvc">
-                                        <rect key="frame" x="0.0" y="22" width="150" height="22"/>
+                                        <rect key="frame" x="125" y="0.0" width="150" height="22"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYh-qG-bLm">
                                                 <rect key="frame" x="-2" y="3" width="50" height="17"/>
@@ -2344,19 +2204,8 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Bgp-C9-7io">
-                                        <rect key="frame" x="-2" y="-2" width="69" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Present" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qw3-bo-G4i">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="presentValueChanged:" target="gcS-MM-qqb" id="cSB-cc-7PV"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <visibilityPriorities>
-                                    <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -2365,11 +2214,27 @@
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KSc-pM-TwL">
-                                <rect key="frame" x="152" y="52" width="148" height="32"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="AYp-bI-ks9">
+                                <rect key="frame" x="299" y="131" width="95" height="18"/>
+                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LD3-sA-VIN">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Bgp-C9-7io">
+                                <rect key="frame" x="24" y="168" width="69" height="18"/>
+                                <buttonCell key="cell" type="check" title="Present" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qw3-bo-G4i">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="presentValueChanged:" target="gcS-MM-qqb" id="cSB-cc-7PV"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KSc-pM-TwL">
+                                <rect key="frame" x="151" y="122" width="148" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notificiation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CBI-E3-uKV">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -2378,21 +2243,16 @@
                                     <action selector="sendNotification:" target="gcS-MM-qqb" id="LW9-kK-2OQ"/>
                                 </connections>
                             </button>
-                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYp-bI-ks9">
-                                <rect key="frame" x="301" y="61" width="95" height="18"/>
-                                <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LD3-sA-VIN">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="pZm-Bk-w5Z" firstAttribute="top" secondItem="cJc-T6-nZK" secondAttribute="top" constant="20" id="FTd-4Q-AxH"/>
                             <constraint firstItem="pZm-Bk-w5Z" firstAttribute="centerX" secondItem="cJc-T6-nZK" secondAttribute="centerX" id="RgZ-Ls-BJp"/>
+                            <constraint firstItem="Bgp-C9-7io" firstAttribute="leading" secondItem="pZm-Bk-w5Z" secondAttribute="leading" id="Tw7-94-ENW"/>
                             <constraint firstItem="AYp-bI-ks9" firstAttribute="leading" secondItem="KSc-pM-TwL" secondAttribute="trailing" constant="8" id="Zce-8R-jN6"/>
                             <constraint firstItem="AYp-bI-ks9" firstAttribute="centerY" secondItem="KSc-pM-TwL" secondAttribute="centerY" id="c9l-FT-TQh"/>
-                            <constraint firstItem="pZm-Bk-w5Z" firstAttribute="centerY" secondItem="cJc-T6-nZK" secondAttribute="centerY" id="eqo-7f-wyJ"/>
+                            <constraint firstItem="Bgp-C9-7io" firstAttribute="top" secondItem="pZm-Bk-w5Z" secondAttribute="bottom" constant="20" id="dzf-BR-mxD"/>
                             <constraint firstItem="KSc-pM-TwL" firstAttribute="centerX" secondItem="pZm-Bk-w5Z" secondAttribute="centerX" id="ors-6H-CX0"/>
-                            <constraint firstItem="KSc-pM-TwL" firstAttribute="top" secondItem="pZm-Bk-w5Z" secondAttribute="bottom" constant="20" id="zMT-Wl-MSe"/>
+                            <constraint firstItem="KSc-pM-TwL" firstAttribute="top" secondItem="Bgp-C9-7io" secondAttribute="bottom" constant="20" id="zY2-e5-pxl"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2400,8 +2260,7 @@
                         <outlet property="chargeSlider" destination="LmN-YB-Yw7" id="klr-6B-0rA"/>
                         <outlet property="liveUpdate" destination="AYp-bI-ks9" id="fP3-1s-41G"/>
                         <outlet property="presentCheck" destination="Bgp-C9-7io" id="phx-uE-xNo"/>
-                        <outlet property="statusLabel" destination="mPH-1B-7cn" id="wmb-hf-b0e"/>
-                        <outlet property="statusSlider" destination="FBX-dg-anv" id="Vkl-w5-7b2"/>
+                        <outlet property="statusSegment" destination="8LH-9v-kxs" id="mLl-jh-gbg"/>
                         <outlet property="voltageField" destination="djf-Vr-3jQ" id="e7v-Kq-d8V"/>
                     </connections>
                 </viewController>
@@ -2418,7 +2277,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vUN-xN-V4V">
-                                <rect key="frame" x="128" y="139" width="194" height="22"/>
+                                <rect key="frame" x="128" y="258" width="194" height="22"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c8A-pI-FoC">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="22"/>
@@ -2464,7 +2323,7 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I7U-vV-Rb5">
-                                <rect key="frame" x="153" y="91" width="145" height="32"/>
+                                <rect key="frame" x="153" y="210" width="145" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notification" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dBr-x1-NNO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -2475,10 +2334,10 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="vUN-xN-V4V" firstAttribute="centerY" secondItem="kb3-6i-KOm" secondAttribute="centerY" id="Gas-Dj-XFM"/>
                             <constraint firstItem="I7U-vV-Rb5" firstAttribute="top" secondItem="vUN-xN-V4V" secondAttribute="bottom" constant="20" id="U66-QT-XC8"/>
                             <constraint firstItem="vUN-xN-V4V" firstAttribute="centerX" secondItem="kb3-6i-KOm" secondAttribute="centerX" id="cGw-TZ-Zkw"/>
                             <constraint firstItem="I7U-vV-Rb5" firstAttribute="centerX" secondItem="vUN-xN-V4V" secondAttribute="centerX" id="exX-H1-8A7"/>
+                            <constraint firstItem="vUN-xN-V4V" firstAttribute="top" secondItem="kb3-6i-KOm" secondAttribute="top" constant="20" id="fNe-oZ-pjW"/>
                         </constraints>
                     </view>
                     <connections>
