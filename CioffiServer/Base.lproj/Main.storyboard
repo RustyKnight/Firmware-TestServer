@@ -900,56 +900,11 @@
             <objects>
                 <viewController title="Network Status" storyboardIdentifier="NetworkSelectionStatus" id="iSJ-tu-o7N" customClass="NetworkSelectionViewController" customModule="CioffiServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="z8h-LG-lTm">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="275"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-Xt-Qxk">
-                                <rect key="frame" x="175" y="216" width="100" height="64"/>
-                                <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="71v-dI-tR3">
-                                        <rect key="frame" x="-1" y="47" width="71" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Satellite" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="RPe-oY-iye">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="networkModeChanged:" target="iSJ-tu-o7N" id="NFk-Sb-YQQ"/>
-                                        </connections>
-                                    </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="dCZ-1C-PNi">
-                                        <rect key="frame" x="-1" y="23" width="68" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Cellular" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="s0F-QB-tsr">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="networkModeChanged:" target="iSJ-tu-o7N" id="b1O-RM-sxy"/>
-                                        </connections>
-                                    </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="dXO-Us-1Av">
-                                        <rect key="frame" x="-1" y="-1" width="103" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Smart Switch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="FXg-3u-Rg7">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="networkModeChanged:" target="iSJ-tu-o7N" id="zcu-f0-XTc"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L1C-gs-Y9B">
-                                <rect key="frame" x="146" y="191" width="158" height="17"/>
+                                <rect key="frame" x="146" y="177" width="158" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mock Smart Switching as" id="tym-dH-Ybd">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -957,7 +912,7 @@
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d55-xQ-c06">
-                                <rect key="frame" x="153" y="160" width="145" height="24"/>
+                                <rect key="frame" x="153" y="146" width="145" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="ufl-4L-8cM">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -970,34 +925,48 @@
                                 </connections>
                             </segmentedControl>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-AK-7hk">
-                                <rect key="frame" x="150" y="138" width="151" height="18"/>
+                                <rect key="frame" x="150" y="124" width="151" height="18"/>
                                 <buttonCell key="cell" type="check" title="With life cycle events" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KxF-4n-chx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nIt-2G-ju1">
+                                <rect key="frame" x="44" y="232" width="363" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="fAk-No-6gC">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Satellite" width="119" selected="YES"/>
+                                        <segment label="Cellular" width="118" tag="1"/>
+                                        <segment label="Smart Switching" width="118"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="networkModuleChanged:" target="iSJ-tu-o7N" id="8v4-EL-LgB"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="d55-xQ-c06" firstAttribute="centerX" secondItem="L1C-gs-Y9B" secondAttribute="centerX" id="PvZ-38-G5q"/>
-                            <constraint firstItem="L1C-gs-Y9B" firstAttribute="centerX" secondItem="RvX-Xt-Qxk" secondAttribute="centerX" id="Vb8-2T-PHs"/>
-                            <constraint firstItem="L1C-gs-Y9B" firstAttribute="top" secondItem="RvX-Xt-Qxk" secondAttribute="bottom" constant="8" id="WAm-iG-Uld"/>
-                            <constraint firstItem="Xeg-AK-7hk" firstAttribute="top" secondItem="d55-xQ-c06" secondAttribute="bottom" constant="8" id="ZWi-t2-VHd"/>
-                            <constraint firstItem="RvX-Xt-Qxk" firstAttribute="centerX" secondItem="z8h-LG-lTm" secondAttribute="centerX" id="tIu-zo-Hcf"/>
-                            <constraint firstItem="Xeg-AK-7hk" firstAttribute="centerX" secondItem="d55-xQ-c06" secondAttribute="centerX" id="tri-tT-We6"/>
-                            <constraint firstItem="RvX-Xt-Qxk" firstAttribute="top" secondItem="z8h-LG-lTm" secondAttribute="top" constant="20" id="wBX-ho-f8Z"/>
-                            <constraint firstItem="d55-xQ-c06" firstAttribute="top" secondItem="L1C-gs-Y9B" secondAttribute="bottom" constant="8" id="xVE-el-vYz"/>
+                            <constraint firstItem="nIt-2G-ju1" firstAttribute="centerX" secondItem="z8h-LG-lTm" secondAttribute="centerX" id="5Yo-Sb-A4g"/>
+                            <constraint firstItem="Xeg-AK-7hk" firstAttribute="top" secondItem="d55-xQ-c06" secondAttribute="bottom" constant="8" id="6w0-le-cNy"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xeg-AK-7hk" secondAttribute="bottom" constant="8" id="DV6-w4-cnp"/>
+                            <constraint firstItem="nIt-2G-ju1" firstAttribute="top" secondItem="z8h-LG-lTm" secondAttribute="top" constant="20" id="EEs-K8-Xr3"/>
+                            <constraint firstItem="L1C-gs-Y9B" firstAttribute="top" secondItem="nIt-2G-ju1" secondAttribute="bottom" constant="40" id="ISe-ne-UV9"/>
+                            <constraint firstItem="Xeg-AK-7hk" firstAttribute="centerX" secondItem="d55-xQ-c06" secondAttribute="centerX" id="KJU-bU-3rV"/>
+                            <constraint firstItem="d55-xQ-c06" firstAttribute="centerX" secondItem="L1C-gs-Y9B" secondAttribute="centerX" id="OH7-tL-sSj"/>
+                            <constraint firstItem="d55-xQ-c06" firstAttribute="top" secondItem="L1C-gs-Y9B" secondAttribute="bottom" constant="8" id="VIr-KE-hOT"/>
+                            <constraint firstItem="L1C-gs-Y9B" firstAttribute="centerX" secondItem="nIt-2G-ju1" secondAttribute="centerX" id="b5I-uD-aTI"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cellularNetworkMode" destination="dCZ-1C-PNi" id="DW8-bP-sJ1"/>
-                        <outlet property="satelliteNetworkMode" destination="71v-dI-tR3" id="Szv-Pj-dNR"/>
+                        <outlet property="lifeCycleEvents" destination="Xeg-AK-7hk" id="0Xr-Z9-TUe"/>
+                        <outlet property="networkModuleSegment" destination="nIt-2G-ju1" id="OoR-Zz-mRI"/>
                         <outlet property="smartSwitchingMock" destination="d55-xQ-c06" id="ycS-KW-QGH"/>
-                        <outlet property="smartSwitchingNetworkMode" destination="dXO-Us-1Av" id="tbq-B9-4Ia"/>
                     </connections>
                 </viewController>
                 <customObject id="3PD-qg-F9u" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="894"/>
+            <point key="canvasLocation" x="751" y="881.5"/>
         </scene>
         <!--Restricitions-->
         <scene sceneID="e4V-e6-1dQ">
@@ -1214,13 +1183,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brO-CV-zyD">
-                                <rect key="frame" x="134" y="143" width="182" height="137"/>
+                                <rect key="frame" x="134" y="47" width="182" height="233"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cvj-SA-uLs">
-                                        <rect key="frame" x="0.0" y="0.0" width="182" height="137"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="233"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kjj-2K-tI1">
-                                                <rect key="frame" x="-2" y="120" width="43" height="17"/>
+                                                <rect key="frame" x="-2" y="216" width="43" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status" id="abh-Co-LdF">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1228,13 +1197,53 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="a1T-VY-6pT">
-                                                <rect key="frame" x="-1" y="95" width="79" height="18"/>
+                                                <rect key="frame" x="-1" y="191" width="79" height="18"/>
                                                 <buttonCell key="cell" type="radio" title="Unknown" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="S2t-AO-wa0">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="statusValueChanged:" target="h3n-g1-Hpb" id="ngu-lM-uVu"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="PB9-JS-twY">
+                                                <rect key="frame" x="-1" y="167" width="101" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Powering Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="pT4-hC-ofM">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="statusValueChanged:" target="h3n-g1-Hpb" id="2AB-1s-jYt"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-Zg-fH4">
+                                                <rect key="frame" x="-1" y="143" width="98" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Powered Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="uGi-k4-gjc">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="statusValueChanged:" target="h3n-g1-Hpb" id="LsZ-vs-IIV"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="M2r-G5-yzO">
+                                                <rect key="frame" x="-1" y="119" width="99" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Powering On" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mNZ-fS-8Cb">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="statusValueChanged:" target="h3n-g1-Hpb" id="b8p-lX-rqa"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="jeg-hV-WKw">
+                                                <rect key="frame" x="-1" y="95" width="96" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Powered On" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="n61-hX-nMr">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="statusValueChanged:" target="h3n-g1-Hpb" id="pdt-wN-Use"/>
                                                 </connections>
                                             </button>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="W7x-4J-inX">
@@ -1285,8 +1294,16 @@
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
@@ -1304,7 +1321,7 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lbk-Yw-KAQ">
-                                <rect key="frame" x="153" y="95" width="145" height="32"/>
+                                <rect key="frame" x="153" y="-1" width="145" height="32"/>
                                 <buttonCell key="cell" type="push" title="Send Notification" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qgM-4e-esT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1314,7 +1331,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="wOg-za-FAx">
-                                <rect key="frame" x="298" y="104" width="95" height="18"/>
+                                <rect key="frame" x="298" y="8" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="Live Update" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vDm-da-csb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1333,6 +1350,10 @@
                     <connections>
                         <outlet property="liveUpdate" destination="wOg-za-FAx" id="oSO-OL-BFP"/>
                         <outlet property="notificationButton" destination="Lbk-Yw-KAQ" id="a6b-2m-XaK"/>
+                        <outlet property="poweredOff" destination="2Fa-Zg-fH4" id="zPD-kZ-aqf"/>
+                        <outlet property="poweredOn" destination="jeg-hV-WKw" id="LYd-Ul-iIx"/>
+                        <outlet property="poweringOff" destination="PB9-JS-twY" id="JlR-ga-Pa3"/>
+                        <outlet property="poweringOn" destination="M2r-G5-yzO" id="AhT-cx-WZZ"/>
                         <outlet property="registeredHomeNetworkStatus" destination="8vp-lL-nvH" id="t1X-2D-AQj"/>
                         <outlet property="registeredRoamingStatus" destination="SxP-6L-umA" id="vAd-m0-EFg"/>
                         <outlet property="registeringStatus" destination="W7x-4J-inX" id="y1G-Mz-E58"/>

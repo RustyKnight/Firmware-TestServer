@@ -11,6 +11,10 @@ import CioffiAPI
 
 class NetworkRegistrationViewController: NSViewController, ModemModular {
 	
+	@IBOutlet weak var poweringOff: NSButton!
+	@IBOutlet weak var poweredOff: NSButton!
+	@IBOutlet weak var poweringOn: NSButton!
+	@IBOutlet weak var poweredOn: NSButton!
 	@IBOutlet weak var registrationDeniedStatus: NSButton!
 	@IBOutlet weak var registeredRoamingStatus: NSButton!
 	@IBOutlet weak var registeredHomeNetworkStatus: NSButton!
@@ -22,6 +26,17 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	
 	var modemModule: ModemModule? {
 		didSet {
+			if let oldValue = oldValue, let key = modemModuleKeys[oldValue] {
+				NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: key), object: nil)
+			}
+			
+			if let newValue = modemModule, let key = modemModuleKeys[newValue] {
+				NotificationCenter.default.addObserver(self,
+				                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
+				                                       name: NSNotification.Name.init(rawValue: key),
+				                                       object: nil)
+			}
+			
 			modemChanged()
 		}
 	}
@@ -36,6 +51,10 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		buttonStatus[registeredHomeNetworkStatus] = .registeredHomeNetwork
 		buttonStatus[registeredRoamingStatus] = .registeredRoaming
 		buttonStatus[registrationDeniedStatus] = .registrationDenied
+		buttonStatus[poweringOff] = .poweringOff
+		buttonStatus[poweredOff] = .poweredOff
+		buttonStatus[poweringOn] = .poweringOn
+		buttonStatus[poweredOn] = .poweredOn
 	}
 	
 	override func viewWillAppear() {
@@ -65,7 +84,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	@IBAction func sendNotification(_ sender: AnyObject) {
 		if ModemModule.isCurrent(self.modemModule) {
 			do {
-				try Server.default.send(notification: NetworkRegistrationStatusNotification())
+				try Server.default.send(notification: NetworkRegistrationStatusNotification(module: modemModule))
 			} catch let error {
 				log(error: "\(error)")
 			}
@@ -75,7 +94,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	func liveNotification() {
 		if liveUpdate.state == NSOnState && ModemModule.isCurrent(modemModule) {
 			do {
-				try Server.default.send(notification: NetworkRegistrationStatusNotification())
+				try Server.default.send(notification: NetworkRegistrationStatusNotification(module: modemModule))
 			} catch let error {
 				log(error: "\(error)")
 			}
@@ -86,15 +105,31 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		guard let status = buttonStatus[sender] else {
 			return
 		}
+		guard let modemModule = modemModule else {
+			return
+		}
+		guard let key = modemModuleKeys[modemModule] else {
+			return
+		}
 		DataModelManager.shared.set(value: status,
-		                            forKey: networkRegistrationStatusKey,
+		                            forKey: key,
 		                            withNotification: false)
 		liveNotification()
 	}
 	
 	func status(withDefault defaultValue: NetworkRegistrationStatus = .unknown) -> NetworkRegistrationStatus {
-		let module = DataModelManager.shared.get(forKey: networkRegistrationStatusKey, withDefault: defaultValue)
+		guard let modemModule = modemModule else {
+			return .unknown
+		}
+		guard let key = modemModuleKeys[modemModule] else {
+			return .unknown
+		}
+		let module = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
 		return module
+	}
+	
+	func statusChanged() {
+		updateStatus()
 	}
 	
 	func updateStatus() {
@@ -104,10 +139,10 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		case .registeredRoaming: registeredRoamingStatus.state = NSOnState
 		case .registeredHomeNetwork: registeredHomeNetworkStatus.state = NSOnState
 		case .registrationDenied: registrationDeniedStatus.state = NSOnState
-		case .poweredOff: fallthrough
-		case .poweredOn: fallthrough
-		case .poweringOn: fallthrough
-		case .poweringOff: fallthrough
+		case .poweredOff: poweredOff.state = NSOnState
+		case .poweredOn: poweredOn.state = NSOnState
+		case .poweringOn: poweringOff.state = NSOnState
+		case .poweringOff: poweringOn.state = NSOnState
 		case .switching: break
 		}
 	}

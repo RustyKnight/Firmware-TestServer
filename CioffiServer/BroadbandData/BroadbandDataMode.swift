@@ -12,7 +12,7 @@ import SwiftyJSON
 
 let broadbandDataActiveModeKey = "broadbandDataActiveMode" // What is the "active" mode
 
-class BroadbandDataModeStatusModeSwitcher: ModeSwitcher<BroadbandDataModeStatus> {
+class BroadbandDataModeStatusModeSwitcher: SimpleModeSwitcher<BroadbandDataModeStatus> {
 	
 	init(to: BroadbandDataModeStatus, through: BroadbandDataModeStatus) {
 		super.init(key: broadbandDataActiveModeKey,
@@ -132,7 +132,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 			
 			let switcher = BroadbandDataModeStatusModeSwitcher(to: statusMode,
 			                                                   through: switchMode)
-			switcher.makeSwitch()
+			switcher.start()
 		} else {
 			let statusMode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
 			                                             withDefault: BroadbandDataModeStatus.dataInactive)
@@ -152,7 +152,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 			if switchMode != BroadbandDataModeStatus.dataInactive {
 				let switcher = BroadbandDataModeStatusModeSwitcher(to: BroadbandDataModeStatus.dataInactive,
 				                                                   through: switchMode)
-				switcher.makeSwitch()
+				switcher.start()
 			} else {
 				DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive,
 				                            forKey: broadbandDataActiveModeKey)

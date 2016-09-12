@@ -72,7 +72,7 @@ class SetSatelliteServiceModeFunction: GetSatelliteServiceModeFunction {
         }
         
         let switcher = SatelliteServiceModeSwitcher(to: mode, through: switchMode)
-        switcher.makeSwitch()
+        switcher.start()
     }
     
 }
@@ -88,7 +88,7 @@ struct SatelliteServiceModeNotification: APINotification {
     }
 }
 
-class SatelliteServiceModeSwitcher: ModeSwitcher<SatelliteServiceMode> {
+class SatelliteServiceModeSwitcher: SimpleModeSwitcher<SatelliteServiceMode> {
     init(to: SatelliteServiceMode, through: SatelliteServiceMode) {
         super.init(key: satelliteServiceModeKey,
                    to: AnySwitcherState<SatelliteServiceMode>(state: to, notification: SatelliteServiceModeNotification()),
