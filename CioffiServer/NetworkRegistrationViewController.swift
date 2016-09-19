@@ -22,19 +22,38 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	@IBOutlet weak var unknownStatus: NSButton!
 	@IBOutlet weak var notificationButton: NSButton!
 	
+	@IBOutlet weak var unknownStateIndicator: NSButton!
+	@IBOutlet weak var poweringOffStateIndicator: NSButton!
+	@IBOutlet weak var poweredOffStateIndicator: NSButton!
+	@IBOutlet weak var poweringOnStateIndicator: NSButton!
+	@IBOutlet weak var poweredOnStateIndicator: NSButton!
+	@IBOutlet weak var registeringStateIndicator: NSButton!
+	@IBOutlet weak var registeredHomeStateIndicator: NSButton!
+	@IBOutlet weak var registeredRoamingOffStateIndicator: NSButton!
+	@IBOutlet weak var registeredDeniedStateIndicator: NSButton!
+	
 	var buttonStatus: [NSButton: NetworkRegistrationStatus] = [:]
+	var statusIndicators: [NetworkRegistrationStatus: NSButton] = [:]
 	
 	var modemModule: ModemModule? {
 		didSet {
-			if let oldValue = oldValue, let key = modemModuleKeys[oldValue] {
+			if let oldValue = oldValue, let key = targetNetworkRegistrationStateKeys[oldValue] {
 				NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: key), object: nil)
 			}
 			
-			if let newValue = modemModule, let key = modemModuleKeys[newValue] {
-				NotificationCenter.default.addObserver(self,
-				                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
-				                                       name: NSNotification.Name.init(rawValue: key),
-				                                       object: nil)
+			if let newValue = modemModule {
+				if let key = currentNetworkRegistrationStateKeys[newValue] {
+					NotificationCenter.default.addObserver(self,
+					                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
+					                                       name: NSNotification.Name.init(rawValue: key),
+					                                       object: nil)
+				}
+				if let key = targetNetworkRegistrationStateKeys[newValue] {
+					NotificationCenter.default.addObserver(self,
+					                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
+					                                       name: NSNotification.Name.init(rawValue: key),
+					                                       object: nil)
+				}
 			}
 			
 			modemChanged()
@@ -55,6 +74,16 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		buttonStatus[poweredOff] = .poweredOff
 		buttonStatus[poweringOn] = .poweringOn
 		buttonStatus[poweredOn] = .poweredOn
+		
+		statusIndicators[.unknown] = unknownStateIndicator
+		statusIndicators[.registering] = registeringStateIndicator
+		statusIndicators[.registeredHomeNetwork] = registeredHomeStateIndicator
+		statusIndicators[.registeredRoaming] = registeredRoamingOffStateIndicator
+		statusIndicators[.registrationDenied] = registeredDeniedStateIndicator
+		statusIndicators[.poweringOff] = poweringOffStateIndicator
+		statusIndicators[.poweredOff] = poweredOffStateIndicator
+		statusIndicators[.poweringOn] = poweringOnStateIndicator
+		statusIndicators[.poweredOn] = poweredOnStateIndicator
 	}
 	
 	override func viewWillAppear() {
@@ -82,21 +111,28 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	}
 	
 	@IBAction func sendNotification(_ sender: AnyObject) {
-		if ModemModule.isCurrent(self.modemModule) {
-			do {
-				try Server.default.send(notification: NetworkRegistrationStatusNotification(module: modemModule))
-			} catch let error {
-				log(error: "\(error)")
-			}
-		}
+		sendNotification(forced: true)
 	}
 	
-	func liveNotification() {
-		if liveUpdate.state == NSOnState && ModemModule.isCurrent(modemModule) {
-			do {
-				try Server.default.send(notification: NetworkRegistrationStatusNotification(module: modemModule))
-			} catch let error {
-				log(error: "\(error)")
+	func sendNotification(forced: Bool = false) {
+		guard let modemModule = modemModule else {
+			return
+		}
+		if ModemModule.isCurrent(self.modemModule) {
+			if liveUpdate.state == NSOnState || forced {
+				guard let targetKey = targetNetworkRegistrationStateKeys[modemModule],
+					let currentKey = currentNetworkRegistrationStateKeys[modemModule] else {
+						return
+				}
+				let targetState = DataModelManager.shared.get(forKey: targetKey, withDefault: NetworkRegistrationStatus.poweredOff)
+				
+				DataModelManager.shared.set(value: targetState,
+				                            forKey: currentKey)
+				do {
+					try Server.default.send(notification: NetworkRegistrationStatusNotification(module: modemModule))
+				} catch let error {
+					log(error: "\(error)")
+				}
 			}
 		}
 	}
@@ -108,24 +144,35 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		guard let modemModule = modemModule else {
 			return
 		}
-		guard let key = modemModuleKeys[modemModule] else {
+		guard let key = targetNetworkRegistrationStateKeys[modemModule] else {
 			return
 		}
 		DataModelManager.shared.set(value: status,
 		                            forKey: key,
 		                            withNotification: false)
-		liveNotification()
+		sendNotification()
 	}
 	
-	func status(withDefault defaultValue: NetworkRegistrationStatus = .unknown) -> NetworkRegistrationStatus {
+	func currentStatus(withDefault defaultValue: NetworkRegistrationStatus = .unknown) -> NetworkRegistrationStatus {
 		guard let modemModule = modemModule else {
 			return .unknown
 		}
-		guard let key = modemModuleKeys[modemModule] else {
+		guard let key = currentNetworkRegistrationStateKeys[modemModule] else {
 			return .unknown
 		}
 		let module = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
 		return module
+	}
+	
+	func targetStatus(withDefault defaultValue: NetworkRegistrationStatus = .unknown) -> NetworkRegistrationStatus {
+		guard let modemModule = modemModule else {
+			return .unknown
+		}
+		guard let key = targetNetworkRegistrationStateKeys[modemModule] else {
+			return .unknown
+		}
+		let mode = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
+		return mode
 	}
 	
 	func statusChanged() {
@@ -133,7 +180,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	}
 	
 	func updateStatus() {
-		switch status() {
+		switch targetStatus() {
 		case .unknown: unknownStatus.state = NSOnState
 		case .registering: registeringStatus.state = NSOnState
 		case .registeredRoaming: registeredRoamingStatus.state = NSOnState
@@ -145,5 +192,14 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		case .poweringOff: poweringOn.state = NSOnState
 		case .switching: break
 		}
+		
+		for (_, indicator) in statusIndicators {
+			indicator.isHidden = true
+		}
+		
+		guard let indicator = statusIndicators[currentStatus()] else {
+			return
+		}
+		indicator.isHidden = false
 	}
 }

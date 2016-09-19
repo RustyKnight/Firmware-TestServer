@@ -40,54 +40,114 @@ enum ModemModule: Int {
 			
 			DataModelManager.shared.set(value: self, forKey: currentModemModuleKey)
 			if withLifeCycle {
-				let shutdownSteps: [AnyModeLink<NetworkRegistrationStatus>] = [
-					AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweringOff,
-					                                       delay: 0,
-					                                       notification: NetworkRegistrationStatusNotification(module: current)),
-					AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweredOff,
-					                                       delay: 10,
-					                                       notification: NetworkRegistrationStatusNotification(module: current))
-				]
-				let targetState = DataModelManager.shared.get(forKey: modemModuleKeys[self]!,
-				                                              withDefault: NetworkRegistrationStatus.registeredHomeNetwork)
-				let startupSteps: [AnyModeLink<NetworkRegistrationStatus>] = [
-					AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweringOn,
-					                                       delay: 0,
-					                                       notification: NetworkRegistrationStatusNotification(module: self)),
-					AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweredOn,
-					                                       delay: 2,
-					                                       notification: NetworkRegistrationStatusNotification(module: self)),
-					AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.registering,
-					                                       delay: 2,
-					                                       notification: NetworkRegistrationStatusNotification(module: self)),
-					AnyModeLink<NetworkRegistrationStatus>(value: targetState,
-					                                       delay: 2,
-					                                       notification: NetworkRegistrationStatusNotification(module: self)),
-					]
+
+				from(modem: current)
+				to(modem: self)
 				
-				if networkRegistration(for: current) != .poweredOff {
-					shutdownNetworkRegistrationStatusSwitcher = ChainedModeSwitcher(key: modemModuleKeys[current]!,
-					                                                                defaultValue: .unknown,
-					                                                                links: shutdownSteps)
-					shutdownNetworkRegistrationStatusSwitcher?.start(completion: {
-						shutdownNetworkRegistrationStatusSwitcher = nil
-					})
-				}
-				let newState = networkRegistration(for: self)
-				if newState != .poweredOff {
-					startupNetworkRegistrationStatusSwitcher = ChainedModeSwitcher(key: modemModuleKeys[self]!,
-					                                                               defaultValue: .unknown,
-					                                                               links: startupSteps)
-					startupNetworkRegistrationStatusSwitcher?.start(completion: {
-						startupNetworkRegistrationStatusSwitcher = nil
-					})
-				}
 			}
 		}
 	}
 	
-	func networkRegistration(`for` modem: ModemModule) -> NetworkRegistrationStatus {
-		guard let key = modemModuleKeys[modem] else {
+	func isPowered(status value: NetworkRegistrationStatus) -> Bool {
+		return status(value, within: [
+			NetworkRegistrationStatus.poweredOn,
+			NetworkRegistrationStatus.poweringOn,
+			NetworkRegistrationStatus.registering,
+			NetworkRegistrationStatus.registeredRoaming,
+			NetworkRegistrationStatus.registrationDenied,
+			NetworkRegistrationStatus.registeredHomeNetwork,
+		])
+	}
+
+	func isUnpowered(status value: NetworkRegistrationStatus) -> Bool {
+		return status(value, within: [
+			NetworkRegistrationStatus.poweredOff,
+			NetworkRegistrationStatus.poweringOff,
+			])
+	}
+	
+	func status(_ status: NetworkRegistrationStatus, within states: [NetworkRegistrationStatus]) -> Bool {
+		return states.filter({ (check) -> Bool in
+			return check == status
+		}).count > 0
+	}
+	
+	func steps(`for` modem: ModemModule) -> [AnyModeLink<NetworkRegistrationStatus>] {
+		let currentState = DataModelManager.shared.get(forKey: currentNetworkRegistrationStateKeys[modem]!,
+		                                               withDefault: NetworkRegistrationStatus.poweredOff)
+		let targetState = DataModelManager.shared.get(forKey: targetNetworkRegistrationStateKeys[modem]!,
+		                                              withDefault: NetworkRegistrationStatus.poweredOff)
+		
+		return steps(for: modem, from: currentState, to: targetState)
+	}
+	
+	func steps(`for` modem: ModemModule,
+	           from currentState: NetworkRegistrationStatus,
+	           to targetState: NetworkRegistrationStatus = .poweredOff) -> [AnyModeLink<NetworkRegistrationStatus>] {
+		var steps: [AnyModeLink<NetworkRegistrationStatus>] = []
+		if isPowered(status: currentState) && isUnpowered(status: targetState) {
+			steps.append(AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweringOff,
+			                                                    delay: 0,
+			                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+			steps.append(AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweredOff,
+			                                                    delay: 10,
+			                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+		} else if isPowered(status: targetState) && isUnpowered(status: currentState) {
+			steps.append(AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweringOn,
+			                                                    delay: 0,
+			                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+			steps.append(AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.poweredOn,
+			                                                    delay: 2,
+			                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+			steps.append(AnyModeLink<NetworkRegistrationStatus>(value: NetworkRegistrationStatus.registering,
+			                                                    delay: 2,
+			                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+			if targetState != NetworkRegistrationStatus.registering {
+				steps.append(AnyModeLink<NetworkRegistrationStatus>(value: targetState,
+				                                                    delay: 2,
+				                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+			}
+		} else {
+			steps.append(AnyModeLink<NetworkRegistrationStatus>(value: targetState,
+			                                                    delay: 10,
+			                                                    notification: NetworkRegistrationStatusNotification(module: modem)))
+		}
+		return steps
+	}
+	
+	func from(modem current: ModemModule) {
+		let currentState = DataModelManager.shared.get(forKey: currentNetworkRegistrationStateKeys[current]!,
+		                                               withDefault: NetworkRegistrationStatus.poweredOff)
+		
+		let shutdownSteps = steps(for: current, from: currentState)
+		
+		shutdownNetworkRegistrationStatusSwitcher = ChainedModeSwitcher(key: currentNetworkRegistrationStateKeys[current]!,
+		                                                                defaultValue: .unknown,
+		                                                                links: shutdownSteps)
+		shutdownNetworkRegistrationStatusSwitcher?.start(completion: {
+			shutdownNetworkRegistrationStatusSwitcher = nil
+		})
+	}
+	
+	func to(modem: ModemModule) {
+		startupNetworkRegistrationStatusSwitcher = ChainedModeSwitcher(key: currentNetworkRegistrationStateKeys[modem]!,
+		                                                               defaultValue: .unknown,
+		                                                               links: steps(for: modem))
+		startupNetworkRegistrationStatusSwitcher?.start(completion: {
+			startupNetworkRegistrationStatusSwitcher = nil
+		})
+	}
+	
+	func currentNetworkRegistration(`for` modem: ModemModule) -> NetworkRegistrationStatus {
+		guard let key = currentNetworkRegistrationStateKeys[modem] else {
+			return NetworkRegistrationStatus.unknown
+		}
+		
+		return DataModelManager.shared.get(forKey: key, withDefault: NetworkRegistrationStatus.poweredOff)
+	}
+	
+	func targetNetworkRegistration(`for` modem: ModemModule) -> NetworkRegistrationStatus {
+		guard let key = targetNetworkRegistrationStateKeys[modem] else {
 			return NetworkRegistrationStatus.unknown
 		}
 		

@@ -87,7 +87,7 @@ class NetworkSelectionViewController: NSViewController {
 	func updateNetworkMode() {
 		let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
 		                                       withDefault: NetworkMode.satellite)
-		updateModemModule(for: mode, withLifeCycle: false)
+		updateModemModule(for: mode, withLifeCycle: true)
 		DispatchQueue.main.async {
 			if let segment = self.moduleButton[mode] {
 				self.networkModuleSegment.selectedSegment = segment

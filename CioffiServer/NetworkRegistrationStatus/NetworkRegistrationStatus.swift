@@ -10,12 +10,20 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let satelliteNetworkRegistrationStatusKey = "satelliteRegistrationStatus"
-let cellularNetworkRegistrationStatusKey = "cellularRegistrationStatus"
+let currentSatelliteNetworkRegistrationStatusKey = "NetworkRegistrationStatus.satellite.current"
+let currentCellularNetworkRegistrationStatusKey = "NetworkRegistrationStatus.cellular.current"
 
-let modemModuleKeys: [ModemModule: String] = [
-	.satellite: satelliteNetworkRegistrationStatusKey,
-	.cellular: cellularNetworkRegistrationStatusKey
+let targetSatelliteNetworkRegistrationStatusKey = "NetworkRegistrationStatus.satellite.target"
+let targetCellularNetworkRegistrationStatusKey = "NetworkRegistrationStatus.cellular.target"
+
+let currentNetworkRegistrationStateKeys: [ModemModule: String] = [
+	.satellite: currentSatelliteNetworkRegistrationStatusKey,
+	.cellular: currentCellularNetworkRegistrationStatusKey
+]
+
+let targetNetworkRegistrationStateKeys: [ModemModule: String] = [
+	.satellite: targetSatelliteNetworkRegistrationStatusKey,
+	.cellular: targetCellularNetworkRegistrationStatusKey
 ]
 
 struct GetNetworkRegistrationStatusFunctionUtilities {
@@ -24,7 +32,7 @@ struct GetNetworkRegistrationStatusFunctionUtilities {
 		let reportModel = module != nil ? module! : ModemModule.current
 		let moduleType = reportModel.rawValue
 		
-		let key = modemModuleKeys[reportModel]!
+		let key = currentNetworkRegistrationStateKeys[reportModel]!
 		body["connection"] = [
 			"module": moduleType
 		]
@@ -44,9 +52,14 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
 		responseType = .getNetworkRegistrationStatus
 		
 		DataModelManager.shared.set(value: NetworkRegistrationStatus.poweredOff,
-		                            forKey: satelliteNetworkRegistrationStatusKey)
+		                            forKey: currentSatelliteNetworkRegistrationStatusKey)
+		DataModelManager.shared.set(value: NetworkRegistrationStatus.registeredHomeNetwork,
+		                            forKey: targetSatelliteNetworkRegistrationStatusKey)
+		
 		DataModelManager.shared.set(value: NetworkRegistrationStatus.poweredOff,
-		                            forKey: cellularNetworkRegistrationStatusKey)
+		                            forKey: currentCellularNetworkRegistrationStatusKey)
+		DataModelManager.shared.set(value: NetworkRegistrationStatus.registeredHomeNetwork,
+		                            forKey: targetCellularNetworkRegistrationStatusKey)
 	}
 	
 	override func body() -> [String : Any] {
