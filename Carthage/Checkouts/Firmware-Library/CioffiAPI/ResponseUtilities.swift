@@ -53,6 +53,9 @@ public enum ResponseType: Int {
 	case startStopSAPA = 52
 	case getSAPAStatus = 54
 	
+	case setWifiConfiguration = 57
+	case getWifiConfiguration = 60
+	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {
 			return ResponseType.unknown

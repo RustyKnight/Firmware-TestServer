@@ -38,6 +38,8 @@
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
 		128008331D51C24B00D10017 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128008321D51C24B00D10017 /* ServerViewController.swift */; };
 		12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */; };
+		12AF47171D90C0D50081DF9A /* WifiConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AF47161D90C0D50081DF9A /* WifiConfiguration.swift */; };
+		12AF471A1D90C4CD0081DF9A /* WiFiConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AF47181D90C4CD0081DF9A /* WiFiConfigurationViewController.swift */; };
 		12B064681D49E9E500637053 /* SatelliteServiceModeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */; };
 		12B0646A1D4AC96A00637053 /* SatelliteServiceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */; };
 		12BA40C01D419DC400C0F512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40BF1D419DC400C0F512 /* AppDelegate.swift */; };
@@ -105,6 +107,8 @@
 		128008321D51C24B00D10017 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CioffiServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitGroupViewController.swift; sourceTree = "<group>"; };
+		12AF47161D90C0D50081DF9A /* WifiConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WifiConfiguration.swift; path = WifiConfiguration/WifiConfiguration.swift; sourceTree = "<group>"; };
+		12AF47181D90C4CD0081DF9A /* WiFiConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WiFiConfigurationViewController.swift; sourceTree = "<group>"; };
 		12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteServiceModeFunction.swift; path = SatelliteServiceMode/SatelliteServiceModeFunction.swift; sourceTree = "<group>"; };
 		12B064691D4AC96A00637053 /* SatelliteServiceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatelliteServiceModeViewController.swift; sourceTree = "<group>"; };
 		12BA40BC1D419DC400C0F512 /* CioffiServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CioffiServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +233,7 @@
 				1214A2611D49721B0090A5BD /* SignalStrengthViewController.swift */,
 				12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */,
 				1214A2561D4871430090A5BD /* VersionViewController.swift */,
+				12AF47181D90C4CD0081DF9A /* WiFiConfigurationViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -247,6 +252,14 @@
 				124405141D78FE41001826EC /* SAPAState.swift */,
 			);
 			name = SAPA;
+			sourceTree = "<group>";
+		};
+		12AF47151D90C0AE0081DF9A /* WiFiConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				12AF47161D90C0D50081DF9A /* WifiConfiguration.swift */,
+			);
+			name = WiFiConfiguration;
 			sourceTree = "<group>";
 		};
 		12B064661D49E9BD00637053 /* SatelliteServiceMode */ = {
@@ -300,6 +313,7 @@
 		12BA41271D41D72D00C0F512 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				12AF47151D90C0AE0081DF9A /* WiFiConfiguration */,
 				122669631D8266BE00DE9149 /* CellularNetworkMode */,
 				1214A2461D4849690090A5BD /* AccessRestricitions */,
 				1214A2351D482B340090A5BD /* APIFunction.swift */,
@@ -355,7 +369,7 @@
 						DevelopmentTeam = YWXH886EY3;
 						DevelopmentTeamName = "BEAM COMMUNICATIONS PTY LTD";
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -414,11 +428,13 @@
 				1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */,
 				702F55631D800F9700E4643F /* CellularNetworkMode.swift in Sources */,
 				12061A3B1D81269B002C986D /* SAPAViewContoller.swift in Sources */,
+				12AF471A1D90C4CD0081DF9A /* WiFiConfigurationViewController.swift in Sources */,
 				1214A2541D4855AA0090A5BD /* BatteryStatus.swift in Sources */,
 				12061A391D811978002C986D /* CellularNetworkModeViewController.swift in Sources */,
 				12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */,
 				12B0646A1D4AC96A00637053 /* SatelliteServiceModeViewController.swift in Sources */,
 				1205ADCE1D59929A00E19449 /* SatelliteBroadbandSettingsViewController.swift in Sources */,
+				12AF47171D90C0D50081DF9A /* WifiConfiguration.swift in Sources */,
 				120D05431D594985003E9D12 /* SatelliteBroadbandData.swift in Sources */,
 				1214A24E1D4851A80090A5BD /* SignalStrength.swift in Sources */,
 				1214A24B1D484E990090A5BD /* NetworkRegistrationStatus.swift in Sources */,
@@ -541,7 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YWXH886EY3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -553,6 +569,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beamcommunications.CioffiServer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a37c9cd6-26a5-46e4-b6b5-481a800ee99d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC OSX: com.beamcommunications.CioffiServer";
 				SWIFT_OBJC_BRIDGING_HEADER = "CioffiServer/CioffiServer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -564,7 +582,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YWXH886EY3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -576,6 +594,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beamcommunications.CioffiServer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9fb815b6-b050-4cb5-a22f-fa0d9b95355c";
+				PROVISIONING_PROFILE_SPECIFIER = "XC OSX: com.beamcommunications.CioffiServer";
 				SWIFT_OBJC_BRIDGING_HEADER = "CioffiServer/CioffiServer-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

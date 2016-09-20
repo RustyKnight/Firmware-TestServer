@@ -80,6 +80,9 @@ class DefaultRequestHandler: RequestHandler {
 		
 		functions[.getCellularNetworkMode] = GetCellularNetworkModeFunction()
 		
+		functions[.getWifiConfiguration] = GetWiFiConfiguration()
+		functions[.setWifiConfiguration] = SetWiFiConfiguration()
+		
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

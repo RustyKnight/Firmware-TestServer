@@ -67,6 +67,9 @@ class MainGroupViewController: NSViewController {
 			commonTabView.addTabViewItem(try makeTab(withName: "Battery",
 			                                         viewController: "BatteryStatus",
 			                                         identifier: "BatteryStatus"))
+			commonTabView.addTabViewItem(try makeTab(withName: "Wifi Configuration",
+			                                         viewController: "WiFiConfiguration",
+			                                         identifier: "WiFiConfiguration"))
 		} catch let error {
 			log(info: "\(error)")
 		}
