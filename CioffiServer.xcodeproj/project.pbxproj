@@ -36,6 +36,7 @@
 		122669651D826A2B00DE9149 /* BroadbandDataModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122669641D826A2B00DE9149 /* BroadbandDataModeViewController.swift */; };
 		124405151D78FE41001826EC /* SAPAState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124405141D78FE41001826EC /* SAPAState.swift */; };
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
+		126014A71D92737400F02315 /* APISystemTemparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126014A61D92737400F02315 /* APISystemTemparture.swift */; };
 		128008331D51C24B00D10017 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128008321D51C24B00D10017 /* ServerViewController.swift */; };
 		12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */; };
 		12AF47171D90C0D50081DF9A /* WifiConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AF47161D90C0D50081DF9A /* WifiConfiguration.swift */; };
@@ -104,6 +105,7 @@
 		122669641D826A2B00DE9149 /* BroadbandDataModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadbandDataModeViewController.swift; sourceTree = "<group>"; };
 		124405141D78FE41001826EC /* SAPAState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPAState.swift; sourceTree = "<group>"; };
 		124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		126014A61D92737400F02315 /* APISystemTemparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APISystemTemparture.swift; path = SystemTemperature/APISystemTemparture.swift; sourceTree = "<group>"; };
 		128008321D51C24B00D10017 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CioffiServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitGroupViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +256,14 @@
 			name = SAPA;
 			sourceTree = "<group>";
 		};
+		126014A51D92734000F02315 /* SystemTemperature */ = {
+			isa = PBXGroup;
+			children = (
+				126014A61D92737400F02315 /* APISystemTemparture.swift */,
+			);
+			name = SystemTemperature;
+			sourceTree = "<group>";
+		};
 		12AF47151D90C0AE0081DF9A /* WiFiConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,13 +323,12 @@
 		12BA41271D41D72D00C0F512 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				12AF47151D90C0AE0081DF9A /* WiFiConfiguration */,
-				122669631D8266BE00DE9149 /* CellularNetworkMode */,
 				1214A2461D4849690090A5BD /* AccessRestricitions */,
 				1214A2351D482B340090A5BD /* APIFunction.swift */,
 				1214A23C1D483F010090A5BD /* APINotification.swift */,
 				1214A2521D4855960090A5BD /* BatteryStatus */,
 				120D05411D594965003E9D12 /* BroadbandData */,
+				122669631D8266BE00DE9149 /* CellularNetworkMode */,
 				1214A2341D4828BA0090A5BD /* GetVersion */,
 				1214A2401D4844CE0090A5BD /* NetworkMode */,
 				1214A2491D484E790090A5BD /* NetworkRegistrationStatus */,
@@ -329,6 +338,8 @@
 				1214A2511D4853780090A5BD /* ServiceProvider */,
 				1214A23B1D483EE80090A5BD /* ShuttingDown */,
 				1214A24C1D48518A0090A5BD /* SignalStength */,
+				126014A51D92734000F02315 /* SystemTemperature */,
+				12AF47151D90C0AE0081DF9A /* WiFiConfiguration */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -448,6 +459,7 @@
 				12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */,
 				1214A2571D4871430090A5BD /* VersionViewController.swift in Sources */,
 				1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */,
+				126014A71D92737400F02315 /* APISystemTemparture.swift in Sources */,
 				1214A23A1D483D600090A5BD /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

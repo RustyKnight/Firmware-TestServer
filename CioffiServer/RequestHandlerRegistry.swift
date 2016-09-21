@@ -83,6 +83,8 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.getWifiConfiguration] = GetWiFiConfiguration()
 		functions[.setWifiConfiguration] = SetWiFiConfiguration()
 		
+		functions[.getSystemTemperature] = GetSystemTemperature()
+		
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

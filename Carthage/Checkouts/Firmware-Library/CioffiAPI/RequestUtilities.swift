@@ -43,6 +43,8 @@ public enum RequestType: Int {
 	case setWifiConfiguration = 56
 	case getWifiConfiguration = 59
 	
+	case getSystemTemperature = 60
+	
 	public static func `for`(_ value: Int) -> RequestType {
 		guard let type = RequestType(rawValue: value) else {
 			return RequestType.unknown
