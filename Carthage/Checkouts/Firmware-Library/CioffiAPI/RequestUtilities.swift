@@ -41,7 +41,7 @@ public enum RequestType: Int {
 	case getSAPAStatus = 53
 	
 	case setWifiConfiguration = 56
-	case getWifiConfiguration = 59
+	case getWifiConfiguration = 58
 	
 	case getSystemTemperature = 60
 	
