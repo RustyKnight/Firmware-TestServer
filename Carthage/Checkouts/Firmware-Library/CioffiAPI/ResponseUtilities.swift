@@ -21,6 +21,9 @@ public enum NotificationType: Int {
 	case sapaStatus = 55
 	
 	case systemTemperature = 62
+	
+	case newSMS = 73
+	case smsStatus = 74
 }
 
 
@@ -59,6 +62,12 @@ public enum ResponseType: Int {
 	case getWifiConfiguration = 59
 
 	case getSystemTemperature = 61
+	
+	case sendSMS = 64
+	case getSMS = 66
+	case getSMSList = 68
+	case deleteSMS = 70
+	case markSMS = 71
 	
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

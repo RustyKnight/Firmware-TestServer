@@ -7,18 +7,22 @@
 //
 
 import Cocoa
+import SwiftyJSON
+import CioffiAPI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        _ = RequestHandlerManager.default
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-
+	
+	func applicationDidFinishLaunching(_ aNotification: Notification) {
+		_ = RequestHandlerManager.default
+		
+		_ = MessageManager.shared
+	}
+	
+	func applicationWillTerminate(_ aNotification: Notification) {
+		// Insert code here to tear down your application
+	}
+	
+	
 }
 

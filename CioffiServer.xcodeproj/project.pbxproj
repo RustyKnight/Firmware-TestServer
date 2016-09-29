@@ -37,8 +37,12 @@
 		124405151D78FE41001826EC /* SAPAState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124405141D78FE41001826EC /* SAPAState.swift */; };
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
 		126014A71D92737400F02315 /* APISystemTemparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126014A61D92737400F02315 /* APISystemTemparture.swift */; };
+		12708A741D94F33200717175 /* APISMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12708A731D94F33200717175 /* APISMS.swift */; };
 		128008331D51C24B00D10017 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128008321D51C24B00D10017 /* ServerViewController.swift */; };
 		12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */; };
+		12AA6C921D9CBDBA008C2E5D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA6C911D9CBDBA008C2E5D /* MessageManager.swift */; };
+		12AA6C961D9CBE79008C2E5D /* Messages.json in Resources */ = {isa = PBXBuildFile; fileRef = 12AA6C941D9CBE79008C2E5D /* Messages.json */; };
+		12AA6C971D9CBE79008C2E5D /* PhoneNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = 12AA6C951D9CBE79008C2E5D /* PhoneNumbers.json */; };
 		12AF47171D90C0D50081DF9A /* WifiConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AF47161D90C0D50081DF9A /* WifiConfiguration.swift */; };
 		12AF471A1D90C4CD0081DF9A /* WiFiConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AF47181D90C4CD0081DF9A /* WiFiConfigurationViewController.swift */; };
 		12B064681D49E9E500637053 /* SatelliteServiceModeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */; };
@@ -106,9 +110,13 @@
 		124405141D78FE41001826EC /* SAPAState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPAState.swift; sourceTree = "<group>"; };
 		124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		126014A61D92737400F02315 /* APISystemTemparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APISystemTemparture.swift; path = SystemTemperature/APISystemTemparture.swift; sourceTree = "<group>"; };
+		12708A731D94F33200717175 /* APISMS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APISMS.swift; path = SMS/APISMS.swift; sourceTree = "<group>"; };
 		128008321D51C24B00D10017 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CioffiServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitGroupViewController.swift; sourceTree = "<group>"; };
+		12AA6C911D9CBDBA008C2E5D /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		12AA6C941D9CBE79008C2E5D /* Messages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Messages.json; sourceTree = "<group>"; };
+		12AA6C951D9CBE79008C2E5D /* PhoneNumbers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhoneNumbers.json; sourceTree = "<group>"; };
 		12AF47161D90C0D50081DF9A /* WifiConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WifiConfiguration.swift; path = WifiConfiguration/WifiConfiguration.swift; sourceTree = "<group>"; };
 		12AF47181D90C4CD0081DF9A /* WiFiConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WiFiConfigurationViewController.swift; sourceTree = "<group>"; };
 		12B064671D49E9E500637053 /* SatelliteServiceModeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SatelliteServiceModeFunction.swift; path = SatelliteServiceMode/SatelliteServiceModeFunction.swift; sourceTree = "<group>"; };
@@ -264,6 +272,23 @@
 			name = SystemTemperature;
 			sourceTree = "<group>";
 		};
+		12708A721D94F32100717175 /* SMS */ = {
+			isa = PBXGroup;
+			children = (
+				12708A731D94F33200717175 /* APISMS.swift */,
+			);
+			name = SMS;
+			sourceTree = "<group>";
+		};
+		12AA6C931D9CBE79008C2E5D /* SMSData */ = {
+			isa = PBXGroup;
+			children = (
+				12AA6C941D9CBE79008C2E5D /* Messages.json */,
+				12AA6C951D9CBE79008C2E5D /* PhoneNumbers.json */,
+			);
+			path = SMSData;
+			sourceTree = "<group>";
+		};
 		12AF47151D90C0AE0081DF9A /* WiFiConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,19 +328,21 @@
 		12BA40BE1D419DC400C0F512 /* CioffiServer */ = {
 			isa = PBXGroup;
 			children = (
-				1214A2551D48712A0090A5BD /* ViewControllers */,
 				12BA41271D41D72D00C0F512 /* API */,
 				12BA40BF1D419DC400C0F512 /* AppDelegate.swift */,
 				12BA40C31D419DC400C0F512 /* Assets.xcassets */,
+				1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */,
 				1214A2391D483D600090A5BD /* DataModel.swift */,
 				12BA40C81D419DC400C0F512 /* Info.plist */,
 				12BA40C51D419DC400C0F512 /* Main.storyboard */,
+				12AA6C911D9CBDBA008C2E5D /* MessageManager.swift */,
 				12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */,
 				12BA40D01D41A09B00C0F512 /* Server.swift */,
 				1214A2321D473EF30090A5BD /* SliderCell.swift */,
-				12BA40C11D419DC400C0F512 /* ViewController.swift */,
-				1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */,
+				12AA6C931D9CBE79008C2E5D /* SMSData */,
 				120795EC1D7F916B000DD9A5 /* Utilities.swift */,
+				12BA40C11D419DC400C0F512 /* ViewController.swift */,
+				1214A2551D48712A0090A5BD /* ViewControllers */,
 			);
 			path = CioffiServer;
 			sourceTree = "<group>";
@@ -338,6 +365,7 @@
 				1214A2511D4853780090A5BD /* ServiceProvider */,
 				1214A23B1D483EE80090A5BD /* ShuttingDown */,
 				1214A24C1D48518A0090A5BD /* SignalStength */,
+				12708A721D94F32100717175 /* SMS */,
 				126014A51D92734000F02315 /* SystemTemperature */,
 				12AF47151D90C0AE0081DF9A /* WiFiConfiguration */,
 			);
@@ -372,7 +400,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Beam Communications";
 				TargetAttributes = {
 					12BA40BB1D419DC400C0F512 = {
@@ -407,8 +435,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12AA6C961D9CBE79008C2E5D /* Messages.json in Resources */,
 				12BA40C41D419DC400C0F512 /* Assets.xcassets in Resources */,
 				12BA40C71D419DC400C0F512 /* Main.storyboard in Resources */,
+				12AA6C971D9CBE79008C2E5D /* PhoneNumbers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +461,7 @@
 				12061A3E1D81495D002C986D /* BroadbandDataMode.swift in Sources */,
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
 				1214A2361D482B340090A5BD /* APIFunction.swift in Sources */,
+				12708A741D94F33200717175 /* APISMS.swift in Sources */,
 				128008331D51C24B00D10017 /* ServerViewController.swift in Sources */,
 				1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */,
 				1214A2481D48499E0090A5BD /* AccessRestricitions.swift in Sources */,
@@ -461,6 +492,7 @@
 				1214A2381D482CE40090A5BD /* GetVersionFunction.swift in Sources */,
 				126014A71D92737400F02315 /* APISystemTemparture.swift in Sources */,
 				1214A23A1D483D600090A5BD /* DataModel.swift in Sources */,
+				12AA6C921D9CBDBA008C2E5D /* MessageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,8 +525,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -540,8 +574,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";

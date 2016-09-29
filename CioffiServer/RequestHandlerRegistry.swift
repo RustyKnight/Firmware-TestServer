@@ -84,7 +84,9 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.setWifiConfiguration] = SetWiFiConfiguration()
 		
 		functions[.getSystemTemperature] = GetSystemTemperature()
+		functions[.sendSMS] = SendSMS()
 		
+		functions[.getSMSList] = GetSMSList()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {
