@@ -84,15 +84,22 @@ public enum ProtocolError: Error {
 		// Calculate the size for the message body
 		let sizeHexValue = Utils.hexStringFromInt(value: messageBody.characters.count)
 		let sizeValue = Utils.hexStringtoAscii(hexString: sizeHexValue)
+
+		log(info: "size = \(messageBody.characters.count) = \(sizeHexValue) = \(sizeValue)")
 		
 		// Base initial CRC from the default CRC
 		let crcHeader = getProtocolMessage(size: sizeValue, crc: defaultCRC, messageBody: messageBody)
 		
-		if let crc = crcHeader.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)?.crcCCITT {
+		if let data = crcHeader.data(using: String.Encoding.isoLatin1, allowLossyConversion: false) {
+			let crc = data.crcCCITT
 			// Calculate CRC
 			let hexCrc = Utils.hexStringFromInt(value: Int(crc))
 			let hexStr = Utils.hexStringtoAscii(hexString: hexCrc)
+			
+			log(info: "crc = \(crc) = \(hexCrc) = \(hexStr)")
 			protocolMessage = getProtocolMessage(size: sizeValue, crc: hexStr, messageBody: messageBody)
+		} else {
+			log(error: "Failed to encode message data?")
 		}
 		
 		log(info: "Protocol message \(protocolMessage)")
