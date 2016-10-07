@@ -80,7 +80,7 @@ class GetAccessRestricitionsFunction: DefaultAPIFunction {
 		
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String : Any] = [:]
 		
 		for (key, value) in accessRestricitionKeys {
@@ -109,7 +109,7 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 	
 	var validated: [AccessRestricition: Bool] = [:]
 	
-	override func preProcess(request: JSON) {
+	override func preProcess(request: JSON) -> PreProcessResult {
 		validated = [:]
 		for (key, value) in accessRestricitionKeys {
 			validated[key] = false
@@ -130,9 +130,11 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 			}
 			DataModelManager.shared.set(value: validated[key]!, forKey: value.lockedKey)
 		}
+		
+		return createResponse(success: true)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var contents: [String : Any] = [:]
 		for (key, value) in validated {
 			contents[key.description] = ["result": value ? 0 : 4]
@@ -140,21 +142,21 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 		return contents
 	}
 	
-	override func handle(request: JSON, forResponder responder: Responder) throws {
-		guard RequestType.from(request) == requestType else {
-			throw APIFunctionError.invalidRequestType
-		}
-		
-		preProcess(request: request)
-		responder.succeeded(response: responseType, contents: body())
-		//        if validated {
-		//            DataModelManager.shared.set(value: false, forKey: GetAccessRestricitionsFunction.adminLockedKey)
-		//            responder.succeeded(response: responseType, contents: body())
-		//        } else {
-		//            DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminLockedKey)
-		//            responder.accessDenied(response: responseType)
-		//        }
-	}
+//	override func handle(request: JSON, forResponder responder: Responder) throws {
+//		guard RequestType.from(request) == requestType else {
+//			throw APIFunctionError.invalidRequestType
+//		}
+//		
+//		preProcess(request: request)
+//		responder.succeeded(response: responseType, contents: body())
+//		//        if validated {
+//		//            DataModelManager.shared.set(value: false, forKey: GetAccessRestricitionsFunction.adminLockedKey)
+//		//            responder.succeeded(response: responseType, contents: body())
+//		//        } else {
+//		//            DataModelManager.shared.set(value: true, forKey: GetAccessRestricitionsFunction.adminLockedKey)
+//		//            responder.accessDenied(response: responseType)
+//		//        }
+//	}
 	
 }
 
@@ -166,9 +168,9 @@ class StopAccessFunction: DefaultAPIFunction {
 		responseType = .stopAccess
 	}
 	
-	override func preProcess(request: JSON) {
+	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let options = request["clear"].arrayObject else {
-			return
+			return createResponse(success: false)
 		}
 		for option in options {
 			guard let option = option as? String else {
@@ -185,5 +187,6 @@ class StopAccessFunction: DefaultAPIFunction {
 			log(info: "keySet.lockedKey = \(keySet.lockedKey)")
 			DataModelManager.shared.set(value: false, forKey: keySet.lockedKey)
 		}
+		return createResponse(success: true)
 	}
 }

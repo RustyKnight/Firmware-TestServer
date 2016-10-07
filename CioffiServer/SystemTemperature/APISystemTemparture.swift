@@ -69,7 +69,7 @@ class GetSystemTemperature: DefaultAPIFunction {
 		DataModelManager.shared.set(value: defaultSystemTemperature, forKey: systemTemperatureKey)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return SystemTemperatureUtilities.body
 	}
 }

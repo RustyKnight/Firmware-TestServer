@@ -18,18 +18,32 @@ protocol APIFunction {
 	func handle(request: JSON, forResponder responder: Responder) throws
 }
 
+protocol PreProcessResult {
+	var success: Bool {get}
+	var result: Any? {get}
+}
+
+struct DefaultPreProcessResult: PreProcessResult {
+	let success: Bool
+	let result: Any?
+}
+
 class DefaultAPIFunction: APIFunction {
 	
 	var responseType: ResponseType = .unknown
 	var requestType: RequestType = .unknown
 	
-	func body() -> [String: Any] {
+	func body(preProcessResult: Any? = nil) -> [String: Any] {
 		let body: [String: Any] = [:]
 		return body
 	}
 	
-	func preProcess(request: JSON) {
-		
+	func createResponse(success: Bool, result: Any? = nil) -> PreProcessResult {
+		return DefaultPreProcessResult(success: success, result: result)
+	}
+	
+	func preProcess(request: JSON) -> PreProcessResult {
+		return createResponse(success: true)
 	}
 	
 	func postProcess(request: JSON) {
@@ -41,8 +55,13 @@ class DefaultAPIFunction: APIFunction {
 			throw APIFunctionError.invalidRequestType
 		}
 		
-		preProcess(request: request)
-		responder.succeeded(response: responseType, contents: body())
+		let result = preProcess(request: request)
+		if result.success {
+			responder.succeeded(response: responseType,
+			                    contents: body(preProcessResult: result.result))
+		} else {
+			responder.failed(response: responseType)
+		}
 		postProcess(request: request)
 	}
 }

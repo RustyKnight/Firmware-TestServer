@@ -62,7 +62,7 @@ class GetNetworkRegistrationStatusFunction: DefaultAPIFunction {
 		                            forKey: targetCellularNetworkRegistrationStatusKey)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return GetNetworkRegistrationStatusFunctionUtilities.body()
 	}
 	

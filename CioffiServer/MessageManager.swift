@@ -27,6 +27,13 @@ enum MessageStatus: Int, CustomStringConvertible {
 		return states[index]
 	}
 	
+	var isIncoming: Bool {
+		switch self {
+		case .sent: return false
+		default: return true
+		}
+	}
+	
 	var description: String {
 		switch self {
 		case .sent: return "Sent"
@@ -38,7 +45,7 @@ enum MessageStatus: Int, CustomStringConvertible {
 
 struct Conversation {
 	let number: String
-	let messages: [Message]
+	var messages: [Message]
 }
 
 struct Message: CustomStringConvertible {
@@ -69,6 +76,15 @@ class MessageManager {
 		loadNumbers()
 		
 		generateConversations()
+	}
+	
+	func deleteMessagesBy(ids: [String]) {
+		for var conversation in conversations {
+			let messages = conversation.messages.filter({ (message) -> Bool in
+				return ids.index(of: message.id) == nil
+			})
+			conversation.messages = messages
+		}
 	}
 	
 	func generateConversations() {

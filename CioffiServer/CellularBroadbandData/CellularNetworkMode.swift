@@ -33,7 +33,7 @@ class GetCellularNetworkModeFunction: DefaultAPIFunction {
 		                            forKey: cellularNetworkModeKey)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return CellularNetworkModeUtilities.body()
 	}
 	

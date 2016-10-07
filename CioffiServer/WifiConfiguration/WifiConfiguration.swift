@@ -53,7 +53,7 @@ class GetWiFiConfiguration: DefaultAPIFunction {
 		DataModelManager.shared.set(value: defaultWifiConfiguration, forKey: wifiConfigurationKey)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return WiFiConfigurationUtilities.body
 	}
 }
@@ -65,15 +65,16 @@ class SetWiFiConfiguration: GetWiFiConfiguration {
 		responseType = .setWifiConfiguration
 	}
 	
-	override func preProcess(request: JSON) {
+	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let ssid = request["wifi"]["ssid"].string, let channel = request["wifi"]["channel"].int else {
 			log(warning: "Missing ssid and/or channel")
-			return
+			return createResponse(success: false)
 		}
 		let passphrase: String? = request["wifi"]["passphrase"].string
 		DataModelManager.shared.set(value: DefaultWifiConfiguration(ssid: ssid,
 		                                                            channel: channel,
 		                                                            passphrase: passphrase),
 		                            forKey: wifiConfigurationKey)
+		return createResponse(success: true)
 	}
 }

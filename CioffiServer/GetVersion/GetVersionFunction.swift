@@ -11,28 +11,28 @@ import SwiftyJSON
 import CioffiAPI
 
 class GetVersionFunction: DefaultAPIFunction {
-    
-    static let majorVersionKey = "majorVersion"
-    static let minorVersionKey = "minorVersion"
-    static let patchVersionKey = "patchVersion"
-    
-    override init() {
-        super.init()
-        responseType = .getVersion
-        requestType = .getVersion
-        DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.majorVersionKey)
-        DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.minorVersionKey)
-        DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.patchVersionKey)
-    }
-    
-    override func body() -> [String : Any] {
-        var body: [String: Any] = [:]
-        body["firmware"] = [
-            "majorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1),
-            "minorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 1),
-            "patchVersion": DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 1),
-        ]
-        return body
-    }
-
+	
+	static let majorVersionKey = "majorVersion"
+	static let minorVersionKey = "minorVersion"
+	static let patchVersionKey = "patchVersion"
+	
+	override init() {
+		super.init()
+		responseType = .getVersion
+		requestType = .getVersion
+		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.majorVersionKey)
+		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.minorVersionKey)
+		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.patchVersionKey)
+	}
+	
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
+		var body: [String: Any] = [:]
+		body["firmware"] = [
+			"majorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1),
+			"minorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 1),
+			"patchVersion": DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 1),
+		]
+		return body
+	}
+	
 }

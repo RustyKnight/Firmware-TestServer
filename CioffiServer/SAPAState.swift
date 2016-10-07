@@ -46,7 +46,7 @@ class GetAutomaticSAPAStatusFunction: DefaultAPIFunction {
 		DataModelManager.shared.set(value: false, forKey: automaticSAPAState)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return SAPAStatusUtility.automaticBody()
 	}
 	
@@ -61,12 +61,13 @@ class SetAutomaticSAPAStatusFunction: GetAutomaticSAPAStatusFunction {
 		requestType = .setAutomaticSAPAStatus
 	}
 	
-	override func preProcess(request: JSON) {
+	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let state = request["autosapa"]["active"].bool else {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
-			return
+			return createResponse(success: false)
 		}
 		DataModelManager.shared.set(value: state, forKey: automaticSAPAState)
+		return createResponse(success: true)
 	}
 	
 }
@@ -82,7 +83,7 @@ class GetSAPAStatusFunction: DefaultAPIFunction {
 		DataModelManager.shared.set(value: false, forKey: sapaState)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return SAPAStatusUtility.manualBody()
 	}
 	
@@ -97,12 +98,13 @@ class StartStopSAPAFunction: GetSAPAStatusFunction {
 		requestType = .startStopSAPA
 	}
 	
-	override func preProcess(request: JSON) {
+	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let state = request["sapa"]["active"].bool else {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
-			return
+			return createResponse(success: false)
 		}
 		DataModelManager.shared.set(value: state, forKey: sapaState)
+		return createResponse(success: true)
 	}
 	
 }

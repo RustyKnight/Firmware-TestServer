@@ -87,6 +87,7 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.sendSMS] = SendSMS()
 		
 		functions[.getSMSList] = GetSMSList()
+		functions[.deleteSMS] = DeleteSMS()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

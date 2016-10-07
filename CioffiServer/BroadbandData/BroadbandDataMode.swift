@@ -76,7 +76,7 @@ class GetBroadbandDataModeStatus: DefaultAPIFunction {
 		DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: broadbandDataActiveModeKey)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		return BroadbandDataModeStatusUtilities.body()
 	}
 }
@@ -95,10 +95,10 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 		DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: broadbandDataActiveModeKey)
 	}
 	
-	override func preProcess(request: JSON) {
+	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let on = request["broadband"]["active"].bool else {
 			log(warning: "Missing broadband/active payload")
-			return
+			return createResponse(success: false)
 		}
 		
 		if on {
@@ -163,9 +163,10 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 				}
 			}
 		}
+		return createResponse(success: true)
 	}
 	
-	override func body() -> [String : Any] {
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String: [String: Any]] = [:]
 		let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
 		                                       withDefault: BroadbandDataModeStatus.dataInactive)
