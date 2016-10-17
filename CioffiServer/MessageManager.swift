@@ -48,8 +48,18 @@ struct Conversation {
 	var messages: [Message]
 }
 
+class IDGenerator {
+	static internal var id: Int = 0
+	static var next: Int {
+		get {
+			id += 1
+			return id
+		}
+	}
+}
+
 struct Message: CustomStringConvertible {
-	let id: String = UUID().uuidString
+	let id: Int = IDGenerator.next
 	let date: Date
 	let text: String
 	let status: MessageStatus
@@ -78,7 +88,7 @@ class MessageManager {
 		generateConversations()
 	}
 	
-	func deleteMessagesBy(ids: [String]) {
+	func deleteMessagesBy(ids: [Int]) {
 		for var conversation in conversations {
 			let messages = conversation.messages.filter({ (message) -> Bool in
 				return ids.index(of: message.id) == nil
