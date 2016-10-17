@@ -129,10 +129,16 @@ class MessageManager {
 
 				startDate = startDate?.addingTimeInterval(randomInterval)
 				
+				let direction = MessageDirection.random
+				var status = MessageStatus.random
+				while direction == .incoming && status == .failed {
+					status = MessageStatus.random
+				}
+				
 				let text = messages[Int(index)]
 				let element = Message(date: startDate!,
 				                      text: text,
-				                      status: MessageStatus.random,
+				                      status: status,
 				                      read: true,
 				                      direction: MessageDirection.random)
 //				log(info: "\(index): \(element)")
