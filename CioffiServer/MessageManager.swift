@@ -43,13 +43,26 @@ enum MessageStatus: Int, CustomStringConvertible {
 	}
 }
 
-struct Conversation {
+class Conversation {
 	let number: String
 	var messages: [Message]
+	
+	init(number: String, messages: [Message]) {
+		self.number = number
+		self.messages = messages
+	}
+}
+
+class Generator {
+	fileprivate static var counter = 0
+	static var next: Int {
+		counter += 1
+		return counter
+	}
 }
 
 struct Message: CustomStringConvertible {
-	let id: String = UUID().uuidString
+	let id: Int = Generator.next
 	let date: Date
 	let text: String
 	let status: MessageStatus
@@ -78,13 +91,18 @@ class MessageManager {
 		generateConversations()
 	}
 	
-	func deleteMessagesBy(ids: [String]) {
+	func deleteMessagesBy(ids: [Int]) {
 		for var conversation in conversations {
 			let messages = conversation.messages.filter({ (message) -> Bool in
 				return ids.index(of: message.id) == nil
 			})
 			conversation.messages = messages
+			log(info: "Conversation has \(conversation.messages.count) left")
 		}
+		
+		conversations = conversations.filter({ (conversation) -> Bool in
+			return conversation.messages.count > 0
+		})
 	}
 	
 	func generateConversations() {

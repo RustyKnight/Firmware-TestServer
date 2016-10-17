@@ -83,7 +83,7 @@ class DeleteSMS: DefaultAPIFunction {
 	}
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
-		guard let id = request["message"]["msgid"].string else {
+		guard let id = request["message"]["msgid"].int else {
 			return createResponse(success: false)
 		}
 		MessageManager.shared.deleteMessagesBy(ids: [id])
@@ -91,7 +91,7 @@ class DeleteSMS: DefaultAPIFunction {
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
-		guard let result = preProcessResult as? String else {
+		guard let result = preProcessResult as? Int else {
 			return [:]
 		}
 		return ["message": ["msgid": result]]
