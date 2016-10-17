@@ -40,8 +40,7 @@ class GetSMSList: DefaultAPIFunction {
 		var totalLength = 0
 		for conversation in MessageManager.shared.conversations {
 			for message in conversation.messages {
-				let direction = message.status.isIncoming ? 0 : 1
-				log(info: "[\(message.id)][\(conversation.number)][\(direction)][\(message.date)] - \(message.text)")
+				log(info: "[\(message.id)][\(conversation.number)][\(message.direction.rawValue)][\(message.date)] - \(message.text)")
 				let thread: [String: Any] = [
 					"id": message.id,
 					"text": message.text,
@@ -49,7 +48,8 @@ class GetSMSList: DefaultAPIFunction {
 					"time": stupidDateFormat.string(from: message.date),
 					"status": message.status.rawValue,
 					"transport": SMSTransport.cellular.rawValue,
-					"direction": direction
+					"direction": message.direction.rawValue,
+					"read": message.read
 				]
 				let len = length(of: thread)
 				if len + totalLength < 65000 {
