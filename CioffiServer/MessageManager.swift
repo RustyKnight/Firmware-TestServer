@@ -17,29 +17,35 @@ enum MessageManagerError: Error {
 }
 
 enum MessageStatus: Int, CustomStringConvertible {
+	case sending = 0
 	case sent = 1
-	case read = 4
-	case unread = 5
+	case failed = 2
+	case deleted = 3
 	
 	static var random: MessageStatus {
-		let states: [MessageStatus] = [.sent, .read, .unread]
+		let states: [MessageStatus] = [.sent, .failed, .deleted]
 		let index = Int(arc4random_uniform(UInt32(states.count)))
 		return states[index]
 	}
 	
-	var isIncoming: Bool {
-		switch self {
-		case .sent: return false
-		default: return true
-		}
-	}
-	
 	var description: String {
 		switch self {
+		case .sending: return "Sending"
 		case .sent: return "Sent"
-		case .read: return "Read"
-		case .unread: return "Unread"
+		case .failed: return "Read"
+		case .deleted: return "Unread"
 		}
+	}
+}
+
+enum MessageDirection: Int {
+	case incoming = 0
+	case outgoing = 1
+	
+	static var random: MessageDirection {
+		let states: [MessageDirection] = [.incoming, .outgoing]
+		let index = Int(arc4random_uniform(UInt32(states.count)))
+		return states[index]
 	}
 }
 
@@ -66,6 +72,8 @@ struct Message: CustomStringConvertible {
 	let date: Date
 	let text: String
 	let status: MessageStatus
+	let read: Bool
+	let direction: MessageDirection
 	
 	var description: String {
 		let formatter = DateFormatter()
@@ -92,7 +100,7 @@ class MessageManager {
 	}
 	
 	func deleteMessagesBy(ids: [Int]) {
-		for var conversation in conversations {
+		for conversation in conversations {
 			let messages = conversation.messages.filter({ (message) -> Bool in
 				return ids.index(of: message.id) == nil
 			})
@@ -122,7 +130,11 @@ class MessageManager {
 				startDate = startDate?.addingTimeInterval(randomInterval)
 				
 				let text = messages[Int(index)]
-				let element = Message(date: startDate!, text: text, status: MessageStatus.random)
+				let element = Message(date: startDate!,
+				                      text: text,
+				                      status: MessageStatus.random,
+				                      read: true,
+				                      direction: MessageDirection.random)
 //				log(info: "\(index): \(element)")
 				threads.append(element)
 			}
