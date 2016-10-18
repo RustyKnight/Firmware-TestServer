@@ -35,6 +35,7 @@ class SendSMS: DefaultAPIFunction {
 		_ = firstly {
 			return Promise<PendingMessage> { (fulfill, fail) in
 				let delay = 0.1 + (Double(arc4random_uniform(60)) / 60.0)
+				log(info: "Wait for \(delay * 60.0) seconds")
 				DispatchQueue.global().asyncAfter(deadline: .now() + delay, execute: {
 					fulfill(PendingMessage(number: number, content: message))
 				})
@@ -43,7 +44,7 @@ class SendSMS: DefaultAPIFunction {
 					DispatchQueue.global().async {
 						do {
 							let newMessage = Message(date: Date(), text: message.content, status: .sending, read: false, direction: .outgoing)
-							MessageManager.shared.add(message.content, to: message.number)
+							MessageManager.shared.add(newMessage, to: message.number)
 							try Server.default.send(notification: NewMessageNotification(message: newMessage, number: message.number))
 							fulfill(newMessage)
 						} catch let error {
@@ -54,13 +55,18 @@ class SendSMS: DefaultAPIFunction {
 			}).then(execute: { (message) -> Promise<Message> in
 				return Promise<Message> {(fulfill, fail) in
 					let delay = 0.1 + (Double(arc4random_uniform(2 * 60)) / 60.0)
+					log(info: "Wait for \(delay * 60.0) seconds")
 					DispatchQueue.global().asyncAfter(deadline: .now() + delay, execute: {
 						fulfill(message)
 					})
 				}
 			}).then(execute: { (message) -> Void in
+				let status = MessageStatus.random(from: [.sent, .failed])
+				log(info: "Set status to \(status)")
+				MessageManager.shared.update(message, status: status)
+				log(info: "message.status == \(message.status)")
 				try Server.default.send(notification: MessageStatusNotification(id: message.id,
-				                                                                status: MessageStatus.random(from: [.sent, .failed])))
+				                                                                status: message.status))
 			}).catch(execute: { (error) in
 				log(error: "\(error)")
 			})

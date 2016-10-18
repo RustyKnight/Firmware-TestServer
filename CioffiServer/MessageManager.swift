@@ -36,8 +36,8 @@ enum MessageStatus: Int, CustomStringConvertible {
 		switch self {
 		case .sending: return "Sending"
 		case .sent: return "Sent"
-		case .failed: return "Read"
-		case .deleted: return "Unread"
+		case .failed: return "Failed"
+		case .deleted: return "Deleted"
 		}
 	}
 }
@@ -73,13 +73,22 @@ class IDGenerator {
 	}
 }
 
-struct Message: CustomStringConvertible {
-	let id: Int = IDGenerator.next
+class Message: CustomStringConvertible {
+	let id: Int
 	let date: Date
 	let text: String
-	let status: MessageStatus
-	let read: Bool
+	var status: MessageStatus
+	var read: Bool
 	let direction: MessageDirection
+	
+	init(id: Int = IDGenerator.next, date: Date, text: String, status: MessageStatus, read: Bool, direction: MessageDirection) {
+		self.id = id
+		self.date = date
+		self.text = text
+		self.status = status
+		self.read = read
+		self.direction = direction
+	}
 	
 	var description: String {
 		let formatter = DateFormatter()
@@ -105,8 +114,26 @@ class MessageManager {
 		generateConversations()
 	}
 	
-	func add(_ message: String, to number: String) {
+	func add(_ message: Message, to number: String) {
+		guard let conversation = (conversations.filter { (conversation) -> Bool in
+			return conversation.number == number
+		}).first else {
+			return
+		}
 		
+		conversation.messages.append(message)
+	}
+	
+	func update(_ message: Message, status: MessageStatus) {
+		for conversation in conversations {
+			for checkMessage in conversation.messages {
+				if checkMessage.id == message.id {
+					log(info: "Update message (\(checkMessage.id))status to \(status)")
+					checkMessage.status = status
+					log(info: "checkMessage = \(checkMessage)")
+				}
+			}
+		}
 	}
 	
 	func deleteMessagesBy(ids: [Int]) {
