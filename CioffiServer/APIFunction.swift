@@ -26,6 +26,14 @@ protocol PreProcessResult {
 struct DefaultPreProcessResult: PreProcessResult {
 	let success: Bool
 	let result: Any?
+	
+	static func successful(with: Any? = nil) -> DefaultPreProcessResult {
+		return DefaultPreProcessResult(success: true, result: with)
+	}
+	
+	static func failed() -> DefaultPreProcessResult {
+		return DefaultPreProcessResult(success: true, result: nil)
+	}
 }
 
 class DefaultAPIFunction: APIFunction {

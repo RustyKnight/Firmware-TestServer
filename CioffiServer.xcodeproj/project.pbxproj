@@ -33,6 +33,9 @@
 		1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */; };
 		1214A2681D497DDD0090A5BD /* BatteryStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */; };
 		1214A26A1D498BC90090A5BD /* ServiceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */; };
+		121FDFEB1DB5DCFA00DC81E2 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121FDFEA1DB5DCFA00DC81E2 /* PromiseKit.framework */; };
+		121FDFEC1DB5DCFA00DC81E2 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 121FDFEA1DB5DCFA00DC81E2 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		121FDFEE1DB5DD1A00DC81E2 /* PromiseSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121FDFED1DB5DD1A00DC81E2 /* PromiseSupport.swift */; };
 		122669651D826A2B00DE9149 /* BroadbandDataModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122669641D826A2B00DE9149 /* BroadbandDataModeViewController.swift */; };
 		124405151D78FE41001826EC /* SAPAState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124405141D78FE41001826EC /* SAPAState.swift */; };
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
@@ -73,6 +76,7 @@
 				707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */,
 				12BA40D71D41A11A00C0F512 /* SwiftyJSON.framework in Embed Frameworks */,
 				12BA40D51D41A11A00C0F512 /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				121FDFEC1DB5DCFA00DC81E2 /* PromiseKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +110,8 @@
 		1214A2651D4978D40090A5BD /* NetworkRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRegistrationViewController.swift; sourceTree = "<group>"; };
 		1214A2671D497DDD0090A5BD /* BatteryStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryStatusViewController.swift; sourceTree = "<group>"; };
 		1214A2691D498BC90090A5BD /* ServiceProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderViewController.swift; sourceTree = "<group>"; };
+		121FDFEA1DB5DCFA00DC81E2 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = "<group>"; };
+		121FDFED1DB5DD1A00DC81E2 /* PromiseSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseSupport.swift; sourceTree = "<group>"; };
 		122669641D826A2B00DE9149 /* BroadbandDataModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadbandDataModeViewController.swift; sourceTree = "<group>"; };
 		124405141D78FE41001826EC /* SAPAState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPAState.swift; sourceTree = "<group>"; };
 		124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 				707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */,
 				12BA40D61D41A11A00C0F512 /* SwiftyJSON.framework in Frameworks */,
 				12BA40D41D41A11A00C0F512 /* CocoaAsyncSocket.framework in Frameworks */,
+				121FDFEB1DB5DCFA00DC81E2 /* PromiseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +315,7 @@
 		12BA40B31D419DC400C0F512 = {
 			isa = PBXGroup;
 			children = (
+				121FDFEA1DB5DCFA00DC81E2 /* PromiseKit.framework */,
 				70DB0D281D441C4400EF53E1 /* Fuzi.framework */,
 				707CCA001D422AA6003D8292 /* CioffiAPI.framework */,
 				12BA40D21D41A11A00C0F512 /* CocoaAsyncSocket.framework */,
@@ -343,6 +351,7 @@
 				120795EC1D7F916B000DD9A5 /* Utilities.swift */,
 				12BA40C11D419DC400C0F512 /* ViewController.swift */,
 				1214A2551D48712A0090A5BD /* ViewControllers */,
+				121FDFED1DB5DD1A00DC81E2 /* PromiseSupport.swift */,
 			);
 			path = CioffiServer;
 			sourceTree = "<group>";
@@ -461,6 +470,7 @@
 				12061A3E1D81495D002C986D /* BroadbandDataMode.swift in Sources */,
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
 				1214A2361D482B340090A5BD /* APIFunction.swift in Sources */,
+				121FDFEE1DB5DD1A00DC81E2 /* PromiseSupport.swift in Sources */,
 				12708A741D94F33200717175 /* APISMS.swift in Sources */,
 				128008331D51C24B00D10017 /* ServerViewController.swift in Sources */,
 				1214A2661D4978D40090A5BD /* NetworkRegistrationViewController.swift in Sources */,

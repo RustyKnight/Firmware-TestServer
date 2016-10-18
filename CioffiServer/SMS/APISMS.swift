@@ -9,6 +9,12 @@
 import Foundation
 import CioffiAPI
 import SwiftyJSON
+import PromiseKit
+
+struct PendingMessage {
+	let number: String
+	let content: String
+}
 
 class SendSMS: DefaultAPIFunction {
 	override init() {
@@ -16,6 +22,105 @@ class SendSMS: DefaultAPIFunction {
 		
 		responseType = .sendSMS
 		requestType = .sendSMS
+	}
+	
+	override func preProcess(request: JSON) -> PreProcessResult {
+		guard let number = request["message"]["number"].string else {
+			return DefaultPreProcessResult.failed()
+		}
+		guard let message = request["message"]["content"].string else {
+			return DefaultPreProcessResult.failed()
+		}
+		
+		_ = firstly {
+			return Promise<PendingMessage> { (fulfill, fail) in
+				let delay = 0.1 + (Double(arc4random_uniform(60)) / 60.0)
+				DispatchQueue.global().asyncAfter(deadline: .now() + delay, execute: {
+					fulfill(PendingMessage(number: number, content: message))
+				})
+			}.then(execute: { (message) -> Promise<Message> in
+				return Promise<Message> {(fulfill, fail) in
+					DispatchQueue.global().async {
+						do {
+							let newMessage = Message(date: Date(), text: message.content, status: .sending, read: false, direction: .outgoing)
+							MessageManager.shared.add(message.content, to: message.number)
+							try Server.default.send(notification: NewMessageNotification(message: newMessage, number: message.number))
+							fulfill(newMessage)
+						} catch let error {
+							fail(error)
+						}
+					}
+				}
+			}).then(execute: { (message) -> Promise<Message> in
+				return Promise<Message> {(fulfill, fail) in
+					let delay = 0.1 + (Double(arc4random_uniform(2 * 60)) / 60.0)
+					DispatchQueue.global().asyncAfter(deadline: .now() + delay, execute: {
+						fulfill(message)
+					})
+				}
+			}).then(execute: { (message) -> Void in
+				try Server.default.send(notification: MessageStatusNotification(id: message.id,
+				                                                                status: MessageStatus.random(from: [.sent, .failed])))
+			}).catch(execute: { (error) in
+				log(error: "\(error)")
+			})
+		}
+		
+		return DefaultPreProcessResult.successful()
+	}
+
+	override func body(preProcessResult: Any?) -> [String : Any] {
+		return [:]
+	}
+}
+
+struct NewMessageNotification: APINotification {
+	
+	let message: Message
+	let number: String
+	
+	var type: NotificationType {
+		return .newSMS
+	}
+	
+	var body: [String : Any] {
+			return ["message": SMSUtilities.convert(message: message, number: number)]
+	}
+}
+
+struct MessageStatusNotification: APINotification {
+	
+	let id: Int
+	let status: MessageStatus
+	
+	var type: NotificationType {
+		return .smsStatus
+	}
+	
+	var body: [String : Any] {
+		return ["update": ["msgid": id, "status": status.rawValue]]
+	}
+}
+
+struct SMSUtilities {
+	
+	static var stupidDateFormat: DateFormatter {
+		let df = DateFormatter()
+		df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		return df
+	}
+	
+	static func convert(message: Message, number: String) -> [String: Any] {
+				return [
+					"id": message.id,
+					"text": message.text,
+					"number": number,
+					"time": stupidDateFormat.string(from: message.date),
+					"status": message.status.rawValue,
+					"transport": SMSTransport.cellular.rawValue,
+					"direction": message.direction.rawValue,
+					"read": message.read
+				]
 	}
 }
 
@@ -41,16 +146,17 @@ class GetSMSList: DefaultAPIFunction {
 		for conversation in MessageManager.shared.conversations {
 			for message in conversation.messages {
 				log(info: "[\(message.id)][\(conversation.number)][\(message.direction.rawValue)][\(message.date)] - \(message.text)")
-				let thread: [String: Any] = [
-					"id": message.id,
-					"text": message.text,
-					"number": conversation.number,
-					"time": stupidDateFormat.string(from: message.date),
-					"status": message.status.rawValue,
-					"transport": SMSTransport.cellular.rawValue,
-					"direction": message.direction.rawValue,
-					"read": message.read
-				]
+				let thread = SMSUtilities.convert(message: message, number: conversation.number)
+//				let thread: [String: Any] = [
+//					"id": message.id,
+//					"text": message.text,
+//					"number": conversation.number,
+//					"time": stupidDateFormat.string(from: message.date),
+//					"status": message.status.rawValue,
+//					"transport": SMSTransport.cellular.rawValue,
+//					"direction": message.direction.rawValue,
+//					"read": message.read
+//				]
 				let len = length(of: thread)
 				if len + totalLength < 65000 {
 					messages.append(thread)

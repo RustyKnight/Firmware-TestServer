@@ -24,6 +24,10 @@ enum MessageStatus: Int, CustomStringConvertible {
 	
 	static var random: MessageStatus {
 		let states: [MessageStatus] = [.sent, .failed, .deleted]
+		return random(from: states)
+	}
+	
+	static func random(from states: [MessageStatus]) -> MessageStatus {
 		let index = Int(arc4random_uniform(UInt32(states.count)))
 		return states[index]
 	}
@@ -99,6 +103,10 @@ class MessageManager {
 		loadNumbers()
 		
 		generateConversations()
+	}
+	
+	func add(_ message: String, to number: String) {
+		
 	}
 	
 	func deleteMessagesBy(ids: [Int]) {
