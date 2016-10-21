@@ -43,8 +43,8 @@ enum MessageStatus: Int, CustomStringConvertible {
 }
 
 enum MessageDirection: Int {
-	case incoming = 0
-	case outgoing = 1
+	case incoming = 1
+	case outgoing = 0
 	
 	static var random: MessageDirection {
 		let states: [MessageDirection] = [.incoming, .outgoing]
@@ -112,6 +112,8 @@ class MessageManager {
 		loadNumbers()
 		
 		generateConversations()
+		
+		add(Message(date: Date(), text: "😎", status: .sent, read: false, direction: .outgoing), to: "0416060105")
 	}
 	
 	func add(_ message: Message, to number: String) {
