@@ -199,6 +199,12 @@ class DeleteSMS: DefaultAPIFunction {
 			return createResponse(success: false)
 		}
 		MessageManager.shared.deleteMessagesBy(ids: [id])
+		do {
+			try Server.default.send(notification: MessageStatusNotification(id: id,
+			                                                                status: .deleted))
+		} catch let error {
+			log(error: "\(error)")
+		}
 		return createResponse(success: true, result: id)
 	}
 	
