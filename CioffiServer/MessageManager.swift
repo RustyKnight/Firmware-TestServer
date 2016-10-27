@@ -152,6 +152,17 @@ class MessageManager {
 		})
 	}
 	
+	func markMessage(id: Int, asRead read: Bool) {
+		for conversation in conversations {
+			let messages = conversation.messages.filter({ (message) -> Bool in
+				return message.id == id
+			})
+			for message in messages {
+				message.read = read
+			}
+		}
+	}
+	
 	func generateConversations() {
 		for number in numbers {
 			let count = arc4random_uniform(UInt32(messages.count))

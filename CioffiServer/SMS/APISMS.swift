@@ -208,10 +208,45 @@ class DeleteSMS: DefaultAPIFunction {
 		return createResponse(success: true, result: id)
 	}
 	
-	override func body(preProcessResult: Any? = nil) -> [String : Any] {
-		guard let result = preProcessResult as? Int else {
-			return [:]
-		}
-		return ["message": ["msgid": result]]
-	}
+//	override func body(preProcessResult: Any? = nil) -> [String : Any] {
+//		guard let result = preProcessResult as? Int else {
+//			return [:]
+//		}
+//		return ["message": ["msgid": result]]
+//	}
 }
+
+class MarkSMSRead: DefaultAPIFunction {
+	
+	override init() {
+		super.init()
+		
+		responseType = .markSMS
+		requestType = .markSMS
+	}
+	
+	override func preProcess(request: JSON) -> PreProcessResult {
+		guard let id = request["message"]["msgid"].int else {
+			return createResponse(success: false)
+		}
+		guard let read = request["message"]["read"].int else {
+			return createResponse(success: false)
+		}
+		MessageManager.shared.markMessage(id: id, asRead: read == 1 ? true : false)
+//		do {
+//			try Server.default.send(notification: MessageStatusNotification(id: id,
+//			                                                                status: .read))
+//		} catch let error {
+//			log(error: "\(error)")
+//		}
+		return createResponse(success: true, result: id)
+	}
+	
+//	override func body(preProcessResult: Any? = nil) -> [String : Any] {
+//		guard let result = preProcessResult as? Int else {
+//			return [:]
+//		}
+//		return ["message": ["msgid": result]]
+//	}
+}
+

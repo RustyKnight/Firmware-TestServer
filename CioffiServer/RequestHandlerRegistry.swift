@@ -88,6 +88,8 @@ class DefaultRequestHandler: RequestHandler {
 		
 		functions[.getSMSList] = GetSMSList()
 		functions[.deleteSMS] = DeleteSMS()
+		
+		functions[.markSMS] = MarkSMSRead()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

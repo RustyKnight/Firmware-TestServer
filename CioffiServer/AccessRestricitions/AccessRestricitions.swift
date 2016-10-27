@@ -189,4 +189,15 @@ class StopAccessFunction: DefaultAPIFunction {
 		}
 		return createResponse(success: true)
 	}
+	override func body(preProcessResult: Any? = nil) -> [String : Any] {
+		var body: [String : Any] = [:]
+		
+		for (key, value) in accessRestricitionKeys {
+			body[key.description] = [
+				"restricted": DataModelManager.shared.get(forKey: value.enabledKey,
+				                                          withDefault: true)
+			]
+		}
+		return body
+	}
 }
