@@ -152,15 +152,18 @@ class MessageManager {
 		})
 	}
 	
-	func markMessage(id: Int, asRead read: Bool) {
+	func markMessage(id: Int, asRead read: Bool) -> Message? {
+		var last: Message? = nil
 		for conversation in conversations {
 			let messages = conversation.messages.filter({ (message) -> Bool in
 				return message.id == id
 			})
 			for message in messages {
 				message.read = read
+				last = message
 			}
 		}
+		return last
 	}
 	
 	func generateConversations() {

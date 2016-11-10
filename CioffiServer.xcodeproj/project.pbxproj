@@ -41,6 +41,7 @@
 		124A9ED61D5D88DE00E4E964 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */; };
 		126014A71D92737400F02315 /* APISystemTemparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126014A61D92737400F02315 /* APISystemTemparture.swift */; };
 		12708A741D94F33200717175 /* APISMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12708A731D94F33200717175 /* APISMS.swift */; };
+		127669931DD3E1780045F8D4 /* AdminRestricitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127669921DD3E1780045F8D4 /* AdminRestricitions.swift */; };
 		128008331D51C24B00D10017 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128008321D51C24B00D10017 /* ServerViewController.swift */; };
 		12A2635F1D5D98C70077CF48 /* SplitGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */; };
 		12AA6C921D9CBDBA008C2E5D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA6C911D9CBDBA008C2E5D /* MessageManager.swift */; };
@@ -117,6 +118,7 @@
 		124A9ED41D5D88DE00E4E964 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		126014A61D92737400F02315 /* APISystemTemparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APISystemTemparture.swift; path = SystemTemperature/APISystemTemparture.swift; sourceTree = "<group>"; };
 		12708A731D94F33200717175 /* APISMS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APISMS.swift; path = SMS/APISMS.swift; sourceTree = "<group>"; };
+		127669921DD3E1780045F8D4 /* AdminRestricitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminRestricitions.swift; path = AccessRestricitions/AdminRestricitions.swift; sourceTree = "<group>"; };
 		128008321D51C24B00D10017 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		1286652D1D500D8B00F8F753 /* CioffiServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CioffiServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		12A2635E1D5D98C70077CF48 /* SplitGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitGroupViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				1214A2471D48499E0090A5BD /* AccessRestricitions.swift */,
+				127669921DD3E1780045F8D4 /* AdminRestricitions.swift */,
 			);
 			name = AccessRestricitions;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				12061A3E1D81495D002C986D /* BroadbandDataMode.swift in Sources */,
 				12BA40D11D41A09B00C0F512 /* Server.swift in Sources */,
 				1214A2361D482B340090A5BD /* APIFunction.swift in Sources */,
+				127669931DD3E1780045F8D4 /* AdminRestricitions.swift in Sources */,
 				121FDFEE1DB5DD1A00DC81E2 /* PromiseSupport.swift in Sources */,
 				12708A741D94F33200717175 /* APISMS.swift in Sources */,
 				128008331D51C24B00D10017 /* ServerViewController.swift in Sources */,

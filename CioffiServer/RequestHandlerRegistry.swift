@@ -90,6 +90,8 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.deleteSMS] = DeleteSMS()
 		
 		functions[.markSMS] = MarkSMSRead()
+		
+		functions[.getAdminAccessRestrictions] = GetAdminRestriction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

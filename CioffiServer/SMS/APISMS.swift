@@ -66,7 +66,8 @@ class SendSMS: DefaultAPIFunction {
 				MessageManager.shared.update(message, status: status)
 				log(info: "message.status == \(message.status)")
 				try Server.default.send(notification: MessageStatusNotification(id: message.id,
-				                                                                status: message.status))
+				                                                                status: message.status,
+				                                                                read: true))
 			}).catch(execute: { (error) in
 				log(error: "\(error)")
 			})
@@ -98,13 +99,14 @@ struct MessageStatusNotification: APINotification {
 	
 	let id: Int
 	let status: MessageStatus
+	let read: Bool
 	
 	var type: NotificationType {
 		return .smsStatus
 	}
 	
 	var body: [String : Any] {
-		return ["update": ["msgid": id, "status": status.rawValue]]
+		return ["update": ["msgid": id, "status": status.rawValue, "read": read ? 1 : 0]]
 	}
 }
 
@@ -201,19 +203,13 @@ class DeleteSMS: DefaultAPIFunction {
 		MessageManager.shared.deleteMessagesBy(ids: [id])
 		do {
 			try Server.default.send(notification: MessageStatusNotification(id: id,
-			                                                                status: .deleted))
+			                                                                status: .deleted,
+			                                                                read: false))
 		} catch let error {
 			log(error: "\(error)")
 		}
-		return createResponse(success: true, result: id)
+		return createResponse(success: true)
 	}
-	
-//	override func body(preProcessResult: Any? = nil) -> [String : Any] {
-//		guard let result = preProcessResult as? Int else {
-//			return [:]
-//		}
-//		return ["message": ["msgid": result]]
-//	}
 }
 
 class MarkSMSRead: DefaultAPIFunction {
@@ -232,21 +228,17 @@ class MarkSMSRead: DefaultAPIFunction {
 		guard let read = request["message"]["read"].int else {
 			return createResponse(success: false)
 		}
-		MessageManager.shared.markMessage(id: id, asRead: read == 1 ? true : false)
-//		do {
-//			try Server.default.send(notification: MessageStatusNotification(id: id,
-//			                                                                status: .read))
-//		} catch let error {
-//			log(error: "\(error)")
-//		}
-		return createResponse(success: true, result: id)
+		guard let message = MessageManager.shared.markMessage(id: id, asRead: read == 1 ? true : false) else {
+			return createResponse(success: false)
+		}
+		do {
+			try Server.default.send(notification: MessageStatusNotification(id: message.id,
+			                                                                status: message.status,
+			                                                                read: message.read))
+		} catch let error {
+			log(error: "\(error)")
+		}
+		return createResponse(success: true)
 	}
-	
-//	override func body(preProcessResult: Any? = nil) -> [String : Any] {
-//		guard let result = preProcessResult as? Int else {
-//			return [:]
-//		}
-//		return ["message": ["msgid": result]]
-//	}
 }
 

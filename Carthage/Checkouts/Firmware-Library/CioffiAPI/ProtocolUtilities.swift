@@ -37,12 +37,12 @@ public enum ProtocolError: Error {
 	}
 	
 	public static func header(forNotification notification: NotificationType) -> [String: Any] {
-        return header(forType: notification.rawValue, result: ResponseCode.success.rawValue)
+		return header(forType: notification.rawValue, result: ResponseCode.success.rawValue)
 	}
-    
-    public static func header(forRequest request: RequestType, code: ResponseCode) -> [String: Any] {
-        return header(forType: request.rawValue, result: code.rawValue)
-    }
+	
+	public static func header(forRequest request: RequestType, code: ResponseCode) -> [String: Any] {
+		return header(forType: request.rawValue, result: code.rawValue)
+	}
 	
 	public static func header(forResponse response: ResponseType, code: ResponseCode) -> [String: Any] {
 		return header(forType: response.rawValue, result: code.rawValue)
@@ -63,12 +63,12 @@ public enum ProtocolError: Error {
 	- Returns: Request header
 	*/
 	public static func header(forType type: Int, result: Int? = nil) -> [String: Any] {
-        var headerContents: [String: Any] = ["version": apiVersion, "type" : type]
-        if let result = result {
-            headerContents += ["result": result]
-        }
-        let header: [String: Any] = ["header": headerContents]
-        log(info: "Header for type \(type) with result \(result) = \(header)")
+		var headerContents: [String: Any] = ["version": apiVersion, "type" : type]
+		if let result = result {
+			headerContents += ["result": result]
+		}
+		let header: [String: Any] = ["header": headerContents]
+		log(info: "Header for type \(type) with result \(result) = \(header)")
 		return header
 	}
 	
@@ -84,8 +84,8 @@ public enum ProtocolError: Error {
 		// Calculate the size for the message body
 		let sizeHexValue = Utils.hexStringFromInt(value: messageBody.characters.count)
 		let sizeValue = Utils.hexStringtoAscii(hexString: sizeHexValue)
-
-		log(info: "size = \(messageBody.characters.count) = \(sizeHexValue) = \(sizeValue)")
+		
+		log(info: "size = \(messageBody.characters.count) = \(sizeHexValue) = [\(sizeValue)]")
 		
 		// Base initial CRC from the default CRC
 		let crcHeader = getProtocolMessage(size: sizeValue, crc: defaultCRC, messageBody: messageBody)
@@ -96,7 +96,7 @@ public enum ProtocolError: Error {
 			let hexCrc = Utils.hexStringFromInt(value: Int(crc))
 			let hexStr = Utils.hexStringtoAscii(hexString: hexCrc)
 			
-			log(info: "crc = \(crc) = \(hexCrc) = \(hexStr)")
+			log(info: "crc = \(crc) = \(hexCrc) = [\(hexStr)]")
 			protocolMessage = getProtocolMessage(size: sizeValue, crc: hexStr, messageBody: messageBody)
 		} else {
 			log(error: "Failed to encode message data?")
@@ -147,39 +147,39 @@ public enum ProtocolError: Error {
 	}
 	
 	public class func getBodyLength(from data: Data) -> UInt {
-//		let buffer = UnsafeMutableBufferPointer<UInt8>(
-//			start: UnsafeMutablePointer<UInt8>(allocatingCapacity: data.count),
-//			count: data.count)
-//		let _ = data.copyBytes(to: buffer)
-//		let headerBytes = Array(buffer)
-//		return getBodyLength(from: headerBytes)
-        return (UInt(data[2]) * 256) + UInt(data[3])
+		//		let buffer = UnsafeMutableBufferPointer<UInt8>(
+		//			start: UnsafeMutablePointer<UInt8>(allocatingCapacity: data.count),
+		//			count: data.count)
+		//		let _ = data.copyBytes(to: buffer)
+		//		let headerBytes = Array(buffer)
+		//		return getBodyLength(from: headerBytes)
+		return (UInt(data[2]) * 256) + UInt(data[3])
 	}
 	
-//	public class func getBodyLength(from headerBytes: [UInt8]) -> UInt {
-//		return (UInt(headerBytes[2]) * 256) + UInt(headerBytes[3])
-//	}
+	//	public class func getBodyLength(from headerBytes: [UInt8]) -> UInt {
+	//		return (UInt(headerBytes[2]) * 256) + UInt(headerBytes[3])
+	//	}
 	
 	public class func validCRC(fromHeader headerData: Data, body bodyData: Data) -> Bool {
 		
 		// Compute CRC
-//		var bytes = Array(UnsafeBufferPointer(
-//			start: UnsafePointer<UInt8>((headerData as NSData).bytes),
-//			count: (headerData as NSData).length))
+		//		var bytes = Array(UnsafeBufferPointer(
+		//			start: UnsafePointer<UInt8>((headerData as NSData).bytes),
+		//			count: (headerData as NSData).length))
 		
-        var mutableHeaderData = Data()
-        mutableHeaderData.append(headerData)
-        
+		var mutableHeaderData = Data()
+		mutableHeaderData.append(headerData)
+		
 		let expectedCrc = getExpectedCRC(from: headerData)
 		
 		// Reset the crc bytes to compute the new crc value
-        // I'm not sure this is required any more, as we should
-        // now have a copy of the data...
+		// I'm not sure this is required any more, as we should
+		// now have a copy of the data...
 		mutableHeaderData[6] = 0
 		mutableHeaderData[7] = 0
 		
 		var crcData = Data()
-        crcData.append(mutableHeaderData)
+		crcData.append(mutableHeaderData)
 		crcData.append(bodyData)
 		
 		let currentCrc = UInt(crcData.crcCCITT)
@@ -187,7 +187,7 @@ public enum ProtocolError: Error {
 		return currentCrc == expectedCrc
 	}
 	
-//    public class func getExpectedCRC(from bytes: [UInt8]) -> UInt {
+	//    public class func getExpectedCRC(from bytes: [UInt8]) -> UInt {
 	public class func getExpectedCRC(from bytes: Data) -> UInt {
 		return (UInt(bytes[6]) * 256) + UInt(bytes[7])
 	}
@@ -221,7 +221,7 @@ public struct Utils {
 		let nsString = hexString as NSString
 		let matches = regex.matches(in: hexString, options: [], range: NSRange(location: 0, length: nsString.length))
 		let characters = matches.map {
-            Character(UnicodeScalar(UInt32(nsString.substring(with: $0.rangeAt(2)), radix: 16)!)!)
+			Character(UnicodeScalar(UInt32(nsString.substring(with: $0.rangeAt(2)), radix: 16)!)!)
 		}
 		
 		return String(characters)
@@ -263,8 +263,8 @@ public let crcCCITTLookupTable: [UInt16] = [
 ]
 
 public func calculateCRCCCITT(seed: UInt16, data: Data) -> UInt16 {
-//	let bytePointer = UnsafePointer<UInt8>(data.bytes)
-//	let bytes = UnsafeBufferPointer<UInt8>(start: bytePointer, count: data.length)
+	//	let bytePointer = UnsafePointer<UInt8>(data.bytes)
+	//	let bytes = UnsafeBufferPointer<UInt8>(start: bytePointer, count: data.length)
 	var sum = seed
 	
 	for byte in data {

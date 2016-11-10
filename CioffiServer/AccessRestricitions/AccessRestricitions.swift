@@ -12,7 +12,7 @@ import CioffiAPI
 
 struct AccessRestricitionKeySet {
 	let enabledKey: String
-	let lockedKey: String
+	let restrictedKey: String
 	let passwordKey: String
 }
 
@@ -36,16 +36,16 @@ enum AccessRestricition: String, CustomStringConvertible {
 
 let accessRestricitionKeys: [AccessRestricition: AccessRestricitionKeySet] = [
 	.admin: AccessRestricitionKeySet(enabledKey: GetAccessRestricitionsFunction.adminRestricitionKey,
-	                                 lockedKey: GetAccessRestricitionsFunction.adminLockedKey,
+	                                 restrictedKey: GetAccessRestricitionsFunction.adminLockedKey,
 	                                 passwordKey: GetAccessRestricitionsFunction.adminPasswordKey),
 	.data: AccessRestricitionKeySet(enabledKey: GetAccessRestricitionsFunction.dataRestricitionKey,
-	                                lockedKey: GetAccessRestricitionsFunction.dataLockedKey,
+	                                restrictedKey: GetAccessRestricitionsFunction.dataLockedKey,
 	                                passwordKey: GetAccessRestricitionsFunction.dataPasswordKey),
 	.call: AccessRestricitionKeySet(enabledKey: GetAccessRestricitionsFunction.callRestricitionKey,
-	                                lockedKey: GetAccessRestricitionsFunction.callLockedKey,
+	                                restrictedKey: GetAccessRestricitionsFunction.callLockedKey,
 	                                passwordKey: GetAccessRestricitionsFunction.callPasswordKey),
 	.sms: AccessRestricitionKeySet(enabledKey: GetAccessRestricitionsFunction.smsRestricitionKey,
-	                               lockedKey: GetAccessRestricitionsFunction.smsLockedKey,
+	                               restrictedKey: GetAccessRestricitionsFunction.smsLockedKey,
 	                               passwordKey: GetAccessRestricitionsFunction.smsPasswordKey),
 ]
 
@@ -70,11 +70,11 @@ class GetAccessRestricitionsFunction: DefaultAPIFunction {
 	override init() {
 		super.init()
 		requestType = .getAccessRestricitions
-		responseType = .getAccessRestricitions
+		responseType = .getAccessRestrictions
 		
 		for (_, value) in accessRestricitionKeys {
 			DataModelManager.shared.set(value: true, forKey: value.enabledKey)
-			DataModelManager.shared.set(value: true, forKey: value.lockedKey)
+			DataModelManager.shared.set(value: true, forKey: value.restrictedKey)
 			DataModelManager.shared.set(value: "cioffi", forKey: value.passwordKey)
 		}
 		
@@ -84,9 +84,12 @@ class GetAccessRestricitionsFunction: DefaultAPIFunction {
 		var body: [String : Any] = [:]
 		
 		for (key, value) in accessRestricitionKeys {
+			let value = DataModelManager.shared.get(forKey: value.restrictedKey,
+			                                        withDefault: true)
+
+			log(info: "value for \(key) = \(value)")
 			body[key.description] = [
-				"restricted": DataModelManager.shared.get(forKey: value.enabledKey,
-				                                          withDefault: true)
+				"restricted": value
 			]
 		}
 		return body
@@ -102,17 +105,13 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 		
 		for (_, value) in accessRestricitionKeys {
 			DataModelManager.shared.set(value: true, forKey: value.enabledKey)
-			DataModelManager.shared.set(value: true, forKey: value.lockedKey)
+			DataModelManager.shared.set(value: true, forKey: value.restrictedKey)
 			DataModelManager.shared.set(value: "cioffi", forKey: value.passwordKey)
 		}
 	}
 	
-	var validated: [AccessRestricition: Bool] = [:]
-	
 	override func preProcess(request: JSON) -> PreProcessResult {
-		validated = [:]
 		for (key, value) in accessRestricitionKeys {
-			validated[key] = false
 			guard request[key.description].exists() else {
 				continue
 			}
@@ -123,12 +122,13 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 			let currentPassword = DataModelManager.shared.get(forKey: value.passwordKey,
 			                                                  withDefault: "cioffi")
 			if currentPassword == password {
-				validated[key] = true
+				DataModelManager.shared.set(value: false, forKey: value.restrictedKey)
 				log(info: "\(key) was authenticated")
 			} else {
+				DataModelManager.shared.set(value: true, forKey: value.restrictedKey)
 				log(info: "\(key) failed authentication")
 			}
-			DataModelManager.shared.set(value: validated[key]!, forKey: value.lockedKey)
+			log(info: "\(key) restricted == \(DataModelManager.shared.get(forKey: value.restrictedKey, withDefault: true))")
 		}
 		
 		return createResponse(success: true)
@@ -136,8 +136,10 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var contents: [String : Any] = [:]
-		for (key, value) in validated {
-			contents[key.description] = ["result": value ? 0 : 4]
+		for (key, value) in accessRestricitionKeys {
+			let restricted = DataModelManager.shared.get(forKey: value.restrictedKey, withDefault: true)
+			log(info: "\(key) restricted == \(restricted)")
+			contents[key.description] = ["result": restricted ? 4 : 0]
 		}
 		return contents
 	}
@@ -184,8 +186,8 @@ class StopAccessFunction: DefaultAPIFunction {
 			guard let keySet = accessRestricitionKeys[key] else {
 				continue
 			}
-			log(info: "keySet.lockedKey = \(keySet.lockedKey)")
-			DataModelManager.shared.set(value: false, forKey: keySet.lockedKey)
+			log(info: "keySet.restrictedKey = \(keySet.restrictedKey)")
+			DataModelManager.shared.set(value: true, forKey: keySet.restrictedKey)
 		}
 		return createResponse(success: true)
 	}
