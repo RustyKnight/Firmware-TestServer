@@ -92,6 +92,9 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.markSMS] = MarkSMSRead()
 		
 		functions[.getAdminAccessRestrictions] = GetAdminRestriction()
+
+		functions[.getCallLogs] = GetCallLogs()
+		functions[.clearCallLogs] = ClearCallLogs()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

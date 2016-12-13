@@ -73,7 +73,11 @@ public enum ResponseType: Int {
 
 	case setAdminAccessRestrictions = 89
 	case getAdminAccessRestrictions = 92
-	
+
+	case getCallLogs = 99
+	case deleteCallLogs = 101
+	case clearCallLogs = 103
+
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {
 			return ResponseType.unknown

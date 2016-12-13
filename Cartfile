@@ -6,3 +6,5 @@
 github "RustyKnight/Firmware-Library"
 #github "RustyKnight/Fuzi" "swift-3b2"
 github "RustyKnight/PromiseKit" >= 4.1
+
+#github "omaralbeik/SwifterSwift"

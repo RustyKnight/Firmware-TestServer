@@ -110,14 +110,14 @@ struct MessageStatusNotification: APINotification {
 	}
 }
 
+var stupidDateFormat: DateFormatter {
+	let df = DateFormatter()
+	df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+	return df
+}
+
 struct SMSUtilities {
-	
-	static var stupidDateFormat: DateFormatter {
-		let df = DateFormatter()
-		df.dateFormat = "yyyy-MM-dd HH:mm:ss"
-		return df
-	}
-	
+
 	static func convert(message: Message, number: String) -> [String: Any] {
 				return [
 					"id": message.id,
