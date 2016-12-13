@@ -43,16 +43,17 @@ struct BroadbandDataModeStatusUtilities {
 			break
 		}
 		
-		var data: [String : Any] = [:]
-		data["broadband"] = [
+		var dataInfo: [String: Any] = [
 			"mode": mode.rawValue
 		]
 		guard let uplink = uplinkSpeed, let downlink = downlinkSpeed else {
+			let data: [String: Any] = ["broadband": dataInfo]
 			return data
 		}
-		data["broadband"] = ["uplinkspeed": uplink.rawValue]
-		data["broadband"] = ["downlinkspeed": downlink.rawValue]
-		
+		dataInfo["uplinkspeed"] = uplink.rawValue
+		dataInfo["downlinkspeed"] = downlink.rawValue
+
+		let data: [String: Any] = ["broadband": dataInfo]
 		return data
 	}
 }

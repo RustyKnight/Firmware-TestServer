@@ -40,7 +40,7 @@ class GetServiceProvideFunction: DefaultAPIFunction {
 		requestType = .getServiceProviderName
 		responseType = .getServiceProviderName
 		
-		DataModelManager.shared.set(value: "McDonalds",
+		DataModelManager.shared.set(value: "Optus",
 		                            forKey: serviceProviderKey)
 	}
 	

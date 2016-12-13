@@ -26,6 +26,14 @@ enum ModemModule: Int {
 	case satellite = 0
 	case cellular = 1
 	case unknown = -1
+
+	var networkMode: NetworkMode {
+		switch self {
+			case .cellular: return .cellular
+			case .satellite: return .satellite
+			default: return .smartSwitch
+		}
+	}
 	
 	func makeCurrent(withLifeCycle: Bool = false) {
 		let current = ModemModule.current
@@ -77,7 +85,7 @@ enum ModemModule: Int {
 		                                               withDefault: NetworkRegistrationStatus.poweredOff)
 		let targetState = DataModelManager.shared.get(forKey: targetNetworkRegistrationStateKeys[modem]!,
 		                                              withDefault: NetworkRegistrationStatus.poweredOff)
-		
+		log(info: "modem = \(modem); currentState = \(currentState); targetState = \(targetState)")
 		return steps(for: modem, from: currentState, to: targetState)
 	}
 	

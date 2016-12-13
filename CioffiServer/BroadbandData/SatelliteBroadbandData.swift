@@ -40,8 +40,11 @@ class SetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
 	}
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
-		guard let mode = request["broadband"]["mode"].int else {
+		guard let modeValue = request["broadband"]["mode"].int else {
 			log(warning: "Was expecting a broadband/mode, but didn't find one")
+			return createResponse(success: false)
+		}
+		guard let mode = SatelliteBroadbandDataMode(rawValue: modeValue) else {
 			return createResponse(success: false)
 		}
 		DataModelManager.shared.set(value: mode,

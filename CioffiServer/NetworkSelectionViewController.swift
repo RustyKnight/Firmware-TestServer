@@ -80,7 +80,12 @@ class NetworkSelectionViewController: NSViewController {
 //		DataModelManager.shared.set(value: mode, forKey: GetNetworkModeFunction.networkModeKey)
 //	}
 	
+	var ignoreUpdate: Bool = false
+	
 	func networkModeDataChanged(_ notification: NSNotification) {
+		guard !ignoreUpdate else {
+			return
+		}
 		updateNetworkMode()
 	}
 	
@@ -103,8 +108,15 @@ class NetworkSelectionViewController: NSViewController {
 			} else {
 				modem = .cellular
 			}
+			DataModelManager.shared.set(value: NetworkMode.smartSwitch, forKey: GetNetworkModeFunction.networkModeKey)
 		} else {
 			modem = networkModeModemModule[mode]!
+			let mode = modem.networkMode
+			defer {
+				ignoreUpdate = false
+			}
+			ignoreUpdate = true
+			DataModelManager.shared.set(value: mode, forKey: GetNetworkModeFunction.networkModeKey)
 		}
 		modem.makeCurrent(withLifeCycle: withLifeCycle)
 	}
