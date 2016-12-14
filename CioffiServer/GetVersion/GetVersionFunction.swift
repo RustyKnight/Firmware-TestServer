@@ -21,16 +21,16 @@ class GetVersionFunction: DefaultAPIFunction {
 		responseType = .getVersion
 		requestType = .getVersion
 		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.majorVersionKey)
-		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.minorVersionKey)
-		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.patchVersionKey)
+		DataModelManager.shared.set(value: 0, forKey: GetVersionFunction.minorVersionKey)
+		DataModelManager.shared.set(value: 0, forKey: GetVersionFunction.patchVersionKey)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String: Any] = [:]
 		body["firmware"] = [
 			"majorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1),
-			"minorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 1),
-			"patchVersion": DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 1),
+			"minorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 0),
+			"patchVersion": DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 0),
 		]
 		return body
 	}

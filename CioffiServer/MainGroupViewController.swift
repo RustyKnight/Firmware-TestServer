@@ -25,6 +25,8 @@ class MainGroupViewController: NSViewController {
 	@IBOutlet weak var minorVersionField: NSTextField!
 	@IBOutlet weak var patchVersionField: NSTextField!
 	
+	@IBOutlet weak var missedCallCountField: NSTextFieldCell!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupCommonTabs()
@@ -48,9 +50,27 @@ class MainGroupViewController: NSViewController {
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		majorVersionField.stringValue = DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: "1")
-		minorVersionField.stringValue = DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: "0")
-		patchVersionField.stringValue = DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: "0")
+		majorVersionField.stringValue = String(DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1))
+		minorVersionField.stringValue = String(DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 0))
+		patchVersionField.stringValue = String(DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 0))
+
+		missedCallCountField.stringValue = String(DataModelManager.shared.get(forKey: missedCallCountKey, withDefault: 0))
+
+		NotificationCenter.default.addObserver(self,
+				selector: #selector(MainGroupViewController.missedCallCountWasChanged),
+				name: NSNotification.Name.init(rawValue: missedCallCountKey),
+				object: nil)
+	}
+
+	var ignoreMissedCallCountChange = false
+
+	func missedCallCountWasChanged(_ notification: Notification) {
+		defer {
+			ignoreMissedCallCountChange = false
+		}
+		ignoreMissedCallCountChange = true
+		let count = DataModelManager.shared.get(forKey: missedCallCountKey, withDefault: 0)
+		missedCallCountField.stringValue = "\(count)"
 	}
 	
 	func setupCommonTabs() {
@@ -203,5 +223,20 @@ class MainGroupViewController: NSViewController {
 		
 		freeifaddrs(ifaddr)
 		return addresses
+	}
+	
+	@IBAction func missedCallCountChanged(_ sender: Any) {
+		guard !ignoreMissedCallCountChange else {
+			return
+		}
+		guard let count = Int(missedCallCountField.stringValue) else {
+			return
+		}
+		log(info: "Send missed call count of \(count)")
+		do {
+			try Server.default.send(notification: MissedCallCountNotification(count: count))
+		} catch let error {
+			log(error: "\(error)")
+		}
 	}
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
@@ -723,6 +724,28 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bh2-T2-1oX">
+                                <rect key="frame" x="259" y="373" width="118" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Missed Call Count:" id="Xix-va-Lmg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Wg-3N-qrC">
+                                <rect key="frame" x="383" y="370" width="48" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="Zb7-lA-Q4l"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="H97-36-cZN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="missedCallCountChanged:" target="Gm5-sF-UdW" id="9Hk-Rv-PaT"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Gkp-Bk-CF5" firstAttribute="top" secondItem="rTJ-7e-lKL" secondAttribute="bottom" constant="8" id="1f9-36-aQI"/>
@@ -734,18 +757,22 @@
                             <constraint firstItem="j4W-vg-abh" firstAttribute="centerY" secondItem="Gkp-Bk-CF5" secondAttribute="centerY" id="9kH-5N-NA7"/>
                             <constraint firstItem="qaY-D3-gbM" firstAttribute="centerY" secondItem="Gkp-Bk-CF5" secondAttribute="centerY" id="B5f-dj-RNW"/>
                             <constraint firstItem="0ZD-qH-ECC" firstAttribute="top" secondItem="CBV-hW-nB5" secondAttribute="bottom" constant="16" id="C6c-nb-crB"/>
+                            <constraint firstItem="0Wg-3N-qrC" firstAttribute="leading" secondItem="bh2-T2-1oX" secondAttribute="trailing" constant="8" id="GDG-69-Iwt"/>
                             <constraint firstItem="0ZD-qH-ECC" firstAttribute="leading" secondItem="Ftk-VI-iuM" secondAttribute="trailing" constant="8" id="Hnz-nB-GW7"/>
                             <constraint firstItem="Ftk-VI-iuM" firstAttribute="top" secondItem="9Wc-CJ-ukB" secondAttribute="top" constant="20" id="Htb-I0-aED"/>
                             <constraint firstItem="edI-yu-vj1" firstAttribute="top" secondItem="Ftk-VI-iuM" secondAttribute="top" id="ID8-ne-Aml"/>
                             <constraint firstItem="qaY-D3-gbM" firstAttribute="leading" secondItem="Ftk-VI-iuM" secondAttribute="trailing" constant="8" id="IzU-KF-g1j"/>
                             <constraint firstAttribute="bottom" secondItem="m7b-RZ-KvR" secondAttribute="bottom" constant="20" id="SWO-iS-R5t"/>
+                            <constraint firstItem="bh2-T2-1oX" firstAttribute="centerY" secondItem="8eX-bw-vBM" secondAttribute="centerY" id="SjC-hb-CJS"/>
                             <constraint firstItem="CBV-hW-nB5" firstAttribute="leading" secondItem="Ftk-VI-iuM" secondAttribute="trailing" constant="8" id="WIc-Nc-x19"/>
                             <constraint firstItem="PqZ-q2-DsO" firstAttribute="baseline" secondItem="j4W-vg-abh" secondAttribute="baseline" id="cAo-KG-BzH"/>
                             <constraint firstItem="feT-FV-ddb" firstAttribute="leading" secondItem="Gkp-Bk-CF5" secondAttribute="trailing" constant="4" id="dF5-Ug-pOc"/>
                             <constraint firstAttribute="trailing" secondItem="m7b-RZ-KvR" secondAttribute="trailing" constant="20" id="da8-IL-jS4"/>
+                            <constraint firstItem="bh2-T2-1oX" firstAttribute="leading" secondItem="8eX-bw-vBM" secondAttribute="trailing" constant="32" id="lh9-dR-7kw"/>
                             <constraint firstItem="j4W-vg-abh" firstAttribute="leading" secondItem="feT-FV-ddb" secondAttribute="trailing" constant="4" id="oyX-dK-o94"/>
                             <constraint firstItem="m7b-RZ-KvR" firstAttribute="leading" secondItem="9Wc-CJ-ukB" secondAttribute="leading" constant="20" id="qQc-gT-jFV"/>
                             <constraint firstItem="m7b-RZ-KvR" firstAttribute="top" secondItem="Gkp-Bk-CF5" secondAttribute="bottom" constant="20" id="qXw-ky-1Ls"/>
+                            <constraint firstItem="0Wg-3N-qrC" firstAttribute="centerY" secondItem="bh2-T2-1oX" secondAttribute="centerY" id="qgK-Lj-bsa"/>
                             <constraint firstItem="edI-yu-vj1" firstAttribute="leading" secondItem="Ftk-VI-iuM" secondAttribute="trailing" constant="8" id="rpl-fc-X29"/>
                             <constraint firstItem="rTJ-7e-lKL" firstAttribute="top" secondItem="0ZD-qH-ECC" secondAttribute="bottom" constant="8" id="w0e-Vo-kBH"/>
                             <constraint firstItem="Gkp-Bk-CF5" firstAttribute="leading" secondItem="qaY-D3-gbM" secondAttribute="trailing" constant="8" id="wYf-vK-fvM"/>
@@ -758,6 +785,7 @@
                         <outlet property="commonTabView" destination="bc1-rv-95G" id="UIc-vn-pF7"/>
                         <outlet property="majorVersionField" destination="Gkp-Bk-CF5" id="iJe-xy-MLw"/>
                         <outlet property="minorVersionField" destination="j4W-vg-abh" id="Qf5-NA-X4q"/>
+                        <outlet property="missedCallCountField" destination="H97-36-cZN" id="d4E-JC-MtG"/>
                         <outlet property="patchVersionField" destination="8eX-bw-vBM" id="fHY-r5-l1n"/>
                         <outlet property="satelliteTabView" destination="7wV-mx-dQg" id="gf4-k6-aCj"/>
                         <outlet property="serverActiveState" destination="CBV-hW-nB5" id="y1M-BH-Nnj"/>

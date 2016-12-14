@@ -95,6 +95,11 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.getCallLogs] = GetCallLogs()
 		functions[.clearCallLogs] = ClearCallLogs()
+
+		functions[.getMissedCallCount] = GetMissedCallCount()
+		functions[.clearMissedCallCount] = ClearMissedCallCount()
+
+		functions[.getOutboundFirewall] = GetOutboundFirewall()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {
