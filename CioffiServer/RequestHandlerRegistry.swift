@@ -100,6 +100,7 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.clearMissedCallCount] = ClearMissedCallCount()
 
 		functions[.getOutboundFirewall] = GetOutboundFirewall()
+		functions[.setOutboundFirewall] = SetOutboundFirewall()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

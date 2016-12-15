@@ -64,11 +64,11 @@ class CallLogsManager {
 		logs.append(CallLog(type: .missed, number: "55555", time: Date().adding(.hour, value: -1), duration: 50))
 		logs.append(CallLog(type: .incomingAnswered, number: "0416060105", time: Date().adding(.hour, value: -1).adding(.minute, value: -15), duration: 60))
 		logs.append(CallLog(type: .incomingAnswered, number: "+61416060105", time: Date().adding(.hour, value: -1).adding(.minute, value: -15), duration: 60))
-		logs.append(CallLog(type: .outgoing, number: "987654321", time: Date().adding(.day, value: -1).adding(.hour, value: 5).adding(.minute, value: -15), duration: 70))
-		logs.append(CallLog(type: .missed, number: "0907851236", time: Date().adding(.day, value: -2), duration: 80))
-		logs.append(CallLog(type: .incomingAnswered, number: "9191919191", time: Date().adding(.day, value: -2), duration: 90))
-		logs.append(CallLog(type: .outgoing, number: "134679085", time: Date().adding(.day, value: -3), duration: 100))
-		logs.append(CallLog(type: .missed, number: "197328465", time: Date().adding(.day, value: -3), duration: 110))
+//		logs.append(CallLog(type: .outgoing, number: "987654321", time: Date().adding(.day, value: -1).adding(.hour, value: 5).adding(.minute, value: -15), duration: 70))
+//		logs.append(CallLog(type: .missed, number: "0907851236", time: Date().adding(.day, value: -2), duration: 80))
+//		logs.append(CallLog(type: .incomingAnswered, number: "9191919191", time: Date().adding(.day, value: -2), duration: 90))
+//		logs.append(CallLog(type: .outgoing, number: "134679085", time: Date().adding(.day, value: -3), duration: 100))
+//		logs.append(CallLog(type: .missed, number: "197328465", time: Date().adding(.day, value: -3), duration: 110))
 	}
 
 	func clear() {
