@@ -69,7 +69,7 @@ class GetFirewall: DefaultAPIFunction {
 				"porttype": entry.portType.rawValue,
 					"fromport": entry.fromPort,
 					"toport": entry.toPort,
-					"protocol": entry.protocol,
+					"protocol": entry.protocol.rawValue,
 					"ipaddress": entry.ipAddress
 			]
 			entries.append(entryMap)
