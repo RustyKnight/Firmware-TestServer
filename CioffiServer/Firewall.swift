@@ -145,7 +145,6 @@ class SetFirewall: DefaultAPIFunction {
 
 }
 
-
 class GetOutboundFirewall: GetFirewall {
 
 	init() {
@@ -161,6 +160,26 @@ class SetOutboundFirewall: SetFirewall {
 	init() {
 		super.init(responseType: .setOutboundFirewall,
 				requestType: .setOutboundFirewall,
+				dataModelKey: .outbound)
+	}
+
+}
+
+class GetInboundFirewall: GetFirewall {
+
+	init() {
+		super.init(responseType: .getInboundFirewall,
+				requestType: .getInboundFirewall,
+				dataModelKey: .outbound)
+	}
+
+}
+
+class SetInboundFirewall: SetFirewall {
+
+	init() {
+		super.init(responseType: .setInboundFirewall,
+				requestType: .setInboundFirewall,
 				dataModelKey: .outbound)
 	}
 

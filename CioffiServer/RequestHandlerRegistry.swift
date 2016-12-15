@@ -101,6 +101,12 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.getOutboundFirewall] = GetOutboundFirewall()
 		functions[.setOutboundFirewall] = SetOutboundFirewall()
+
+		functions[.getInboundFirewall] = GetInboundFirewall()
+		functions[.setInboundFirewall] = SetInboundFirewall()
+
+		functions[.getIPAddressConfiguration] = GetIPAddressConfiguration()
+		functions[.setIPAddressConfiguration] = SetIPAddressConfiguration()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

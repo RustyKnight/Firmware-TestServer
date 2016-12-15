@@ -64,6 +64,12 @@ public enum RequestType: Int {
 	case setOutboundFirewall = 109
 	case getOutboundFirewall = 111
 
+	case setInboundFirewall = 117
+	case getInboundFirewall = 119
+
+	case getIPAddressConfiguration = 115
+	case setIPAddressConfiguration = 113
+
 	public static func `for`(_ value: Int) -> RequestType {
 		guard let type = RequestType(rawValue: value) else {
 			return RequestType.unknown
