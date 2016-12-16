@@ -234,6 +234,11 @@ class SocketClient: Responder {
 			socket.write(data, withTimeout: Server.readTimeout, tag: ClientSocketDelegate.responseTag)
 		} catch let error {
 			log(error: "\(error)")
+			log(info: message.debugDescription)
+			guard let contents = contents else {
+				return
+			}
+			log(info: contents.debugDescription)
 		}
 	}
     

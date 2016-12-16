@@ -39,7 +39,7 @@ class MACAddressFilteringFunction: DefaultAPIFunction {
 		let config: MACAddressConfiguration = DataModelManager.shared.get(forKey: MACAddressFilteringKey,
 				withDefault: MACAddressFilteringFunction.defaultValue)
 
-		body[Key.option] = config.option
+		body[Key.option] = config.option.rawValue
 		body[Key.entries] = config.entries.map { entry -> [String: Any] in
 			return [
 					Key.macAddress: entry
