@@ -19,10 +19,10 @@ enum FirewallProtocol: Int {
 	case both
 }
 
-enum FirewallState: Int {
+enum FirewallOption: Int {
 	case off = 0
-	case allow
-	case block
+	case blackList
+	case whiteList
 }
 
 struct FirewallEntry {
@@ -34,7 +34,7 @@ struct FirewallEntry {
 }
 
 struct FirewallSetting {
-	var state: FirewallState
+	var option: FirewallOption
 	var entries: [FirewallEntry]
 }
 
@@ -58,25 +58,21 @@ class GetFirewall: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let setting = DataModelManager.shared.get(forKey: dataModelKey.rawValue,
-				withDefault: FirewallSetting(state: .off, entries: []))
+		let setting: FirewallSetting = DataModelManager.shared.get(forKey: dataModelKey.rawValue,
+				withDefault: FirewallSetting(option: .off, entries: []))
 
-		body["state"] = setting.state.rawValue
-		var entries: [Any] = []
-
-		setting.entries.forEach { entry in
-			let entryMap: [String: Any] = [
-				"porttype": entry.portType.rawValue,
+		body["state"] = setting.option.rawValue
+		let entries = setting.entries.map { entry -> [String: Any] in
+			return [
+					"porttype": entry.portType.rawValue,
 					"fromport": entry.fromPort,
 					"toport": entry.toPort,
 					"protocol": entry.protocol.rawValue,
 					"ipaddress": entry.ipAddress
 			]
-			entries.append(entryMap)
 		}
 		body["entries"] = entries
 		return ["firewall": body]
-//		return [return"missedcalls": ["value": DataModelManager.shared.get(forKey: missedCallCountKey, withDefault: 0)]]
 	}
 
 }
@@ -96,7 +92,7 @@ class SetFirewall: DefaultAPIFunction {
 
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let stateValue = request["firewall"]["state"].int,
-				let state = FirewallState(rawValue: stateValue) else {
+				let option = FirewallOption(rawValue: stateValue) else {
 			log(error: "Missing \"state\" entry")
 			return createResponse(success: false)
 		}
@@ -106,36 +102,40 @@ class SetFirewall: DefaultAPIFunction {
 		}
 
 		var firewallEntries: [FirewallEntry] = []
-		for json in rawEntries {
-			guard let portTypeValue = json["porttype"].int,
-			      let portType = FirewallPortType(rawValue: portTypeValue) else {
-				log(error: "Missing \"porttype\" entry")
-				return createResponse(success: false)
+		do {
+			firewallEntries = try rawEntries.map { json -> FirewallEntry in
+				guard let portTypeValue = json["porttype"].int,
+				      let portType = FirewallPortType(rawValue: portTypeValue) else {
+					log(error: "Missing \"porttype\" entry")
+					throw ParseError.thatSucks
+				}
+				guard let fromPort = json["fromport"].int else {
+					log(error: "Missing \"fromport\" entry")
+					throw ParseError.thatSucks
+				}
+				guard let toPort = json["toport"].int else {
+					log(error: "Missing \"toport\" entry")
+					throw ParseError.thatSucks
+				}
+				guard let protocolValue = json["protocol"].int,
+				      let firewallProtocol = FirewallProtocol(rawValue: protocolValue) else {
+					log(error: "Missing \"protocol\" entry")
+					throw ParseError.thatSucks
+				}
+				guard let ipAddress = json["ipaddress"].string else {
+					log(error: "Missing \"ipaddress\" entry")
+					throw ParseError.thatSucks
+				}
+				return FirewallEntry(portType: portType,
+						fromPort: fromPort,
+						toPort: toPort,
+						protocol: firewallProtocol,
+						ipAddress: ipAddress)
 			}
-			guard let fromPort = json["fromport"].int else {
-				log(error: "Missing \"fromport\" entry")
-				return createResponse(success: false)
-			}
-			guard let toPort = json["toport"].int else {
-				log(error: "Missing \"toport\" entry")
-				return createResponse(success: false)
-			}
-			guard let protocolValue = json["protocol"].int,
-			      let firewallProtocol = FirewallProtocol(rawValue: protocolValue) else {
-				log(error: "Missing \"protocol\" entry")
-				return createResponse(success: false)
-			}
-			guard let ipAddress = json["ipaddress"].string else {
-				log(error: "Missing \"ipaddress\" entry")
-				return createResponse(success: false)
-			}
-			firewallEntries.append(FirewallEntry(portType: portType,
-					fromPort: fromPort,
-					toPort: toPort,
-					protocol: firewallProtocol,
-					ipAddress: ipAddress))
+		} catch {
+			return createResponse(success: false)
 		}
-		let setting = FirewallSetting(state: state,
+		let setting = FirewallSetting(option: option,
 				entries: firewallEntries)
 
 		DataModelManager.shared.set(value: setting, forKey: dataModelKey.rawValue)

@@ -64,10 +64,14 @@
 		12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */; };
 		3ED4A084B38F7F59449FF462 /* CallLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A18CA466E34204180172 /* CallLogsManager.swift */; };
 		3ED4A0F12B40997328AA5A4B /* IPAddressConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A2E3AF8603E3A5F10239 /* IPAddressConfiguration.swift */; };
+		3ED4A5ED4C6E4CBD42B3039F /* MACAddressFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */; };
 		3ED4A7B3E25D30B9EF87B838 /* Firewall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD2204952550AA61D12D /* Firewall.swift */; };
 		3ED4A95CA765FCC8C8397843 /* MissedCallCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */; };
 		3ED4A9F015BDDDE9021F8A84 /* APICallLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD78D742E81E601B1D9A /* APICallLogs.swift */; };
+		3ED4ADF1697115C11B91BF49 /* DMZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A75FB738D728C11E7FA8 /* DMZ.swift */; };
+		3ED4AE00D841163E75CC8B20 /* PortForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */; };
 		3ED4AE700756F5A9075DED30 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4ACA47171D2CA08877E8F /* DateExtensions.swift */; };
+		3ED4AEBDB87C4CE086984006 /* QualityOfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AE8AEF3B30C70B0B502B /* QualityOfService.swift */; };
 		702F55631D800F9700E4643F /* CellularNetworkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F55621D800F9700E4643F /* CellularNetworkMode.swift */; };
 		707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; };
 		707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -148,10 +152,14 @@
 		12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandlerRegistry.swift; sourceTree = "<group>"; };
 		3ED4A18CA466E34204180172 /* CallLogsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallLogsManager.swift; sourceTree = "<group>"; };
 		3ED4A2E3AF8603E3A5F10239 /* IPAddressConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPAddressConfiguration.swift; sourceTree = "<group>"; };
+		3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortForwarding.swift; sourceTree = "<group>"; };
+		3ED4A75FB738D728C11E7FA8 /* DMZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMZ.swift; sourceTree = "<group>"; };
 		3ED4ACA47171D2CA08877E8F /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3ED4AD2204952550AA61D12D /* Firewall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firewall.swift; sourceTree = "<group>"; };
 		3ED4AD78D742E81E601B1D9A /* APICallLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICallLogs.swift; sourceTree = "<group>"; };
+		3ED4AE8AEF3B30C70B0B502B /* QualityOfService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QualityOfService.swift; sourceTree = "<group>"; };
 		3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissedCallCount.swift; sourceTree = "<group>"; };
+		3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MACAddressFiltering.swift; sourceTree = "<group>"; };
 		702F55621D800F9700E4643F /* CellularNetworkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellularNetworkMode.swift; path = CellularBroadbandData/CellularNetworkMode.swift; sourceTree = "<group>"; };
 		707CCA001D422AA6003D8292 /* CioffiAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CioffiAPI.framework; path = Carthage/Build/Mac/CioffiAPI.framework; sourceTree = "<group>"; };
 		70DB0D281D441C4400EF53E1 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/Mac/Fuzi.framework; sourceTree = "<group>"; };
@@ -398,8 +406,20 @@
 				3ED4AF88A8737D67B1E40407 /* BadgeCount */,
 				3ED4A2DF58A978E15C098808 /* Firewall */,
 				3ED4AD2F37D02444AC5B1043 /* IPAddressConfiguration */,
+				3ED4A02B48A75A6682EC45AF /* Router */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		3ED4A02B48A75A6682EC45AF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3ED4AE8AEF3B30C70B0B502B /* QualityOfService.swift */,
+				3ED4A75FB738D728C11E7FA8 /* DMZ.swift */,
+				3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */,
+				3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */,
+			);
+			name = Router;
 			sourceTree = "<group>";
 		};
 		3ED4A1A88E9B002236ABC4DF /* CallLogs */ = {
@@ -571,6 +591,10 @@
 				3ED4A95CA765FCC8C8397843 /* MissedCallCount.swift in Sources */,
 				3ED4A7B3E25D30B9EF87B838 /* Firewall.swift in Sources */,
 				3ED4A0F12B40997328AA5A4B /* IPAddressConfiguration.swift in Sources */,
+				3ED4AEBDB87C4CE086984006 /* QualityOfService.swift in Sources */,
+				3ED4ADF1697115C11B91BF49 /* DMZ.swift in Sources */,
+				3ED4AE00D841163E75CC8B20 /* PortForwarding.swift in Sources */,
+				3ED4A5ED4C6E4CBD42B3039F /* MACAddressFiltering.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

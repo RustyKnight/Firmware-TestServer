@@ -92,6 +92,18 @@ public enum ResponseType: Int {
 	case getIPAddressConfiguration = 116
 	case setIPAddressConfiguration = 114
 
+	case getQualityOfService = 128
+	case setQualityOfService = 126
+
+	case getDMZ = 136
+	case setDMZ = 134
+
+	case getPortForwardingConfiguration = 132
+	case setPortForwardingConfiguration = 130
+
+	case getMACAddressFilteringConfiguration = 124
+	case setMACAddressFilteringConfiguration = 122
+
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {
 			return ResponseType.unknown

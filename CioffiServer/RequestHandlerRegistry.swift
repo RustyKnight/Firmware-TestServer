@@ -107,6 +107,18 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.getIPAddressConfiguration] = GetIPAddressConfiguration()
 		functions[.setIPAddressConfiguration] = SetIPAddressConfiguration()
+
+		functions[.getQualityOfService] = GetQualityOfService()
+		functions[.setQualityOfService] = SetQualityOfService()
+
+		functions[.getDMZ] = GetDMZ()
+		functions[.setDMZ] = SetDMZ()
+
+		functions[.getPortForwardingConfiguration] = GetPortForwarding()
+		functions[.setPortForwardingConfiguration] = SetPortForwarding()
+
+		functions[.getMACAddressFilteringConfiguration] = GetMACAddressFiltering()
+		functions[.setMACAddressFilteringConfiguration] = SetMACAddressFiltering()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

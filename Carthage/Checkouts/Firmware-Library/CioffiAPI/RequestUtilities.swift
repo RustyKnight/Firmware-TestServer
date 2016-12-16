@@ -70,6 +70,18 @@ public enum RequestType: Int {
 	case getIPAddressConfiguration = 115
 	case setIPAddressConfiguration = 113
 
+	case getQualityOfService = 127
+	case setQualityOfService = 125
+
+	case getDMZ = 135
+	case setDMZ = 133
+
+	case getPortForwardingConfiguration = 131
+	case setPortForwardingConfiguration = 129
+
+	case getMACAddressFilteringConfiguration = 123
+	case setMACAddressFilteringConfiguration = 121
+
 	public static func `for`(_ value: Int) -> RequestType {
 		guard let type = RequestType(rawValue: value) else {
 			return RequestType.unknown
