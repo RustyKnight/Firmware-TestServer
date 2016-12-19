@@ -119,6 +119,12 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.getMACAddressFilteringConfiguration] = GetMACAddressFiltering()
 		functions[.setMACAddressFilteringConfiguration] = SetMACAddressFiltering()
+
+		functions[.getEmergencyNumber] = GetEmergencyNumber()
+		functions[.setEmergencyNumber] = SetEmergencyNumber()
+
+		functions[.getCellularNetworkRoaming] = GetCellularNetworkRoamingFunction()
+		functions[.setCellularNetworkRoaming] = SetCellularNetworkRoamingFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

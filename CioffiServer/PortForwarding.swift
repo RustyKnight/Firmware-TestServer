@@ -29,7 +29,7 @@ public struct PortForwardingEntry {
 	}
 }
 
-let PortForwardingKey = "Key.PortForwarding"
+let portForwardingKey = "Key.PortForwarding"
 
 class PortForwardingFunction: DefaultAPIFunction {
 
@@ -47,7 +47,7 @@ class PortForwardingFunction: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let config: PortForwardingConfiguration = DataModelManager.shared.get(forKey: PortForwardingKey,
+		let config: PortForwardingConfiguration = DataModelManager.shared.get(forKey: portForwardingKey,
 				withDefault: PortForwardingFunction.defaultValue)
 
 		body[Key.enabled] = config.isEnabled
@@ -69,7 +69,7 @@ class GetPortForwarding: PortForwardingFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: PortForwardingFunction.defaultValue,
-				forKey: PortForwardingKey)
+				forKey: portForwardingKey)
 
 		self.responseType = .getPortForwardingConfiguration
 		self.requestType = .getPortForwardingConfiguration
@@ -124,7 +124,7 @@ class SetPortForwarding: PortForwardingFunction {
 
 		let config = PortForwardingConfiguration(isEnabled: isEnabled, entries: entries)
 		DataModelManager.shared.set(value: config,
-				forKey: PortForwardingKey)
+				forKey: portForwardingKey)
 		return createResponse(success: true)
 	}
 

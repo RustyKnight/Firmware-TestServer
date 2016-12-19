@@ -101,9 +101,19 @@ class SetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
 			log(warning: "Was expecting a broadband/downlinkspeed, but didn't find one")
 			return createResponse(success: false)
 		}
-		DataModelManager.shared.set(value: uplink,
+
+		guard let uplinkSpeed = SatelliteBroadbandStreamingIPSpeed(rawValue: uplink) else {
+			log(warning: "\(uplink) is not a valid speed value")
+			return createResponse(success: false)
+		}
+		guard let downlinkSpeed = SatelliteBroadbandStreamingIPSpeed(rawValue: downlink) else {
+			log(warning: "\(downlink) is not a valid speed value")
+			return createResponse(success: false)
+		}
+
+		DataModelManager.shared.set(value: uplinkSpeed,
 		                            forKey: satelliteBroadbandDataUplinkSpeedKey)
-		DataModelManager.shared.set(value: downlink,
+		DataModelManager.shared.set(value: downlinkSpeed,
 		                            forKey: satelliteBroadbandDataDownlinkSpeedKey)
 		return createResponse(success: true)
 	}
