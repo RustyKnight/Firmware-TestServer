@@ -68,13 +68,13 @@ class SetWiFiConfiguration: GetWiFiConfiguration {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let ssid = request["wifi"]["ssid"].string, let channel = request["wifi"]["channel"].int else {
 			log(warning: "Missing ssid and/or channel")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		let passphrase: String? = request["wifi"]["passphrase"].string
 		DataModelManager.shared.set(value: DefaultWifiConfiguration(ssid: ssid,
 		                                                            channel: channel,
 		                                                            passphrase: passphrase),
 		                            forKey: wifiConfigurationKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 }

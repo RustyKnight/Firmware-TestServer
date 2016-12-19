@@ -125,6 +125,26 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.getCellularNetworkRoaming] = GetCellularNetworkRoamingFunction()
 		functions[.setCellularNetworkRoaming] = SetCellularNetworkRoamingFunction()
+
+		functions[.getCallStatus] = GetCallStatusFunction()
+		functions[.getDataUsage] = GetDataUsageFunction()
+
+		functions[.getSIMStatus] = GetSIMStatusFunction()
+		functions[.setSIMPIN] = SetSIMPinFunction()
+		functions[.unlockSIM] = UnlockSIMFunction()
+
+		functions[.getGNSSSetting] = GetGNSSSettingFunction()
+		functions[.setGNSSSetting] = SetGNSSSettingFunction()
+
+		functions[.getHardwareDiagnosticInfo] = GetHardwareDiagnosticInfoFunction()
+
+		functions[.powerDown] = PowerDownFunction()
+		functions[.reset] = ResetFunction()
+
+		functions[.getPOSTResults] = GetPOSTResult()
+		functions[.getRealTimeResults] = GetRealTimeResult()
+		
+		functions[.getSystemAlerts] = GetSystemAlertsFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {
@@ -144,7 +164,7 @@ class DefaultRequestHandler: RequestHandler {
 			try function.handle(request: request, forResponder: responder)
 		} catch let error {
 			log(error: "\(error)")
-			responder.failed(request: requestType)
+			responder.failed(request: requestType, with: .failure)
 		}
 	}
 }

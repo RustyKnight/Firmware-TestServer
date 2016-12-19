@@ -64,10 +64,10 @@ class SetAutomaticSAPAStatusFunction: GetAutomaticSAPAStatusFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let state = request["autosapa"]["active"].bool else {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		DataModelManager.shared.set(value: state, forKey: automaticSAPAState)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 }
@@ -101,10 +101,10 @@ class StartStopSAPAFunction: GetSAPAStatusFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let state = request["sapa"]["active"].bool else {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		DataModelManager.shared.set(value: state, forKey: sapaState)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 }

@@ -34,7 +34,7 @@ class GetEmergencyNumber: EmergencyNumberFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: "",
-				forKey: portForwardingKey)
+				forKey: emergencyNumberKey)
 
 		self.responseType = .getEmergencyNumber
 		self.requestType = .getEmergencyNumber
@@ -54,7 +54,7 @@ class SetEmergencyNumber: EmergencyNumberFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let number = request[Key.group][Key.emergencyNumber].string else {
 			log(error: "Missing emergency number")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		DataModelManager.shared.set(value: number,
@@ -68,7 +68,7 @@ class SetEmergencyNumber: EmergencyNumberFunction {
 				log(error: "\(error)")
 			}
 		}
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

@@ -45,15 +45,15 @@ class SetNetworkModeFunction: DefaultAPIFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let modeValue = request["network"]["mode"].int else {
 			log(warning: "Was expecting a network/mode, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let mode = NetworkMode(rawValue: modeValue) else {
 			log(warning: "\(modeValue) is not a valid NetworkMode")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		DataModelManager.shared.set(value: mode,
 		                            forKey: GetNetworkModeFunction.networkModeKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

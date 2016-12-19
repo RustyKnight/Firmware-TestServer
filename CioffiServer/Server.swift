@@ -246,8 +246,8 @@ class SocketClient: Responder {
         send(response: .success, for: response, contents: contents)
     }
     
-    func failed(request: RequestType) {
-        let message = ProtocolUtils.header(forRequest: request, code: .failure)
+    func failed(request: RequestType, with type: ResponseCode) {
+        let message = ProtocolUtils.header(forRequest: request, code: type)
         do {
             let data = try ProtocolUtils.dataFor(payload: message)
             socket.write(data, withTimeout: Server.readTimeout, tag: ClientSocketDelegate.responseTag)
@@ -256,11 +256,12 @@ class SocketClient: Responder {
         }
     }
     
-    func failed(response: ResponseType) {
-        send(response: .failure, for: response)
+    func failed(response: ResponseType, with type: ResponseCode) {
+        send(response: type, for: response)
     }
     
     func accessDenied(response: ResponseType) {
         send(response: .accessDenied, for: response)
     }
+
 }

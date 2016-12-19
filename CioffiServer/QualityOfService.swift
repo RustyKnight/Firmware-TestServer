@@ -71,21 +71,21 @@ class SetQualityOfService: QualityOfServiceFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let isEnabled = request[Key.group][Key.enabled].bool else {
 			log(error: "Missing enabled state")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let fromPort = request[Key.group][Key.fromPort].int else {
 			log(error: "Missing from port")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let toPort = request[Key.group][Key.toPort].int else {
 			log(error: "Missing from port")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		let config = APIQualityOfService(isEnabled: isEnabled, fromPort: fromPort, toPort: toPort)
 		DataModelManager.shared.set(value: config,
 				forKey: qosKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

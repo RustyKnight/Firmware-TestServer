@@ -93,11 +93,11 @@ class SetPortForwarding: PortForwardingFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let isEnabled = request[Key.group][Key.enabled].bool else {
 			log(error: "Missing enabled state")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let rawEntries = request[Key.group][Key.entries].array else {
 			log(error: "Missing entries")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		var entries: [PortForwardingEntry] = []
@@ -119,13 +119,13 @@ class SetPortForwarding: PortForwardingFunction {
 				return PortForwardingEntry(fromPort: fromPort, toPort: toPort, ipAddress: ipAddress)
 			}
 		} catch {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		let config = PortForwardingConfiguration(isEnabled: isEnabled, entries: entries)
 		DataModelManager.shared.set(value: config,
 				forKey: portForwardingKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

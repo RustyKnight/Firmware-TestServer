@@ -39,7 +39,7 @@ class ClearCallLogs: DefaultAPIFunction {
 
 	override func preProcess(request: JSON) -> PreProcessResult {
 		CallLogsManager.shared.clear()
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

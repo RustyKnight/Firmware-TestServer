@@ -34,7 +34,7 @@ class GetCellularNetworkRoamingFunction: CellularNetworkRoamingFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: "",
-				forKey: portForwardingKey)
+				forKey: cellularNetworkRoamingKey)
 
 		self.responseType = .getCellularNetworkRoaming
 		self.requestType = .getCellularNetworkRoaming
@@ -54,13 +54,13 @@ class SetCellularNetworkRoamingFunction: CellularNetworkRoamingFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let state = request[Key.group][Key.cellularNetworkRoaming].bool else {
 			log(error: "Missing cellular network roaming state")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		DataModelManager.shared.set(value: state,
 				forKey: cellularNetworkRoamingKey)
 
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

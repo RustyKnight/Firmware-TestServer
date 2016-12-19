@@ -53,15 +53,15 @@ class SetSatelliteServiceModeFunction: GetSatelliteServiceModeFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let modeValue = request["service"]["mode"].int else {
 			log(warning: "Was expecting a service/mode, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let mode = SatelliteServiceMode(rawValue: modeValue) else {
 			log(warning: "Invalid satellite service mode value: \(modeValue)")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard mode == .voice || mode == .data else {
 			log(warning: "Invalid satellite service mode, can only be voice of data: \(mode)")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		
 		var switchMode = SatelliteServiceMode.unknown
@@ -73,7 +73,7 @@ class SetSatelliteServiceModeFunction: GetSatelliteServiceModeFunction {
 		
 		let switcher = SatelliteServiceModeSwitcher(to: mode, through: switchMode)
 		switcher.start()
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 }

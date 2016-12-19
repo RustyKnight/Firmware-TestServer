@@ -76,15 +76,15 @@ class SetMACAddressFiltering: MACAddressFilteringFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let optionValue = request[Key.group][Key.option].int else {
 			log(error: "Missing enabled state")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let option = MACFilteringOption(rawValue: optionValue) else {
 			log(error: "Missing enabled state")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let rawEntries = request[Key.group][Key.entries].array else {
 			log(error: "Missing entries")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		var entries: [String] = []
@@ -98,13 +98,13 @@ class SetMACAddressFiltering: MACAddressFilteringFunction {
 				return ipAddress
 			}
 		} catch {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		let config = MACAddressConfiguration(option: option, entries: entries)
 		DataModelManager.shared.set(value: config,
 				forKey: MACAddressFilteringKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

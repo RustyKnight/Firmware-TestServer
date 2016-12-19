@@ -198,7 +198,7 @@ class DeleteSMS: DefaultAPIFunction {
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let id = request["message"]["msgid"].int else {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		MessageManager.shared.deleteMessagesBy(ids: [id])
 		do {
@@ -208,7 +208,7 @@ class DeleteSMS: DefaultAPIFunction {
 		} catch let error {
 			log(error: "\(error)")
 		}
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 }
 
@@ -223,13 +223,13 @@ class MarkSMSRead: DefaultAPIFunction {
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let id = request["message"]["msgid"].int else {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let read = request["message"]["read"].int else {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let message = MessageManager.shared.markMessage(id: id, asRead: read == 1 ? true : false) else {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		do {
 			try Server.default.send(notification: MessageStatusNotification(id: message.id,
@@ -238,7 +238,7 @@ class MarkSMSRead: DefaultAPIFunction {
 		} catch let error {
 			log(error: "\(error)")
 		}
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 }
 

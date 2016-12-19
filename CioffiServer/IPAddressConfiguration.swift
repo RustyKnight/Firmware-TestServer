@@ -52,17 +52,17 @@ class SetIPAddressConfiguration: DefaultAPIFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let ipAddress = request["ipconfig"]["ipaddress"].string else {
 			log(error: "Missing IP Address")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let subnetMask = request["ipconfig"]["subnetmask"].string else {
 			log(error: "Missing Subnet Mask")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		let config = DefaultIPAddressConfiguration(ipAddress: ipAddress, subnetMask: subnetMask)
 		DataModelManager.shared.set(value: config,
 				forKey: ipAddressConfiguration)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 	override func body(preProcessResult: Any?) -> [String: Any] {

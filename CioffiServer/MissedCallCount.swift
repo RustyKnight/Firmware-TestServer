@@ -47,7 +47,7 @@ class ClearMissedCallCount: DefaultAPIFunction {
 				log(error: "\(error)")
 			}
 		}
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

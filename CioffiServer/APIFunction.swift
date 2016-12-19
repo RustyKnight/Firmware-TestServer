@@ -18,21 +18,31 @@ protocol APIFunction {
 	func handle(request: JSON, forResponder responder: Responder) throws
 }
 
+enum PreProcessResultType {
+	case success
+	case failed
+	case accessDenied
+}
+
 protocol PreProcessResult {
-	var success: Bool {get}
+	var type: PreProcessResultType {get}
 	var result: Any? {get}
 }
 
 struct DefaultPreProcessResult: PreProcessResult {
-	let success: Bool
+	let type: PreProcessResultType
 	let result: Any?
 	
 	static func successful(with: Any? = nil) -> DefaultPreProcessResult {
-		return DefaultPreProcessResult(success: true, result: with)
+		return DefaultPreProcessResult(type: .success, result: with)
 	}
 	
 	static func failed() -> DefaultPreProcessResult {
-		return DefaultPreProcessResult(success: true, result: nil)
+		return DefaultPreProcessResult(type: .failed, result: nil)
+	}
+
+	static func accessDenied() -> DefaultPreProcessResult {
+		return DefaultPreProcessResult(type: .accessDenied, result: nil)
 	}
 }
 
@@ -46,12 +56,12 @@ class DefaultAPIFunction: APIFunction {
 		return body
 	}
 	
-	func createResponse(success: Bool, result: Any? = nil) -> PreProcessResult {
-		return DefaultPreProcessResult(success: success, result: result)
+	func createResponse(type: PreProcessResultType, result: Any? = nil) -> PreProcessResult {
+		return DefaultPreProcessResult(type: type, result: result)
 	}
-	
+
 	func preProcess(request: JSON) -> PreProcessResult {
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 	func postProcess(request: JSON) {
@@ -64,12 +74,17 @@ class DefaultAPIFunction: APIFunction {
 		}
 		
 		let result = preProcess(request: request)
-		if result.success {
-			responder.succeeded(response: responseType,
-			                    contents: body(preProcessResult: result.result))
-		} else {
-			responder.failed(response: responseType)
+		switch result.type {
+		case .success: responder.succeeded(response: responseType, contents: body(preProcessResult: result.result))
+		case .failed: responder.failed(response: responseType, with: .failure)
+		case .accessDenied: responder.failed(response: responseType, with: .accessDenied)
 		}
+//		if result.success {
+//			responder.succeeded(response: responseType,
+//			                    contents: body(preProcessResult: result.result))
+//		} else {
+//			responder.failed(response: responseType)
+//		}
 		postProcess(request: request)
 	}
 }

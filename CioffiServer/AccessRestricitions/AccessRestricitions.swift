@@ -130,8 +130,8 @@ class UnlockAccessRestricitionFunction: DefaultAPIFunction {
 			}
 			log(info: "\(key) restricted == \(DataModelManager.shared.get(forKey: value.restrictedKey, withDefault: true))")
 		}
-		
-		return createResponse(success: true)
+
+		return createResponse(type: .success)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -172,7 +172,7 @@ class StopAccessFunction: DefaultAPIFunction {
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let options = request["clear"].arrayObject else {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		for option in options {
 			guard let option = option as? String else {
@@ -189,7 +189,7 @@ class StopAccessFunction: DefaultAPIFunction {
 			log(info: "keySet.restrictedKey = \(keySet.restrictedKey)")
 			DataModelManager.shared.set(value: true, forKey: keySet.restrictedKey)
 		}
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String : Any] = [:]

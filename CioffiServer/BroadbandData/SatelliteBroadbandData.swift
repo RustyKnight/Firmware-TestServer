@@ -42,14 +42,14 @@ class SetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let modeValue = request["broadband"]["mode"].int else {
 			log(warning: "Was expecting a broadband/mode, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let mode = SatelliteBroadbandDataMode(rawValue: modeValue) else {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		DataModelManager.shared.set(value: mode,
 		                            forKey: satelliteBroadbandDataModeKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -95,27 +95,27 @@ class SetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let uplink = request["broadband"]["uplinkspeed"].int else {
 			log(warning: "Was expecting a broadband/uplinkspeed, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let downlink = request["broadband"]["downlinkspeed"].int else {
 			log(warning: "Was expecting a broadband/downlinkspeed, but didn't find one")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		guard let uplinkSpeed = SatelliteBroadbandStreamingIPSpeed(rawValue: uplink) else {
 			log(warning: "\(uplink) is not a valid speed value")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let downlinkSpeed = SatelliteBroadbandStreamingIPSpeed(rawValue: downlink) else {
 			log(warning: "\(downlink) is not a valid speed value")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		DataModelManager.shared.set(value: uplinkSpeed,
 		                            forKey: satelliteBroadbandDataUplinkSpeedKey)
 		DataModelManager.shared.set(value: downlinkSpeed,
 		                            forKey: satelliteBroadbandDataDownlinkSpeedKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

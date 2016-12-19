@@ -99,7 +99,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let on = request["broadband"]["active"].bool else {
 			log(warning: "Missing broadband/active payload")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		
 		if on {
@@ -164,7 +164,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 				}
 			}
 		}
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

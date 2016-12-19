@@ -67,17 +67,17 @@ class SetDMZ: DMZFunction {
 	override func preProcess(request: JSON) -> PreProcessResult {
 		guard let isEnabled = request[Key.group][Key.enabled].bool else {
 			log(error: "Missing enabled state")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let ipAddress = request[Key.group][Key.ipAddress].string else {
 			log(error: "Missing ip address")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		let config = DMZ(isEnabled: isEnabled, ipAddress: ipAddress)
 		DataModelManager.shared.set(value: config,
 				forKey: dmzKey)
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }

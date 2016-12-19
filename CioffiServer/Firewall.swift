@@ -94,11 +94,11 @@ class SetFirewall: DefaultAPIFunction {
 		guard let stateValue = request["firewall"]["state"].int,
 				let option = FirewallOption(rawValue: stateValue) else {
 			log(error: "Missing \"state\" entry")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		guard let rawEntries = request["firewall"]["entries"].array else {
 			log(error: "Missing \"entries\" entry")
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 
 		var firewallEntries: [FirewallEntry] = []
@@ -133,14 +133,14 @@ class SetFirewall: DefaultAPIFunction {
 						ipAddress: ipAddress)
 			}
 		} catch {
-			return createResponse(success: false)
+			return createResponse(type: .failed)
 		}
 		let setting = FirewallSetting(option: option,
 				entries: firewallEntries)
 
 		DataModelManager.shared.set(value: setting, forKey: dataModelKey.rawValue)
 
-		return createResponse(success: true)
+		return createResponse(type: .success)
 	}
 
 }
