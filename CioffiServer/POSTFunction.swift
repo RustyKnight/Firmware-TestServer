@@ -23,7 +23,8 @@ enum POSTResultType: Int {
 	case pass
 
 	static var random: POSTResultType {
-		return POSTResultType(rawValue: Int.randomBetween(min: 0, max: 4))!
+		let value = Int.randomBetween(min: 0, max: 3)
+		return POSTResultType(rawValue: value)!
 	}
 }
 

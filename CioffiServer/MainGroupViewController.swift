@@ -15,6 +15,8 @@ enum TabError: Error {
 
 class MainGroupViewController: NSViewController {
 	
+	@IBOutlet weak var callStatusPopupMenu: NSPopUpButton!
+	
 	@IBOutlet weak var satelliteTabView: NSTabView!
 	@IBOutlet weak var cellularTabView: NSTabView!
 	@IBOutlet weak var commonTabView: NSTabView!
@@ -46,6 +48,9 @@ class MainGroupViewController: NSViewController {
 		for address in getIFAddresses() {
 			log(info: address)
 		}
+
+		callStatusPopupMenu.removeAllItems()
+		callStatusPopupMenu.addItems(withTitles: ["None", "Outgoing", "Incoming"])
 	}
 	
 	override func viewWillAppear() {
@@ -235,6 +240,23 @@ class MainGroupViewController: NSViewController {
 		log(info: "Send missed call count of \(count)")
 		do {
 			try Server.default.send(notification: MissedCallCountNotification(count: count))
+		} catch let error {
+			log(error: "\(error)")
+		}
+	}
+	
+	@IBAction func callStatusDidChange(_ sender: Any) {
+		switch callStatusPopupMenu.indexOfSelectedItem {
+		case 0: send(.inactive)
+		case 1: send(.outgoing)
+		case 2: send(.incoming)
+		default: break
+		}
+	}
+	
+	func send(_ callStatus: CallStatus) {
+		do {
+			try Server.default.send(notification: CallStatusNotification(callStatus))
 		} catch let error {
 			log(error: "\(error)")
 		}
