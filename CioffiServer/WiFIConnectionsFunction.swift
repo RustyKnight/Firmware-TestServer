@@ -46,7 +46,7 @@ fileprivate struct Key {
 	static func makeMacAddress() -> String {
 		var parts: [String] = []
 		for num in 0..<8 {
-			parts.append(String(format:"%2X", Int.randomBetween(min: 0, max: 256)))
+			parts.append(String(format:"%02X", Int.randomBetween(min: 0, max: 256)))
 		}
 		
 		return parts.joined(separator: ":")
@@ -74,9 +74,6 @@ class GetWiFiConnectionsFunction: WiFiConnectionsFunction {
 
 	override init() {
 		super.init()
-
-		DataModelManager.shared.set(value: WiFiConnections.inactive,
-				forKey: callStatusKey)
 
 		self.responseType = .getWiFiConnections
 		self.requestType = .getWiFiConnections

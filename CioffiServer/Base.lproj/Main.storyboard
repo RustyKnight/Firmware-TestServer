@@ -635,10 +635,10 @@
                                 <rect key="frame" x="20" y="3" width="772" height="443"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmO-tT-Ld7">
-                                        <rect key="frame" x="0.0" y="112" width="252" height="331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="252" height="443"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pnd-q5-41L">
-                                                <rect key="frame" x="97" y="314" width="59" height="17"/>
+                                                <rect key="frame" x="97" y="426" width="59" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Common" id="r3a-fq-w4d">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -646,7 +646,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="bc1-rv-95G">
-                                                <rect key="frame" x="-7" y="-10" width="266" height="322"/>
+                                                <rect key="frame" x="-7" y="-10" width="266" height="434"/>
                                                 <font key="font" metaFont="system"/>
                                                 <tabViewItems/>
                                             </tabView>
@@ -661,10 +661,10 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k2D-YB-kq6">
-                                        <rect key="frame" x="260" y="112" width="252" height="331"/>
+                                        <rect key="frame" x="260" y="0.0" width="252" height="443"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ddL-3s-LTu">
-                                                <rect key="frame" x="42" y="314" width="168" height="17"/>
+                                                <rect key="frame" x="42" y="426" width="168" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Satellite Module Properties" id="AwI-sP-35t">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -672,7 +672,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="7wV-mx-dQg">
-                                                <rect key="frame" x="-7" y="-10" width="266" height="322"/>
+                                                <rect key="frame" x="-7" y="-10" width="266" height="434"/>
                                                 <font key="font" metaFont="system"/>
                                                 <tabViewItems/>
                                             </tabView>
@@ -687,10 +687,10 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fph-1g-BEa">
-                                        <rect key="frame" x="520" y="112" width="252" height="331"/>
+                                        <rect key="frame" x="520" y="0.0" width="252" height="443"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3eS-qm-CIa">
-                                                <rect key="frame" x="44" y="314" width="165" height="17"/>
+                                                <rect key="frame" x="44" y="426" width="165" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cellular Module Properties" id="Hs2-E1-CHZ">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -698,7 +698,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="UuO-S3-NbY">
-                                                <rect key="frame" x="-7" y="-10" width="266" height="322"/>
+                                                <rect key="frame" x="-7" y="-10" width="266" height="434"/>
                                                 <font key="font" metaFont="system"/>
                                                 <tabViewItems/>
                                             </tabView>
@@ -771,6 +771,16 @@
                                     <action selector="callStatusDidChange:" target="Gm5-sF-UdW" id="uJd-1S-7gb"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KsK-Q0-Mzu">
+                                <rect key="frame" x="641" y="476" width="147" height="32"/>
+                                <buttonCell key="cell" type="push" title="WIFI Connections" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dmb-M7-ELd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="wifiConnectionsAction:" target="Gm5-sF-UdW" id="IcB-IJ-tEI"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Gkp-Bk-CF5" firstAttribute="top" secondItem="rTJ-7e-lKL" secondAttribute="bottom" constant="8" id="1f9-36-aQI"/>
@@ -783,6 +793,7 @@
                             <constraint firstItem="j4W-vg-abh" firstAttribute="centerY" secondItem="Gkp-Bk-CF5" secondAttribute="centerY" id="9kH-5N-NA7"/>
                             <constraint firstItem="qaY-D3-gbM" firstAttribute="centerY" secondItem="Gkp-Bk-CF5" secondAttribute="centerY" id="B5f-dj-RNW"/>
                             <constraint firstItem="0ZD-qH-ECC" firstAttribute="top" secondItem="CBV-hW-nB5" secondAttribute="bottom" constant="16" id="C6c-nb-crB"/>
+                            <constraint firstItem="KsK-Q0-Mzu" firstAttribute="centerY" secondItem="eMe-Qg-zsx" secondAttribute="centerY" id="CfQ-rO-FCg"/>
                             <constraint firstItem="C0u-6G-C5z" firstAttribute="leading" secondItem="0Wg-3N-qrC" secondAttribute="trailing" constant="32" id="EJa-87-5C5"/>
                             <constraint firstItem="0Wg-3N-qrC" firstAttribute="leading" secondItem="bh2-T2-1oX" secondAttribute="trailing" constant="8" id="GDG-69-Iwt"/>
                             <constraint firstItem="C0u-6G-C5z" firstAttribute="centerY" secondItem="0Wg-3N-qrC" secondAttribute="centerY" id="GR8-hi-6RN"/>
@@ -796,6 +807,7 @@
                             <constraint firstItem="PqZ-q2-DsO" firstAttribute="baseline" secondItem="j4W-vg-abh" secondAttribute="baseline" id="cAo-KG-BzH"/>
                             <constraint firstItem="feT-FV-ddb" firstAttribute="leading" secondItem="Gkp-Bk-CF5" secondAttribute="trailing" constant="4" id="dF5-Ug-pOc"/>
                             <constraint firstAttribute="trailing" secondItem="m7b-RZ-KvR" secondAttribute="trailing" constant="20" id="da8-IL-jS4"/>
+                            <constraint firstItem="KsK-Q0-Mzu" firstAttribute="leading" secondItem="eMe-Qg-zsx" secondAttribute="trailing" constant="32" id="fVr-m8-zt5"/>
                             <constraint firstItem="bh2-T2-1oX" firstAttribute="leading" secondItem="8eX-bw-vBM" secondAttribute="trailing" constant="32" id="lh9-dR-7kw"/>
                             <constraint firstItem="j4W-vg-abh" firstAttribute="leading" secondItem="feT-FV-ddb" secondAttribute="trailing" constant="4" id="oyX-dK-o94"/>
                             <constraint firstItem="m7b-RZ-KvR" firstAttribute="leading" secondItem="9Wc-CJ-ukB" secondAttribute="leading" constant="20" id="qQc-gT-jFV"/>

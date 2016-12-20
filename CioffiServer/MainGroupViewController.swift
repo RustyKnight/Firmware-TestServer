@@ -254,6 +254,14 @@ class MainGroupViewController: NSViewController {
 		}
 	}
 	
+	@IBAction func wifiConnectionsAction(_ sender: Any) {
+		do {
+			try Server.default.send(notification: WiFiConnectionsNotification())
+		} catch let error {
+			log(error: "\(error)")
+		}
+	}
+	
 	func send(_ callStatus: CallStatus) {
 		do {
 			try Server.default.send(notification: CallStatusNotification(callStatus))

@@ -36,6 +36,8 @@ public enum NotificationType: Int {
 	case simStatus = 1015
 
 	case postNotification = 84
+
+	case wifiConnections = 87
 }
 
 
@@ -138,6 +140,8 @@ public enum ResponseType: Int {
 	case getRealTimeResults = 83
 
 	case getSystemAlerts = 1027
+
+	case getWiFiConnections = 86
 
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

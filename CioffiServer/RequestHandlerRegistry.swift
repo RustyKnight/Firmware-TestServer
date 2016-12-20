@@ -145,6 +145,8 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.getRealTimeResults] = GetRealTimeResult()
 		
 		functions[.getSystemAlerts] = GetSystemAlertsFunction()
+
+		functions[.getWiFiConnections] = GetWiFiConnectionsFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {
