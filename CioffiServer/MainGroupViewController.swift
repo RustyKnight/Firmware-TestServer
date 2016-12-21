@@ -29,8 +29,27 @@ class MainGroupViewController: NSViewController {
 	
 	@IBOutlet weak var missedCallCountField: NSTextFieldCell!
 	
+	@IBOutlet weak var simMissingButton: NSButton!
+	@IBOutlet weak var simPukLockedButton: NSButton!
+	@IBOutlet weak var simPinLockedButton: NSButton!
+	@IBOutlet weak var simUnlockedButton: NSButton!
+	
+	var buttonToSIMStatus: [NSButton: SIMStatus] = [:]
+	var simStatusToButton: [SIMStatus: NSButton] = [:]
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		buttonToSIMStatus[simUnlockedButton] = .unlocked
+		buttonToSIMStatus[simPinLockedButton] = .pinLocked
+		buttonToSIMStatus[simPukLockedButton] = .pukLocked
+		buttonToSIMStatus[simMissingButton] = .simMissing
+		
+		simStatusToButton[.unlocked] = simUnlockedButton
+		simStatusToButton[.pinLocked] = simPinLockedButton
+		simStatusToButton[.pukLocked] = simPukLockedButton
+		simStatusToButton[.simMissing] = simMissingButton
+		
 		setupCommonTabs()
 		setupSatelliteTabs()
 		setupCellularTabs()
@@ -51,6 +70,8 @@ class MainGroupViewController: NSViewController {
 
 		callStatusPopupMenu.removeAllItems()
 		callStatusPopupMenu.addItems(withTitles: ["None", "Outgoing", "Incoming"])
+		
+		updateSIMLockStatus()
 	}
 	
 	override func viewWillAppear() {
@@ -262,11 +283,35 @@ class MainGroupViewController: NSViewController {
 		}
 	}
 	
+	@IBAction func simLockStatusChanged(_ sender: NSButton) {
+		guard let status = buttonToSIMStatus[sender] else {
+			return
+		}
+		
+		DataModelManager.shared.set(value: status,
+		                            forKey: simStatusKey,
+		                            withNotification: false)
+		do {
+			try Server.default.send(notification: SIMStatusNotification(status))
+		} catch let error {
+			log(error: "\(error)")
+		}
+
+	}
+	
 	func send(_ callStatus: CallStatus) {
 		do {
 			try Server.default.send(notification: CallStatusNotification(callStatus))
 		} catch let error {
 			log(error: "\(error)")
 		}
+	}
+	
+	func updateSIMLockStatus() {
+		let status: SIMStatus = DataModelManager.shared.get(forKey: simStatusKey, withDefault: SIMStatus.unlocked)
+		guard let button = simStatusToButton[status] else {
+			return
+		}
+		button.state = NSOnState
 	}
 }

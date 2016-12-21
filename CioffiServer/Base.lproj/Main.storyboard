@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -781,6 +781,73 @@
                                     </connections>
                                 </buttonCell>
                             </button>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZGi-c2-DIm">
+                                <rect key="frame" x="584" y="513" width="98" height="113"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-bZ-1QN">
+                                        <rect key="frame" x="-2" y="96" width="102" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="SIM Lock Status" id="wV2-20-e4n">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="l0f-NN-Eop">
+                                        <rect key="frame" x="-1" y="71" width="80" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Unlocked" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="AFf-JH-PeY">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="simLockStatusChanged:" target="Gm5-sF-UdW" id="Px6-FX-xUR"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="W5H-1I-Jw1">
+                                        <rect key="frame" x="-1" y="47" width="91" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="PIN Locked" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Pyu-2d-jLK">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="simLockStatusChanged:" target="Gm5-sF-UdW" id="jRD-zh-HtV"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="lYK-QM-Bqa">
+                                        <rect key="frame" x="-1" y="23" width="96" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="PUK Locked" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ojx-6B-DRu">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="simLockStatusChanged:" target="Gm5-sF-UdW" id="FGG-se-epc"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="6IB-uM-0xj">
+                                        <rect key="frame" x="-1" y="-1" width="69" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Missing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="St0-9K-SBD">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="simLockStatusChanged:" target="Gm5-sF-UdW" id="SWd-EV-FeZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Gkp-Bk-CF5" firstAttribute="top" secondItem="rTJ-7e-lKL" secondAttribute="bottom" constant="8" id="1f9-36-aQI"/>
@@ -809,6 +876,7 @@
                             <constraint firstAttribute="trailing" secondItem="m7b-RZ-KvR" secondAttribute="trailing" constant="20" id="da8-IL-jS4"/>
                             <constraint firstItem="KsK-Q0-Mzu" firstAttribute="leading" secondItem="eMe-Qg-zsx" secondAttribute="trailing" constant="32" id="fVr-m8-zt5"/>
                             <constraint firstItem="bh2-T2-1oX" firstAttribute="leading" secondItem="8eX-bw-vBM" secondAttribute="trailing" constant="32" id="lh9-dR-7kw"/>
+                            <constraint firstItem="ZGi-c2-DIm" firstAttribute="bottom" secondItem="rTJ-7e-lKL" secondAttribute="bottom" id="mmK-YK-XZv"/>
                             <constraint firstItem="j4W-vg-abh" firstAttribute="leading" secondItem="feT-FV-ddb" secondAttribute="trailing" constant="4" id="oyX-dK-o94"/>
                             <constraint firstItem="m7b-RZ-KvR" firstAttribute="leading" secondItem="9Wc-CJ-ukB" secondAttribute="leading" constant="20" id="qQc-gT-jFV"/>
                             <constraint firstItem="m7b-RZ-KvR" firstAttribute="top" secondItem="Gkp-Bk-CF5" secondAttribute="bottom" constant="20" id="qXw-ky-1Ls"/>
@@ -818,6 +886,7 @@
                             <constraint firstItem="rTJ-7e-lKL" firstAttribute="top" secondItem="0ZD-qH-ECC" secondAttribute="bottom" constant="8" id="w0e-Vo-kBH"/>
                             <constraint firstItem="Gkp-Bk-CF5" firstAttribute="leading" secondItem="qaY-D3-gbM" secondAttribute="trailing" constant="8" id="wYf-vK-fvM"/>
                             <constraint firstItem="8eX-bw-vBM" firstAttribute="leading" secondItem="PqZ-q2-DsO" secondAttribute="trailing" constant="4" id="ykS-Q7-RUq"/>
+                            <constraint firstItem="ZGi-c2-DIm" firstAttribute="leading" secondItem="rTJ-7e-lKL" secondAttribute="trailing" constant="8" id="ynh-KA-q6K"/>
                             <constraint firstItem="rTJ-7e-lKL" firstAttribute="leading" secondItem="Ftk-VI-iuM" secondAttribute="trailing" constant="8" id="zYa-u7-rSz"/>
                         </constraints>
                     </view>
@@ -831,6 +900,10 @@
                         <outlet property="patchVersionField" destination="8eX-bw-vBM" id="fHY-r5-l1n"/>
                         <outlet property="satelliteTabView" destination="7wV-mx-dQg" id="gf4-k6-aCj"/>
                         <outlet property="serverActiveState" destination="CBV-hW-nB5" id="y1M-BH-Nnj"/>
+                        <outlet property="simMissingButton" destination="6IB-uM-0xj" id="nfy-2p-ZTf"/>
+                        <outlet property="simPinLockedButton" destination="W5H-1I-Jw1" id="VZU-KE-n0h"/>
+                        <outlet property="simPukLockedButton" destination="lYK-QM-Bqa" id="EUF-z8-ydL"/>
+                        <outlet property="simUnlockedButton" destination="l0f-NN-Eop" id="tE3-1u-xgF"/>
                     </connections>
                 </viewController>
                 <customObject id="1Yb-QM-ALe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
