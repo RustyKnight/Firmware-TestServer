@@ -133,12 +133,12 @@ class NetworkSelectionViewController: NSViewController {
 		}
 		
 		var mode: NetworkMode = .satellite
-		var modem: ModemModule = .unknown
+//		var modem: ModemModule = .unknown
 		if smartSwitchingMock.selectedSegment == 0 {
-			modem = .satellite
+//			modem = .satellite
 			mode = .satellite
 		} else {
-			modem = .cellular
+//			modem = .cellular
 			mode = .cellular
 		}
 //		modem.makeCurrent()

@@ -45,7 +45,7 @@ fileprivate struct Key {
 
 	static func makeMacAddress() -> String {
 		var parts: [String] = []
-		for num in 0..<8 {
+		for _ in 0..<8 {
 			parts.append(String(format:"%02X", Int.randomBetween(min: 0, max: 256)))
 		}
 		
@@ -54,7 +54,7 @@ fileprivate struct Key {
 
 	static func makeIPAddress() -> String {
 		var parts: [String] = []
-		for num in 0..<4 {
+		for _ in 0..<4 {
 			parts.append(String(Int.randomBetween(min: 0, max: 256)))
 		}
 

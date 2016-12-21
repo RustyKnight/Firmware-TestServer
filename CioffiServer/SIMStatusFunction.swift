@@ -41,7 +41,7 @@ fileprivate struct Key {
 	}
 
 	static func notify(with status: SIMStatus) {
-		after(interval: 1.0).then { () -> Void in
+		_ = after(interval: 1.0).then { () -> Void in
 			do {
 				try Server.default.send(notification: SIMStatusNotification(status))
 			} catch let error {

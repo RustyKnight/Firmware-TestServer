@@ -18,7 +18,7 @@ class PowerDownFunction: DefaultAPIFunction {
 	}
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
-		after(interval: 3.0).then { () -> Promise<Void> in
+		_ = after(interval: 3.0).then { () -> Promise<Void> in
 			self.send(notification: .powerButtonPressed)
 			return after(interval: 3.0)
 		}.then { () -> Promise<Void> in

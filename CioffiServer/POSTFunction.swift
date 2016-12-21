@@ -120,7 +120,7 @@ class POSTResultFunction: DefaultAPIFunction {
 					forKey: postResultKey)
 		}
 		var result: [String: Any] = [:]
-		for (keyValue, component, error) in Key.keys {
+		for (keyValue, component, _) in Key.keys {
 			result[keyValue] = postReport.result(for: component).rawValue
 		}
 		return [Key.testResult: result]
@@ -133,7 +133,7 @@ class POSTResultFunction: DefaultAPIFunction {
 		}
 
 		var result: [String: Any] = [:]
-		for (keyValue, component, error) in Key.keys {
+		for (keyValue, component, _) in Key.keys {
 			result[keyValue] = postReport.result(for: component).rawValue
 		}
 		return [Key.testResult: result]
