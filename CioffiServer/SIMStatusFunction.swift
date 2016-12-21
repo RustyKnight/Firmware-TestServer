@@ -86,7 +86,7 @@ class SetSIMPinFunction: SIMStatusFunction {
 	}
 
 	override func preProcess(request: JSON) -> PreProcessResult {
-		guard let currentPin = request[Key.currentPin].string else {
+		guard let currentPin = request[Key.group][Key.currentPin].string else {
 			log(error: "Missing current pin")
 			return createResponse(type: .accessDenied)
 		}
@@ -97,7 +97,7 @@ class SetSIMPinFunction: SIMStatusFunction {
 			return createResponse(type: .accessDenied)
 		}
 
-		guard let newPin = request[Key.newPin].string else {
+		guard let newPin = request[Key.group][Key.newPin].string else {
 			log(error: "Missing new pin")
 			return createResponse(type: .accessDenied)
 		}

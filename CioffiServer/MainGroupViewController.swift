@@ -86,6 +86,11 @@ class MainGroupViewController: NSViewController {
 				selector: #selector(MainGroupViewController.missedCallCountWasChanged),
 				name: NSNotification.Name.init(rawValue: missedCallCountKey),
 				object: nil)
+
+		NotificationCenter.default.addObserver(self,
+				selector: #selector(MainGroupViewController.simStatusDidChange),
+				name: NSNotification.Name.init(rawValue: simStatusKey),
+				object: nil)
 	}
 
 	var ignoreMissedCallCountChange = false
@@ -97,6 +102,11 @@ class MainGroupViewController: NSViewController {
 		ignoreMissedCallCountChange = true
 		let count = DataModelManager.shared.get(forKey: missedCallCountKey, withDefault: 0)
 		missedCallCountField.stringValue = "\(count)"
+	}
+
+	func simStatusDidChange(_ notification: Notification) {
+		let status = DataModelManager.shared.get(forKey: simStatusKey, withDefault: SIMStatus.unlocked)
+		simStatusToButton[status]?.state = NSOnState
 	}
 	
 	func setupCommonTabs() {
