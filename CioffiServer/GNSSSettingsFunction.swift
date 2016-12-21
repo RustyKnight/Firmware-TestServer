@@ -80,7 +80,7 @@ class SetGNSSSettingFunction: GNSSSettingFunction {
 	}
 
 	override func preProcess(request: JSON) -> PreProcessResult {
-		guard let preferredValue = request[Key.preferred].int else {
+		guard let preferredValue = request[Key.group][Key.preferred].int else {
 			log(error: "Missing preferred setting")
 			return createResponse(type: .failed)
 		}
@@ -92,7 +92,7 @@ class SetGNSSSettingFunction: GNSSSettingFunction {
 			log(error: "Invalid preferred setting (\(preferred))")
 			return createResponse(type: .failed)
 		}
-		guard let secondaryValue = request[Key.secondary].int else {
+		guard let secondaryValue = request[Key.group][Key.secondary].int else {
 			log(error: "Missing secondary setting")
 			return createResponse(type: .failed)
 		}

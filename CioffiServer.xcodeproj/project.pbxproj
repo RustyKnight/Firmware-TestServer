@@ -74,10 +74,11 @@
 		3ED4A7D490104E13A7CA8063 /* PowerDownFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A11ECED0AED99FA06A65 /* PowerDownFunction.swift */; };
 		3ED4A95CA765FCC8C8397843 /* MissedCallCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */; };
 		3ED4A9F015BDDDE9021F8A84 /* APICallLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD78D742E81E601B1D9A /* APICallLogs.swift */; };
+		3ED4ABE8102CD6F8F721DD15 /* AudibleAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */; };
 		3ED4AD3E7A76D99DCAA55A9D /* DataUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AEAA70205158B1F08E36 /* DataUsage.swift */; };
 		3ED4ADF1697115C11B91BF49 /* DMZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A75FB738D728C11E7FA8 /* DMZ.swift */; };
 		3ED4AE00D841163E75CC8B20 /* PortForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */; };
-		3ED4AE1755F7EF666DBAF34B /* GNNSSettingsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4ABEA20710E5255DB9AD0 /* GNNSSettingsFunction.swift */; };
+		3ED4AE1755F7EF666DBAF34B /* GNSSSettingsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4ABEA20710E5255DB9AD0 /* GNSSSettingsFunction.swift */; };
 		3ED4AE700756F5A9075DED30 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4ACA47171D2CA08877E8F /* DateExtensions.swift */; };
 		3ED4AE8C04BD6F30DA9FCE08 /* CallStatusFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AB30B6B34E755BE7BDB6 /* CallStatusFunction.swift */; };
 		3ED4AEBDB87C4CE086984006 /* QualityOfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AE8AEF3B30C70B0B502B /* QualityOfService.swift */; };
@@ -170,7 +171,7 @@
 		3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortForwarding.swift; sourceTree = "<group>"; };
 		3ED4A75FB738D728C11E7FA8 /* DMZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMZ.swift; sourceTree = "<group>"; };
 		3ED4AB30B6B34E755BE7BDB6 /* CallStatusFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallStatusFunction.swift; sourceTree = "<group>"; };
-		3ED4ABEA20710E5255DB9AD0 /* GNNSSettingsFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNNSSettingsFunction.swift; sourceTree = "<group>"; };
+		3ED4ABEA20710E5255DB9AD0 /* GNSSSettingsFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNSSSettingsFunction.swift; sourceTree = "<group>"; };
 		3ED4ACA47171D2CA08877E8F /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3ED4AD2204952550AA61D12D /* Firewall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firewall.swift; sourceTree = "<group>"; };
 		3ED4AD78D742E81E601B1D9A /* APICallLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICallLogs.swift; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 		3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissedCallCount.swift; sourceTree = "<group>"; };
 		3ED4AF83F1D3CDD8D14DE40B /* SIMStatusFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIMStatusFunction.swift; sourceTree = "<group>"; };
 		3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MACAddressFiltering.swift; sourceTree = "<group>"; };
+		3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudibleAlerts.swift; sourceTree = "<group>"; };
 		702F55621D800F9700E4643F /* CellularNetworkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellularNetworkMode.swift; path = CellularBroadbandData/CellularNetworkMode.swift; sourceTree = "<group>"; };
 		707CCA001D422AA6003D8292 /* CioffiAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CioffiAPI.framework; path = Carthage/Build/Mac/CioffiAPI.framework; sourceTree = "<group>"; };
 		70DB0D281D441C4400EF53E1 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/Mac/Fuzi.framework; sourceTree = "<group>"; };
@@ -432,11 +434,12 @@
 				3ED4AB30B6B34E755BE7BDB6 /* CallStatusFunction.swift */,
 				3ED4AEAA70205158B1F08E36 /* DataUsage.swift */,
 				3ED4AF83F1D3CDD8D14DE40B /* SIMStatusFunction.swift */,
-				3ED4ABEA20710E5255DB9AD0 /* GNNSSettingsFunction.swift */,
+				3ED4ABEA20710E5255DB9AD0 /* GNSSSettingsFunction.swift */,
 				3ED4A11ECED0AED99FA06A65 /* PowerDownFunction.swift */,
 				3ED4A4F784CFC93DDEB17AAE /* HardwareDiagnosticFunction.swift */,
 				3ED4A1006ECA463F18B14944 /* POSTFunction.swift */,
 				3ED4A2000A64969103F06B7E /* WiFIConnectionsFunction.swift */,
+				3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -630,11 +633,12 @@
 				3ED4AE8C04BD6F30DA9FCE08 /* CallStatusFunction.swift in Sources */,
 				3ED4AD3E7A76D99DCAA55A9D /* DataUsage.swift in Sources */,
 				3ED4A32C34FEAD8647DFF3E7 /* SIMStatusFunction.swift in Sources */,
-				3ED4AE1755F7EF666DBAF34B /* GNNSSettingsFunction.swift in Sources */,
+				3ED4AE1755F7EF666DBAF34B /* GNSSSettingsFunction.swift in Sources */,
 				3ED4A7D490104E13A7CA8063 /* PowerDownFunction.swift in Sources */,
 				3ED4A23ABB3091033DE74DEE /* HardwareDiagnosticFunction.swift in Sources */,
 				3ED4AEE13B94B7B2D7E8B39B /* POSTFunction.swift in Sources */,
 				3ED4A544E354E98E2463DEFC /* WiFIConnectionsFunction.swift in Sources */,
+				3ED4ABE8102CD6F8F721DD15 /* AudibleAlerts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

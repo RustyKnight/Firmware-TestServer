@@ -24,7 +24,9 @@ fileprivate struct Key {
 	static let satelliteStreamingTime = "satellite_streaming_time"
 	static let cellularData = "cellular_data"
 
-	static let defaultUsage: DataUsage = DataUsage(satelliteStandardData: 0, satelliteStreamingTime: 0.0, cellularData: 0)
+	static let defaultUsage: DataUsage = DataUsage(satelliteStandardData: 100,
+			satelliteStreamingTime: 200.0,
+			cellularData: 300)
 
 	static var currentState: [String: Any] {
 		var body: [String: Any] = [:]

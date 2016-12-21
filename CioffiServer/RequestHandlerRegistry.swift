@@ -147,6 +147,9 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.getSystemAlerts] = GetSystemAlertsFunction()
 
 		functions[.getWiFiConnections] = GetWiFiConnectionsFunction()
+
+		functions[.getAudibleAlertOption] = GetAudibleAlertsFunction()
+		functions[.setAudibleAlertOption] = SetAudibleAlertsFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

@@ -111,6 +111,9 @@ public enum RequestType: Int {
 
 	case getWiFiConnections = 85
 
+	case getAudibleAlertOption = 1028
+	case setAudibleAlertOption = 1030
+
 	public static func `for`(_ value: Int) -> RequestType {
 		guard let type = RequestType(rawValue: value) else {
 			return RequestType.unknown

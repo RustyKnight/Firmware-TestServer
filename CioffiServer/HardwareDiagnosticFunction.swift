@@ -146,7 +146,7 @@ class HardwareDiagnosticInfoFunction: DefaultAPIFunction {
 
 }
 
-class GetHardwareDiagnosticInfoFunction: GNSSSettingFunction {
+class GetHardwareDiagnosticInfoFunction: HardwareDiagnosticInfoFunction {
 
 	override init() {
 		super.init()
