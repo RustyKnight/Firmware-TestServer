@@ -8,7 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let gnssSettingKey = "Key.gnnsSetting"
 
 enum GNSSOption: Int {
 	case none = 0
@@ -31,7 +30,7 @@ fileprivate struct Key {
 	static let defaultValue = DefaultGNSSSetting(preferred: .glonass, secondary: .glonass)
 
 	static var currentState: [String: Any] {
-		let setting: DefaultGNSSSetting = DataModelManager.shared.get(forKey: gnssSettingKey,
+		let setting: DefaultGNSSSetting = DataModelManager.shared.get(forKey: DataModelKeys.gnssSetting,
 				withDefault: defaultValue)
 		return with(setting: setting)
 	}
@@ -62,7 +61,7 @@ class GetGNSSSettingFunction: GNSSSettingFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: Key.defaultValue,
-				forKey: gnssSettingKey)
+				forKey: DataModelKeys.gnssSetting)
 
 		self.responseType = .getGNSSSetting
 		self.requestType = .getGNSSSetting
@@ -103,7 +102,7 @@ class SetGNSSSettingFunction: GNSSSettingFunction {
 
 		let setting = DefaultGNSSSetting(preferred: preferred, secondary: secondary)
 		DataModelManager.shared.set(value: setting,
-				forKey: gnssSettingKey)
+				forKey: DataModelKeys.gnssSetting)
 
 		return createResponse(type: .success)
 	}

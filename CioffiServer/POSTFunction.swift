@@ -15,8 +15,6 @@ extension Int {
 	}
 }
 
-let postResultKey = "Key.POSTResult"
-
 enum POSTResultType: Int {
 	case unknown = 0
 	case fail
@@ -108,7 +106,7 @@ class POSTResultFunction: DefaultAPIFunction {
 
 	var postReport: [String: Any] {
 		var postReport: POSTReport!
-		if let report = DataModelManager.shared.get(forKey: postResultKey) as? POSTReport {
+		if let report = DataModelManager.shared.get(forKey: DataModelKeys.postResult) as? POSTReport {
 			postReport = report
 		} else {
 			postReport = POSTReport()
@@ -117,7 +115,7 @@ class POSTResultFunction: DefaultAPIFunction {
 			}
 
 			DataModelManager.shared.set(value: postReport,
-					forKey: postResultKey)
+					forKey: DataModelKeys.postResult)
 		}
 		var result: [String: Any] = [:]
 		for (keyValue, component, _) in Key.keys {
@@ -151,7 +149,7 @@ class GetPOSTResult: POSTResultFunction {
 		}
 
 		DataModelManager.shared.set(value: report,
-				forKey: postResultKey)
+				forKey: DataModelKeys.postResult)
 
 		self.responseType = .getPOSTResults
 		self.requestType = .getPOSTResults

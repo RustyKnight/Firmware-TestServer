@@ -12,25 +12,21 @@ import CioffiAPI
 
 class GetVersionFunction: DefaultAPIFunction {
 	
-	static let majorVersionKey = "majorVersion"
-	static let minorVersionKey = "minorVersion"
-	static let patchVersionKey = "patchVersion"
-	
 	override init() {
 		super.init()
 		responseType = .getVersion
 		requestType = .getVersion
-		DataModelManager.shared.set(value: 1, forKey: GetVersionFunction.majorVersionKey)
-		DataModelManager.shared.set(value: 0, forKey: GetVersionFunction.minorVersionKey)
-		DataModelManager.shared.set(value: 0, forKey: GetVersionFunction.patchVersionKey)
+		DataModelManager.shared.set(value: 1, forKey: DataModelKeys.majorVersion)
+		DataModelManager.shared.set(value: 0, forKey: DataModelKeys.minorVersion)
+		DataModelManager.shared.set(value: 0, forKey: DataModelKeys.patchVersion)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String: Any] = [:]
 		body["firmware"] = [
-			"majorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1),
-			"minorVersion": DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 0),
-			"patchVersion": DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 0),
+			"majorVersion": DataModelManager.shared.get(forKey: DataModelKeys.majorVersion, withDefault: 1),
+			"minorVersion": DataModelManager.shared.get(forKey: DataModelKeys.minorVersion, withDefault: 0),
+			"patchVersion": DataModelManager.shared.get(forKey: DataModelKeys.patchVersion, withDefault: 0),
 		]
 		return body
 	}

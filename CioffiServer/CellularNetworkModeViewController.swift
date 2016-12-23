@@ -35,7 +35,7 @@ class CellularNetworkModeViewController: NSViewController {
 		
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
-		                                       name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 		stateDidChange()
 		modemChanged()
@@ -56,7 +56,7 @@ class CellularNetworkModeViewController: NSViewController {
 	}
 	
 	func stateDidChange() {
-		let mode = DataModelManager.shared.get(forKey: cellularNetworkModeKey,
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.cellularNetworkMode,
 		                                       withDefault: CellularNetworkMode.unknown)
 		
 		guard let index = modeToIndex[mode] else {
@@ -79,7 +79,7 @@ class CellularNetworkModeViewController: NSViewController {
 			return
 		}
 		DataModelManager.shared.set(value: mode,
-		                            forKey: cellularNetworkModeKey,
+		                            forKey: DataModelKeys.cellularNetworkMode,
 		                            withNotification: false)
 	}
 	

@@ -26,7 +26,7 @@ class WiFiConfigurationViewController: NSViewController {
 		super.viewWillAppear()
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(WiFiConfigurationViewController.configurationDidChange),
-		                                       name: NSNotification.Name.init(rawValue: wifiConfigurationKey),
+		                                       name: DataModelKeys.wifiConfiguration.notification,
 		                                       object: nil)
 		
 		updateConfiguration()
@@ -43,7 +43,7 @@ class WiFiConfigurationViewController: NSViewController {
 	}
 	
 	func updateConfiguration() {
-		let config: WiFiConfiguration  = DataModelManager.shared.get(forKey: wifiConfigurationKey, withDefault: defaultWifiConfiguration)
+		let config: WiFiConfiguration  = DataModelManager.shared.get(forKey: DataModelKeys.wifiConfiguration, withDefault: defaultWifiConfiguration)
 		ssidField.stringValue = config.ssid
 		channelField.selectItem(withObjectValue: config.channel)
 		guard let passphrase = config.passphrase else {

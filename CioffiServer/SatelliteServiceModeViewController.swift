@@ -43,11 +43,11 @@ class SatelliteServiceModeViewController: NSViewController {
 		super.viewWillAppear()
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(SatelliteServiceModeViewController.satelliteServiceModeChanged),
-		                                       name: NSNotification.Name.init(rawValue: satelliteServiceModeKey),
+		                                       name: DataModelKeys.satelliteServiceMode.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(SatelliteServiceModeViewController.modemChanged),
-		                                       name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 		
 		modemChanged()
@@ -62,9 +62,9 @@ class SatelliteServiceModeViewController: NSViewController {
 				guard ModemModule.isCurrent(.satellite) else {
 					return
 				}
-				let mode = DataModelManager.shared.get(forKey: satelliteServiceModeKey, withDefault: SatelliteServiceMode.voice)
+				let mode = DataModelManager.shared.get(forKey: DataModelKeys.satelliteServiceMode, withDefault: SatelliteServiceMode.voice)
 				if mode != .data {
-					DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: broadbandDataActiveModeKey)
+					DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: DataModelKeys.broadbandDataActiveMode)
 				}
 			}
 		}
@@ -84,7 +84,7 @@ class SatelliteServiceModeViewController: NSViewController {
 		guard let mode = values[value] else {
 			return
 		}
-		DataModelManager.shared.set(value: mode, forKey: satelliteServiceModeKey)
+		DataModelManager.shared.set(value: mode, forKey: DataModelKeys.satelliteServiceMode)
 		liveNotification()
 	}
 	
@@ -113,7 +113,7 @@ class SatelliteServiceModeViewController: NSViewController {
 			})
 			return
 		}
-		let mode = DataModelManager.shared.get(forKey: satelliteServiceModeKey, withDefault: SatelliteServiceMode.voice)
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.satelliteServiceMode, withDefault: SatelliteServiceMode.voice)
 		modeSegment.selectedSegment = mode.rawValue + 1
 	}
 }

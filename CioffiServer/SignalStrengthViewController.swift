@@ -31,7 +31,7 @@ class SignalStrengthViewController: NSViewController, ModemModular {
 		updateStrength()
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
-		                                       name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 	}
 	
@@ -52,7 +52,7 @@ class SignalStrengthViewController: NSViewController, ModemModular {
 	@IBAction func signalStrengthValueChanged(_ sender: NSObject) {
 		let strength = signalStrengthSegment.selectedSegment
 		DataModelManager.shared.set(value: strength,
-		                            forKey: signalStrengthKey,
+		                            forKey: DataModelKeys.signalStrength,
 		                            withNotification: false)
 		liveNotification()
 	}
@@ -78,7 +78,7 @@ class SignalStrengthViewController: NSViewController, ModemModular {
 	}
 	
 	func updateStrength() {
-		let value = DataModelManager.shared.get(forKey: signalStrengthKey, withDefault: 0)
+		let value = DataModelManager.shared.get(forKey: DataModelKeys.signalStrength, withDefault: 0)
 		signalStrengthSegment.selectedSegment = value
 	}
 }

@@ -17,8 +17,6 @@ public struct DMZ {
 	}
 }
 
-let dmzKey = "Key.dmz"
-
 class DMZFunction: DefaultAPIFunction {
 
 	struct Key {
@@ -31,7 +29,7 @@ class DMZFunction: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let config = DataModelManager.shared.get(forKey: dmzKey,
+		let config = DataModelManager.shared.get(forKey: DataModelKeys.dmzKey,
 				withDefault: DMZFunction.defaultValue)
 
 		body[Key.enabled] = config.isEnabled
@@ -47,7 +45,7 @@ class GetDMZ: DMZFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: DMZ(isEnabled: false, ipAddress: "0.0.0.0"),
-				forKey: dmzKey)
+				forKey: DataModelKeys.dmzKey)
 
 		self.responseType = .getDMZ
 		self.requestType = .getDMZ
@@ -76,7 +74,7 @@ class SetDMZ: DMZFunction {
 
 		let config = DMZ(isEnabled: isEnabled, ipAddress: ipAddress)
 		DataModelManager.shared.set(value: config,
-				forKey: dmzKey)
+				forKey: DataModelKeys.dmzKey)
 		return createResponse(type: .success)
 	}
 

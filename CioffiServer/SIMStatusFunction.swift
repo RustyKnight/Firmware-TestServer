@@ -8,9 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let simStatusKey = "Key.SIMStatus"
-let simPINKey = "Key.SIMPIN"
-
 enum SIMStatus: Int {
 	case unlocked = 0
 	case pinLocked
@@ -26,7 +23,7 @@ fileprivate struct Key {
 	static let newPin = "newpin"
 
 	static var currentState: [String: Any] {
-		let status: SIMStatus = DataModelManager.shared.get(forKey: simStatusKey,
+		let status: SIMStatus = DataModelManager.shared.get(forKey: DataModelKeys.simStatus,
 				withDefault: SIMStatus.pinLocked)
 		return with(status: status)
 	}
@@ -65,7 +62,7 @@ class GetSIMStatusFunction: SIMStatusFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: SIMStatus.unlocked,
-				forKey: simStatusKey)
+				forKey: DataModelKeys.simStatus)
 
 		self.responseType = .getSIMStatus
 		self.requestType = .getSIMStatus
@@ -79,7 +76,7 @@ class SetSIMPinFunction: SIMStatusFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: "",
-				forKey: simPINKey)
+				forKey: DataModelKeys.simPIN)
 
 		self.responseType = .setSIMPIN
 		self.requestType = .setSIMPIN
@@ -91,7 +88,7 @@ class SetSIMPinFunction: SIMStatusFunction {
 			return createResponse(type: .accessDenied)
 		}
 
-		let masterPin: String = DataModelManager.shared.get(forKey: simPINKey, withDefault: "")
+		let masterPin: String = DataModelManager.shared.get(forKey: DataModelKeys.simPIN, withDefault: "")
 		guard masterPin == currentPin else {
 			log(error: "PIN mismatch")
 			return createResponse(type: .accessDenied)
@@ -103,7 +100,7 @@ class SetSIMPinFunction: SIMStatusFunction {
 		}
 
 		DataModelManager.shared.set(value: newPin,
-				forKey: simPINKey)
+				forKey: DataModelKeys.simPIN)
 
 		// Does this lock/unlock the SIM?
 
@@ -128,14 +125,14 @@ class UnlockSIMFunction: SIMStatusFunction {
 			return createResponse(type: .accessDenied)
 		}
 
-		let masterPin: String = DataModelManager.shared.get(forKey: simPINKey, withDefault: "")
+		let masterPin: String = DataModelManager.shared.get(forKey: DataModelKeys.simPIN, withDefault: "")
 		guard masterPin == currentPin else {
 			log(error: "PIN mismatch")
 			return createResponse(type: .accessDenied)
 		}
 
 		DataModelManager.shared.set(value: SIMStatus.unlocked,
-				forKey: simStatusKey)
+				forKey: DataModelKeys.simStatus)
 
 		Key.notify(with: SIMStatus.unlocked)
 

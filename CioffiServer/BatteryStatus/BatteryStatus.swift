@@ -8,19 +8,14 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let batteryChargeKey = "batteryCharge"
-let batteryStatusKey = "batteryStatus"
-let batteryVoltageKey = "batteryVoltage"
-let batteryPresentKey = "batteryPresent"
-
 struct BatteryStatusUtility {
 	static func body() -> [String : Any] {
 		var body: [String : Any] = [:]
 		body["battery"] = [
-			"charge": DataModelManager.shared.get(forKey: batteryChargeKey, withDefault: 0),
-			"status": DataModelManager.shared.get(forKey: batteryStatusKey, withDefault: BatteryStatus.unknown).rawValue,
-			"voltage": DataModelManager.shared.get(forKey: batteryVoltageKey, withDefault: 0),
-			"present": DataModelManager.shared.get(forKey: batteryPresentKey, withDefault: true)
+			"charge": DataModelManager.shared.get(forKey: DataModelKeys.batteryCharge, withDefault: 0),
+			"status": DataModelManager.shared.get(forKey: DataModelKeys.batteryStatus, withDefault: BatteryStatus.unknown).rawValue,
+			"voltage": DataModelManager.shared.get(forKey: DataModelKeys.batteryVoltage, withDefault: 0),
+			"present": DataModelManager.shared.get(forKey: DataModelKeys.batteryPresent, withDefault: true)
 		]
 		return body
 	}
@@ -33,11 +28,11 @@ class GetBatteryStatusFunction: DefaultAPIFunction {
 		requestType = .getBatteryStatus
 		responseType = .getBatteryStatus
 		
-		DataModelManager.shared.set(value: 0, forKey: batteryChargeKey)
+		DataModelManager.shared.set(value: 0, forKey: DataModelKeys.batteryCharge)
 		DataModelManager.shared.set(value: BatteryStatus.charging,
-		                            forKey: batteryStatusKey)
-		DataModelManager.shared.set(value: 0, forKey: batteryVoltageKey)
-		DataModelManager.shared.set(value: true, forKey: batteryPresentKey)
+		                            forKey: DataModelKeys.batteryStatus)
+		DataModelManager.shared.set(value: 0, forKey: DataModelKeys.batteryVoltage)
+		DataModelManager.shared.set(value: true, forKey: DataModelKeys.batteryPresent)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

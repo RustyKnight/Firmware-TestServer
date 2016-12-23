@@ -14,15 +14,13 @@ struct DefaultIPAddressConfiguration {
 
 }
 
-let ipAddressConfiguration = "Key.ipAddressConfiguration"
-
 class GetIPAddressConfiguration: DefaultAPIFunction {
 
 	override init() {
 		super.init()
 
 		DataModelManager.shared.set(value: DefaultIPAddressConfiguration(ipAddress: "192.168.0.1", subnetMask: "255.255.255.0"),
-				forKey: ipAddressConfiguration)
+				forKey: DataModelKeys.ipAddressConfiguration)
 
 		self.responseType = .getIPAddressConfiguration
 		self.requestType = .getIPAddressConfiguration
@@ -30,7 +28,7 @@ class GetIPAddressConfiguration: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let config = DataModelManager.shared.get(forKey: ipAddressConfiguration,
+		let config = DataModelManager.shared.get(forKey: DataModelKeys.ipAddressConfiguration,
 				withDefault: DefaultIPAddressConfiguration(ipAddress: "192.168.0.1", subnetMask: "255.255.255.0"))
 
 		body["ipaddress"] = config.ipAddress
@@ -61,13 +59,13 @@ class SetIPAddressConfiguration: DefaultAPIFunction {
 
 		let config = DefaultIPAddressConfiguration(ipAddress: ipAddress, subnetMask: subnetMask)
 		DataModelManager.shared.set(value: config,
-				forKey: ipAddressConfiguration)
+				forKey: DataModelKeys.ipAddressConfiguration)
 		return createResponse(type: .success)
 	}
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let config = DataModelManager.shared.get(forKey: ipAddressConfiguration,
+		let config = DataModelManager.shared.get(forKey: DataModelKeys.ipAddressConfiguration,
 				withDefault: DefaultIPAddressConfiguration(ipAddress: "192.168.0.1", subnetMask: "255.255.255.0"))
 
 		body["ipaddress"] = config.ipAddress

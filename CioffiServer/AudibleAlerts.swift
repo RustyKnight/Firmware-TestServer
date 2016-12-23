@@ -14,7 +14,7 @@ enum AudibleAlertOption: Int {
 	case high
 }
 
-let audibleAlertOptionKey = "Key.AudibleAlertOption"
+
 
 fileprivate struct Key {
 	static let group = "audiblealert"
@@ -22,7 +22,7 @@ fileprivate struct Key {
 
 	static var currentState: [String: Any] {
 		var body: [String: Any] = [:]
-		let status: AudibleAlertOption = DataModelManager.shared.get(forKey: audibleAlertOptionKey,
+		let status: AudibleAlertOption = DataModelManager.shared.get(forKey: DataModelKeys.audibleAlertOption,
 				withDefault: AudibleAlertOption.off)
 
 		body[Key.group] = [
@@ -67,7 +67,7 @@ class SetAudibleAlertsFunction: AudibleAlertsFunction {
 		guard let option = AudibleAlertOption(rawValue: statusValue) else {
 			return createResponse(type: .failed)
 		}
-		DataModelManager.shared.set(value: option, forKey: audibleAlertOptionKey)
+		DataModelManager.shared.set(value: option, forKey: DataModelKeys.audibleAlertOption)
 		return createResponse(type: .success)
 	}
 

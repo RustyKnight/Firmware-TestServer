@@ -32,15 +32,15 @@ class BroadbandDataViewController: NSViewController {
 		
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(BroadbandDataViewController.ipModeDidChange),
-		                                       name: NSNotification.Name.init(rawValue: satelliteBroadbandDataModeKey),
+		                                       name: DataModelKeys.satelliteBroadbandDataMode.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(BroadbandDataViewController.uplinkSpeedDidChange),
-		                                       name: NSNotification.Name.init(rawValue: satelliteBroadbandDataUplinkSpeedKey),
+		                                       name: DataModelKeys.satelliteBroadbandDataUplinkSpeed.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(BroadbandDataViewController.downlinkSpeedDidChange),
-		                                       name: NSNotification.Name.init(rawValue: satelliteBroadbandDataDownlinkSpeedKey),
+		                                       name: DataModelKeys.satelliteBroadbandDataDownlinkSpeed.notification,
 		                                       object: nil)
 		
 		updateIPMode()
@@ -71,7 +71,7 @@ class BroadbandDataViewController: NSViewController {
 		}
 	}
 	
-	func updateControl<T: RawRepresentable>(`for` key : String, defaultValue: T, offset: Int) where T.RawValue == Int {
+	func updateControl<T: RawRepresentable>(`for` key: DataModelKey, defaultValue: T, offset: Int) where T.RawValue == Int {
 		let mode = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
 		guard let control = view.viewWithTag(mode.rawValue + offset) as? NSButton else {
 			log(warning: "Could not find view for \(mode) (\(mode.rawValue) + \(offset))")
@@ -81,15 +81,15 @@ class BroadbandDataViewController: NSViewController {
 	}
 	
 	func updateIPMode() {
-		updateControl(for: satelliteBroadbandDataModeKey, defaultValue: SatelliteBroadbandDataMode.standardIP, offset: 100)
+		updateControl(for: DataModelKeys.satelliteBroadbandDataMode, defaultValue: SatelliteBroadbandDataMode.standardIP, offset: 100)
 	}
 	
 	func updateUplinkSpeed() {
-		updateControl(for: satelliteBroadbandDataUplinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 200)
+		updateControl(for: DataModelKeys.satelliteBroadbandDataUplinkSpeed, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 200)
 	}
 	
 	func updateDownlinkSpeed() {
-		updateControl(for: satelliteBroadbandDataDownlinkSpeedKey, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 300)
+		updateControl(for: DataModelKeys.satelliteBroadbandDataDownlinkSpeed, defaultValue: SatelliteBroadbandStreamingIPSpeed.kbps16, offset: 300)
 	}
 	
 	@IBAction func ipModeChanged(_ sender: NSButton) {
@@ -99,7 +99,7 @@ class BroadbandDataViewController: NSViewController {
 			return
 		}
 		
-		DataModelManager.shared.set(value: mode, forKey: satelliteBroadbandDataModeKey, withNotification: false)
+		DataModelManager.shared.set(value: mode, forKey: DataModelKeys.satelliteBroadbandDataMode, withNotification: false)
 	}
 	
 	@IBAction func uplinkSpeedChanged(_ sender: NSButton) {
@@ -109,7 +109,7 @@ class BroadbandDataViewController: NSViewController {
 			return
 		}
 		
-		DataModelManager.shared.set(value: speed, forKey: satelliteBroadbandDataUplinkSpeedKey, withNotification: false)
+		DataModelManager.shared.set(value: speed, forKey: DataModelKeys.satelliteBroadbandDataUplinkSpeed, withNotification: false)
 	}
 	
 	@IBAction func downlinkSpeedChanged(_ sender: NSButton) {
@@ -119,6 +119,6 @@ class BroadbandDataViewController: NSViewController {
 			return
 		}
 		
-		DataModelManager.shared.set(value: speed, forKey: satelliteBroadbandDataDownlinkSpeedKey, withNotification: false)
+		DataModelManager.shared.set(value: speed, forKey: DataModelKeys.satelliteBroadbandDataDownlinkSpeed, withNotification: false)
 	}
 }

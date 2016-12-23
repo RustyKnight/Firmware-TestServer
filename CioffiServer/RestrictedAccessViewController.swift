@@ -23,9 +23,9 @@ class RestrictedAccessViewController: NSViewController {
 	
 	@IBOutlet weak var adminPassword: NSSecureTextField!
 	
-	var restrictedStates: [NSButton: String] = [:]
-	var lockedStates: [NSButton: String] = [:]
-	var fieldStates: [NSTextField: String] = [:]
+	var restrictedStates: [NSButton: DataModelKey] = [:]
+	var lockedStates: [NSButton: DataModelKey] = [:]
+	var fieldStates: [NSTextField: DataModelKey] = [:]
 	
 	let selectedState: [Bool: Int] = [
 		true: NSOnState,
@@ -34,56 +34,56 @@ class RestrictedAccessViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		restrictedStates[dataRestrcited] = GetAccessRestricitionsFunction.dataRestricitionKey
-		restrictedStates[callRestrcited] = GetAccessRestricitionsFunction.callRestricitionKey
-		restrictedStates[smsRestrcited] = GetAccessRestricitionsFunction.smsRestricitionKey
-		restrictedStates[adminRestrcited] = GetAccessRestricitionsFunction.adminRestricitionKey
+		restrictedStates[dataRestrcited] = DataModelKeys.dataRestricition
+		restrictedStates[callRestrcited] = DataModelKeys.callRestricition
+		restrictedStates[smsRestrcited] = DataModelKeys.smsRestricition
+		restrictedStates[adminRestrcited] = DataModelKeys.adminRestricition
 		
-		lockedStates[dataLocked] = GetAccessRestricitionsFunction.dataLockedKey
-		lockedStates[callsLocked] = GetAccessRestricitionsFunction.callLockedKey
-		lockedStates[smsLocked] = GetAccessRestricitionsFunction.smsLockedKey
-		lockedStates[adminLocked] = GetAccessRestricitionsFunction.adminLockedKey
+		lockedStates[dataLocked] = DataModelKeys.dataLocked
+		lockedStates[callsLocked] = DataModelKeys.callLocked
+		lockedStates[smsLocked] = DataModelKeys.smsLocked
+		lockedStates[adminLocked] = DataModelKeys.adminLocked
 		
-		fieldStates[adminPassword] = GetAccessRestricitionsFunction.adminPasswordKey
+		fieldStates[adminPassword] = DataModelKeys.adminPassword
 	}
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.dataRestricitionKey),
+		                                       name: DataModelKeys.dataRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.callRestricitionKey),
+		                                       name: DataModelKeys.callRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.smsRestricitionKey),
+		                                       name: DataModelKeys.smsRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.adminRestricitionKey),
+		                                       name: DataModelKeys.adminRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.dataLockedKey),
+		                                       name: DataModelKeys.dataLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.callLockedKey),
+		                                       name: DataModelKeys.callLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.smsLockedKey),
+		                                       name: DataModelKeys.smsLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.adminLockedKey),
+		                                       name: DataModelKeys.adminLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(RestrictedAccessViewController.passwordDataChanged),
-		                                       name: NSNotification.Name(rawValue: GetAccessRestricitionsFunction.adminPasswordKey),
+		                                       name: DataModelKeys.adminPassword.notification,
 		                                       object: nil)
         updateRestrictedStates()
         updateLockedStates()
@@ -137,7 +137,7 @@ class RestrictedAccessViewController: NSViewController {
 		updatePasswords()
 	}
 	
-	func update(button: NSButton, with key: String) {
+	func update(button: NSButton, with key: DataModelKey) {
 		let value = DataModelManager.shared.get(forKey: key, withDefault: false)
 		guard let state = selectedState[value] else {
 			return
@@ -145,7 +145,7 @@ class RestrictedAccessViewController: NSViewController {
 		button.state = state
 	}
 	
-	func update(field: NSTextField, with key: String) {
+	func update(field: NSTextField, with key: DataModelKey) {
 		let value = DataModelManager.shared.get(forKey: key, withDefault: "cioffi")
 		field.stringValue = value
 	}
@@ -157,10 +157,10 @@ class RestrictedAccessViewController: NSViewController {
 			})
 			return
 		}
-		update(button: adminRestrcited, with: GetAccessRestricitionsFunction.adminRestricitionKey)
-		update(button: smsRestrcited, with: GetAccessRestricitionsFunction.smsRestricitionKey)
-		update(button: callRestrcited, with: GetAccessRestricitionsFunction.callRestricitionKey)
-		update(button: dataRestrcited, with: GetAccessRestricitionsFunction.dataRestricitionKey)
+		update(button: adminRestrcited, with: DataModelKeys.adminRestricition)
+		update(button: smsRestrcited, with: DataModelKeys.smsRestricition)
+		update(button: callRestrcited, with: DataModelKeys.callRestricition)
+		update(button: dataRestrcited, with: DataModelKeys.dataRestricition)
 	}
 	
 	func updateLockedStates() {
@@ -171,10 +171,10 @@ class RestrictedAccessViewController: NSViewController {
 			})
 			return
 		}
-		update(button: adminLocked, with: GetAccessRestricitionsFunction.adminRestricitionKey)
-		update(button: smsLocked, with: GetAccessRestricitionsFunction.smsRestricitionKey)
-		update(button: callsLocked, with: GetAccessRestricitionsFunction.callRestricitionKey)
-		update(button: dataLocked, with: GetAccessRestricitionsFunction.dataRestricitionKey)
+		update(button: adminLocked, with: DataModelKeys.adminRestricition)
+		update(button: smsLocked, with: DataModelKeys.smsRestricition)
+		update(button: callsLocked, with: DataModelKeys.callRestricition)
+		update(button: dataLocked, with: DataModelKeys.dataRestricition)
 	}
 	
 	func updatePasswords() {
@@ -184,6 +184,6 @@ class RestrictedAccessViewController: NSViewController {
 			})
 			return
 		}
-		update(field: adminPassword, with: GetAccessRestricitionsFunction.adminPasswordKey)
+		update(field: adminPassword, with: DataModelKeys.adminPassword)
 	}
 }

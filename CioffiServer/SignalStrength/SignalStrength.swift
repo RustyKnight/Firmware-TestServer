@@ -10,19 +10,17 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let signalStrengthKey = "signalStrength"
-
 struct SignalStrengthUtility {
 	static func body() -> [String : Any] {
 		var body: [String : Any] = [:]
 		switch ModemModule.current {
 		case .cellular:
 			body["cellular"] = [
-				"signal": DataModelManager.shared.get(forKey: signalStrengthKey, withDefault: 0)
+				"signal": DataModelManager.shared.get(forKey: DataModelKeys.signalStrength, withDefault: 0)
 			]
 		case .satellite:
 			body["satellite"] = [
-				"signal": DataModelManager.shared.get(forKey: signalStrengthKey, withDefault: 0)
+				"signal": DataModelManager.shared.get(forKey: DataModelKeys.signalStrength, withDefault: 0)
 			]
 		case .unknown: break
 		}
@@ -37,7 +35,7 @@ class GetSignalStrengthFunction: DefaultAPIFunction {
 		requestType = .getSignalStrength
 		responseType = .getSignalStrength
 		
-		DataModelManager.shared.set(value: 0, forKey: signalStrengthKey)
+		DataModelManager.shared.set(value: 0, forKey: DataModelKeys.signalStrength)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

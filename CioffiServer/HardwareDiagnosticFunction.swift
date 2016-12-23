@@ -8,8 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let hardwareDiagnosticInfo = "Key.hardwareDiagnosticInfo"
-
 public struct TemperatureHardwareInfo {
 	public let antennaSensorA: String
 	public let antennaSensorB: String
@@ -98,7 +96,7 @@ fileprivate struct Key {
 							softwareVersion: "951.357")))
 
 	static var currentState: [String: Any] {
-		let setting: HardwareDiagnosticInfo = DataModelManager.shared.get(forKey: hardwareDiagnosticInfo,
+		let setting: HardwareDiagnosticInfo = DataModelManager.shared.get(forKey: DataModelKeys.hardwareDiagnosticInfo,
 				withDefault: defaultValue)
 		return with(setting: setting)
 	}
@@ -152,7 +150,7 @@ class GetHardwareDiagnosticInfoFunction: HardwareDiagnosticInfoFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: Key.defaultValue,
-				forKey: gnssSettingKey)
+				forKey: DataModelKeys.gnssSetting)
 
 		self.responseType = .getHardwareDiagnosticInfo
 		self.requestType = .getHardwareDiagnosticInfo

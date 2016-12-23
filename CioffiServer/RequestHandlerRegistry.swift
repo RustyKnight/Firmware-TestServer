@@ -150,6 +150,8 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.getAudibleAlertOption] = GetAudibleAlertsFunction()
 		functions[.setAudibleAlertOption] = SetAudibleAlertsFunction()
+
+		functions[.getUnreadMessageCount] = GetUnreadMessageCountFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

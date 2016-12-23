@@ -29,15 +29,15 @@ class SAPAViewContoller: NSViewController {
         super.viewWillAppear()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SAPAViewContoller.automaticStateDidChange),
-                                               name: NSNotification.Name.init(rawValue: automaticSAPAState),
+                                               name: DataModelKeys.automaticSAPAState.notification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SAPAViewContoller.currentStateDidChange),
-                                               name: NSNotification.Name.init(rawValue: sapaState),
+                                               name: DataModelKeys.sapaState.notification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(NetworkRegistrationViewController.modemChanged),
-                                               name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+                                               name: DataModelKeys.currentModemModule.notification,
                                                object: nil)
         stateDidChange()
         modemChanged()
@@ -58,8 +58,8 @@ class SAPAViewContoller: NSViewController {
     }
     
     func stateDidChange() {
-        let isAuto = DataModelManager.shared.get(forKey: automaticSAPAState, withDefault: true)
-        let isActive = DataModelManager.shared.get(forKey: sapaState, withDefault: false)
+        let isAuto = DataModelManager.shared.get(forKey: DataModelKeys.automaticSAPAState, withDefault: true)
+        let isActive = DataModelManager.shared.get(forKey: DataModelKeys.sapaState, withDefault: false)
         
         autoState.state = isAuto ? NSOnState : NSOffState
         currentState.state = isActive ? NSOnState : NSOffState
@@ -79,7 +79,7 @@ class SAPAViewContoller: NSViewController {
     
     @IBAction func activeStateChanged(_ sender: AnyObject) {
         let state = currentState.state == NSOnState
-        DataModelManager.shared.set(value: state, forKey: sapaState, withNotification: false)
+        DataModelManager.shared.set(value: state, forKey: DataModelKeys.sapaState, withNotification: false)
         sendNotification()
     }
     

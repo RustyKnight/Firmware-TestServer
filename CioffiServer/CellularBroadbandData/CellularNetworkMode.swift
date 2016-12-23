@@ -10,12 +10,10 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let cellularNetworkModeKey = "CellularNetworkModeMode"
-
 struct CellularNetworkModeUtilities {
 	
 	static func body() -> [String: Any] {
-		let mode: CellularNetworkMode = DataModelManager.shared.get(forKey: cellularNetworkModeKey,
+		let mode: CellularNetworkMode = DataModelManager.shared.get(forKey: DataModelKeys.cellularNetworkMode,
 		                                                            withDefault: CellularNetworkMode.cellular3G)
 		return ["broadband": ["mode": mode.rawValue]]
 	}
@@ -30,7 +28,7 @@ class GetCellularNetworkModeFunction: DefaultAPIFunction {
 		requestType = .getCellularNetworkMode
 		
 		DataModelManager.shared.set(value: CellularNetworkMode.cellular3G,
-		                            forKey: cellularNetworkModeKey)
+		                            forKey: DataModelKeys.cellularNetworkMode)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

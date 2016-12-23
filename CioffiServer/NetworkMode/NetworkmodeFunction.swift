@@ -12,20 +12,18 @@ import CioffiAPI
 
 class GetNetworkModeFunction: DefaultAPIFunction {
 	
-	static let networkModeKey = "networkModeKey"
- 
 	override init() {
 		super.init()
 		requestType = .getNetworkMode
 		responseType = .getNetworkMode
 		DataModelManager.shared.set(value: NetworkMode.cellular,
-		                            forKey: GetNetworkModeFunction.networkModeKey)
+		                            forKey: DataModelKeys.networkMode)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String: [String: Any]] = [:]
 		body["network"] = [
-			"mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+			"mode": DataModelManager.shared.get(forKey: DataModelKeys.networkMode,
 			                                    withDefault: NetworkMode.cellular).rawValue
 		]
 		return body
@@ -39,7 +37,7 @@ class SetNetworkModeFunction: DefaultAPIFunction {
 		requestType = .setNetworkMode
 		responseType = .setNetworkMode
 		DataModelManager.shared.set(value: NetworkMode.cellular,
-		                            forKey: GetNetworkModeFunction.networkModeKey)
+		                            forKey: DataModelKeys.networkMode)
 	}
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
@@ -52,14 +50,14 @@ class SetNetworkModeFunction: DefaultAPIFunction {
 			return createResponse(type: .failed)
 		}
 		DataModelManager.shared.set(value: mode,
-		                            forKey: GetNetworkModeFunction.networkModeKey)
+		                            forKey: DataModelKeys.networkMode)
 		return createResponse(type: .success)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String: [String: Any]] = [:]
 		body["network"] = [
-			"mode": DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+			"mode": DataModelManager.shared.get(forKey: DataModelKeys.networkMode,
 			                                    withDefault: NetworkMode.cellular).rawValue
 		]
 		return body

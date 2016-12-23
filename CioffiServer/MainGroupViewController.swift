@@ -34,6 +34,8 @@ class MainGroupViewController: NSViewController {
 	@IBOutlet weak var simPinLockedButton: NSButton!
 	@IBOutlet weak var simUnlockedButton: NSButton!
 	
+	@IBOutlet weak var unreadMessageCount: NSTextField!
+	
 	var buttonToSIMStatus: [NSButton: SIMStatus] = [:]
 	var simStatusToButton: [SIMStatus: NSButton] = [:]
 	
@@ -76,36 +78,49 @@ class MainGroupViewController: NSViewController {
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		majorVersionField.stringValue = String(DataModelManager.shared.get(forKey: GetVersionFunction.majorVersionKey, withDefault: 1))
-		minorVersionField.stringValue = String(DataModelManager.shared.get(forKey: GetVersionFunction.minorVersionKey, withDefault: 0))
-		patchVersionField.stringValue = String(DataModelManager.shared.get(forKey: GetVersionFunction.patchVersionKey, withDefault: 0))
+		majorVersionField.stringValue = String(DataModelManager.shared.get(forKey: DataModelKeys.majorVersion, withDefault: 1))
+		minorVersionField.stringValue = String(DataModelManager.shared.get(forKey: DataModelKeys.minorVersion, withDefault: 0))
+		patchVersionField.stringValue = String(DataModelManager.shared.get(forKey: DataModelKeys.patchVersion, withDefault: 0))
 
-		missedCallCountField.stringValue = String(DataModelManager.shared.get(forKey: missedCallCountKey, withDefault: 0))
+		missedCallCountField.stringValue = String(DataModelManager.shared.get(forKey: DataModelKeys.missedCallCount, withDefault: 0))
+		unreadMessageCount.stringValue = String(DataModelManager.shared.get(forKey: DataModelKeys.unreadMessageCount, withDefault: 0))
+		
+		autoUnreadMessagesCountAction(self)
 
 		NotificationCenter.default.addObserver(self,
 				selector: #selector(MainGroupViewController.missedCallCountWasChanged),
-				name: NSNotification.Name.init(rawValue: missedCallCountKey),
+				name: DataModelKeys.missedCallCount.notification,
 				object: nil)
 
 		NotificationCenter.default.addObserver(self,
 				selector: #selector(MainGroupViewController.simStatusDidChange),
-				name: NSNotification.Name.init(rawValue: simStatusKey),
+				name: DataModelKeys.simStatus.notification,
 				object: nil)
+		
+		NotificationCenter.default.addObserver(self,
+		                                       selector: #selector(MainGroupViewController.unreadMessagesCountChanged),
+		                                       name: DataModelKeys.unreadMessageCount.notification,
+		                                       object: nil)
 	}
 
 	var ignoreMissedCallCountChange = false
+
+	func unreadMessagesCountChanged(_ notification: Notification) {
+		let count = DataModelManager.shared.get(forKey: DataModelKeys.unreadMessageCount, withDefault: 0)
+		unreadMessageCount.stringValue = "\(count)"
+	}
 
 	func missedCallCountWasChanged(_ notification: Notification) {
 		defer {
 			ignoreMissedCallCountChange = false
 		}
 		ignoreMissedCallCountChange = true
-		let count = DataModelManager.shared.get(forKey: missedCallCountKey, withDefault: 0)
+		let count = DataModelManager.shared.get(forKey: DataModelKeys.missedCallCount, withDefault: 0)
 		missedCallCountField.stringValue = "\(count)"
 	}
 
 	func simStatusDidChange(_ notification: Notification) {
-		let status = DataModelManager.shared.get(forKey: simStatusKey, withDefault: SIMStatus.unlocked)
+		let status = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
 		simStatusToButton[status]?.state = NSOnState
 	}
 	
@@ -216,17 +231,17 @@ class MainGroupViewController: NSViewController {
 	
 	@IBAction func majorFieldChanged(_ sender: NSTextField) {
 		DataModelManager.shared.set(value: sender.integerValue,
-		                            forKey: GetVersionFunction.majorVersionKey)
+		                            forKey: DataModelKeys.majorVersion)
 	}
 	
 	@IBAction func minorFieldChanged(_ sender: NSTextField) {
 		DataModelManager.shared.set(value: sender.integerValue,
-		                            forKey: GetVersionFunction.minorVersionKey)
+		                            forKey: DataModelKeys.minorVersion)
 	}
 	
 	@IBAction func patchFieldChanged(_ sender: NSTextField) {
 		DataModelManager.shared.set(value: sender.integerValue,
-		                            forKey: GetVersionFunction.patchVersionKey)
+		                            forKey: DataModelKeys.patchVersion)
 	}
 	
 	func getIFAddresses() -> [String] {
@@ -299,7 +314,7 @@ class MainGroupViewController: NSViewController {
 		}
 		
 		DataModelManager.shared.set(value: status,
-		                            forKey: simStatusKey,
+		                            forKey: DataModelKeys.simStatus,
 		                            withNotification: false)
 		do {
 			try Server.default.send(notification: SIMStatusNotification(status))
@@ -318,10 +333,40 @@ class MainGroupViewController: NSViewController {
 	}
 	
 	func updateSIMLockStatus() {
-		let status: SIMStatus = DataModelManager.shared.get(forKey: simStatusKey, withDefault: SIMStatus.unlocked)
+		let status: SIMStatus = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
 		guard let button = simStatusToButton[status] else {
 			return
 		}
 		button.state = NSOnState
 	}
+	
+	@IBAction func autoUnreadMessagesCountAction(_ sender: Any) {
+		var unreadMessages = 0
+		log(info: "Checking \(MessageManager.shared.conversations.count) conversations")
+		MessageManager.shared.conversations.forEach { (conversation) in
+			log(info: "Checking \(conversation.messages.count) messages")
+			conversation.messages.forEach({ (message) in
+				if !message.read {
+					log(info: "isUnread: \(message)")
+					unreadMessages += 1
+				}
+			})
+		}
+		DataModelManager.shared.set(value: unreadMessages,
+		                            forKey: DataModelKeys.unreadMessageCount)
+	}
+	
+	@IBAction func unreadMessagesCountAction(_ sender: Any) {
+		guard let count = Int(unreadMessageCount.stringValue) else {
+			return
+		}
+		DataModelManager.shared.set(value: count,
+		                            forKey: DataModelKeys.unreadMessageCount)
+		do {
+			try Server.default.send(notification: UnreadMessageCountNotification())
+		} catch let error {
+			log(error: "\(error)")
+		}
+	}
+	
 }

@@ -8,7 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let emergencyNumberKey = "Key.EmergencyNumber"
 
 class EmergencyNumberFunction: DefaultAPIFunction {
 
@@ -19,7 +18,7 @@ class EmergencyNumberFunction: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let number: String = DataModelManager.shared.get(forKey: emergencyNumberKey,
+		let number: String = DataModelManager.shared.get(forKey: DataModelKeys.emergencyNumber,
 				withDefault: "")
 
 		body[Key.emergencyNumber] = number
@@ -34,7 +33,7 @@ class GetEmergencyNumber: EmergencyNumberFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: "",
-				forKey: emergencyNumberKey)
+				forKey: DataModelKeys.emergencyNumber)
 
 		self.responseType = .getEmergencyNumber
 		self.requestType = .getEmergencyNumber
@@ -58,11 +57,11 @@ class SetEmergencyNumber: EmergencyNumberFunction {
 		}
 
 		DataModelManager.shared.set(value: number,
-				forKey: emergencyNumberKey)
+				forKey: DataModelKeys.emergencyNumber)
 
 		_ = after(interval: 1.0).then { () -> Void in
 			do {
-				let number = DataModelManager.shared.get(forKey: emergencyNumberKey, withDefault: "")
+				let number = DataModelManager.shared.get(forKey: DataModelKeys.emergencyNumber, withDefault: "")
 				try Server.default.send(notification: EmergencyNumberNotification(number: number))
 			} catch let error {
 				log(error: "\(error)")

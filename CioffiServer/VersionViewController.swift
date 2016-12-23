@@ -17,16 +17,16 @@ class VersionViewController: NSViewController {
         super.viewDidLoad()
     }
     
-    func stringValue(forKey key: String, withDefault defaultValue: String) -> String {
+    func stringValue(forKey key: DataModelKey, withDefault defaultValue: String) -> String {
         let value = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
         return value
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        majorVersion.stringValue = stringValue(forKey: GetVersionFunction.majorVersionKey, withDefault: "1")
-        minorVersion.stringValue = stringValue(forKey: GetVersionFunction.minorVersionKey, withDefault: "1")
-        patchVersion.stringValue = stringValue(forKey: GetVersionFunction.patchVersionKey, withDefault: "1")
+        majorVersion.stringValue = stringValue(forKey: DataModelKeys.majorVersion, withDefault: "1")
+        minorVersion.stringValue = stringValue(forKey: DataModelKeys.minorVersion, withDefault: "1")
+        patchVersion.stringValue = stringValue(forKey: DataModelKeys.patchVersion, withDefault: "1")
     }
     
     override func viewWillDisappear() {
@@ -35,14 +35,14 @@ class VersionViewController: NSViewController {
     
     @IBAction func majorFieldChanged(_ sender: NSTextField) {
         DataModelManager.shared.set(value: sender.integerValue,
-                                    forKey: GetVersionFunction.majorVersionKey)
+                                    forKey: DataModelKeys.majorVersion)
     }
     @IBAction func minorFieldChanged(_ sender: NSTextField) {
         DataModelManager.shared.set(value: sender.integerValue,
-                                    forKey: GetVersionFunction.minorVersionKey)
+                                    forKey: DataModelKeys.minorVersion)
     }
     @IBAction func patchFieldChanged(_ sender: NSTextField) {
         DataModelManager.shared.set(value: sender.integerValue,
-                                    forKey: GetVersionFunction.patchVersionKey)
+                                    forKey: DataModelKeys.patchVersion)
     }
 }

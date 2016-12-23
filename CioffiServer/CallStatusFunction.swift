@@ -8,8 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let callStatusKey = "Key.CallStatus"
-
 enum CallStatus: Int {
 	case inactive = 0
 	case outgoing
@@ -22,7 +20,7 @@ fileprivate struct Key {
 
 	static var currentState: [String: Any] {
 		var body: [String: Any] = [:]
-		let status: CallStatus = DataModelManager.shared.get(forKey: callStatusKey,
+		let status: CallStatus = DataModelManager.shared.get(forKey: DataModelKeys.callStatus,
 				withDefault: CallStatus.inactive)
 
 		body[Key.callStatus] = status.rawValue
@@ -44,7 +42,7 @@ class GetCallStatusFunction: CallStatusFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: CallStatus.inactive,
-				forKey: callStatusKey)
+				forKey: DataModelKeys.callStatus)
 
 		self.responseType = .getCallStatus
 		self.requestType = .getCallStatus
@@ -64,6 +62,6 @@ struct CallStatusNotification: APINotification {
 
 	init(_ status: CallStatus) {
 		DataModelManager.shared.set(value: status,
-				forKey: callStatusKey)	}
+				forKey: DataModelKeys.callStatus)	}
 
 }

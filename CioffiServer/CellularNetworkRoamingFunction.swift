@@ -8,7 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let cellularNetworkRoamingKey = "Key.EmergencyNumber"
 
 class CellularNetworkRoamingFunction: DefaultAPIFunction {
 
@@ -19,7 +18,7 @@ class CellularNetworkRoamingFunction: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let number: Bool = DataModelManager.shared.get(forKey: cellularNetworkRoamingKey,
+		let number: Bool = DataModelManager.shared.get(forKey: DataModelKeys.cellularNetworkRoaming,
 				withDefault: false)
 
 		body[Key.cellularNetworkRoaming] = number
@@ -34,7 +33,7 @@ class GetCellularNetworkRoamingFunction: CellularNetworkRoamingFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: "",
-				forKey: cellularNetworkRoamingKey)
+				forKey: DataModelKeys.cellularNetworkRoaming)
 
 		self.responseType = .getCellularNetworkRoaming
 		self.requestType = .getCellularNetworkRoaming
@@ -58,7 +57,7 @@ class SetCellularNetworkRoamingFunction: CellularNetworkRoamingFunction {
 		}
 
 		DataModelManager.shared.set(value: state,
-				forKey: cellularNetworkRoamingKey)
+				forKey: DataModelKeys.cellularNetworkRoaming)
 
 		return createResponse(type: .success)
 	}

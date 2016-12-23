@@ -20,8 +20,6 @@ struct MACAddressConfiguration {
 	}
 }
 
-let MACAddressFilteringKey = "Key.MACAddressFiltering"
-
 class MACAddressFilteringFunction: DefaultAPIFunction {
 
 	struct Key {
@@ -36,7 +34,7 @@ class MACAddressFilteringFunction: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let config: MACAddressConfiguration = DataModelManager.shared.get(forKey: MACAddressFilteringKey,
+		let config: MACAddressConfiguration = DataModelManager.shared.get(forKey: DataModelKeys.MACAddressFiltering,
 				withDefault: MACAddressFilteringFunction.defaultValue)
 
 		body[Key.option] = config.option.rawValue
@@ -56,7 +54,7 @@ class GetMACAddressFiltering: MACAddressFilteringFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: MACAddressFilteringFunction.defaultValue,
-				forKey: MACAddressFilteringKey)
+				forKey: DataModelKeys.MACAddressFiltering)
 
 		self.responseType = .getMACAddressFilteringConfiguration
 		self.requestType = .getMACAddressFilteringConfiguration
@@ -103,7 +101,7 @@ class SetMACAddressFiltering: MACAddressFilteringFunction {
 
 		let config = MACAddressConfiguration(option: option, entries: entries)
 		DataModelManager.shared.set(value: config,
-				forKey: MACAddressFilteringKey)
+				forKey: DataModelKeys.MACAddressFiltering)
 		return createResponse(type: .success)
 	}
 

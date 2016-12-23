@@ -38,6 +38,8 @@ public enum NotificationType: Int {
 	case postNotification = 84
 
 	case wifiConnections = 87
+
+	case unreadMessages = 1034
 }
 
 
@@ -145,6 +147,9 @@ public enum ResponseType: Int {
 
 	case getAudibleAlertOption = 1029
 	case setAudibleAlertOption = 1031
+
+	case getUnreadMessageCount = 1033
+	case clearUnreadMessageCount = 1036
 
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

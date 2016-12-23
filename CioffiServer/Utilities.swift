@@ -17,8 +17,6 @@ func synced(lock: Any, closure: () -> ()) {
 	closure()
 }
 
-let currentModemModuleKey = "currentModemModuleKey"
-
 private var shutdownNetworkRegistrationStatusSwitcher: ChainedModeSwitcher<NetworkRegistrationStatus>?
 private var startupNetworkRegistrationStatusSwitcher: ChainedModeSwitcher<NetworkRegistrationStatus>?
 
@@ -46,7 +44,7 @@ enum ModemModule: Int {
 				startupNetworkRegistrationStatusSwitcher.cancel()
 			}
 			
-			DataModelManager.shared.set(value: self, forKey: currentModemModuleKey)
+			DataModelManager.shared.set(value: self, forKey: DataModelKeys.currentModemModule)
 			if withLifeCycle {
 
 				from(modem: current)
@@ -181,7 +179,7 @@ enum ModemModule: Int {
 	}
 	
 	static var current: ModemModule {
-		let current = DataModelManager.shared.get(forKey: currentModemModuleKey, withDefault: ModemModule.unknown)
+		let current = DataModelManager.shared.get(forKey: DataModelKeys.currentModemModule, withDefault: ModemModule.unknown)
 		//        log(info: "current = \(current)")
 		return current
 	}

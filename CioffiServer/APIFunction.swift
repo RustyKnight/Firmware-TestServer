@@ -92,7 +92,7 @@ class DefaultAPIFunction: APIFunction {
 protocol ModeSwitcher {
 	associatedtype ModeType: RawRepresentable
 
-	var key: String {get}
+	var key: DataModelKey {get}
 	var defaultMode: ModeType {get}
 	
 	var queue: OperationQueue {get}
@@ -134,10 +134,10 @@ struct AnyModeLink<T: RawRepresentable & Hashable>: ModeLink where T.RawValue ==
 
 class LinkOperation<T: RawRepresentable & Hashable>: Operation where T.RawValue == Int {
 	let modeLink: AnyModeLink<T>
-	let key: String
+	let key: DataModelKey
 	let logState: EmptyFunction?
 	
-	init(key: String, modeLink: AnyModeLink<T>, logState: EmptyFunction? = nil) {
+	init(key: DataModelKey, modeLink: AnyModeLink<T>, logState: EmptyFunction? = nil) {
 		self.key = key
 		self.modeLink = modeLink
 		self.logState = logState
@@ -184,7 +184,7 @@ class LinkOperation<T: RawRepresentable & Hashable>: Operation where T.RawValue 
 class ChainedModeSwitcher<T: RawRepresentable & Hashable>: ModeSwitcher where T.RawValue == Int {
 	typealias ModeType = T
 	
-	let key: String
+	let key: DataModelKey
 	
 	var initialDelay = 1.0
 	var switchDelay = 5.0
@@ -201,7 +201,7 @@ class ChainedModeSwitcher<T: RawRepresentable & Hashable>: ModeSwitcher where T.
 		return queue
 	}()
 	
-	init(key: String, defaultValue: T, links: [AnyModeLink<T>]) {
+	init(key: DataModelKey, defaultValue: T, links: [AnyModeLink<T>]) {
 		self.key = key
 		self.defaultMode = defaultValue
 		self.links = links
@@ -265,7 +265,7 @@ struct AnySwitcherState<T: RawRepresentable & Hashable>: SwitcherState where T.R
 
 class SimpleModeSwitcher<T: RawRepresentable & Hashable>: ChainedModeSwitcher<T> where T.RawValue == Int {
 	
-	init(key: String,
+	init(key: DataModelKey,
 	     to: AnySwitcherState<T>,
 	     through: AnySwitcherState<T>,
 	     defaultMode: T,

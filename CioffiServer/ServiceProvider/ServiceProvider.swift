@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let serviceProviderKey = "serviceProvider"
+
 
 struct ServiceProviderUtility {
 	static func body() -> [String : Any] {
@@ -18,12 +18,12 @@ struct ServiceProviderUtility {
 		switch ModemModule.current {
 		case .cellular:
 			body["cellular"] = [
-				"provider": DataModelManager.shared.get(forKey: serviceProviderKey,
+				"provider": DataModelManager.shared.get(forKey: DataModelKeys.serviceProvider,
 				                                        withDefault: "")
 			]
 		case .satellite:
 			body["satellite"] = [
-				"provider": DataModelManager.shared.get(forKey: serviceProviderKey,
+				"provider": DataModelManager.shared.get(forKey: DataModelKeys.serviceProvider,
 				                                        withDefault: "")
 			]
 		case .unknown: break
@@ -41,7 +41,7 @@ class GetServiceProvideFunction: DefaultAPIFunction {
 		responseType = .getServiceProviderName
 		
 		DataModelManager.shared.set(value: "Optus",
-		                            forKey: serviceProviderKey)
+		                            forKey: DataModelKeys.serviceProvider)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

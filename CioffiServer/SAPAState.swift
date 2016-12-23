@@ -10,14 +10,13 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let automaticSAPAState = "sapa.automaticState"
-let sapaState = "sapa.state"
+
 
 struct SAPAStatusUtility {
 	static func automaticBody() -> [String: [String: Any]] {
 		var body: [String: [String: Any]] = [:]
-		let value: Bool = DataModelManager.shared.get(forKey: automaticSAPAState, withDefault: true)
-		log(info: "\(automaticSAPAState) = \(value)")
+		let value: Bool = DataModelManager.shared.get(forKey: DataModelKeys.automaticSAPAState, withDefault: true)
+		log(info: "\(DataModelKeys.automaticSAPAState) = \(value)")
 		body["autosapa"] = [
 			"active": value
 		]
@@ -26,8 +25,8 @@ struct SAPAStatusUtility {
 	
 	static func manualBody() -> [String: [String: Any]] {
 		var body: [String: [String: Any]] = [:]
-		let value: Bool = DataModelManager.shared.get(forKey: sapaState, withDefault: true)
-		log(info: "\(sapaState) = \(value)")
+		let value: Bool = DataModelManager.shared.get(forKey: DataModelKeys.sapaState, withDefault: true)
+		log(info: "\(DataModelKeys.sapaState) = \(value)")
 		body["sapa"] = [
 			"active": value
 		]
@@ -43,7 +42,7 @@ class GetAutomaticSAPAStatusFunction: DefaultAPIFunction {
 		responseType = .getAutomaticSAPAStatus
 		requestType = .getAutomaticSAPAStatus
 		
-		DataModelManager.shared.set(value: false, forKey: automaticSAPAState)
+		DataModelManager.shared.set(value: false, forKey: DataModelKeys.automaticSAPAState)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -66,7 +65,7 @@ class SetAutomaticSAPAStatusFunction: GetAutomaticSAPAStatusFunction {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
 			return createResponse(type: .failed)
 		}
-		DataModelManager.shared.set(value: state, forKey: automaticSAPAState)
+		DataModelManager.shared.set(value: state, forKey: DataModelKeys.automaticSAPAState)
 		return createResponse(type: .success)
 	}
 	
@@ -80,7 +79,7 @@ class GetSAPAStatusFunction: DefaultAPIFunction {
 		responseType = .getSAPAStatus
 		requestType = .getSAPAStatus
 		
-		DataModelManager.shared.set(value: false, forKey: sapaState)
+		DataModelManager.shared.set(value: false, forKey: DataModelKeys.sapaState)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -103,7 +102,7 @@ class StartStopSAPAFunction: GetSAPAStatusFunction {
 			log(warning: "Was expecting autosapa/active, but didn't find one")
 			return createResponse(type: .failed)
 		}
-		DataModelManager.shared.set(value: state, forKey: sapaState)
+		DataModelManager.shared.set(value: state, forKey: DataModelKeys.sapaState)
 		return createResponse(type: .success)
 	}
 	

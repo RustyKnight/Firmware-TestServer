@@ -10,8 +10,6 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let systemTemperatureKey = "systemTemperature"
-
 protocol DualTemperatureSensor {
 	var sensorA: String {get set}
 	var sensorB: String {get set}
@@ -47,7 +45,7 @@ let defaultSystemTemperature: SystemTemperature = DefaultSystemTemperature(anten
 struct SystemTemperatureUtilities {
 	static var body: [String: Any] {
 		var body: [String: Any] = [:]
-		let temp: SystemTemperature  = DataModelManager.shared.get(forKey: systemTemperatureKey, withDefault: defaultSystemTemperature)
+		let temp: SystemTemperature  = DataModelManager.shared.get(forKey: DataModelKeys.systemTemperature, withDefault: defaultSystemTemperature)
 		body["temperature"] = [
 			"pcbA": temp.pcb.sensorA,
 			"pcbB": temp.pcb.sensorB,
@@ -66,7 +64,7 @@ class GetSystemTemperature: DefaultAPIFunction {
 		responseType = .getSystemTemperature
 		requestType = .getSystemTemperature
 		
-		DataModelManager.shared.set(value: defaultSystemTemperature, forKey: systemTemperatureKey)
+		DataModelManager.shared.set(value: defaultSystemTemperature, forKey: DataModelKeys.systemTemperature)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

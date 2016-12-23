@@ -52,7 +52,7 @@ class NetworkSelectionViewController: NSViewController {
 		
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(NetworkSelectionViewController.networkModeDataChanged),
-		                                       name: NSNotification.Name.init(rawValue: GetNetworkModeFunction.networkModeKey),
+		                                       name: DataModelKeys.networkMode.notification,
 		                                       object: nil)
 		updateNetworkMode()
 	}
@@ -90,7 +90,7 @@ class NetworkSelectionViewController: NSViewController {
 	}
 	
 	func updateNetworkMode() {
-		let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.networkMode,
 		                                       withDefault: NetworkMode.satellite)
 		updateModemModule(for: mode, withLifeCycle: true)
 		DispatchQueue.main.async {
@@ -108,7 +108,7 @@ class NetworkSelectionViewController: NSViewController {
 			} else {
 				modem = .cellular
 			}
-			DataModelManager.shared.set(value: NetworkMode.smartSwitch, forKey: GetNetworkModeFunction.networkModeKey)
+			DataModelManager.shared.set(value: NetworkMode.smartSwitch, forKey: DataModelKeys.networkMode)
 		} else {
 			modem = networkModeModemModule[mode]!
 			let mode = modem.networkMode
@@ -116,13 +116,13 @@ class NetworkSelectionViewController: NSViewController {
 				ignoreUpdate = false
 			}
 			ignoreUpdate = true
-			DataModelManager.shared.set(value: mode, forKey: GetNetworkModeFunction.networkModeKey)
+			DataModelManager.shared.set(value: mode, forKey: DataModelKeys.networkMode)
 		}
 		modem.makeCurrent(withLifeCycle: withLifeCycle)
 	}
 	
 	var isSmartSwitching: Bool {
-		let mode = DataModelManager.shared.get(forKey: GetNetworkModeFunction.networkModeKey,
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.networkMode,
 		                                       withDefault: NetworkMode.satellite)
 		return mode == NetworkMode.smartSwitch
 	}

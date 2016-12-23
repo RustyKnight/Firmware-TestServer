@@ -10,12 +10,11 @@ import Foundation
 import CioffiAPI
 import SwiftyJSON
 
-let satelliteServiceModeKey = "satelliteServiceMode.mode"
 
 struct SatelliteServiceModeUtilities {
 	static func body() -> [String : Any] {
 		var body: [String : Any] = [:]
-		let mode = DataModelManager.shared.get(forKey: satelliteServiceModeKey,
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.satelliteServiceMode,
 		                                       withDefault: SatelliteServiceMode.voice)
 		
 		body["service"] = [
@@ -33,7 +32,7 @@ class GetSatelliteServiceModeFunction: DefaultAPIFunction {
 		requestType = .getSatelliteServiceMode
 		responseType = .getSatelliteServiceMode
 		DataModelManager.shared.set(value: SatelliteServiceMode.voice,
-		                            forKey: satelliteServiceModeKey)
+		                            forKey: DataModelKeys.satelliteServiceMode)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -91,7 +90,7 @@ struct SatelliteServiceModeNotification: APINotification {
 
 class SatelliteServiceModeSwitcher: SimpleModeSwitcher<SatelliteServiceMode> {
 	init(to: SatelliteServiceMode, through: SatelliteServiceMode) {
-		super.init(key: satelliteServiceModeKey,
+		super.init(key: DataModelKeys.satelliteServiceMode,
 		           to: AnySwitcherState<SatelliteServiceMode>(state: to, notification: SatelliteServiceModeNotification()),
 		           through: AnySwitcherState<SatelliteServiceMode>(state: through, notification: SatelliteServiceModeNotification()),
 		           defaultMode: SatelliteServiceMode.unknown)

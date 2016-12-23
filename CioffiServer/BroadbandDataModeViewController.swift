@@ -23,10 +23,10 @@ class BroadbandDataModeViewController: NSViewController {
 
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(BroadbandDataModeViewController.modeDidChange),
-		                                       name: NSNotification.Name.init(rawValue: broadbandDataActiveModeKey),
+		                                       name: DataModelKeys.broadbandDataActiveMode.notification,
 		                                       object: nil)
 		
-		updateControl(for: broadbandDataActiveModeKey, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
+		updateControl(for: DataModelKeys.broadbandDataActiveMode, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
 	}
 	
 	override func viewDidDisappear() {
@@ -35,10 +35,10 @@ class BroadbandDataModeViewController: NSViewController {
 	}
 	
 	func modeDidChange() {
-		updateControl(for: broadbandDataActiveModeKey, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
+		updateControl(for: DataModelKeys.broadbandDataActiveMode, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
 	}
 
-	func updateControl<T: RawRepresentable>(`for` key : String, defaultValue: T, offset: Int) where T.RawValue == Int {
+	func updateControl<T: RawRepresentable>(`for` key : DataModelKey, defaultValue: T, offset: Int) where T.RawValue == Int {
 		let mode = DataModelManager.shared.get(forKey: key, withDefault: defaultValue)
 		guard let control = view.viewWithTag(mode.rawValue + offset) as? NSButton else {
 			log(warning: "Could not find view for \(mode) (\(mode.rawValue) + \(offset))")
@@ -54,13 +54,13 @@ class BroadbandDataModeViewController: NSViewController {
 			return
 		}
 		
-		DataModelManager.shared.set(value: status, forKey: broadbandDataActiveModeKey, withNotification: false)
+		DataModelManager.shared.set(value: status, forKey: DataModelKeys.broadbandDataActiveMode, withNotification: false)
 		
-		let uplink = DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-		let downlink = DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-		DataModelManager.shared.set(value: uplink, forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withNotification: false)
-		DataModelManager.shared.set(value: downlink, forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withNotification: false)
-		updateControl(for: broadbandDataActiveModeKey, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
+		let uplink = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataUplinkSpeed, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+		let downlink = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataDownlinkSpeed, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+		DataModelManager.shared.set(value: uplink, forKey: DataModelKeys.satelliteBroadbandDataActiveUplinkSpeed, withNotification: false)
+		DataModelManager.shared.set(value: downlink, forKey: DataModelKeys.satelliteBroadbandDataActiveDownlinkSpeed, withNotification: false)
+		updateControl(for: DataModelKeys.broadbandDataActiveMode, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
 		sendNotification()
 	}
 	

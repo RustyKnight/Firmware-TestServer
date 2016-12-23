@@ -10,8 +10,6 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-let wifiConfigurationKey = "wifi.config"
-
 protocol WiFiConfiguration {
 	var ssid: String {get}
 	var channel: Int {get}
@@ -33,7 +31,7 @@ let defaultWifiConfiguration: DefaultWifiConfiguration = DefaultWifiConfiguratio
 struct WiFiConfigurationUtilities {
 	static var body: [String: Any] {
 		var body: [String: Any] = [:]
-		let config: WiFiConfiguration  = DataModelManager.shared.get(forKey: wifiConfigurationKey, withDefault: defaultWifiConfiguration)
+		let config: WiFiConfiguration  = DataModelManager.shared.get(forKey: DataModelKeys.wifiConfiguration, withDefault: defaultWifiConfiguration)
 		body["wifi"] = [
 			"ssid": config.ssid,
 			"channel": config.channel,
@@ -50,7 +48,7 @@ class GetWiFiConfiguration: DefaultAPIFunction {
 		responseType = .getWifiConfiguration
 		requestType = .getWifiConfiguration
 		
-		DataModelManager.shared.set(value: defaultWifiConfiguration, forKey: wifiConfigurationKey)
+		DataModelManager.shared.set(value: defaultWifiConfiguration, forKey: DataModelKeys.wifiConfiguration)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -74,7 +72,7 @@ class SetWiFiConfiguration: GetWiFiConfiguration {
 		DataModelManager.shared.set(value: DefaultWifiConfiguration(ssid: ssid,
 		                                                            channel: channel,
 		                                                            passphrase: passphrase),
-		                            forKey: wifiConfigurationKey)
+		                            forKey: DataModelKeys.wifiConfiguration)
 		return createResponse(type: .success)
 	}
 }

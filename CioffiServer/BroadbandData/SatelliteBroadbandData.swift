@@ -10,22 +10,12 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
-// This deals with the settings
-
-// Represents the active mode status, which is seperate from the settings
-let satelliteBroadbandDataActiveUplinkSpeedKey = "satelliteBroadbandDataActiveUplinkSpeed" // What is the "active" speed
-let satelliteBroadbandDataActiveDownlinkSpeedKey = "satelliteBroadbandDataActiveDownlinkSpeed" // What is the "active" speed
-
-let satelliteBroadbandDataUplinkSpeedKey = "satelliteBroadbandDataUplinkSpeed"
-let satelliteBroadbandDataDownlinkSpeedKey = "satelliteBroadbandDataDownlinkSpeed"
-
-let satelliteBroadbandDataModeKey = "broadbandDataMode"
 
 struct SatelliteBroadbandDataIPModeUtilities {
 	static func body() -> [String : Any] {
 		var body: [String: [String: Any]] = [:]
 		body["broadband"] = [
-			"mode": DataModelManager.shared.get(forKey: satelliteBroadbandDataModeKey,
+			"mode": DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataMode,
 			                                    withDefault: SatelliteBroadbandDataMode.standardIP).rawValue
 		]
 		return body
@@ -48,7 +38,7 @@ class SetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
 			return createResponse(type: .failed)
 		}
 		DataModelManager.shared.set(value: mode,
-		                            forKey: satelliteBroadbandDataModeKey)
+		                            forKey: DataModelKeys.satelliteBroadbandDataMode)
 		return createResponse(type: .success)
 	}
 	
@@ -64,7 +54,7 @@ class GetSatelliteBroadbandDataIPMode: DefaultAPIFunction {
 		requestType = .getSatelliteBroadbandDataIPMode
 		responseType = .getSatelliteBroadbandDataIPMode
 		DataModelManager.shared.set(value: SatelliteBroadbandDataMode.standardIP,
-		                            forKey: satelliteBroadbandDataModeKey)
+		                            forKey: DataModelKeys.satelliteBroadbandDataMode)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -76,9 +66,9 @@ struct SatelliteBroadbandDataSpeedUtilities {
 	static func body() -> [String : Any] {
 		var body: [String: [String: Any]] = [:]
 		body["broadband"] = [
-			"uplinkspeed": DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey,
+			"uplinkspeed": DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataUplinkSpeed,
 			                                           withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).rawValue,
-			"downlinkspeed": DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey,
+			"downlinkspeed": DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataDownlinkSpeed,
 			                                             withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16).rawValue
 		]
 		return body
@@ -112,9 +102,9 @@ class SetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
 		}
 
 		DataModelManager.shared.set(value: uplinkSpeed,
-		                            forKey: satelliteBroadbandDataUplinkSpeedKey)
+		                            forKey: DataModelKeys.satelliteBroadbandDataUplinkSpeed)
 		DataModelManager.shared.set(value: downlinkSpeed,
-		                            forKey: satelliteBroadbandDataDownlinkSpeedKey)
+		                            forKey: DataModelKeys.satelliteBroadbandDataDownlinkSpeed)
 		return createResponse(type: .success)
 	}
 	
@@ -130,9 +120,9 @@ class GetSatelliteBroadbandDataSpeed: DefaultAPIFunction {
 		requestType = .getSatelliteBroadbandStreamingSpeed
 		responseType = .getSatelliteBroadbandStreamingSpeed
 		DataModelManager.shared.set(value: SatelliteBroadbandStreamingIPSpeed.kbps16,
-		                            forKey: satelliteBroadbandDataUplinkSpeedKey)
+		                            forKey: DataModelKeys.satelliteBroadbandDataUplinkSpeed)
 		DataModelManager.shared.set(value: SatelliteBroadbandStreamingIPSpeed.kbps16,
-		                            forKey: satelliteBroadbandDataDownlinkSpeedKey)
+		                            forKey: DataModelKeys.satelliteBroadbandDataDownlinkSpeed)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {

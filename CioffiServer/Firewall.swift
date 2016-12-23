@@ -38,10 +38,7 @@ struct FirewallSetting {
 	var entries: [FirewallEntry]
 }
 
-enum FirewallKey: String {
-	case outbound = "Firewall.outbound"
-	case inbound = "Firewall.inbound"
-}
+typealias FirewallKey = DataModelKey
 
 class GetFirewall: DefaultAPIFunction {
 
@@ -58,7 +55,7 @@ class GetFirewall: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let setting: FirewallSetting = DataModelManager.shared.get(forKey: dataModelKey.rawValue,
+		let setting: FirewallSetting = DataModelManager.shared.get(forKey: dataModelKey,
 				withDefault: FirewallSetting(option: .off, entries: []))
 
 		body["state"] = setting.option.rawValue
@@ -138,7 +135,7 @@ class SetFirewall: DefaultAPIFunction {
 		let setting = FirewallSetting(option: option,
 				entries: firewallEntries)
 
-		DataModelManager.shared.set(value: setting, forKey: dataModelKey.rawValue)
+		DataModelManager.shared.set(value: setting, forKey: dataModelKey)
 
 		return createResponse(type: .success)
 	}
@@ -150,7 +147,7 @@ class GetOutboundFirewall: GetFirewall {
 	init() {
 		super.init(responseType: .getOutboundFirewall,
 				requestType: .getOutboundFirewall,
-				dataModelKey: .outbound)
+				dataModelKey: DataModelKeys.outbound)
 	}
 
 }
@@ -160,7 +157,7 @@ class SetOutboundFirewall: SetFirewall {
 	init() {
 		super.init(responseType: .setOutboundFirewall,
 				requestType: .setOutboundFirewall,
-				dataModelKey: .outbound)
+				dataModelKey: DataModelKeys.outbound)
 	}
 
 }
@@ -170,7 +167,7 @@ class GetInboundFirewall: GetFirewall {
 	init() {
 		super.init(responseType: .getInboundFirewall,
 				requestType: .getInboundFirewall,
-				dataModelKey: .outbound)
+				dataModelKey: DataModelKeys.outbound)
 	}
 
 }
@@ -180,7 +177,7 @@ class SetInboundFirewall: SetFirewall {
 	init() {
 		super.init(responseType: .setInboundFirewall,
 				requestType: .setInboundFirewall,
-				dataModelKey: .outbound)
+				dataModelKey: DataModelKeys.outbound)
 	}
 
 }

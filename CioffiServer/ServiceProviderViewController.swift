@@ -21,10 +21,10 @@ class ServiceProviderViewController: NSViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		
-		providerName.stringValue = DataModelManager.shared.get(forKey: serviceProviderKey, withDefault: "")
+		providerName.stringValue = DataModelManager.shared.get(forKey: DataModelKeys.serviceProvider, withDefault: "")
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
-		                                       name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 		modemChanged()
 	}
@@ -44,7 +44,7 @@ class ServiceProviderViewController: NSViewController {
 	
 	@IBAction func providerNameChanged(_ sender: AnyObject) {
 		DataModelManager.shared.set(value: providerName.stringValue,
-		                            forKey: serviceProviderKey,
+		                            forKey: DataModelKeys.serviceProvider,
 		                            withNotification: false)
 		sendNotification()
 	}

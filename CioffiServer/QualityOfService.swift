@@ -19,8 +19,6 @@ public struct APIQualityOfService {
 	}
 }
 
-let qosKey = "Key.qos"
-
 class QualityOfServiceFunction: DefaultAPIFunction {
 
 	struct Key {
@@ -34,7 +32,7 @@ class QualityOfServiceFunction: DefaultAPIFunction {
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
 		var body: [String: Any] = [:]
-		let config = DataModelManager.shared.get(forKey: qosKey,
+		let config = DataModelManager.shared.get(forKey: DataModelKeys.qosKey,
 				withDefault: QualityOfServiceFunction.defaultValue)
 
 		body[Key.enabled] = config.isEnabled
@@ -51,7 +49,7 @@ class GetQualityOfService: QualityOfServiceFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: APIQualityOfService(isEnabled: false, fromPort: 0, toPort: 0),
-				forKey: qosKey)
+				forKey: DataModelKeys.qosKey)
 
 		self.responseType = .getQualityOfService
 		self.requestType = .getQualityOfService
@@ -84,7 +82,7 @@ class SetQualityOfService: QualityOfServiceFunction {
 
 		let config = APIQualityOfService(isEnabled: isEnabled, fromPort: fromPort, toPort: toPort)
 		DataModelManager.shared.set(value: config,
-				forKey: qosKey)
+				forKey: DataModelKeys.qosKey)
 		return createResponse(type: .success)
 	}
 

@@ -38,20 +38,20 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 	var modemModule: ModemModule? {
 		didSet {
 			if let oldValue = oldValue, let key = targetNetworkRegistrationStateKeys[oldValue] {
-				NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: key), object: nil)
+				NotificationCenter.default.removeObserver(self, name: key.notification, object: nil)
 			}
 			
 			if let newValue = modemModule {
 				if let key = currentNetworkRegistrationStateKeys[newValue] {
 					NotificationCenter.default.addObserver(self,
 					                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
-					                                       name: NSNotification.Name.init(rawValue: key),
+					                                       name: key.notification,
 					                                       object: nil)
 				}
 				if let key = targetNetworkRegistrationStateKeys[newValue] {
 					NotificationCenter.default.addObserver(self,
 					                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
-					                                       name: NSNotification.Name.init(rawValue: key),
+					                                       name: key.notification,
 					                                       object: nil)
 				}
 			}
@@ -92,7 +92,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		modemChanged()
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
-		                                       name: NSNotification.Name.init(rawValue: currentModemModuleKey),
+		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 	}
 	

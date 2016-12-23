@@ -10,12 +10,10 @@ import Foundation
 import CioffiAPI
 import SwiftyJSON
 
-let broadbandDataActiveModeKey = "broadbandDataActiveMode" // What is the "active" mode
-
 class BroadbandDataModeStatusModeSwitcher: SimpleModeSwitcher<BroadbandDataModeStatus> {
 	
 	init(to: BroadbandDataModeStatus, through: BroadbandDataModeStatus) {
-		super.init(key: broadbandDataActiveModeKey,
+		super.init(key: DataModelKeys.broadbandDataActiveMode,
 		           to: AnySwitcherState<BroadbandDataModeStatus>(state: to, notification: BroadbandDataModeStatusNotification()),
 		           through: AnySwitcherState<BroadbandDataModeStatus>(state: through, notification: BroadbandDataModeStatusNotification()),
 		           defaultMode: BroadbandDataModeStatus.unknown,
@@ -28,17 +26,17 @@ class BroadbandDataModeStatusModeSwitcher: SimpleModeSwitcher<BroadbandDataModeS
 struct BroadbandDataModeStatusUtilities {
 	
 	static func body() -> [String : Any] {
-		let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.broadbandDataActiveMode,
 		                                       withDefault: BroadbandDataModeStatus.dataInactive)
-		log(info: "\(broadbandDataActiveModeKey) = \(mode)")
+		log(info: "\(DataModelKeys.broadbandDataActiveMode.key) = \(mode)")
 		var uplinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil
 		var downlinkSpeed: SatelliteBroadbandStreamingIPSpeed? = nil
 		
 		switch mode {
 		case .activatingStreamingIP: fallthrough
 		case .streamingIP:
-			uplinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveUplinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-			downlinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataActiveDownlinkSpeedKey, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+			uplinkSpeed = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataActiveUplinkSpeed, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
+			downlinkSpeed = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataActiveDownlinkSpeed, withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
 		default:
 			break
 		}
@@ -74,7 +72,7 @@ class GetBroadbandDataModeStatus: DefaultAPIFunction {
 		responseType = .getBroadbandDataModeStatus
 		requestType = .getBroadbandDataModeStatus
 		
-		DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: broadbandDataActiveModeKey)
+		DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: DataModelKeys.broadbandDataActiveMode)
 	}
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
@@ -93,7 +91,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 		responseType = .startStopBroadbandData
 		requestType = .startStopBroadbandData
 		
-		DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: broadbandDataActiveModeKey)
+		DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive, forKey: DataModelKeys.broadbandDataActiveMode)
 	}
 	
 	override func preProcess(request: JSON) -> PreProcessResult {
@@ -103,7 +101,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 		}
 		
 		if on {
-			let settingsMode = DataModelManager.shared.get(forKey: satelliteBroadbandDataModeKey,
+			let settingsMode = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataMode,
 			                                               withDefault: SatelliteBroadbandDataMode.standardIP)
 			var statusMode: BroadbandDataModeStatus = .dataInactive
 			var switchMode: BroadbandDataModeStatus = .dataInactive
@@ -117,25 +115,25 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 				switchMode = .activatingStreamingIP
 			}
 			
-			let uplinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataUplinkSpeedKey,
+			let uplinkSpeed = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataUplinkSpeed,
 			                                              withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
-			let downlinkSpeed = DataModelManager.shared.get(forKey: satelliteBroadbandDataDownlinkSpeedKey,
+			let downlinkSpeed = DataModelManager.shared.get(forKey: DataModelKeys.satelliteBroadbandDataDownlinkSpeed,
 			                                                withDefault: SatelliteBroadbandStreamingIPSpeed.kbps16)
 			
 			DataModelManager.shared.set(value: switchMode,
-			                            forKey: broadbandDataActiveModeKey)
+			                            forKey: DataModelKeys.broadbandDataActiveMode)
 			DataModelManager.shared.set(value: uplinkSpeed,
-			                            forKey: satelliteBroadbandDataActiveUplinkSpeedKey)
+			                            forKey: DataModelKeys.satelliteBroadbandDataActiveUplinkSpeed)
 			DataModelManager.shared.set(value: downlinkSpeed,
-			                            forKey: satelliteBroadbandDataActiveDownlinkSpeedKey)
+			                            forKey: DataModelKeys.satelliteBroadbandDataActiveDownlinkSpeed)
 			
-			log(info: "\(broadbandDataActiveModeKey) = \(DataModelManager.shared.get(forKey: broadbandDataActiveModeKey))")
+			log(info: "\(DataModelKeys.broadbandDataActiveMode) = \(DataModelManager.shared.get(forKey: DataModelKeys.broadbandDataActiveMode))")
 			
 			let switcher = BroadbandDataModeStatusModeSwitcher(to: statusMode,
 			                                                   through: switchMode)
 			switcher.start()
 		} else {
-			let statusMode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
+			let statusMode = DataModelManager.shared.get(forKey: DataModelKeys.broadbandDataActiveMode,
 			                                             withDefault: BroadbandDataModeStatus.dataInactive)
 			var switchMode: BroadbandDataModeStatus = .dataInactive
 			switch statusMode {
@@ -156,7 +154,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 				switcher.start()
 			} else {
 				DataModelManager.shared.set(value: BroadbandDataModeStatus.dataInactive,
-				                            forKey: broadbandDataActiveModeKey)
+				                            forKey: DataModelKeys.broadbandDataActiveMode)
 				do {
 					try Server.default.send(notification: BroadbandDataModeStatusNotification())
 				} catch let error {
@@ -169,7 +167,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 	
 	override func body(preProcessResult: Any? = nil) -> [String : Any] {
 		var body: [String: [String: Any]] = [:]
-		let mode = DataModelManager.shared.get(forKey: broadbandDataActiveModeKey,
+		let mode = DataModelManager.shared.get(forKey: DataModelKeys.broadbandDataActiveMode,
 		                                       withDefault: BroadbandDataModeStatus.dataInactive)
 		let active = mode != BroadbandDataModeStatus.dataInactive
 		body["broadband"] = [

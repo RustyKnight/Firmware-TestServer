@@ -8,7 +8,6 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
-let dataUsageKey = "Key.EmergencyNumber"
 
 struct DataUsage {
 
@@ -30,7 +29,7 @@ fileprivate struct Key {
 
 	static var currentState: [String: Any] {
 		var body: [String: Any] = [:]
-		let usage: DataUsage = DataModelManager.shared.get(forKey: dataUsageKey,
+		let usage: DataUsage = DataModelManager.shared.get(forKey: DataModelKeys.dataUsage,
 				withDefault: defaultUsage)
 
 		body[Key.group] = [
@@ -56,7 +55,7 @@ class GetDataUsageFunction: DataUsageFunction {
 		super.init()
 
 		DataModelManager.shared.set(value: Key.defaultUsage,
-				forKey: dataUsageKey)
+				forKey: DataModelKeys.dataUsage)
 
 		self.responseType = .getDataUsage
 		self.requestType = .getDataUsage
