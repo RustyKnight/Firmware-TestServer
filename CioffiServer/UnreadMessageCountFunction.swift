@@ -59,3 +59,17 @@ struct UnreadMessageCountNotification: APINotification {
 	}
 
 }
+
+class ClearUnreadMessageCountFunction: UnreadMessageCountFunction {
+
+	override init() {
+		super.init()
+
+		self.responseType = .clearUnreadMessageCount
+		self.requestType = .clearUnreadMessageCount
+	}
+
+	override func body(preProcessResult: Any?) -> [String: Any] {
+		return [:]
+	}
+}
