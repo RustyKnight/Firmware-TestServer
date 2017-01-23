@@ -8,6 +8,11 @@ import SwiftyJSON
 import PromiseKit
 import CioffiAPI
 
+public enum HardwareModem: Int  {
+	case cellular = 1
+	case satellite
+}
+
 public struct TemperatureHardwareInfo {
 	public let antennaSensorA: String
 	public let antennaSensorB: String
@@ -23,6 +28,7 @@ public struct TransceiverHardwareInfo {
 }
 
 public struct TransmitterHardwareInfo {
+	public let type: HardwareModem
 	public let imei: String
 	public let transceiver: TransceiverHardwareInfo
 }
@@ -37,8 +43,7 @@ public struct DeviceHardwareInfo {
 
 public struct HardwareDiagnosticInfo {
 	public var device: DeviceHardwareInfo
-	public let satellite: TransmitterHardwareInfo
-	public let cellular: TransmitterHardwareInfo
+	public let modem: TransmitterHardwareInfo
 }
 
 
@@ -60,10 +65,10 @@ fileprivate struct Key {
 		}
 	}
 
-	static let satellite = "satellite"
-	static let cellular = "cellular"
+	static let modem = "modem"
 
 	struct Transmitter {
+		static let type = "type"
 		static let imei = "imei"
 		struct Transceiver {
 			static let group = "transceiver"
@@ -84,16 +89,12 @@ fileprivate struct Key {
 							pcbSensorB: "15",
 							battery: "35"),
 					simICCIDNumber: "123456789"),
-			satellite: TransmitterHardwareInfo(
+			modem: TransmitterHardwareInfo(
+					type: .cellular,
 					imei: "135.256.789",
 					transceiver: TransceiverHardwareInfo(
 							hardwareVersion: "852.147",
-							softwareVersion: "963.258")),
-			cellular: TransmitterHardwareInfo(
-					imei: "789.321.456",
-					transceiver: TransceiverHardwareInfo(
-							hardwareVersion: "159.753",
-							softwareVersion: "951.357")))
+							softwareVersion: "963.258")))
 
 	static var currentState: [String: Any] {
 		let setting: HardwareDiagnosticInfo = DataModelManager.shared.get(forKey: DataModelKeys.hardwareDiagnosticInfo,
@@ -117,18 +118,13 @@ fileprivate struct Key {
 					Key.Device.Temperature.battery: setting.device.temperature.battery,
 				]
 		]
-		body[Key.satellite] = [
-				Key.Transmitter.imei: setting.satellite.imei,
+
+		body[Key.modem] = [
+				Key.Transmitter.type: setting.modem.type.rawValue,
+				Key.Transmitter.imei: setting.modem.imei,
 				Key.Transmitter.Transceiver.group: [
-						Key.Transmitter.Transceiver.hardwareVersion: setting.satellite.transceiver.hardwareVersion,
-						Key.Transmitter.Transceiver.softwareVersion: setting.satellite.transceiver.softwareVersion,
-				]
-		]
-		body[Key.cellular] = [
-				Key.Transmitter.imei: setting.cellular.imei,
-				Key.Transmitter.Transceiver.group: [
-						Key.Transmitter.Transceiver.hardwareVersion: setting.cellular.transceiver.hardwareVersion,
-						Key.Transmitter.Transceiver.softwareVersion: setting.cellular.transceiver.softwareVersion,
+						Key.Transmitter.Transceiver.hardwareVersion: setting.modem.transceiver.hardwareVersion,
+						Key.Transmitter.Transceiver.softwareVersion: setting.modem.transceiver.softwareVersion,
 				]
 		]
 		return body

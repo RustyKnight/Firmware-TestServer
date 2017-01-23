@@ -201,15 +201,23 @@ class DeleteSMS: DefaultAPIFunction {
 			return createResponse(type: .failed)
 		}
 		MessageManager.shared.deleteMessagesBy(ids: [id])
-		do {
-			try Server.default.send(notification: MessageStatusNotification(id: id,
-			                                                                status: .deleted,
-			                                                                read: false))
-		} catch let error {
-			log(error: "\(error)")
-		}
-		return createResponse(type: .success)
+//		do {
+//			try Server.default.send(notification: MessageStatusNotification(id: id,
+//			                                                                status: .deleted,
+//			                                                                read: false))
+//		} catch let error {
+//			log(error: "\(error)")
+//		}
+		return createResponse(type: .success, result: id)
 	}
+
+	override func body(preProcessResult result: Any?) -> [String: Any] {
+		guard let id = result as? Int else {
+			return ["id": -1]
+		}
+		return ["id": id]
+	}
+
 }
 
 class MarkSMSRead: DefaultAPIFunction {

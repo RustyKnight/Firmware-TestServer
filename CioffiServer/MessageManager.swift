@@ -20,10 +20,12 @@ enum MessageStatus: Int, CustomStringConvertible {
 	case sending = 0
 	case sent = 1
 	case failed = 2
-	case deleted = 3
+	case received = 3
+	case partiallySent = 4
+	case deleted = 5
 	
 	static var random: MessageStatus {
-		let states: [MessageStatus] = [.sent, .failed, .deleted]
+		let states: [MessageStatus] = [.sent, .failed, .deleted, .received, .partiallySent]
 		return random(from: states)
 	}
 	
@@ -38,6 +40,8 @@ enum MessageStatus: Int, CustomStringConvertible {
 		case .sent: return "Sent"
 		case .failed: return "Failed"
 		case .deleted: return "Deleted"
+		case .partiallySent: return "Partially sent"
+		case .received: return "Received"
 		}
 	}
 }
@@ -111,7 +115,7 @@ class MessageManager {
 		loadMessages()
 		loadNumbers()
 		
-		generateConversations()
+//		generateConversations()
 		
 		add(Message(date: Date(), text: "😎", status: .sent, read: false, direction: .outgoing), to: "0416060105")
 	}
@@ -140,6 +144,7 @@ class MessageManager {
 	
 	func deleteMessagesBy(ids: [Int]) {
 		for conversation in conversations {
+			log(info: "Conversation has \(conversation.messages.count) to start with")
 			let messages = conversation.messages.filter({ (message) -> Bool in
 				return ids.index(of: message.id) == nil
 			})
@@ -168,7 +173,7 @@ class MessageManager {
 	
 	func generateConversations() {
 		for number in numbers {
-			let count = arc4random_uniform(UInt32(messages.count))
+			let count = 10//arc4random_uniform(UInt32(messages.count))
 			messages.shuffle()
 			
 //			log(info: "Number: \(number); with \(count) elements")

@@ -133,7 +133,7 @@ public enum ResponseType: Int {
 	case getGNSSSetting = 1017
 	case setGNSSSetting = 1019
 
-	case getHardwareDiagnosticInfo = 1021
+	case getHardwareDiagnosticInfo = 138
 
 	case powerDown = 1023
 	case reset = 1025

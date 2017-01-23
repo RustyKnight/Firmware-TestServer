@@ -152,6 +152,10 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.setAudibleAlertOption] = SetAudibleAlertsFunction()
 
 		functions[.getUnreadMessageCount] = GetUnreadMessageCountFunction()
+
+		functions[.setAdminAccessRestrictions] = SetAdminRestriction()
+
+		functions[.deleteCallLogs] = DeleteCallLogs()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {

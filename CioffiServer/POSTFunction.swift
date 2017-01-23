@@ -79,7 +79,7 @@ class POSTResultFunction: DefaultAPIFunction {
 
 	struct Key {
 		static let testResult = "testresult"
-		static let runtimeTest = "runtimeTest"
+		static let runtimeTest = "runtimetest"
 
 		static let batteryPresence: KeyComponent = (key: "batteryPresence", component: POSTComponent.batteryPresence, error: APIPostReportError.missingBattery)
 		static let chargerFault: KeyComponent = (key: "chargerFault", component: POSTComponent.chargerFault, error: APIPostReportError.missingCharger)
@@ -134,7 +134,7 @@ class POSTResultFunction: DefaultAPIFunction {
 		for (keyValue, component, _) in Key.keys {
 			result[keyValue] = postReport.result(for: component).rawValue
 		}
-		return [Key.testResult: result]
+		return [Key.runtimeTest: result]
 	}
 }
 

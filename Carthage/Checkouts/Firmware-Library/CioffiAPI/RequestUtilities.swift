@@ -99,7 +99,7 @@ public enum RequestType: Int {
 	case getGNSSSetting = 1016
 	case setGNSSSetting = 1018
 
-	case getHardwareDiagnosticInfo = 1020
+	case getHardwareDiagnosticInfo = 137
 
 	case powerDown = 1022
 	case reset = 1024
