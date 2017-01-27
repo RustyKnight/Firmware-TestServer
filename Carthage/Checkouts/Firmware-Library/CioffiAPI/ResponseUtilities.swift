@@ -33,7 +33,7 @@ public enum NotificationType: Int {
 
 	case callStatus = 1006
 
-	case simStatus = 1015
+	case simStatus = 153
 
 	case postNotification = 84
 
@@ -126,9 +126,9 @@ public enum ResponseType: Int {
 
 	case getDataUsage = 1008
 
-	case getSIMStatus = 1010
-	case setSIMPIN = 1012
-	case unlockSIM = 1014
+	case getSIMStatus = 148
+	case setSIMPIN = 150
+	case unlockSIM = 152
 
 	case getGNSSSetting = 1017
 	case setGNSSSetting = 1019
@@ -150,6 +150,8 @@ public enum ResponseType: Int {
 
 	case getUnreadMessageCount = 1033
 	case clearUnreadMessageCount = 1036
+
+	case getGNSSLocationInformation = 143
 
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

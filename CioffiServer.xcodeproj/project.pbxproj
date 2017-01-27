@@ -73,6 +73,7 @@
 		3ED4A71F135CE77547BF7327 /* UnreadMessageCountFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A64B85EEF223A5F49EDD /* UnreadMessageCountFunction.swift */; };
 		3ED4A7B3E25D30B9EF87B838 /* Firewall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD2204952550AA61D12D /* Firewall.swift */; };
 		3ED4A7D490104E13A7CA8063 /* PowerDownFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A11ECED0AED99FA06A65 /* PowerDownFunction.swift */; };
+		3ED4A7F5FE9AF5BF6309B30E /* GNSSLocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AF14DDA9FF45166F5170 /* GNSSLocationInformation.swift */; };
 		3ED4A95CA765FCC8C8397843 /* MissedCallCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */; };
 		3ED4A9F015BDDDE9021F8A84 /* APICallLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD78D742E81E601B1D9A /* APICallLogs.swift */; };
 		3ED4ABE8102CD6F8F721DD15 /* AudibleAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */; };
@@ -181,6 +182,7 @@
 		3ED4AE8AEF3B30C70B0B502B /* QualityOfService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QualityOfService.swift; sourceTree = "<group>"; };
 		3ED4AEAA70205158B1F08E36 /* DataUsage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUsage.swift; sourceTree = "<group>"; };
 		3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissedCallCount.swift; sourceTree = "<group>"; };
+		3ED4AF14DDA9FF45166F5170 /* GNSSLocationInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNSSLocationInformation.swift; sourceTree = "<group>"; };
 		3ED4AF83F1D3CDD8D14DE40B /* SIMStatusFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIMStatusFunction.swift; sourceTree = "<group>"; };
 		3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MACAddressFiltering.swift; sourceTree = "<group>"; };
 		3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudibleAlerts.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				3ED4A2000A64969103F06B7E /* WiFIConnectionsFunction.swift */,
 				3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */,
 				3ED4A64B85EEF223A5F49EDD /* UnreadMessageCountFunction.swift */,
+				3ED4AF14DDA9FF45166F5170 /* GNSSLocationInformation.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				3ED4A544E354E98E2463DEFC /* WiFIConnectionsFunction.swift in Sources */,
 				3ED4ABE8102CD6F8F721DD15 /* AudibleAlerts.swift in Sources */,
 				3ED4A71F135CE77547BF7327 /* UnreadMessageCountFunction.swift in Sources */,
+				3ED4A7F5FE9AF5BF6309B30E /* GNSSLocationInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

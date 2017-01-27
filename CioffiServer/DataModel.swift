@@ -121,6 +121,8 @@ struct DataModelKeys {
 
 	static let hardwareDiagnosticInfo = DefaultDataModelKey(key: "Key.hardwareDiagnosticInfo")
 
+	static let gnssLocationInfo = DefaultDataModelKey(key: "Key.gnssLocationInfo")
+
 	static let postResult = DefaultDataModelKey(key: "Key.POSTResult")
 
 }

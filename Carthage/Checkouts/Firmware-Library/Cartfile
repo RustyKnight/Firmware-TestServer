@@ -1,5 +1,5 @@
 
 # Lumberjack logging
-github "RustyKnight/CocoaAsyncSocket" >= 7.5
-github "RustyKnight/SwiftyJSON" >= 3.1
-github "RustyKnight/SwiftEventBus" >= 3.1
+github "RustyKnight/CocoaAsyncSocket" == 7.5.8
+github "RustyKnight/SwiftyJSON" == 3.1.1
+github "RustyKnight/SwiftEventBus" == 3.1.0

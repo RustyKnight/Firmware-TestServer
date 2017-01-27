@@ -92,9 +92,9 @@ public enum RequestType: Int {
 
 	case getDataUsage = 1007
 
-	case getSIMStatus = 1009
-	case setSIMPIN = 1011
-	case unlockSIM = 1013
+	case getSIMStatus = 147
+	case setSIMPIN = 149
+	case unlockSIM = 151
 
 	case getGNSSSetting = 1016
 	case setGNSSSetting = 1018
@@ -116,6 +116,8 @@ public enum RequestType: Int {
 
 	case getUnreadMessageCount = 1032
 	case clearUnreadMessageCount = 1035
+
+	case getGNSSLocationInformation = 142
 
 	public static func `for`(_ value: Int) -> RequestType {
 		guard let type = RequestType(rawValue: value) else {

@@ -156,6 +156,7 @@ class DefaultRequestHandler: RequestHandler {
 		functions[.setAdminAccessRestrictions] = SetAdminRestriction()
 
 		functions[.deleteCallLogs] = DeleteCallLogs()
+		functions[.getGNSSLocationInformation] = GetGNSSLocationDiagnosticInfoFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {
