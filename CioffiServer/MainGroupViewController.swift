@@ -37,20 +37,20 @@ class MainGroupViewController: NSViewController {
 	@IBOutlet weak var unreadMessageCount: NSTextField!
 	
 	var buttonToSIMStatus: [NSButton: SIMStatus] = [:]
-	var simStatusToButton: [SIMStatus: NSButton] = [:]
+//	var simStatusToButton: [SIMStatus: NSButton] = [:]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		buttonToSIMStatus[simUnlockedButton] = .unlocked
-		buttonToSIMStatus[simPinLockedButton] = .pinLocked
-		buttonToSIMStatus[simPukLockedButton] = .pukLocked
-		buttonToSIMStatus[simMissingButton] = .simMissing
-		
-		simStatusToButton[.unlocked] = simUnlockedButton
-		simStatusToButton[.pinLocked] = simPinLockedButton
-		simStatusToButton[.pukLocked] = simPukLockedButton
-		simStatusToButton[.simMissing] = simMissingButton
+//		buttonToSIMStatus[simUnlockedButton] = .unlocked
+//		buttonToSIMStatus[simPinLockedButton] = .pinLocked
+//		buttonToSIMStatus[simPukLockedButton] = .pukLocked
+//		buttonToSIMStatus[simMissingButton] = .simMissing
+//
+//		simStatusToButton[.unlocked] = simUnlockedButton
+//		simStatusToButton[.pinLocked] = simPinLockedButton
+//		simStatusToButton[.pukLocked] = simPukLockedButton
+//		simStatusToButton[.simMissing] = simMissingButton
 		
 		setupCommonTabs()
 		setupSatelliteTabs()
@@ -120,8 +120,8 @@ class MainGroupViewController: NSViewController {
 	}
 
 	func simStatusDidChange(_ notification: Notification) {
-		let status = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
-		simStatusToButton[status]?.state = NSOnState
+//		let status = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
+//		simStatusToButton[status]?.state = NSOnState
 	}
 	
 	func setupCommonTabs() {
@@ -333,11 +333,11 @@ class MainGroupViewController: NSViewController {
 	}
 	
 	func updateSIMLockStatus() {
-		let status: SIMStatus = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
-		guard let button = simStatusToButton[status] else {
-			return
-		}
-		button.state = NSOnState
+//		let status: SIMStatus = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
+//		guard let button = simStatusToButton[status] else {
+//			return
+//		}
+//		button.state = NSOnState
 	}
 	
 	@IBAction func autoUnreadMessagesCountAction(_ sender: Any) {

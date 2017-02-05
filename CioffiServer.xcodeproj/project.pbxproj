@@ -69,6 +69,7 @@
 		3ED4A4F41A60FFD3E3A4BAE8 /* CellularNetworkRoamingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A1ACFADAF0AA4FE1C3E1 /* CellularNetworkRoamingFunction.swift */; };
 		3ED4A544E354E98E2463DEFC /* WiFIConnectionsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A2000A64969103F06B7E /* WiFIConnectionsFunction.swift */; };
 		3ED4A5ED4C6E4CBD42B3039F /* MACAddressFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */; };
+		3ED4A5EF6AA9ACA684F24D3B /* StringExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A32676F2588078AEB407 /* StringExtenions.swift */; };
 		3ED4A6C0739DC5406C149082 /* EmergencyNumberFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AE4BB6D1B3157E605F07 /* EmergencyNumberFunction.swift */; };
 		3ED4A71F135CE77547BF7327 /* UnreadMessageCountFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A64B85EEF223A5F49EDD /* UnreadMessageCountFunction.swift */; };
 		3ED4A7B3E25D30B9EF87B838 /* Firewall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD2204952550AA61D12D /* Firewall.swift */; };
@@ -169,6 +170,7 @@
 		3ED4A1ACFADAF0AA4FE1C3E1 /* CellularNetworkRoamingFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularNetworkRoamingFunction.swift; sourceTree = "<group>"; };
 		3ED4A2000A64969103F06B7E /* WiFIConnectionsFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WiFIConnectionsFunction.swift; sourceTree = "<group>"; };
 		3ED4A2E3AF8603E3A5F10239 /* IPAddressConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPAddressConfiguration.swift; sourceTree = "<group>"; };
+		3ED4A32676F2588078AEB407 /* StringExtenions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenions.swift; sourceTree = "<group>"; };
 		3ED4A4F784CFC93DDEB17AAE /* HardwareDiagnosticFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareDiagnosticFunction.swift; sourceTree = "<group>"; };
 		3ED4A64B85EEF223A5F49EDD /* UnreadMessageCountFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnreadMessageCountFunction.swift; sourceTree = "<group>"; };
 		3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortForwarding.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				3ED4ACA47171D2CA08877E8F /* DateExtensions.swift */,
+				3ED4A32676F2588078AEB407 /* StringExtenions.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				3ED4ABE8102CD6F8F721DD15 /* AudibleAlerts.swift in Sources */,
 				3ED4A71F135CE77547BF7327 /* UnreadMessageCountFunction.swift in Sources */,
 				3ED4A7F5FE9AF5BF6309B30E /* GNSSLocationInformation.swift in Sources */,
+				3ED4A5EF6AA9ACA684F24D3B /* StringExtenions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
