@@ -40,6 +40,8 @@ public enum NotificationType: Int {
 	case wifiConnections = 87
 
 	case unreadMessages = 1034
+
+	case dataService = 158
 }
 
 
@@ -152,6 +154,9 @@ public enum ResponseType: Int {
 	case clearUnreadMessageCount = 1036
 
 	case getGNSSLocationInformation = 143
+
+	case setDataService = 155
+	case getDataService = 157
 
 	public static func `for`(_ value: Int) -> ResponseType {
 		guard let response = ResponseType(rawValue: value) else {

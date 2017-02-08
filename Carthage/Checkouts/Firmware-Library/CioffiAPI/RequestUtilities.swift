@@ -119,6 +119,9 @@ public enum RequestType: Int {
 
 	case getGNSSLocationInformation = 142
 
+	case setDataService = 154
+	case getDataService = 156
+
 	public static func `for`(_ value: Int) -> RequestType {
 		guard let type = RequestType(rawValue: value) else {
 			return RequestType.unknown

@@ -75,6 +75,7 @@
 		3ED4A7B3E25D30B9EF87B838 /* Firewall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD2204952550AA61D12D /* Firewall.swift */; };
 		3ED4A7D490104E13A7CA8063 /* PowerDownFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A11ECED0AED99FA06A65 /* PowerDownFunction.swift */; };
 		3ED4A7F5FE9AF5BF6309B30E /* GNSSLocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AF14DDA9FF45166F5170 /* GNSSLocationInformation.swift */; };
+		3ED4A915BFB241D4D6D7B26C /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A6B120CEA14693886B07 /* DataServices.swift */; };
 		3ED4A95CA765FCC8C8397843 /* MissedCallCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AEDDC6A50008E719F32E /* MissedCallCount.swift */; };
 		3ED4A9F015BDDDE9021F8A84 /* APICallLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AD78D742E81E601B1D9A /* APICallLogs.swift */; };
 		3ED4ABE8102CD6F8F721DD15 /* AudibleAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */; };
@@ -174,6 +175,7 @@
 		3ED4A4F784CFC93DDEB17AAE /* HardwareDiagnosticFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareDiagnosticFunction.swift; sourceTree = "<group>"; };
 		3ED4A64B85EEF223A5F49EDD /* UnreadMessageCountFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnreadMessageCountFunction.swift; sourceTree = "<group>"; };
 		3ED4A6764E8061A3C3735D75 /* PortForwarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortForwarding.swift; sourceTree = "<group>"; };
+		3ED4A6B120CEA14693886B07 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		3ED4A75FB738D728C11E7FA8 /* DMZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMZ.swift; sourceTree = "<group>"; };
 		3ED4AB30B6B34E755BE7BDB6 /* CallStatusFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallStatusFunction.swift; sourceTree = "<group>"; };
 		3ED4ABEA20710E5255DB9AD0 /* GNSSSettingsFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNSSSettingsFunction.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */,
 				3ED4A64B85EEF223A5F49EDD /* UnreadMessageCountFunction.swift */,
 				3ED4AF14DDA9FF45166F5170 /* GNSSLocationInformation.swift */,
+				3ED4A6B120CEA14693886B07 /* DataServices.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				3ED4A71F135CE77547BF7327 /* UnreadMessageCountFunction.swift in Sources */,
 				3ED4A7F5FE9AF5BF6309B30E /* GNSSLocationInformation.swift in Sources */,
 				3ED4A5EF6AA9ACA684F24D3B /* StringExtenions.swift in Sources */,
+				3ED4A915BFB241D4D6D7B26C /* DataServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

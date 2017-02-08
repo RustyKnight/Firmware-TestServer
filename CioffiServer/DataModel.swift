@@ -88,6 +88,8 @@ struct DataModelKeys {
 	static let simStatus = DefaultDataModelKey(key: "Key.SIMStatus")
 	static let simPIN = DefaultDataModelKey(key: "Key.SIMPIN")
 
+	static let dataService = DefaultDataModelKey(key: "Key.dataService")
+
 	static let wifiConfiguration = DefaultDataModelKey(key: "wifi.config")
 
 	static let currentModemModule = DefaultDataModelKey(key: "currentModemModuleKey")

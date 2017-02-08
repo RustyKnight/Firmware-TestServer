@@ -157,6 +157,9 @@ class DefaultRequestHandler: RequestHandler {
 
 		functions[.deleteCallLogs] = DeleteCallLogs()
 		functions[.getGNSSLocationInformation] = GetGNSSLocationDiagnosticInfoFunction()
+
+		functions[.getDataService] = GetDataServiceFunction()
+		functions[.setDataService] = SetDataServiceFunction()
 	}
 	
 	func handle(request: JSON, forResponder responder: Responder) {
