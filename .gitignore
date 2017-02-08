@@ -64,3 +64,10 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 Carthage
+.idea/.name
+.idea/encodings.xml
+.idea/FirmwareServer.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/xcode.xml

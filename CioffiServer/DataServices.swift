@@ -50,10 +50,10 @@ fileprivate struct DataServiceUtilities {
 	static func with(_ status: DataService) -> [String: Any] {
 		var result: [String: Any] = [:]
 		if let state = status.satelliteService {
-			result[DataServiceUtilities.satellite] = state
+			result[DataServiceUtilities.satellite] = state.rawValue
 		}
 		if let state = status.cellularService {
-			result[DataServiceUtilities.cellular] = state
+			result[DataServiceUtilities.cellular] = state.rawValue
 		}
 		return result
 	}
