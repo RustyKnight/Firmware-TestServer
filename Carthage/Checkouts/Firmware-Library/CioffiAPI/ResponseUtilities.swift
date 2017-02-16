@@ -126,7 +126,7 @@ public enum ResponseType: Int {
 
 	case getCallStatus = 1005
 
-	case getDataUsage = 1008
+	case getDataUsage = 179
 
 	case getSIMStatus = 148
 	case setSIMPIN = 150

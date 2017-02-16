@@ -90,7 +90,7 @@ public enum RequestType: Int {
 
 	case getCallStatus = 1004
 
-	case getDataUsage = 1007
+	case getDataUsage = 178
 
 	case getSIMStatus = 147
 	case setSIMPIN = 149

@@ -77,6 +77,21 @@ class POSTResultFunction: DefaultAPIFunction {
 
 	typealias KeyComponent = (String, POSTComponent, Error)
 
+	override init() {
+		super.init()
+		if let _ = DataModelManager.shared.get(forKey: DataModelKeys.postResult) as? POSTReport {
+		} else {
+			var postReport = POSTReport()
+			for key in Key.keys {
+				postReport.results[key.1] = POSTResultType.random
+				log(info: "\(key.1) = \(postReport.results[key.1])")
+			}
+
+			DataModelManager.shared.set(value: postReport,
+					forKey: DataModelKeys.postResult)
+		}
+	}
+
 	struct Key {
 		static let testResult = "testresult"
 		static let runtimeTest = "testresult"
@@ -105,17 +120,8 @@ class POSTResultFunction: DefaultAPIFunction {
 	}
 
 	var postReport: [String: Any] {
-		var postReport: POSTReport!
-		if let report = DataModelManager.shared.get(forKey: DataModelKeys.postResult) as? POSTReport {
-			postReport = report
-		} else {
-			postReport = POSTReport()
-			for key in Key.keys {
-				postReport.results[key.1] = POSTResultType.random
-			}
-
-			DataModelManager.shared.set(value: postReport,
-					forKey: DataModelKeys.postResult)
+		guard let postReport = DataModelManager.shared.get(forKey: DataModelKeys.postResult) as? POSTReport else {
+			return [:]
 		}
 		var result: [String: Any] = [:]
 		for (keyValue, component, _) in Key.keys {
@@ -125,16 +131,7 @@ class POSTResultFunction: DefaultAPIFunction {
 	}
 
 	var realTimeReport: [String: Any] {
-		var postReport: POSTReport = POSTReport()
-		for key in Key.keys {
-			postReport.results[key.1] = POSTResultType.random
-		}
-
-		var result: [String: Any] = [:]
-		for (keyValue, component, _) in Key.keys {
-			result[keyValue] = postReport.result(for: component).rawValue
-		}
-		return [Key.runtimeTest: result]
+		return postReport
 	}
 }
 
@@ -143,13 +140,13 @@ class GetPOSTResult: POSTResultFunction {
 	override init() {
 		super.init()
 
-		var report = POSTReport()
-		for key in Key.keys {
-			report.results[key.1] = POSTResultType.random
-		}
-
-		DataModelManager.shared.set(value: report,
-				forKey: DataModelKeys.postResult)
+//		var report = POSTReport()
+//		for key in Key.keys {
+//			report.results[key.1] = POSTResultType.random
+//		}
+//
+//		DataModelManager.shared.set(value: report,
+//				forKey: DataModelKeys.postResult)
 
 		self.responseType = .getPOSTResults
 		self.requestType = .getPOSTResults

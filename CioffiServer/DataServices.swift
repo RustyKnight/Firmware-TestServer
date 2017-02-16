@@ -19,9 +19,14 @@ public enum CellularDataService: Int {
 	case on
 }
 
-struct DataService {
+struct DataService: CustomStringConvertible {
 	var satelliteService: SatelliteDataService?
 	var cellularService: CellularDataService?
+
+	var description: String {
+		return "satelliteService = \(satelliteService); cellularService = \(cellularService)"
+	}
+
 }
 
 fileprivate struct DataServiceUtilities {
@@ -50,10 +55,10 @@ fileprivate struct DataServiceUtilities {
 	static func with(_ status: DataService) -> [String: Any] {
 		var result: [String: Any] = [:]
 		if let state = status.satelliteService {
-			result[DataServiceUtilities.satellite] = state.rawValue
+			result[DataServiceUtilities.satellite] = [DataServiceUtilities.dataService: state.rawValue]
 		}
 		if let state = status.cellularService {
-			result[DataServiceUtilities.cellular] = state.rawValue
+			result[DataServiceUtilities.cellular] = [DataServiceUtilities.dataService: state.rawValue]
 		}
 		return result
 	}
@@ -83,7 +88,7 @@ class GetDataServiceFunction: DefaultAPIFunction {
 
 }
 
-class SetDataServiceFunction: SIMStatusFunction {
+class SetDataServiceFunction: DefaultAPIFunction {
 
 	override init() {
 		super.init()
@@ -94,28 +99,37 @@ class SetDataServiceFunction: SIMStatusFunction {
 
 	func cellularState(from request: JSON) -> CellularDataService? {
 		guard let value = request[DataServiceUtilities.cellular][DataServiceUtilities.dataService].int else {
+			log(warning: "No value for cellular state")
 			return nil
 		}
 		guard let state = CellularDataService(rawValue: value) else {
+			log(warning: "Invalid value for cellular state \(value)")
 			return nil
 		}
+		log(warning: "Cellular state will be set to \(state)")
 		return state
 	}
 
 	func satelliteState(from request: JSON) -> SatelliteDataService? {
 		guard let value = request[DataServiceUtilities.satellite][DataServiceUtilities.dataService].int else {
+			log(warning: "No value for satellite state")
 			return nil
 		}
 		guard let state = SatelliteDataService(rawValue: value) else {
+			log(warning: "Invalid value for satellite state \(value)")
 			return nil
 		}
+		log(warning: "Satellite state will be set to \(state)")
 		return state
 	}
 
 	override func preProcess(request: JSON) -> PreProcessResult {
 		var status = DataServiceUtilities.currentStatus
+		log(info: "Current status = \(status)")
 		status.cellularService = cellularState(from: request) ?? status.cellularService
 		status.satelliteService = satelliteState(from: request) ?? status.satelliteService
+
+		log(info: "New status = \(status)")
 
 		DataServiceUtilities.currentStatus = status
 
@@ -124,6 +138,9 @@ class SetDataServiceFunction: SIMStatusFunction {
 		return createResponse(type: .success)
 	}
 
+	override func body(preProcessResult: Any?) -> [String: Any] {
+		return DataServiceUtilities.currentState
+	}
 
 }
 
