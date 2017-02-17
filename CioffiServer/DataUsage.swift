@@ -11,21 +11,28 @@ import CioffiAPI
 
 struct DataUsage {
 
-	var satelliteStandardData: Int
+	var satelliteStandardDataTransmitted: Int
+	var satelliteStandardDataReceived: Int
 	var satelliteStreamingTime: TimeInterval
-	var cellularData: Int
+	var cellularDataTransmitted: Int
+	var cellularDataReceived: Int
 
 }
 
 fileprivate struct Key {
 	static let group = "data_usage"
-	static let satelliteStandardData = "satellite_standard_data"
+	static let satelliteStandardDataTransmitted = "satellite_standard_data_tx"
+	static let satelliteStandardDataReceived = "satellite_standard_data_rx"
 	static let satelliteStreamingTime = "satellite_streaming_time"
-	static let cellularData = "cellular_data"
+	static let cellularDataTransmitted = "cellular_data_tx"
+	static let cellularDataReceived = "cellular_data_rx"
 
-	static let defaultUsage: DataUsage = DataUsage(satelliteStandardData: 100,
+	static let defaultUsage: DataUsage = DataUsage(
+			satelliteStandardDataTransmitted: 100,
+			satelliteStandardDataReceived: 350,
 			satelliteStreamingTime: 200.0,
-			cellularData: 300)
+			cellularDataTransmitted: 300,
+			cellularDataReceived: 800)
 
 	static var currentState: [String: Any] {
 		var body: [String: Any] = [:]
@@ -33,9 +40,11 @@ fileprivate struct Key {
 				withDefault: defaultUsage)
 
 		body[Key.group] = [
-			Key.satelliteStandardData: usage.satelliteStandardData,
-			Key.satelliteStreamingTime: usage.satelliteStreamingTime,
-			Key.cellularData: usage.cellularData
+				Key.satelliteStandardDataTransmitted: usage.satelliteStandardDataTransmitted,
+				Key.satelliteStandardDataReceived: usage.satelliteStandardDataReceived,
+				Key.satelliteStreamingTime: usage.satelliteStreamingTime,
+				Key.cellularDataTransmitted: usage.cellularDataTransmitted,
+				Key.cellularDataReceived: usage.cellularDataReceived
 		]
 		return body
 	}

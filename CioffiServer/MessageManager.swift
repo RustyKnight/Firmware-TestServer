@@ -115,7 +115,7 @@ class MessageManager {
 		loadMessages()
 		loadNumbers()
 		
-//		generateConversations()
+		generateConversations()
 		
 		add(Message(date: Date(), text: "😎", status: .sent, read: false, direction: .outgoing), to: "0416060105")
 	}
