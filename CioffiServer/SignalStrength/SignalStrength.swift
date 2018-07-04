@@ -10,6 +10,15 @@ import Foundation
 import SwiftyJSON
 import CioffiAPI
 
+enum RSSI: Int {
+  case max = -50
+  case min = -130
+  
+  static func random() -> Int {
+    return Int.randomBetween(min: RSSI.min.rawValue, max: RSSI.max.rawValue)
+  }
+}
+
 struct SignalStrengthUtility {
 	static func body() -> [String : Any] {
 		var body: [String : Any] = [:]
@@ -20,12 +29,22 @@ struct SignalStrengthUtility {
 			]
 		case .satellite:
 			body["satellite"] = [
-				"signal": DataModelManager.shared.get(forKey: DataModelKeys.signalStrength, withDefault: 0)
+				"signal": DataModelManager.shared.get(forKey: DataModelKeys.signalStrength, withDefault: 0),
+        "sqi": 1,
+        "lqi": 0,
+        "rssi": SignalStrengthUtility.rssi
 			]
 		case .unknown: break
 		}
 		return body
 	}
+  
+  static var rssi: Int {
+    guard DataModelManager.shared.get(forKey: DataModelKeys.sapaState) as? Bool ?? false else {
+      return 0
+    }
+    return RSSI.random()
+  }
 }
 
 class GetSignalStrengthFunction: DefaultAPIFunction {
