@@ -25,7 +25,7 @@ class WiFiConfigurationViewController: NSViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(WiFiConfigurationViewController.configurationDidChange),
+		                                       selector: #selector(configurationDidChange),
 		                                       name: DataModelKeys.wifiConfiguration.notification,
 		                                       object: nil)
 		
@@ -36,7 +36,7 @@ class WiFiConfigurationViewController: NSViewController {
 		super.viewDidDisappear()
 	}
 	
-	func configurationDidChange() {
+	@objc func configurationDidChange() {
 		DispatchQueue.main.async {
 			self.updateConfiguration()
 		}

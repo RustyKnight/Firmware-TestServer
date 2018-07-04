@@ -22,7 +22,7 @@ class BroadbandDataModeViewController: NSViewController {
 		super.viewWillAppear()
 
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(BroadbandDataModeViewController.modeDidChange),
+		                                       selector: #selector(modeDidChange),
 		                                       name: DataModelKeys.broadbandDataActiveMode.notification,
 		                                       object: nil)
 		
@@ -34,7 +34,7 @@ class BroadbandDataModeViewController: NSViewController {
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	func modeDidChange() {
+	@objc func modeDidChange() {
 		updateControl(for: DataModelKeys.broadbandDataActiveMode, defaultValue: BroadbandDataModeStatus.dataInactive, offset: 400)
 	}
 
@@ -44,7 +44,7 @@ class BroadbandDataModeViewController: NSViewController {
 			log(warning: "Could not find view for \(mode) (\(mode.rawValue) + \(offset))")
 			return
 		}
-		control.state = NSOnState
+		control.state = NSControl.StateValue.on
 	}
 	
 	@IBAction func statusModeChanged(_ sender: NSButton) {
@@ -69,7 +69,7 @@ class BroadbandDataModeViewController: NSViewController {
 	}
 	
 	func sendNotification(ignoreAuto: Bool = false) {
-		if liveUpdateButton.state == NSOnState || ignoreAuto {
+		if liveUpdateButton.state == NSControl.StateValue.on || ignoreAuto {
 			do {
 				try Server.default.send(notification: BroadbandDataModeStatusNotification())
 			} catch let error {

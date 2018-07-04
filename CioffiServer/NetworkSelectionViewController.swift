@@ -51,7 +51,7 @@ class NetworkSelectionViewController: NSViewController {
 		super.viewWillAppear()
 		
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(NetworkSelectionViewController.networkModeDataChanged),
+		                                       selector: #selector(networkModeDataChanged),
 		                                       name: DataModelKeys.networkMode.notification,
 		                                       object: nil)
 		updateNetworkMode()
@@ -68,7 +68,7 @@ class NetworkSelectionViewController: NSViewController {
 			return
 		}
 		
-		updateModemModule(for: module, withLifeCycle: lifeCycleEvents.state == NSOnState)
+		updateModemModule(for: module, withLifeCycle: lifeCycleEvents.state == NSControl.StateValue.on)
 	}
 	
 //	@IBAction func networkModeChanged(_ sender: NSButton) {
@@ -82,7 +82,7 @@ class NetworkSelectionViewController: NSViewController {
 	
 	var ignoreUpdate: Bool = false
 	
-	func networkModeDataChanged(_ notification: NSNotification) {
+	@objc func networkModeDataChanged(_ notification: NSNotification) {
 		guard !ignoreUpdate else {
 			return
 		}

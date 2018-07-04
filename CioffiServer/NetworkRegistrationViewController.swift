@@ -44,13 +44,13 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 			if let newValue = modemModule {
 				if let key = currentNetworkRegistrationStateKeys[newValue] {
 					NotificationCenter.default.addObserver(self,
-					                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
+					                                       selector: #selector(statusChanged),
 					                                       name: key.notification,
 					                                       object: nil)
 				}
 				if let key = targetNetworkRegistrationStateKeys[newValue] {
 					NotificationCenter.default.addObserver(self,
-					                                       selector: #selector(NetworkRegistrationViewController.statusChanged),
+					                                       selector: #selector(statusChanged),
 					                                       name: key.notification,
 					                                       object: nil)
 				}
@@ -91,7 +91,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		updateStatus()
 		modemChanged()
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
+		                                       selector: #selector(modemChanged),
 		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 	}
@@ -101,7 +101,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	func modemChanged() {
+	@objc func modemChanged() {
 		DispatchQueue.main.async {
 			if self.liveUpdate != nil {
 				self.liveUpdate.isEnabled = ModemModule.isCurrent(self.modemModule)
@@ -119,7 +119,7 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 			return
 		}
 		if ModemModule.isCurrent(self.modemModule) {
-			if liveUpdate.state == NSOnState || forced {
+			if liveUpdate.state == NSControl.StateValue.on || forced {
 				guard let targetKey = targetNetworkRegistrationStateKeys[modemModule],
 					let currentKey = currentNetworkRegistrationStateKeys[modemModule] else {
 						return
@@ -175,21 +175,27 @@ class NetworkRegistrationViewController: NSViewController, ModemModular {
 		return mode
 	}
 	
-	func statusChanged() {
+	@objc func statusChanged() {
 		updateStatus()
 	}
 	
 	func updateStatus() {
+    guard Thread.isMainThread else {
+      DispatchQueue.main.async {
+        self.updateStatus()
+      }
+      return
+    }
 		switch targetStatus() {
-		case .unknown: unknownStatus.state = NSOnState
-		case .registering: registeringStatus.state = NSOnState
-		case .registeredRoaming: registeredRoamingStatus.state = NSOnState
-		case .registeredHomeNetwork: registeredHomeNetworkStatus.state = NSOnState
-		case .registrationDenied: registrationDeniedStatus.state = NSOnState
-		case .poweredOff: poweredOff.state = NSOnState
-		case .poweredOn: poweredOn.state = NSOnState
-		case .poweringOn: poweringOff.state = NSOnState
-		case .poweringOff: poweringOn.state = NSOnState
+		case .unknown: unknownStatus.state = NSControl.StateValue.on
+		case .registering: registeringStatus.state = NSControl.StateValue.on
+		case .registeredRoaming: registeredRoamingStatus.state = NSControl.StateValue.on
+		case .registeredHomeNetwork: registeredHomeNetworkStatus.state = NSControl.StateValue.on
+		case .registrationDenied: registrationDeniedStatus.state = NSControl.StateValue.on
+		case .poweredOff: poweredOff.state = NSControl.StateValue.on
+		case .poweredOn: poweredOn.state = NSControl.StateValue.on
+		case .poweringOn: poweringOff.state = NSControl.StateValue.on
+		case .poweringOff: poweringOn.state = NSControl.StateValue.on
 		case .switching: break
 		}
 		

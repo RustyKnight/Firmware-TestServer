@@ -24,7 +24,7 @@ struct DataService: CustomStringConvertible {
 	var cellularService: CellularDataService?
 
 	var description: String {
-		return "satelliteService = \(satelliteService); cellularService = \(cellularService)"
+    return "satelliteService = \(String(describing: satelliteService)); cellularService = \(String(describing: cellularService))"
 	}
 
 }

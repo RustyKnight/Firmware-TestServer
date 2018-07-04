@@ -58,8 +58,6 @@
 		12BA40D11D41A09B00C0F512 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40D01D41A09B00C0F512 /* Server.swift */; };
 		12BA40D41D41A11A00C0F512 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BA40D21D41A11A00C0F512 /* CocoaAsyncSocket.framework */; };
 		12BA40D51D41A11A00C0F512 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12BA40D21D41A11A00C0F512 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		12BA40D61D41A11A00C0F512 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BA40D31D41A11A00C0F512 /* SwiftyJSON.framework */; };
-		12BA40D71D41A11A00C0F512 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12BA40D31D41A11A00C0F512 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		12BA40DE1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */; };
 		12BA40E61D41C76100C0F512 /* RequestHandlerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */; };
 		3ED4A084B38F7F59449FF462 /* CallLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A18CA466E34204180172 /* CallLogsManager.swift */; };
@@ -88,8 +86,8 @@
 		3ED4AEBDB87C4CE086984006 /* QualityOfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4AE8AEF3B30C70B0B502B /* QualityOfService.swift */; };
 		3ED4AEE13B94B7B2D7E8B39B /* POSTFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED4A1006ECA463F18B14944 /* POSTFunction.swift */; };
 		702F55631D800F9700E4643F /* CellularNetworkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F55621D800F9700E4643F /* CellularNetworkMode.swift */; };
-		707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; };
-		707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 707CCA001D422AA6003D8292 /* CioffiAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		708731F120EC7F3300C5F1A0 /* CioffiAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708731F020EC7F3300C5F1A0 /* CioffiAPI.framework */; };
+		708731F220EC7F3300C5F1A0 /* CioffiAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 708731F020EC7F3300C5F1A0 /* CioffiAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,8 +97,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				707CCA021D422AA6003D8292 /* CioffiAPI.framework in Embed Frameworks */,
-				12BA40D71D41A11A00C0F512 /* SwiftyJSON.framework in Embed Frameworks */,
+				708731F220EC7F3300C5F1A0 /* CioffiAPI.framework in Embed Frameworks */,
 				12BA40D51D41A11A00C0F512 /* CocoaAsyncSocket.framework in Embed Frameworks */,
 				121FDFEC1DB5DCFA00DC81E2 /* PromiseKit.framework in Embed Frameworks */,
 			);
@@ -162,7 +159,6 @@
 		12BA40C81D419DC400C0F512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12BA40D01D41A09B00C0F512 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		12BA40D21D41A11A00C0F512 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
-		12BA40D31D41A11A00C0F512 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		12BA40DD1D41AE1D00C0F512 /* ProtocolUtilitiesExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolUtilitiesExtension.swift; sourceTree = "<group>"; };
 		12BA40E51D41C76100C0F512 /* RequestHandlerRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandlerRegistry.swift; sourceTree = "<group>"; };
 		3ED4A1006ECA463F18B14944 /* POSTFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSTFunction.swift; sourceTree = "<group>"; };
@@ -191,8 +187,7 @@
 		3ED4AF9642D71A1FE397F206 /* MACAddressFiltering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MACAddressFiltering.swift; sourceTree = "<group>"; };
 		3ED4AFF83731AB2F16BECF65 /* AudibleAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudibleAlerts.swift; sourceTree = "<group>"; };
 		702F55621D800F9700E4643F /* CellularNetworkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellularNetworkMode.swift; path = CellularBroadbandData/CellularNetworkMode.swift; sourceTree = "<group>"; };
-		707CCA001D422AA6003D8292 /* CioffiAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CioffiAPI.framework; path = Carthage/Build/Mac/CioffiAPI.framework; sourceTree = "<group>"; };
-		70DB0D281D441C4400EF53E1 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/Mac/Fuzi.framework; sourceTree = "<group>"; };
+		708731F020EC7F3300C5F1A0 /* CioffiAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CioffiAPI.framework; path = Carthage/Build/Mac/CioffiAPI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,8 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				707CCA011D422AA6003D8292 /* CioffiAPI.framework in Frameworks */,
-				12BA40D61D41A11A00C0F512 /* SwiftyJSON.framework in Frameworks */,
+				708731F120EC7F3300C5F1A0 /* CioffiAPI.framework in Frameworks */,
 				12BA40D41D41A11A00C0F512 /* CocoaAsyncSocket.framework in Frameworks */,
 				121FDFEB1DB5DCFA00DC81E2 /* PromiseKit.framework in Frameworks */,
 			);
@@ -368,11 +362,9 @@
 		12BA40B31D419DC400C0F512 = {
 			isa = PBXGroup;
 			children = (
+				708731F020EC7F3300C5F1A0 /* CioffiAPI.framework */,
 				121FDFEA1DB5DCFA00DC81E2 /* PromiseKit.framework */,
-				70DB0D281D441C4400EF53E1 /* Fuzi.framework */,
-				707CCA001D422AA6003D8292 /* CioffiAPI.framework */,
 				12BA40D21D41A11A00C0F512 /* CocoaAsyncSocket.framework */,
-				12BA40D31D41A11A00C0F512 /* SwiftyJSON.framework */,
 				12BA40BE1D419DC400C0F512 /* CioffiServer */,
 				12BA40BD1D419DC400C0F512 /* Products */,
 			);
@@ -769,21 +761,21 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YWXH886EY3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = CioffiServer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/Mac";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beamcommunications.CioffiServer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CioffiServer/CioffiServer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -794,21 +786,21 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YWXH886EY3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = CioffiServer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/Mac";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beamcommunications.CioffiServer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CioffiServer/CioffiServer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

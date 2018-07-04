@@ -12,6 +12,6 @@ public extension String {
 	}
 
 	public var isEmptyWhenTrimmed: Bool {
-		return trim.characters.count == 0
+		return trim.count == 0
 	}
 }

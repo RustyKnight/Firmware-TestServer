@@ -30,7 +30,7 @@ class SignalStrengthViewController: NSViewController, ModemModular {
 		modemChanged()
 		updateStrength()
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
+		                                       selector: #selector(modemChanged),
 		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 	}
@@ -40,7 +40,7 @@ class SignalStrengthViewController: NSViewController, ModemModular {
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	func modemChanged() {
+	@objc func modemChanged() {
 		DispatchQueue.main.async {
 			if self.liveUpdate != nil {
 				self.liveUpdate.isEnabled = ModemModule.isCurrent(self.modemModule)
@@ -68,7 +68,7 @@ class SignalStrengthViewController: NSViewController, ModemModular {
 	}
 	
 	func liveNotification() {
-		if liveUpdate.state == NSOnState && ModemModule.isCurrent(modemModule) {
+		if liveUpdate.state == NSControl.StateValue.on && ModemModule.isCurrent(modemModule) {
 			do {
 				try Server.default.send(notification: SignalStrengthNotification())
 			} catch let error {

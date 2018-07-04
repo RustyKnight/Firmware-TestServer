@@ -17,7 +17,7 @@ class ServerViewController: NSViewController {
     }
     
     @IBAction func stateDidChange(_ sender: NSButton) {
-        if sender.state == NSOnState {
+        if sender.state == NSControl.StateValue.on {
             do {
                 try Server.default.start()
             } catch let error {

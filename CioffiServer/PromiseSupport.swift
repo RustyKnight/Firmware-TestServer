@@ -14,9 +14,9 @@ struct PromiseUtilities {
 	static let shared = PromiseUtilities()
 	
 	func with(delay: TimeInterval) -> Promise<Void> {
-		return Promise {(fulfill, fail) in
+    return Promise<Void> {(fulfill, fail) in
 			DispatchQueue.global().asyncAfter(deadline: .now() + delay, execute: {
-				fulfill()
+				fulfill(())
 			})
 		}
 	}

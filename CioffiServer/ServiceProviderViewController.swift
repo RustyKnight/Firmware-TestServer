@@ -23,7 +23,7 @@ class ServiceProviderViewController: NSViewController {
 		
 		providerName.stringValue = DataModelManager.shared.get(forKey: DataModelKeys.serviceProvider, withDefault: "")
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(NetworkRegistrationViewController.modemChanged),
+		                                       selector: #selector(modemChanged),
 		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 		modemChanged()
@@ -34,7 +34,7 @@ class ServiceProviderViewController: NSViewController {
 		modemChanged()
 	}
 	
-	func modemChanged() {
+	@objc func modemChanged() {
 		DispatchQueue.main.async {
 			if self.notificationButton != nil {
 				self.notificationButton.isEnabled = ModemModule.isCurrent(.cellular)

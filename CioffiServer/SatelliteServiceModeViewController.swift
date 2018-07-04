@@ -42,11 +42,11 @@ class SatelliteServiceModeViewController: NSViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(SatelliteServiceModeViewController.satelliteServiceModeChanged),
+		                                       selector: #selector(satelliteServiceModeChanged),
 		                                       name: DataModelKeys.satelliteServiceMode.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(SatelliteServiceModeViewController.modemChanged),
+		                                       selector: #selector(modemChanged),
 		                                       name: DataModelKeys.currentModemModule.notification,
 		                                       object: nil)
 		
@@ -54,7 +54,7 @@ class SatelliteServiceModeViewController: NSViewController {
 		satelliteServiceModeChanged()
 	}
 	
-	func modemChanged() {
+	@objc func modemChanged() {
 		DispatchQueue.main.async {
 			if self.liveUpdate != nil {
 				self.liveUpdate.isEnabled = ModemModule.isCurrent(.satellite)
@@ -93,7 +93,7 @@ class SatelliteServiceModeViewController: NSViewController {
 	}
 
 	var isLiveUpdate: Bool {
-		return liveUpdate.state == NSOnState
+		return liveUpdate.state == NSControl.StateValue.on
 	}
 	
 	func sendNotification(forced: Bool = false) {
@@ -106,7 +106,7 @@ class SatelliteServiceModeViewController: NSViewController {
 		}
 	}
 	
-	func satelliteServiceModeChanged() {
+	@objc func satelliteServiceModeChanged() {
 		guard Thread.isMainThread else {
 			DispatchQueue.main.async(execute: {
 				self.satelliteServiceModeChanged()

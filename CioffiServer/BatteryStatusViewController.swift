@@ -72,7 +72,7 @@ class BatteryStatusViewController: NSViewController {
 	}
 	
 	@IBAction func presentValueChanged(_ sender: NSButton) {
-		let value = sender.state == NSOnState
+		let value = sender.state == NSControl.StateValue.on
 		DataModelManager.shared.set(value: value, forKey: DataModelKeys.batteryPresent, withNotification: false)
 		liveNotification()
 	}
@@ -86,7 +86,7 @@ class BatteryStatusViewController: NSViewController {
 	}
 	
 	func liveNotification() {
-		if liveUpdate.state == NSOnState {
+		if liveUpdate.state == NSControl.StateValue.on {
 			do {
 				try Server.default.send(notification: BatteryStatusNotification())
 			} catch let error {
@@ -118,6 +118,6 @@ class BatteryStatusViewController: NSViewController {
 	
 	func updatePresent() {
 		let value = DataModelManager.shared.get(forKey: DataModelKeys.batteryPresent, withDefault: false)
-		presentCheck.state = value ? NSOnState : NSOffState
+		presentCheck.state = value ? NSControl.StateValue.on : NSControl.StateValue.off
 	}
 }

@@ -27,9 +27,9 @@ class RestrictedAccessViewController: NSViewController {
 	var lockedStates: [NSButton: DataModelKey] = [:]
 	var fieldStates: [NSTextField: DataModelKey] = [:]
 	
-	let selectedState: [Bool: Int] = [
-		true: NSOnState,
-		false: NSOnState
+	let selectedState: [Bool: NSControl.StateValue] = [
+    true: NSControl.StateValue.on,
+		false: NSControl.StateValue.off
 	]
 	
 	override func viewDidLoad() {
@@ -50,39 +50,39 @@ class RestrictedAccessViewController: NSViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
+		                                       selector: #selector(restrictedDataChanged),
 		                                       name: DataModelKeys.dataRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
+		                                       selector: #selector(restrictedDataChanged),
 		                                       name: DataModelKeys.callRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
+		                                       selector: #selector(restrictedDataChanged),
 		                                       name: DataModelKeys.smsRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.restrictedDataChanged),
+		                                       selector: #selector(restrictedDataChanged),
 		                                       name: DataModelKeys.adminRestricition.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
+		                                       selector: #selector(lockedDataChanged),
 		                                       name: DataModelKeys.dataLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
+		                                       selector: #selector(lockedDataChanged),
 		                                       name: DataModelKeys.callLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
+		                                       selector: #selector(lockedDataChanged),
 		                                       name: DataModelKeys.smsLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.lockedDataChanged),
+		                                       selector: #selector(lockedDataChanged),
 		                                       name: DataModelKeys.adminLocked.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(RestrictedAccessViewController.passwordDataChanged),
+		                                       selector: #selector(passwordDataChanged),
 		                                       name: DataModelKeys.adminPassword.notification,
 		                                       object: nil)
         updateRestrictedStates()
@@ -99,7 +99,8 @@ class RestrictedAccessViewController: NSViewController {
 		guard let key = lockedStates[sender] else {
 			return
 		}
-		let state = sender.state == NSOnState
+    
+		let state = sender.state == NSControl.StateValue.on
 		DataModelManager.shared.set(value: state,
 		                            forKey: key,
 		                            withNotification: false)
@@ -109,7 +110,7 @@ class RestrictedAccessViewController: NSViewController {
 		guard let key = restrictedStates[sender] else {
 			return
 		}
-		let state = sender.state == NSOnState
+		let state = sender.state == NSControl.StateValue.on
 		DataModelManager.shared.set(value: state,
 		                            forKey: key,
 		                            withNotification: false)
@@ -124,16 +125,16 @@ class RestrictedAccessViewController: NSViewController {
 		                            withNotification: false)
 	}
 	
-	func restrictedDataChanged(_ notification: NSNotification) {
+	@objc func restrictedDataChanged(_ notification: NSNotification) {
 		updateRestrictedStates()
 	}
 	
 	
-	func lockedDataChanged(_ notification: NSNotification) {
+	@objc func lockedDataChanged(_ notification: NSNotification) {
 		updateLockedStates()
 	}
 	
-	func passwordDataChanged(_ notification: NSNotification) {
+	@objc func passwordDataChanged(_ notification: NSNotification) {
 		updatePasswords()
 	}
 	

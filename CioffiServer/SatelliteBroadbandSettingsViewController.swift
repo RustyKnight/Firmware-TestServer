@@ -31,15 +31,15 @@ class BroadbandDataViewController: NSViewController {
 		super.viewWillAppear()
 		
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(BroadbandDataViewController.ipModeDidChange),
+		                                       selector: #selector(ipModeDidChange),
 		                                       name: DataModelKeys.satelliteBroadbandDataMode.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(BroadbandDataViewController.uplinkSpeedDidChange),
+		                                       selector: #selector(uplinkSpeedDidChange),
 		                                       name: DataModelKeys.satelliteBroadbandDataUplinkSpeed.notification,
 		                                       object: nil)
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(BroadbandDataViewController.downlinkSpeedDidChange),
+		                                       selector: #selector(downlinkSpeedDidChange),
 		                                       name: DataModelKeys.satelliteBroadbandDataDownlinkSpeed.notification,
 		                                       object: nil)
 		
@@ -53,19 +53,19 @@ class BroadbandDataViewController: NSViewController {
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	func ipModeDidChange() {
+	@objc func ipModeDidChange() {
 		DispatchQueue.main.async {
 			self.updateIPMode()
 		}
 	}
 	
-	func uplinkSpeedDidChange() {
+	@objc func uplinkSpeedDidChange() {
 		DispatchQueue.main.async {
 			self.updateUplinkSpeed()
 		}
 	}
 	
-	func downlinkSpeedDidChange() {
+	@objc func downlinkSpeedDidChange() {
 		DispatchQueue.main.async {
 			self.updateDownlinkSpeed()
 		}
@@ -77,7 +77,7 @@ class BroadbandDataViewController: NSViewController {
 			log(warning: "Could not find view for \(mode) (\(mode.rawValue) + \(offset))")
 			return
 		}
-		control.state = NSOnState
+		control.state = NSControl.StateValue.on
 	}
 	
 	func updateIPMode() {

@@ -88,29 +88,29 @@ class MainGroupViewController: NSViewController {
 		autoUnreadMessagesCountAction(self)
 
 		NotificationCenter.default.addObserver(self,
-				selector: #selector(MainGroupViewController.missedCallCountWasChanged),
+				selector: #selector(missedCallCountWasChanged),
 				name: DataModelKeys.missedCallCount.notification,
 				object: nil)
 
 		NotificationCenter.default.addObserver(self,
-				selector: #selector(MainGroupViewController.simStatusDidChange),
+				selector: #selector(simStatusDidChange),
 				name: DataModelKeys.simStatus.notification,
 				object: nil)
 		
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(MainGroupViewController.unreadMessagesCountChanged),
+		                                       selector: #selector(unreadMessagesCountChanged),
 		                                       name: DataModelKeys.unreadMessageCount.notification,
 		                                       object: nil)
 	}
 
 	var ignoreMissedCallCountChange = false
 
-	func unreadMessagesCountChanged(_ notification: Notification) {
+	@objc func unreadMessagesCountChanged(_ notification: Notification) {
 		let count = DataModelManager.shared.get(forKey: DataModelKeys.unreadMessageCount, withDefault: 0)
 		unreadMessageCount.stringValue = "\(count)"
 	}
 
-	func missedCallCountWasChanged(_ notification: Notification) {
+	@objc func missedCallCountWasChanged(_ notification: Notification) {
 		defer {
 			ignoreMissedCallCountChange = false
 		}
@@ -119,9 +119,9 @@ class MainGroupViewController: NSViewController {
 		missedCallCountField.stringValue = "\(count)"
 	}
 
-	func simStatusDidChange(_ notification: Notification) {
+	@objc func simStatusDidChange(_ notification: Notification) {
 //		let status = DataModelManager.shared.get(forKey: DataModelKeys.simStatus, withDefault: SIMStatus.unlocked)
-//		simStatusToButton[status]?.state = NSOnState
+//		simStatusToButton[status]?.state = NSControl.StateValue.on
 	}
 	
 	func setupCommonTabs() {
@@ -192,8 +192,8 @@ class MainGroupViewController: NSViewController {
 	}
 	
 	func makeTab(withName name: String, viewController: String, identifier: String, modemModule: ModemModule = .unknown) throws -> NSTabViewItem {
-		let storyboard = NSStoryboard.init(name: "Main", bundle: nil)
-		guard let vc = storyboard.instantiateController(withIdentifier: viewController) as? NSViewController else {
+    let storyboard = NSStoryboard.init(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+    guard let vc = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: viewController)) as? NSViewController else {
 			throw TabError.invalidViewController(name: viewController)
 		}
 		if var vc = vc as? ModemModular {
@@ -337,7 +337,7 @@ class MainGroupViewController: NSViewController {
 //		guard let button = simStatusToButton[status] else {
 //			return
 //		}
-//		button.state = NSOnState
+//		button.state = NSControl.StateValue.on
 	}
 	
 	@IBAction func autoUnreadMessagesCountAction(_ sender: Any) {

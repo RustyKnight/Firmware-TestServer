@@ -182,7 +182,7 @@ class GetSMSList: DefaultAPIFunction {
 		guard let text = json.rawString(String.Encoding.isoLatin1, options: []) else {
 			return 65000
 		}
-		return text.characters.count
+		return text.count
 	}
 	
 }

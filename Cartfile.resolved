@@ -1,5 +1,5 @@
 github "RustyKnight/CocoaAsyncSocket" "7.5.8"
-github "RustyKnight/PromiseKit" "v5.0.1"
-github "RustyKnight/SwiftEventBus" "v3.1.0"
-github "RustyKnight/SwiftyJSON" "v3.1.1"
 github "RustyKnight/Firmware-Library" "v1.0.50"
+github "RustyKnight/PromiseKit" "v5.3.0"
+github "RustyKnight/SwiftEventBus" "vXcode9.1-9B37"
+github "RustyKnight/SwiftyJSON" "v3.1.1"

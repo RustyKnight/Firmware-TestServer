@@ -18,7 +18,7 @@ class SAPAViewContoller: NSViewController {
     @IBOutlet weak var notificationButton: NSButton!
     
     var isLiveUpdate: Bool {
-        return liveUpdate.state == NSOnState
+        return liveUpdate.state == NSControl.StateValue.on
     }
     
     override func viewDidLoad() {
@@ -28,15 +28,15 @@ class SAPAViewContoller: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(SAPAViewContoller.automaticStateDidChange),
+                                               selector: #selector(automaticStateDidChange),
                                                name: DataModelKeys.automaticSAPAState.notification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(SAPAViewContoller.currentStateDidChange),
+                                               selector: #selector(currentStateDidChange),
                                                name: DataModelKeys.sapaState.notification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(NetworkRegistrationViewController.modemChanged),
+                                               selector: #selector(modemChanged),
                                                name: DataModelKeys.currentModemModule.notification,
                                                object: nil)
         stateDidChange()
@@ -48,7 +48,7 @@ class SAPAViewContoller: NSViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func modemChanged() {
+    @objc func modemChanged() {
         DispatchQueue.main.async {
             if self.liveUpdate != nil {
                 self.liveUpdate.isEnabled = ModemModule.isCurrent(.satellite)
@@ -61,24 +61,24 @@ class SAPAViewContoller: NSViewController {
         let isAuto = DataModelManager.shared.get(forKey: DataModelKeys.automaticSAPAState, withDefault: true)
         let isActive = DataModelManager.shared.get(forKey: DataModelKeys.sapaState, withDefault: false)
         
-        autoState.state = isAuto ? NSOnState : NSOffState
-        currentState.state = isActive ? NSOnState : NSOffState
+        autoState.state = isAuto ? NSControl.StateValue.on : NSControl.StateValue.off
+        currentState.state = isActive ? NSControl.StateValue.on : NSControl.StateValue.off
     }
     
-    func automaticStateDidChange() {
+    @objc func automaticStateDidChange() {
         DispatchQueue.main.async {
             self.stateDidChange()
         }
     }
     
-    func currentStateDidChange() {
+    @objc func currentStateDidChange() {
         DispatchQueue.main.async {
             self.stateDidChange()
         }
     }
     
     @IBAction func activeStateChanged(_ sender: AnyObject) {
-        let state = currentState.state == NSOnState
+        let state = currentState.state == NSControl.StateValue.on
         DataModelManager.shared.set(value: state, forKey: DataModelKeys.sapaState, withNotification: false)
         sendNotification()
     }

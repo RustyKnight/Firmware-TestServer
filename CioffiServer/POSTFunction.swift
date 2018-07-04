@@ -84,7 +84,7 @@ class POSTResultFunction: DefaultAPIFunction {
 			var postReport = POSTReport()
 			for key in Key.keys {
 				postReport.results[key.1] = POSTResultType.random
-				log(info: "\(key.1) = \(postReport.results[key.1])")
+        log(info: "\(key.1) = \(String(describing: postReport.results[key.1]))")
 			}
 
 			DataModelManager.shared.set(value: postReport,

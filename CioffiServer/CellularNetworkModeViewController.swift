@@ -84,7 +84,7 @@ class CellularNetworkModeViewController: NSViewController {
 	}
 	
 	var isLiveUpdate: Bool {
-		return liveUpdate.state == NSOnState
+		return liveUpdate.state == NSControl.StateValue.on
 	}
 	
 	func sendNotification(forced: Bool = false) {

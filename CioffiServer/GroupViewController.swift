@@ -54,7 +54,7 @@ class GroupViewController: NSViewController {
 
 extension GroupViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        guard let view = outlineView.make(withIdentifier: "DataCell", owner: self) as? NSTableCellView else {
+      guard let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DataCell"), owner: self) as? NSTableCellView else {
             log(info: "Bad cell")
             return nil
         }

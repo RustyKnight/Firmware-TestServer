@@ -77,7 +77,7 @@ class Server: NSObject {
 extension Server: GCDAsyncSocketDelegate {
 	
 	func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-		log(info: "\(newSocket.localHost)")
+    log(info: "\(String(describing: newSocket.localHost))")
 		
 		let clientSocket = newSocket
 		objc_sync_enter(self)
@@ -104,7 +104,7 @@ extension Server: GCDAsyncSocketDelegate {
 	}
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-		log(warning: "Server didDisconnect with \(err)")
+      log(warning: "Server didDisconnect with \(String(describing: err))")
 	}
 	
 }
@@ -189,7 +189,7 @@ class ClientSocketDelegate: NSObject, GCDAsyncSocketDelegate {
 	}
 	
 	func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-		log(info: "Client didDisconnect with \(err)")
+    log(info: "Client didDisconnect with \(String(describing: err))")
 		var userInfo: [AnyHashable:Any] = [:]
 		if let error = err {
 			userInfo = [Server.dataKey:error]

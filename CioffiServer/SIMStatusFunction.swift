@@ -168,7 +168,7 @@ class SetSIMPinFunction: SIMStatusFunction {
 
 		Key.notify(with: status)
 
-		after(interval: 5.0).then { () -> Void in
+		_ = after(interval: 5.0).then { () -> Void in
 			var status = Key.currentStatus
 			status.pinStatus = enabled ? .enabled : .disabled
 			Key.currentStatus = status

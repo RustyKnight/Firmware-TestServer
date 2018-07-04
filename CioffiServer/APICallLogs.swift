@@ -54,7 +54,7 @@ class DeleteCallLogs: DefaultAPIFunction {
 
 
 	override func body(preProcessResult: Any?) -> [String: Any] {
-		var body: [String: Any] = [:]
+		let body: [String: Any] = [:]
 		return body
 	}
 

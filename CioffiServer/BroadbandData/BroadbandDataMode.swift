@@ -127,7 +127,7 @@ class StartStopBroadbandDataMode: DefaultAPIFunction {
 			DataModelManager.shared.set(value: downlinkSpeed,
 			                            forKey: DataModelKeys.satelliteBroadbandDataActiveDownlinkSpeed)
 			
-			log(info: "\(DataModelKeys.broadbandDataActiveMode) = \(DataModelManager.shared.get(forKey: DataModelKeys.broadbandDataActiveMode))")
+      log(info: "\(DataModelKeys.broadbandDataActiveMode) = \(String(describing: DataModelManager.shared.get(forKey: DataModelKeys.broadbandDataActiveMode)))")
 			
 			let switcher = BroadbandDataModeStatusModeSwitcher(to: statusMode,
 			                                                   through: switchMode)
